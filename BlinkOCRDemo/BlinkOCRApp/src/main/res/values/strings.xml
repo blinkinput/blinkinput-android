@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Blink OCR</string>
+    <string name="title_activity_scan">Blink OCR</string>
+
+    <string name="amount_title">Amount</string>
+    <string name="amount_msg">Position Amount in this frame</string>
+
+    <string name="iban_title">IBAN</string>
+    <string name="iban_msg">Position IBAN in this frame</string>
+
+    <string name="raw_title">Raw text</string>
+    <string name="raw_msg">Position text in this frame</string>
+
+    <string name="help_msg_01">Place mobile phone above element that should be scanned and center it inside scanning frame.</string>
+    <string name="help_msg_02">When scanning is done you can edit data by tapping it.</string>
+    <string name="help_msg_03">Swipe or tap title of element that should be scanned.</string>
+
+</resources>

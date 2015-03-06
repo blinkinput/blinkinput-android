@@ -1,0 +1,25 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion '21.1.2'
+    defaultConfig {
+        applicationId 'com.microblink.ocr'
+        minSdkVersion 10
+        targetSdkVersion 21
+    }
+    lintOptions {
+        checkReleaseBuilds false
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+        }
+    }
+}
+
+dependencies {
+    compile 'it.sephiroth.android.library.horizontallistview:hlistview:1.3.1'
+    compile project(':LibRecognizer')
+}
