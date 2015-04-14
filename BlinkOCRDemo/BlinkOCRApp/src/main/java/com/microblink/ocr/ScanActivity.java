@@ -92,7 +92,7 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
         // instead of letterboxing it
         mRecognizerView.setAspectMode(CameraAspectMode.ASPECT_FILL);
         // license key is required for recognizer to work.
-        mRecognizerView.setLicenseKey("HAQI-EYNC-LINO-6BZE-MH3W-D3YJ-PYS2-BOEM");
+        mRecognizerView.setLicenseKey("DB2H5WX3-T2MN76CJ-ZIO5SIWW-MKYTEYZT-UGBW36CJ-ZIMR3WJC-2ZRLCMTD-GPKSSHGK");
 
         // create BlinkOCR recognizer settings object and add parser to it
         BlinkOCRRecognizerSettings settings = new BlinkOCRRecognizerSettings();

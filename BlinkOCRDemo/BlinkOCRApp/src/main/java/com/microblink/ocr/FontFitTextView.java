@@ -3,6 +3,7 @@ package com.microblink.ocr;
 import android.content.Context;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.widget.EditText;
 
@@ -35,8 +36,9 @@ public class FontFitTextView extends EditText {
         if (textWidth <= 0)
             return;
         int targetWidth = textWidth - this.getPaddingLeft() - this.getPaddingRight();
-        float hi = 32;
-        float lo = 2;
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        float hi = 32.f * metrics.density;
+        float lo = 6.f * metrics.density;
         final float threshold = 0.5f; // How close we have to be
 
         mTestPaint.set(this.getPaint());
