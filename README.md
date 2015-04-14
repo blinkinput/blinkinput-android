@@ -36,7 +36,7 @@ _BlinkOCR_ is supported on Android SDK version 8 (Android 2.2) or later.
 ## <a name="quickDemo"></a> Quick start with demo app
 
 1. Open Android Studio.
-2. In Quick Start dialog choose _Import Non-Android Studio project_.
+2. In Quick Start dialog choose _Import project (Eclipse ADT, Gradle, etc.)_.
 3. In File dialog select _BlinkOCRDemo_ folder.
 4. Wait for project to load. If Android studio asks you to reload project on startup, select `Yes`.
 
@@ -416,10 +416,10 @@ View width and height are defined in current context, i.e. they depend on screen
 Note that scanning region only reflects to native code - it does not have any impact on user interface. You are required to create a matching user interface that will visualize the same scanning region you set here.
 
 ##### `setLicenseKey(String licenseKey)`
-This method sets the license key that will unlock all features of the native library. You can obtain your license key from [blinkOCR website](https://microblink.com/ocr).
+This method sets the license key that will unlock all features of the native library. You can obtain your license key from [Microblink website](http://microblink.com/login).
 
 ##### `setLicenseKey(String licenseKey, String licenseOwner)`
-Use this method to set a license key that is bound to a license owner, not the application package name. You will use this method when you obtain a license key that allows you to use _BlinkOCR_ SDK in multiple applications. You can obtain your license key from [blinkOCR website](https://microblink.com/ocr).
+Use this method to set a license key that is bound to a license owner, not the application package name. You will use this method when you obtain a license key that allows you to use _BlinkOCR_ SDK in multiple applications. You can obtain your license key from [Microblink website](http://microblink.com/login).
 
 ## <a name="directAPI"></a> Using direct API for recognition of android Bitmaps
 
@@ -685,8 +685,8 @@ In case of problems with using the SDK, you should do as follows:
 
 After this line, library will display as much information about its work as possible. Make sure to remove this line in your production code as lots of log outputs may slow down the performance of library.
 
-If you cannot solve problems by yourself, do not hesitate to contact us at <support@microblink.com>. Make sure you include the logs when contacting us to minimize the time to find and correct a bug. Also, if having misrecognitions, please send us high resolution images that are not scanned correctly.
+If you cannot solve problems by yourself, do not hesitate to contact us at [help.microblink.com](http://help.microblink.com). Make sure you include the logs when contacting us to minimize the time to find and correct a bug. Also, if having misrecognitions, please send us high resolution images that are not scanned correctly.
 
 # <a name="info"></a> Additional info
-For any other questions, feel free to contact us at <support@microblink.com>.
+For any other questions, feel free to contact us at [help.microblink.com](http://help.microblink.com).
 

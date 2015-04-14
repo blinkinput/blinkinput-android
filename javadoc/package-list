@@ -1,6 +1,7 @@
 com.microblink.directApi
 com.microblink.geometry
 com.microblink.hardware
+com.microblink.hardware.accelerometer
 com.microblink.hardware.camera.focus
 com.microblink.locale
 com.microblink.recognizers
