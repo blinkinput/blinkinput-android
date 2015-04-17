@@ -538,6 +538,8 @@ The following is a list of available parsers:
 	- used for parsing amounts from OCR result
 - IBAN parser - represented by [IbanParserSettings](javadoc/com/microblink/recognizers/ocr/blinkocr/parser/generic/IbanParserSettings.html)
 	- used for parsing International Bank Account Numbers (IBANs) from OCR result
+- E-mail parser - represented by [EMailParserSettings](javadoc/com/microblink/recognizers/ocr/blinkocr/parser/generic/EMailParserSettings.html)
+	- used for parsing e-mail addresses
 - Raw parser - represented by [RawParserSettings](javadoc/com/microblink/recognizers/ocr/blinkocr/parser/generic/RawParserSettings.html)
 	- used for obtaining raw OCR result
 
