@@ -28,7 +28,7 @@ The package contains Android Archive (AAR) that contains everything you need to 
 
  - BlinkOCRApp demonstrates integration of BlinkOCR component
  
-_BlinkOCR_ is supported on Android SDK version 8 (Android 2.2) or later.
+_BlinkOCR_ is supported on Android SDK version 10 (Android 2.3) or later.
 
 
 # <a name="quickStart"></a> Quick Start
