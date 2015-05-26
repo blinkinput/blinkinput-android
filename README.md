@@ -6,8 +6,11 @@
   * [Quick integration of _BlinkOCR_ into your app](#quickIntegration)
   * [Eclipse integration instructions](#eclipseIntegration)
   * [How to integrate _BlinkOCR_ into your project using Maven](#mavenIntegration)
-* [_BlinkOCR_ integration instructions](#integrationInstructions)
+  * [_BlinkOCR's_ dependencies](#dependencies)
+  * [Performing your first scan](#quickScan)
+* [Advanced _BlinkOCR_ integration instructions](#advancedIntegration)
   * [Checking if _BlinkOCR_ is supported](#supportCheck)
+  * [Customization of `BlinkOCRActivity` activity](#scanActivityCustomization)
   * [Embedding `RecognizerView` into custom scan activity](#recognizerView)
   * [`RecognizerView` reference](#recognizerViewReference)
   * [Using direct API for recognition of android Bitmaps](#directAPI)
@@ -18,6 +21,8 @@
   * [Reducing the final size of your app](#reduceSize)
   * [Combining _BlinkOCR_ with other native libraries](#combineNativeLibraries)
 * [Troubleshooting](#troubleshoot)
+  * [Integration problems](#integrationTroubleshoot)
+  * [SDK problems](#sdkTroubleshoot)
 * [Additional info](#info)
 
 # <a name="intro"></a> Android _BlinkOCR_ integration instructions
@@ -30,6 +35,8 @@ The package contains Android Archive (AAR) that contains everything you need to 
  
 _BlinkOCR_ is supported on Android SDK version 10 (Android 2.3) or later.
 
+
+The library contains one activity: `BlinkOCRActivity`. It is responsible for camera control and recognition. If you create your own scanning UI, you will need to embed `RecognizerView` into your activity and pass activity's lifecycle events to it and it will control the camera and recognition process.
 
 # <a name="quickStart"></a> Quick Start
 
@@ -55,10 +62,13 @@ _BlinkOCR_ is supported on Android SDK version 10 (Android 2.3) or later.
 	-dontwarn android.hardware.**
 	-dontwarn android.support.v4.**
 	```
+5. Add _BlinkOCR's_ dependencies. See [_BlinkOCR's_ dependencies](#dependencies) section for more information.
 	
 ## <a name="eclipseIntegration"></a> Eclipse integration instructions
 
-We do not provide Eclipse integration demo apps. We encourage you to use Android Studio. However, if you still want to use Eclipse, you will need to convert AAR archive to Eclipse library project format. You can do this by doing the following:
+We do not provide Eclipse integration demo apps. We encourage you to use Android Studio. We also do not test integrating _BlinkOCR_ with Eclipse. If you are having problems with _BlinkOCR_, make sure you have tried integrating it with Android Studio prior contacting us.
+
+However, if you still want to use Eclipse, you will need to convert AAR archive to Eclipse library project format. You can do this by doing the following:
 
 1. In Eclipse, create a new _Android library project_ in your workspace.
 2. Clear the `src` and `res` folders.
@@ -73,6 +83,7 @@ You’ve already created the project that contains almost everything you need. N
 1. In the project you want to use the library (henceforth, "target project") add the library project as a dependency
 2. Open the `AndroidManifest.xml` file inside `LibRecognizer.aar` file and make sure to copy all permissions, features and activities to the `AndroidManifest.xml` file of the target project.
 3. Clean and Rebuild your target project
+4. Add _BlinkOCR's_ dependencies. See [_BlinkOCR's_ dependencies](#dependencies) section for more information.
 
 ## <a name="mavenIntegration"></a> How to integrate _BlinkOCR_ into your project using Maven
 
@@ -91,9 +102,11 @@ After that, you just need to add _BlinkOCR_ as a dependency to your application:
 
 ```
 dependencies {
-    compile 'com.microblink:blinkocr:1.1.0'
+    compile 'com.microblink:blinkocr:1.2.0'
 }
 ```
+
+Do not forget to add _BlinkOCR's_ dependencies to your app's dependencies. To see what are dependencies of _BlinkOCR_, check section [_BlinkOCR's_ dependencies](#dependencies).
 
 ### Using android-maven-plugin
 
@@ -111,16 +124,84 @@ Open your pom.xml file and add these directives as appropriate:
 	<dependency>
 		  <groupId>com.microblink</groupId>
 		  <artifactId>blinkocr</artifactId>
-		  <version>1.1.0</version>
+		  <version>1.2.0</version>
   	</dependency>
 <dependencies>
 ```
 
 Maven dependency requires android-maven-plugin version 4.0.0 (AAR support is required).
 
-# <a name="integrationInstructions"></a> _BlinkOCR_ integration instructions
+Do not forget to add _BlinkOCR's_ dependencies to your app's dependencies. To see what are dependencies of _BlinkOCR_, check section [_BlinkOCR's_ dependencies](#dependencies).
 
-This section will cover details in _BlinkOCR_ integration. First part will discuss the methods for checking whether _BlinkOCR_ is supported on current device. Second part will describe how to embed `RecognizerView` into your activity and third part will describe how to use direct API to recognize directly android bitmaps without the need of camera.
+## <a name="dependencies"></a> _BlinkOCR's_ dependencies
+
+_BlinkOCR_ depends on [Horizontal variable ListView](https://github.com/sephiroth74/HorizontalVariableListView).
+
+To include that library into your app, in Android studio simply add following line in `dependencies` section:
+
+```
+compile 'it.sephiroth.android.library.horizontallistview:hlistview:1.3.1'
+```
+
+If using Eclipse, you first need a maven client to fetch the `ListView` library and its resources and then perform the integration of it as described in [Eclipse guide for _BlinkOCR_](#eclipseIntegration).
+
+## <a name="quickScan"></a> Performing your first scan
+1. You can start recognition process by starting `BlinkOCRActivity` activity with Intent initialized in the following way:
+	
+	```java
+	// Intent for BlinkOCRActivity Activity
+	Intent intent = new Intent(this, BlinkOCRActivity.class);
+	
+	// set your licence key
+	// obtain your licence key at http://microblink.com/login or
+	// contact us at http://help.microblink.com
+	intent.putExtra(BlinkOCRActivity.EXTRAS_LICENSE_KEY, "Add your licence key here");
+
+	// setup array of scan configurations. Each scan configuration
+	// contains 4 elements: resource ID for title displayed
+	// in BlinkOCRActivity activity, resource ID for text
+	// displayed in activity, name of the scan element (used
+	// for obtaining results) and parser setting defining
+	// how the data will be extracted.
+	// For more information about parser setting, check the
+	// chapter "Scanning segments with BlinkOCR recognizer"
+	ScanConfiguration[] confArray = new ScanConfiguration[] {
+                new ScanConfiguration(R.string.amount_title, R.string.amount_msg, "Amount", new AmountParserSettings()),
+                new ScanConfiguration(R.string.email_title, R.string.email_msg, "EMail", new EMailParserSettings()),
+                new ScanConfiguration(R.string.raw_title, R.string.raw_msg, "Raw", new RawParserSettings())
+        };
+	intent.putExtra(BlinkOCRActivity.EXTRAS_SCAN_CONFIGURATION, confArray);
+
+	// Starting Activity
+	startActivityForResult(intent, MY_REQUEST_CODE);
+	```
+2. After `BlinkOCRActivity` activity finishes the scan, it will return to the calling activity and will call method `onActivityResult`. You can obtain the scanning results in that method.
+
+	```java
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		if (requestCode == MY_REQUEST_CODE) {
+			if (resultCode == BlinkOCRActivity.RESULT_OK && data != null) {
+				// perform processing of the data here
+				
+				// for example, obtain parcelable recognition result
+				Bundle extras = data.getExtras();
+				Bundle results = extras.getBundle(BlinkOCRActivity.EXTRAS_SCAN_RESULTS);
+				
+				// results bundle contains result strings in keys defined
+				// by scan configuration name
+				// for example, if set up as in step 1, then you can obtain
+				// e-mail address with following line
+				String email = results.getString("EMail");
+			}
+		}
+	}
+	```
+
+# <a name="advancedIntegration"></a> Advanced _BlinkOCR_ integration instructions
+This section will cover more advanced details in _BlinkOCR_ integration. First part will discuss the methods for checking whether _BlinkOCR_ is supported on current device. Second part will cover the possible customization of builtin `BlinkOCRActivity` activity, third part will describe how to embed `RecognizerView` into your activity and fourth part will describe how to use direct API to recognize directly android bitmaps without the need of camera.
 
 ## <a name="supportCheck"></a> Checking if _BlinkOCR_ is supported
 
@@ -146,16 +227,48 @@ if(status == RecognizerCompatibilityStatus.RECOGNIZER_SUPPORTED) {
 }
 ```
 
-However, some recognizers require camera with autofocus. If you try to start recognition with those recognizers on a device that does not have camera with autofocus, you will get an error. To prevent that, when you prepare the array with recognition settings (see [Recognition settings and results](#recognitionSettingsAndResults) for settings reference), you can easily filter out all settings that require autofocus from array using the following code snippet:
+## <a name="scanActivityCustomization"></a> Customization of `BlinkOCRActivity` activity
 
-```java
-// setup array of recognition settings (described in chapter "Recognition 
-// settings and results")
-RecognizerSettings[] settArray = setupSettingsArray();
-if(!RecognizerCompatibility.cameraHasAutofocus(CameraType.CAMERA_BACKFACE, this)) {
-	setarr = RecognizerSettingsUtils.filterOutRecognizersThatRequireAutofocus(setarr);
-}
-```
+### `BlinkOCRActivity` intent extras
+
+This section will discuss possible parameters that can be sent over `Intent` for `BlinkOCRActivity` activity that can customize default behaviour. There are several intent extras that can be sent to `BlinkOCRActivity` actitivy:
+	
+* **`BlinkOCRActivity.EXTRAS_SCAN_CONFIGURATION`** - with this extra you must set the array of [ScanConfiguration](javadoc/com/microblink/ocr/ScanConfiguration.html) objects. Each `ScanConfiguration` object will define specific scan configuration that will be performed. `ScanConfiguration` defines two string resource ID's - title of the scanned item and text that will be displayed above field where scan is performed. Besides that it defines the name of scanned item and object defining the OCR parser settings. More information about parser settings can be found in chapter [Scanning segments with BlinkOCR recognizer](#blinkOCR). Here is only important that each scan configuration represents a single parser group and BlinkOCRActivity ensures that only one parser group is active at a time. After defining scan configuration array, you need to put it into intent extra with following code snippet:
+	
+	```java
+	intent.putExtra(BlinkOCRActivity.EXTRAS_SCAN_CONFIGURATION, confArray);
+	```
+	
+* **`BlinkOCRActivity.EXTRAS_SCAN_RESULTS`** - you can use this extra in `onActivityResult` method of calling activity to obtain bundle with recognition results. Bundle will contain only strings representing scanned data under keys defined with each scan configuration. If you also need to obtain OCR result structure, then you need to perform [advanced integration](#recognizerView). You can use the following snippet to obtain scan results:
+
+	```java
+	Bundle results = data.getBundle(BlinkOCRActivity.EXTRAS_SCAN_RESULTS);
+	```
+	
+* **`BlinkOCRActivity.EXTRAS_HELP_INTENT`** - with this extra you can set fully initialized intent that will be sent when user clicks the help button. You can put any extras you want to your intent - all will be delivered to your activity when user clicks the help button. If you do not set help intent, help button will not be shown in camera interface. To set the intent for help activity, use the following code snippet:
+	
+	```java
+	/** Set the intent which will be sent when user taps help button. 
+	 *  If you don't set the intent, help button will not be shown.
+	 *  Note that this applies only to default PhotoPay camera UI.
+	 * */
+	intent.putExtra(BlinkOCRActivity.EXTRAS_HELP_INTENT, new Intent(this, HelpActivity.class));
+	```
+
+* **`BlinkOCRActivity.EXTRAS_LICENSE_KEY`** - with this extra you can set the license key for _BlinkOCR_. You can obtain your licence key from [Microblink website](http://microblink.com/login) or you can contact us at [http://help.microblink.com](http://help.microblink.com). Once you obtain a license key, you can set it with following snippet:
+
+	```java
+	// set the license key
+	intent.putExtra(BlinkOCRActivity.EXTRAS_LICENSE_KEY, "Enter_License_Key_Here");
+	```
+	
+	Licence key is bound to package name of your application. For example, if you have licence key that is bound to `com.microblink.ocr` app package, you cannot use the same key in other applications. However, if you purchase Premium licence, you will get licence key that can be used in multiple applications. This licence key will then not be bound to package name of the app. Instead, it will be bound to the licencee string that needs to be provided to the library together with the licence key. To provide licencee string, use the `EXTRAS_LICENSEE` intent extra like this:
+
+	```java
+	// set the license key
+	intent.putExtra(BlinkOCRActivity.EXTRAS_LICENSE_KEY, "Enter_License_Key_Here");
+	intent.putExtra(BlinkOCRActivity.EXTRAS_LICENSEE, "Enter_Licensee_Here");
+	```
 
 ## <a name="recognizerView"></a> Embedding `RecognizerView` into custom scan activity
 This section will discuss how to embed `RecognizerView` into your scan activity and perform scan.
@@ -328,85 +441,85 @@ If you use `sensor` or similar screen orientation for your scan activity there i
 ## <a name="recognizerViewReference"></a> `RecognizerView` reference
 The complete reference of `RecognizerView` is available in [Javadoc](javadoc/com/microblink/view/recognition/RecognizerView.html). The usage example is provided in `` demo app provided with SDK. This section just gives a quick overview of `RecognizerView's` most important methods.
 
-##### `create()`
+##### <a name="recognizerView_create"></a> `create()`
 This method should be called in activity's `onCreate` method. It will initialize `RecognizerView's` internal fields and will initialize camera control thread. This method must be called after all other settings are already defined, such as listeners and recognition settings. After calling this method, you can add child views to `RecognizerView` with method `addChildView(View, boolean)`.
 
-##### `start()`
+##### <a name="recognizerView_start"></a> `start()`
 This method should be called in activity's `onStart` method. It will initialize background processing thread and start native library initialization on that thread.
 
-##### `resume()`
+##### <a name="recognizerView_resume"></a> `resume()`
 This method should be called in activity's `onResume` method. It will trigger background initialization of camera.
 
-##### `pause()`
+##### <a name="recognizerView_pause"></a> `pause()`
 This method should be called in activity's `onPause` method. It will stop the camera, but will keep native library loaded.
 
-##### `stop()`
+##### <a name="recognizerView_stop"></a> `stop()`
 This method should be called in activity's `onStop` method. It will deinitialize native library, terminate background processing thread and free all resources that are no longer necessary.
 
-##### `destroy()`
+##### <a name="recognizerView_destroy"></a> `destroy()`
 This method should be called in activity's `onDestroy` method. It will free all resources allocated in `create()` and will terminate camera control thread.
 
-##### `changeConfiguration(Configuration)`
+##### <a name="recognizerView_changeConfiguration"></a> `changeConfiguration(Configuration)`
 This method should be called in activity's `onConfigurationChanged` method. It will adapt camera surface to new configuration without the restart of the activity. See [Scan activity's orientation](#scanOrientation) for more information.
 
-##### `setCameraType(CameraType)`
+##### <a name="recognizerView_setCameraType"></a> `setCameraType(CameraType)`
 With this method you can define which camera on device will be used. Default camera used is back facing camera.
 
-##### `setAspectMode(CameraAspectMode)`
+##### <a name="recognizerView_setAspectMode"></a> `setAspectMode(CameraAspectMode)`
 Define the aspect mode of camera. If set to `ASPECT_FIT` (default), then camera preview will be fit inside available view space. If set to `ASPECT_FILL`, camera preview will be zoomed and cropped to use the entire view space.
 
-##### `setRecognitionSettings(RecognizerSettings[])`
+##### <a name="recognizerView_setRecognitionSettings"></a> `setRecognitionSettings(RecognizerSettings[])`
 With this method you can set the array of `RecognizerSettings` objects. Those objects will contain information about what will be scanned and how will scan be performed. For more information about recognition settings and results see [Recognition settings and results](#recognitionSettingsAndResults). This method must be called before `create()`.
 
-##### `setGenericRecognizerSettings(GenericRecognizerSettings)`
+##### <a name="recognizerView_setGenericRecognizerSettings"></a> `setGenericRecognizerSettings(GenericRecognizerSettings)`
 With this method you can set the generic settings that will be affect all enabled recognizers or the whole recognition process. For more information about generic settings, see [Generic settings](#genericSettings). This method must be called before `create()`.
 
-##### `reconfigureRecognizers(RecognizerSettings[], GenericRecognizerSettings)`
+##### <a name="recognizerView_reconfigureRecognizers1"></a> `reconfigureRecognizers(RecognizerSettings[], GenericRecognizerSettings)`
 With this method you can reconfigure the recognition process while recognizer is active. Unlike `setRecognitionSettings` and `setGenericRecognizerSettings`, this method can be called while recognizer is active (i.e. after `resume` was called), but paused (either `pauseScanning` was called or `onScanningDone` callback is being handled). For more information about recognition settings see [Recognition settings and results](#recognitionSettingsAndResults).
 
-##### `reconfigureRecognizers(RecognizerSettings[])`
+##### <a name="recognizerView_reconfigureRecognizers2"></a> `reconfigureRecognizers(RecognizerSettings[])`
 With this method you can reconfigure the recognition process while recognizer is active. Unlike `setRecognitionSettings`, this method can be called while recognizer is active (i.e. after `resume` was called), but paused (either `pauseScanning` was called or `onScanningDone` callback is being handled). For more information about recognition settings see [Recognition settings and results](#recognitionSettingsAndResults).
 
-##### `setOrientationAllowedListener(OrientationAllowedListener)`
+##### <a name="recognizerView_setOrientationAllowedListener"></a> `setOrientationAllowedListener(OrientationAllowedListener)`
 With this method you can set a [OrientationAllowedListener](javadoc/com/microblink/view/OrientationAllowedListener.html) which will be asked if current orientation is allowed. If orientation is allowed, it will be used to rotate rotatable views to it and it will be passed to native library so that recognizers can be aware of the new orientation.
 
-##### `setRecognizerViewEventListener(RecognizerViewEventListener)`
+##### <a name="recognizerView_setRecognizerViewEventListener"></a> `setRecognizerViewEventListener(RecognizerViewEventListener)`
 With this method you can set a [RecognizerViewEventListener](javadoc/com/microblink/view/recognition/RecognizerViewEventListener.html) which will be notified when certain recognition events occur, such as when object has been detected.
 
-##### `setScanResultListener(ScanResultListener)`
+##### <a name="recognizerView_setScanResultListener"></a> `setScanResultListener(ScanResultListener)`
 With this method you can set a [ScanResultListener](javadoc/com/microblink/view/recognition/ScanResultListener.html) which will be notified when recognition completes. After recognition completes, `RecognizerView` will pause its scanning loop and to continue the scanning you will have to call `resumeScanning` method. In this method you can obtain data from scanning results. For more information see [Recognition settings and results](#recognitionSettingsAndResults).
 
-##### `setCameraEventsListener(CameraEventsListener)`
+##### <a name="recognizerView_setCameraEventsListener"></a> `setCameraEventsListener(CameraEventsListener)`
 With this method you can set a [CameraEventsListener](javadoc/com/microblink/view/CameraEventsListener.html) which will be notified when various camera events occur, such as when camera preview has started, autofocus has failed or there has been an error while starting the camera.
 
-##### `pauseScanning()`
+##### <a name="recognizerView_pauseScanning"></a> `pauseScanning()`
 This method pauses the scanning loop, but keeps both camera and native library initialized. This method is called internally when scan completes before `onScanningDone` is called.
 
-##### `resumeScanning()`
+##### <a name="recognizerView_resumeScanning"></a> `resumeScanning()`
 With this method you can resume the paused scanning loop. This method implicitly calls `resetRecognitionState()`.
 
-##### `resumeScanningWithoutStateReset()`
+##### <a name="recognizerView_resumeScanningWithoutStateReset"></a> `resumeScanningWithoutStateReset()`
 With this method you can resume the paused scanning loop without resetting recognition state. Be aware that after resuming, old recognition state might be reused for boosting recognition result. This may not be always a desired behaviour.
 
-##### `resetRecognitionState()`
+##### <a name="recognizerView_resetRecognitionState"></a> `resetRecognitionState()`
 With this method you can reset internal recognition state. State is usually kept to improve recognition quality over time, but without resetting recognition state sometimes you might get poorer results (for example if you scan one object and then another without resetting state you might end up with result that contains properties from both scanned objects).
 
-##### `addChildView(View, boolean)`
+##### <a name="recognizerView_addChildView"></a> `addChildView(View, boolean)`
 With this method you can add your own view on top of `RecognizerView`. `RecognizerView` will ensure that your view will be layouted exactly above camera preview surface (which can be letterboxed if aspect ratio of camera preview size does not match the aspect ratio of `RecognizerView` and camera aspect mode is set to `ASPECT_FIT`). Boolean parameter defines whether your view should be rotated with device orientation changes. The rotation is independent of host activity's orientation changes and allowed orientations will be determined from [OrientationAllowedListener](javadoc/com/microblink/view/OrientationAllowedListener.html). See also [Scan activity's orientation](#scanOrientation) for more information why you should rotate your views independently of activity.
 
-##### `isCameraFocused()` 
+##### <a name="recognizerView_isCameraFocused"></a> `isCameraFocused()` 
 This method returns `true` if camera thinks it has focused on object. Note that camera has to be loaded for this method to work.
 
-##### `focusCamera()` 
+##### <a name="recognizerView_focusCamera"></a> `focusCamera()` 
 This method requests camera to perform autofocus. If camera does not support autofocus feature, method does nothing. Note that camera has to be loaded for this method to work.
 
-##### `isCameraTorchSupported()` 
+##### <a name="recognizerView_isCameraTorchSupported"></a> `isCameraTorchSupported()` 
 This method returns `true` if camera supports torch flash mode. Note that camera has to be loaded for this method to work.
 
-##### `setTorchState(boolean, SuccessCallback)` 
+##### <a name="recognizerView_setTorchState"></a> `setTorchState(boolean, SuccessCallback)` 
 If torch flash mode is supported on camera, this method can be used to enable/disable torch flash mode. After operation is performed, [SuccessCallback](javadoc/com/microblink/hardware/SuccessCallback.html) will be called with boolean indicating whether operation has succeeded or not. Note that camera has to be loaded for this method to work and that callback might be called on background non-UI thread.
 
-##### `setScanningRegion(Rectangle, boolean)`
+##### <a name="recognizerView_setScanningRegion"></a> `setScanningRegion(Rectangle, boolean)`
 You can use this method to define the scanning region and define whether this scanning region will be rotated with device if [OrientationAllowedListener](javadoc/com/microblink/view/OrientationAllowedListener.html) determines that orientation is allowed. This is useful if you have your own camera overlay on top of `RecognizerView` that is set as rotatable view - you can thus synchronize the rotation of the view with the rotation of the scanning region native code will scan.
 
 Scanning region is defined as [Rectangle](javadoc/com/microblink/geometry/Rectangle.html). First parameter of rectangle is x-coordinate represented as percentage of view width, second parameter is y-coordinate represented as percentage of view height, third parameter is region width represented as percentage of view width and fourth parameter is region height represented as percentage of view height.
@@ -414,6 +527,9 @@ Scanning region is defined as [Rectangle](javadoc/com/microblink/geometry/Rectan
 View width and height are defined in current context, i.e. they depend on screen orientation. If you allow your ROI view to be rotated, then in portrait view width will be smaller than height, whilst in landscape orientation width will be larger than height. This complies with view designer preview. If you choose not to rotate your ROI view, then your ROI view will be laid out either in portrait or landscape, depending on setting for your scan activity in `AndroidManifest.xml`
 
 Note that scanning region only reflects to native code - it does not have any impact on user interface. You are required to create a matching user interface that will visualize the same scanning region you set here.
+
+##### <a name="recognizerView_setImageListener"></a> `setImageListener(ImageListener)`
+You can use this method to define [image listener](javadoc/com/microblink/image/ImageListener.html) that will obtain images that are currently being processed by the native library. Please make sure that installing this listener introduces a large performance penalty on scanning process.
 
 ##### `setLicenseKey(String licenseKey)`
 This method sets the license key that will unlock all features of the native library. You can obtain your license key from [Microblink website](http://microblink.com/login).
@@ -677,7 +793,30 @@ If you are combining _BlinkOCR_ library with some other libraries that contain n
 
 # <a name="troubleshoot"></a> Troubleshooting
 
+## <a name="integrationTroubleshoot"></a> Integration problems
+
+In case of problems with integration of the SDK, first make sure that you have tried integrating it into Android Studio by following [integration instructions](#quickIntegration). Althought we do provide [Eclipse ADT integration](#eclipseIntegration) integration instructions, we officialy do not support Eclipse ADT anymore. Also, for any other IDEs unfortunately you are on your own.
+
+If you have followed [Android Studio integration instructions](#quickIntegration) and are still having integration problems, please contact us at [help.microblink.com](http://help.microblink.com).
+
+## <a name="sdkTroubleshoot"></a> SDK problems
+
 In case of problems with using the SDK, you should do as follows:
+
+### Licencing problems
+
+If you are getting "invalid licence key" error or having other licence-related problems (e.g. some feature is not enabled that should be or there is a watermark on top of camera), first check the ADB logcat. All licence-related problems are logged to error log so it is easy to determine what went wrong.
+
+When you have determine what is the licence-relate problem or you simply do not understand the log, you should contact us [help.microblink.com](http://help.microblink.com). When contacting us, please make sure you provide following information:
+
+* exact package name of your app (from your `AndroidManifest.xml` and/or your `build.gradle` file)
+* licence key that is causing problems
+* please stress out that you are reporting problem related to Android version of _BlinkOCR_ SDK
+* if unsure about the problem, you should also provide excerpt from ADB logcat containing licence error
+
+### Other problems
+
+If you are having problems with scanning certain items, undesired behaviour on specific device(s), crashes inside _BlinkOCR_ or anything unmentioned, please do as follows:
 
 * enable logging to get the ability to see what is library doing. To enable logging, put this line in your application:
 
@@ -685,9 +824,14 @@ In case of problems with using the SDK, you should do as follows:
 	com.microblink.util.Log.setLogLevel(com.microblink.util.Log.LogLevel.LOG_VERBOSE);
 	```
 
-After this line, library will display as much information about its work as possible. Make sure to remove this line in your production code as lots of log outputs may slow down the performance of library.
+	After this line, library will display as much information about its work as possible. Please save the entire log of scanning session to a file that you will send to us. It is important to send the entire log, not just the part where crash occured, because crashes are sometimes caused by unexpected behaviour in the early stage of the library initialization.
+	
+* Contact us at [help.microblink.com](http://help.microblink.com) describing your problem and provide following information:
+	* log file obtained in previous step
+	* high resolution scan/photo of the item that you are trying to scan
+	* information about device that you are using - we need exact model name of the device. You can obtain that information with [this app](https://play.google.com/store/apps/details?id=com.jphilli85.deviceinfo&hl=en)
+	* please stress out that you are reporting problem related to Android version of _BlinkOCR_ SDK
 
-If you cannot solve problems by yourself, do not hesitate to contact us at [help.microblink.com](http://help.microblink.com). Make sure you include the logs when contacting us to minimize the time to find and correct a bug. Also, if having misrecognitions, please send us high resolution images that are not scanned correctly.
 
 # <a name="info"></a> Additional info
 For any other questions, feel free to contact us at [help.microblink.com](http://help.microblink.com).

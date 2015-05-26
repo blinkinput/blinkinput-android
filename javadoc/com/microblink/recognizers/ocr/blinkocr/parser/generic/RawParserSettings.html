@@ -194,6 +194,33 @@ implements android.os.Parcelable</pre>
 <td class="colLast"><code><strong><a href="../../../../../../../com/microblink/recognizers/ocr/blinkocr/parser/generic/RawParserSettings.html#describeContents()">describeContents</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html" title="class in com.microblink.recognizers.ocr.blinkocr.engine">BlinkOCREngineOptions</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../../../com/microblink/recognizers/ocr/blinkocr/parser/generic/RawParserSettings.html#getOcrEngineOptions()">getOcrEngineOptions</a></strong>()</code>
+<div class="block">Returns the OCR engine options used in Raw OCR parsing or null if default options should be
+ used.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../../com/microblink/recognizers/ocr/blinkocr/parser/generic/RawParserSettings.html#isUsingSieve()">isUsingSieve</a></strong>()</code>
+<div class="block">Returns true if algorithm for combining consecutive OCR results between video frames
+ for improving OCR quality is used.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../../com/microblink/recognizers/ocr/blinkocr/parser/generic/RawParserSettings.html#setOcrEngineOptions(com.microblink.recognizers.ocr.blinkocr.engine.BlinkOCREngineOptions)">setOcrEngineOptions</a></strong>(<a href="../../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html" title="class in com.microblink.recognizers.ocr.blinkocr.engine">BlinkOCREngineOptions</a>&nbsp;options)</code>
+<div class="block">Sets the OCR engine options used in Raw OCR parsing.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../../com/microblink/recognizers/ocr/blinkocr/parser/generic/RawParserSettings.html#setUseSieve(boolean)">setUseSieve</a></strong>(boolean&nbsp;useSieve)</code>
+<div class="block">Enable the usage of algorithm for combining consecutive OCR results between video frames
+ for improving OCR quality.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../../com/microblink/recognizers/ocr/blinkocr/parser/generic/RawParserSettings.html#writeToParcel(android.os.Parcel, int)">writeToParcel</a></strong>(android.os.Parcel&nbsp;dest,
              int&nbsp;flags)</code>&nbsp;</td>
@@ -279,7 +306,7 @@ implements android.os.Parcelable</pre>
 <a name="writeToParcel(android.os.Parcel, int)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>writeToParcel</h4>
 <pre>public&nbsp;void&nbsp;writeToParcel(android.os.Parcel&nbsp;dest,
@@ -290,6 +317,53 @@ implements android.os.Parcelable</pre>
 <dt><strong>Overrides:</strong></dt>
 <dd><code><a href="../../../../../../../com/microblink/recognizers/ocr/blinkocr/parser/OcrParserSettings.html#writeToParcel(android.os.Parcel, int)">writeToParcel</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../../com/microblink/recognizers/ocr/blinkocr/parser/OcrParserSettings.html" title="class in com.microblink.recognizers.ocr.blinkocr.parser">OcrParserSettings</a></code></dd>
 </dl>
+</li>
+</ul>
+<a name="setUseSieve(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setUseSieve</h4>
+<pre>public&nbsp;void&nbsp;setUseSieve(boolean&nbsp;useSieve)</pre>
+<div class="block">Enable the usage of algorithm for combining consecutive OCR results between video frames
+ for improving OCR quality. By default this is turned off.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>useSieve</code> - whether or not sieve algorithm should be used</dd></dl>
+</li>
+</ul>
+<a name="isUsingSieve()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isUsingSieve</h4>
+<pre>public&nbsp;boolean&nbsp;isUsingSieve()</pre>
+<div class="block">Returns true if algorithm for combining consecutive OCR results between video frames
+ for improving OCR quality is used.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>true if sieve algorithm is used</dd></dl>
+</li>
+</ul>
+<a name="getOcrEngineOptions()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getOcrEngineOptions</h4>
+<pre>public&nbsp;<a href="../../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html" title="class in com.microblink.recognizers.ocr.blinkocr.engine">BlinkOCREngineOptions</a>&nbsp;getOcrEngineOptions()</pre>
+<div class="block">Returns the OCR engine options used in Raw OCR parsing or null if default options should be
+ used.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>OCR engine options or null</dd></dl>
+</li>
+</ul>
+<a name="setOcrEngineOptions(com.microblink.recognizers.ocr.blinkocr.engine.BlinkOCREngineOptions)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>setOcrEngineOptions</h4>
+<pre>public&nbsp;void&nbsp;setOcrEngineOptions(<a href="../../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html" title="class in com.microblink.recognizers.ocr.blinkocr.engine">BlinkOCREngineOptions</a>&nbsp;options)</pre>
+<div class="block">Sets the OCR engine options used in Raw OCR parsing. Set null to use default options.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>options</code> - OCR engine options used in Raw OCR parsing</dd></dl>
 </li>
 </ul>
 </li>

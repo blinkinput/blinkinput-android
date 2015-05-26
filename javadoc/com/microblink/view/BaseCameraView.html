@@ -374,44 +374,67 @@ extends android.view.ViewGroup</pre>
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>float</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#getZoomLevel()">getZoomLevel</a></strong>()</code>
+<div class="block">Returns the current camera zoom level.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#isCameraActive()">isCameraActive</a></strong>()</code>
 <div class="block">Returns true if camera is currently active.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#isCameraFocused()">isCameraFocused</a></strong>()</code>
 <div class="block">Returns true if camera is currently in focus</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#isCameraTorchSupported()">isCameraTorchSupported</a></strong>()</code>
 <div class="block">Returns true if camera has got torch.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#isDeviceShaking()">isDeviceShaking</a></strong>()</code>
 <div class="block">Returns true if the device is being shaken</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#isOrientationAllowed(Orientation)">isOrientationAllowed</a></strong>(Orientation&nbsp;orientation)</code>&nbsp;</td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#isPinchToZoomAllowed()">isPinchToZoomAllowed</a></strong>()</code>
+<div class="block">Returns true if camera view will handle pinch events to manage camera zoom level.</div>
+</td>
+</tr>
 <tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#onAutofocusFailed()">onAutofocusFailed</a></strong>()</code>&nbsp;</td>
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#isTapToFocusAllowed()">isTapToFocusAllowed</a></strong>()</code>
+<div class="block">Returns true if camera view will handle tap events to ask camera to perform autofocus
+ on tapped area.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#onAutofocusStarted(android.graphics.Rect[])">onAutofocusStarted</a></strong>(android.graphics.Rect[]&nbsp;areas)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#onAutofocusFailed()">onAutofocusFailed</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#onAutofocusStarted(android.graphics.Rect[])">onAutofocusStarted</a></strong>(android.graphics.Rect[]&nbsp;areas)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#onAutofocusStopped(android.graphics.Rect[])">onAutofocusStopped</a></strong>(android.graphics.Rect[]&nbsp;areas)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#onCameraPinchEvent(float)">onCameraPinchEvent</a></strong>(float&nbsp;scale)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
@@ -554,19 +577,32 @@ extends android.view.ViewGroup</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setPinchToZoomAllowed(boolean)">setPinchToZoomAllowed</a></strong>(boolean&nbsp;allowPinchToZoom)</code>
+<div class="block">Sets whether camear view will handle pinch events to manage camera zoom level.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setRotationAnimationDuration(int)">setRotationAnimationDuration</a></strong>(int&nbsp;rotationAnimationDuration)</code>
 <div class="block">Sets the duration of rotatable view rotation animation (valid only if setAnimateRotation(true) was called).</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setShakeListener(com.microblink.hardware.accelerometer.ShakeCallback)">setShakeListener</a></strong>(<a href="../../../com/microblink/hardware/accelerometer/ShakeCallback.html" title="interface in com.microblink.hardware.accelerometer">ShakeCallback</a>&nbsp;shakeCallback)</code>
 <div class="block">Sets the shake callback that will be notified about device shake events.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setShouldAlwaysUseHighestPossibleResolution(boolean)">setShouldAlwaysUseHighestPossibleResolution</a></strong>(boolean&nbsp;useHighestPossibleResolution)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setTapToFocusAllowed(boolean)">setTapToFocusAllowed</a></strong>(boolean&nbsp;allowTapToFocus)</code>
+<div class="block">Sets whether camera view will handle tap events to ask camera to perform autofocus
+ on tapped area.</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
@@ -576,20 +612,26 @@ extends android.view.ViewGroup</pre>
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setZoomLevel(float)">setZoomLevel</a></strong>(float&nbsp;zoomLevel)</code>
+<div class="block">Sets the camera zoom level.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#shouldAnimateRotation()">shouldAnimateRotation</a></strong>()</code>
 <div class="block">Returns true if rotatable view's rotation should be animated.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#shouldStartCamera()">shouldStartCamera</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#start()">start</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#stop()">stop</a></strong>()</code>&nbsp;</td>
 </tr>
@@ -956,6 +998,15 @@ extends android.view.ViewGroup</pre>
                     float&nbsp;y)</pre>
 </li>
 </ul>
+<a name="onCameraPinchEvent(float)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onCameraPinchEvent</h4>
+<pre>public&nbsp;void&nbsp;onCameraPinchEvent(float&nbsp;scale)</pre>
+</li>
+</ul>
 <a name="onMeasure(int, int)">
 <!--   -->
 </a>
@@ -1071,6 +1122,78 @@ extends android.view.ViewGroup</pre>
 <li class="blockList">
 <h4>getCurrentOrientation</h4>
 <pre>public&nbsp;Orientation&nbsp;getCurrentOrientation()</pre>
+</li>
+</ul>
+<a name="getZoomLevel()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getZoomLevel</h4>
+<pre>public final&nbsp;float&nbsp;getZoomLevel()</pre>
+<div class="block">Returns the current camera zoom level.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>the current camera zoom level.</dd></dl>
+</li>
+</ul>
+<a name="setZoomLevel(float)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setZoomLevel</h4>
+<pre>public final&nbsp;void&nbsp;setZoomLevel(float&nbsp;zoomLevel)</pre>
+<div class="block">Sets the camera zoom level. Zoom level 0.f defines no applied zoom, while
+ zoom level 1.f defines maximum supported camera zoom. Values beyond
+ interval [0.f, 1.f] are cropped to interval [0.f, 1.f].
+ If camera is active, new zoom level is applied immediately. If camera is
+ not active, desired zoom level will be applied on next camera startup.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>zoomLevel</code> - Desired camera zoom level.</dd></dl>
+</li>
+</ul>
+<a name="isTapToFocusAllowed()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isTapToFocusAllowed</h4>
+<pre>public final&nbsp;boolean&nbsp;isTapToFocusAllowed()</pre>
+<div class="block">Returns true if camera view will handle tap events to ask camera to perform autofocus
+ on tapped area.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>true if tap to focus is allowed</dd></dl>
+</li>
+</ul>
+<a name="setTapToFocusAllowed(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setTapToFocusAllowed</h4>
+<pre>public final&nbsp;void&nbsp;setTapToFocusAllowed(boolean&nbsp;allowTapToFocus)</pre>
+<div class="block">Sets whether camera view will handle tap events to ask camera to perform autofocus
+ on tapped area. Default is true.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>allowTapToFocus</code> - whether or not tap to focus is allowed</dd></dl>
+</li>
+</ul>
+<a name="isPinchToZoomAllowed()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isPinchToZoomAllowed</h4>
+<pre>public final&nbsp;boolean&nbsp;isPinchToZoomAllowed()</pre>
+<div class="block">Returns true if camera view will handle pinch events to manage camera zoom level.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>true if pinch to zoom is allowed</dd></dl>
+</li>
+</ul>
+<a name="setPinchToZoomAllowed(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setPinchToZoomAllowed</h4>
+<pre>public final&nbsp;void&nbsp;setPinchToZoomAllowed(boolean&nbsp;allowPinchToZoom)</pre>
+<div class="block">Sets whether camear view will handle pinch events to manage camera zoom level.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>allowPinchToZoom</code> - whether or not pinch to zoom is allowed. Default is false.</dd></dl>
 </li>
 </ul>
 <a name="resumeFrameGrabbing(ResumeGrabberCaller)">
