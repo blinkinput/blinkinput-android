@@ -93,6 +93,7 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
         mRecognizerView.setAspectMode(CameraAspectMode.ASPECT_FILL);
         // license key is required for recognizer to work.
         mRecognizerView.setLicenseKey("DB2H5WX3-T2MN76CJ-ZIO5SIWW-MKYTEYZT-UGBW36CJ-ZIMR3WJC-2ZRLCMTD-GPKSSHGK");
+        mRecognizerView.setOptimizeCameraForNearScan(true);
 
         // create BlinkOCR recognizer settings object and add parser to it
         BlinkOCRRecognizerSettings settings = new BlinkOCRRecognizerSettings();
@@ -254,6 +255,12 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
                     mResult.setText(scanned);
                     mResultView.setVisibility(View.VISIBLE);
                 }
+                // additionally if you want to process raw OCR result of default parser group
+                // instead of parsed strings you can obtain it like this
+                // OcrResult ocrResult = result.getOcrResult();
+
+                // to obtain raw OCR result for certain parser group, give a name of the parser
+                // group to getOcrResult method
             }
         }
         mRecognizerView.resumeScanningWithoutStateReset();

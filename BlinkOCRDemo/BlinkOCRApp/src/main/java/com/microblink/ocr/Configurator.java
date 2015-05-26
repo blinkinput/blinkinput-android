@@ -10,11 +10,16 @@ import com.microblink.recognizers.ocr.blinkocr.parser.generic.RawParserSettings;
  */
 public class Configurator {
     public static ScanConfiguration[] createScanConfigurations() {
+        // here we will create scan configuration for E-Mail and Raw text
+        // in Raw text parser we will enable Sieve algorithm which will
+        // reuse OCR results from multiple video frames to improve quality
+
+        RawParserSettings rawSett = new RawParserSettings();
+        rawSett.setUseSieve(false);
+
         return new ScanConfiguration[] {
-                new ScanConfiguration(R.string.amount_title, R.string.amount_msg, "Amount", new AmountParserSettings()),
-                new ScanConfiguration(R.string.iban_title, R.string.iban_msg, "IBAN", new IbanParserSettings()),
                 new ScanConfiguration(R.string.email_title, R.string.email_msg, "EMail", new EMailParserSettings()),
-                new ScanConfiguration(R.string.raw_title, R.string.raw_msg, "Raw", new RawParserSettings())
+                new ScanConfiguration(R.string.raw_title, R.string.raw_msg, "Raw", rawSett)
         };
     }
 }
