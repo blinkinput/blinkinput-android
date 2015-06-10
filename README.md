@@ -13,7 +13,7 @@
   * [Customization of `BlinkOCRActivity` activity](#scanActivityCustomization)
   * [Embedding `RecognizerView` into custom scan activity](#recognizerView)
   * [`RecognizerView` reference](#recognizerViewReference)
-  * [Using direct API for recognition of android Bitmaps](#directAPI)
+  * [Using direct API for recognition of Android Bitmaps](#directAPI)
 * [Recognition settings and results](#recognitionSettingsAndResults)
   * [Generic settings](#genericSettings)
   * [Scanning segments with BlinkOCR recognizer](#blinkOCR)
@@ -102,7 +102,7 @@ After that, you just need to add _BlinkOCR_ as a dependency to your application:
 
 ```
 dependencies {
-    compile 'com.microblink:blinkocr:1.2.0'
+    compile 'com.microblink:blinkocr:1.3.0'
 }
 ```
 
@@ -124,7 +124,7 @@ Open your pom.xml file and add these directives as appropriate:
 	<dependency>
 		  <groupId>com.microblink</groupId>
 		  <artifactId>blinkocr</artifactId>
-		  <version>1.2.0</version>
+		  <version>1.3.0</version>
   	</dependency>
 <dependencies>
 ```
@@ -537,7 +537,7 @@ This method sets the license key that will unlock all features of the native lib
 ##### `setLicenseKey(String licenseKey, String licenseOwner)`
 Use this method to set a license key that is bound to a license owner, not the application package name. You will use this method when you obtain a license key that allows you to use _BlinkOCR_ SDK in multiple applications. You can obtain your license key from [Microblink website](http://microblink.com/login).
 
-## <a name="directAPI"></a> Using direct API for recognition of android Bitmaps
+## <a name="directAPI"></a> Using direct API for recognition of Android Bitmaps
 
 This section will describe how to use direct API to recognize android Bitmaps without the need for camera. You can use direct API anywhere from your application, not just from activities.
 
@@ -609,7 +609,7 @@ This chapter will discuss various recognition settings used to configure differe
 Generic settings affect all enabled recognizers and the whole recognition process. The complete reference can be found in [javadoc](javadoc/com/microblink/recognizers/settings/GenericRecognizerSettings.html). Here is the list of methods that are most relevant:
 
 ##### `setAllowMultipleScanResultsOnSingleImage(boolean)`
-Sets whether or not outputting of multiple scan results from same image is allowed. If that is `true`, it is possible to return multiple recognition results from same image. By default, this option is `false`, i.e. the array of `BaseRecognitionResults` will contain at most 1 element. The upside of setting that option to `false` is the speed - if you enable lots of recognizers, as soon as the first recognizer succeeds in scanning, recognition chain will be terminated and other recognizers will not get a chance to analyze the image. The downside is that you are then unable to obtain multiple results from single image.
+Sets whether or not outputting of multiple scan results from same image is allowed. If that is `true`, it is possible to return multiple recognition results produced by different recognizers from same image. However, single recognizer can still produce only a single result from single image. By default, this option is `false`, i.e. the array of `BaseRecognitionResults` will contain at most 1 element. The upside of setting that option to `false` is the speed - if you enable lots of recognizers, as soon as the first recognizer succeeds in scanning, recognition chain will be terminated and other recognizers will not get a chance to analyze the image. The downside is that you are then unable to obtain multiple results from different recognizers from single image.
 
 ##### `setNumMsBeforeTimeout(int)`
 Sets the number of miliseconds _BlinkOCR_ will attempt to perform the scan it exits with timeout error. On timeout returned array of `BaseRecognitionResults` might be null, empty or may contain only elements that are not valid (`isValid` returns `false`) or are empty (`isEmpty` returns `true`).
@@ -658,6 +658,18 @@ The following is a list of available parsers:
 	- used for parsing e-mail addresses
 - Raw parser - represented by [RawParserSettings](javadoc/com/microblink/recognizers/ocr/blinkocr/parser/generic/RawParserSettings.html)
 	- used for obtaining raw OCR result
+
+- Croatian reference parser - represented by [CroReferenceParserSettings](javadoc/com/microblink/recognizers/ocr/blinkocr/parser/croatia/CroReferenceParserSettings.html)
+	- used for parsing croatian payment reference numbers from OCR result
+
+- Swedish amount parser - represented by [SweAmountParserSettings](javadoc/com/microblink/recognizers/ocr/blinkocr/parser/sweden/SweAmountParserSettings.html)
+	- used for parsing amounts from OCR of Swedish payment slips
+- Swedish bank giro number parser - represented by [SweBankGiroParserSettings](javadoc/com/microblink/recognizers/ocr/blinkocr/parser/sweden/SweBankGiroParserSettings.html)
+	- used for parsing bank giro numbers from OCR of Swedish payment slips
+- Swedish payment reference number parser - represented by [SweReferenceParserSettings](javadoc/com/microblink/recognizers/ocr/blinkocr/parser/sweden/SweReferenceParserSettings.html)
+	- used for parsing payment reference numbers from OCR of Swedish payment slips
+- Swedish slip code parser - represented by [SweSlipCodeParserSettings](javadoc/com/microblink/recognizers/ocr/blinkocr/parser/sweden/SweSlipCodeParserSettings.html)
+	- used for parsing slip codes from OCR of Swedish payment slips
 
 ### Obtaining results from BlinkOCR recognizer
 

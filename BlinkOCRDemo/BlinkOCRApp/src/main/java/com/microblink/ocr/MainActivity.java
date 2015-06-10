@@ -63,7 +63,7 @@ public class MainActivity extends Activity {
          */
 
         Intent intent = new Intent(this, BlinkOCRActivity.class);
-        intent.putExtra(BlinkOCRActivity.EXTRAS_LICENSE_KEY, "DB2H5WX3-T2MN76CJ-ZIO5SIWW-MKYTEYZT-UGBW36CJ-ZIMR3WJC-2ZRLCMTD-GPKSSHGK");
+        intent.putExtra(BlinkOCRActivity.EXTRAS_LICENSE_KEY, "TGOQR47C-KGCCVLIT-KMRNMYVR-GJRTHIMD-NX4ETSQZ-DXMSFVTC-WEZGGM5B-IPP6CEDT");
 
         // we need to scan 3 items, so we will add 3 scan configurations to scan configuration array
         ScanConfiguration conf[] = new ScanConfiguration[] {
