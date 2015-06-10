@@ -1,5 +1,9 @@
 # Release notes
 
+## 1.3.0
+- added support for Croatian and Swedish parsers
+- added more fonts to OCR model file
+
 ## 1.2.0
 - support for controlling camera zoom level
 - support "easy" integration mode with provided BlinkOCRActivity - check README
