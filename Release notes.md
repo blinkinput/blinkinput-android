@@ -1,5 +1,9 @@
 # Release notes
 
+## 1.4.0
+- added support for Serbian parsers
+- fixed camera orientation detection when RecognizerView is not initialized with Activity context
+
 ## 1.3.0
 - added support for Croatian and Swedish parsers
 - added more fonts to OCR model file

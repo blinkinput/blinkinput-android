@@ -102,7 +102,7 @@ After that, you just need to add _BlinkOCR_ as a dependency to your application:
 
 ```
 dependencies {
-    compile 'com.microblink:blinkocr:1.3.0'
+    compile 'com.microblink:blinkocr:1.4.0'
 }
 ```
 
@@ -124,7 +124,7 @@ Open your pom.xml file and add these directives as appropriate:
 	<dependency>
 		  <groupId>com.microblink</groupId>
 		  <artifactId>blinkocr</artifactId>
-		  <version>1.3.0</version>
+		  <version>1.4.0</version>
   	</dependency>
 <dependencies>
 ```
@@ -670,6 +670,11 @@ The following is a list of available parsers:
 	- used for parsing payment reference numbers from OCR of Swedish payment slips
 - Swedish slip code parser - represented by [SweSlipCodeParserSettings](javadoc/com/microblink/recognizers/ocr/blinkocr/parser/sweden/SweSlipCodeParserSettings.html)
 	- used for parsing slip codes from OCR of Swedish payment slips
+
+- Serbian bank account number parser - represented by [SerbBankGiroParserSettings](javadoc/com/microblink/recognizers/ocr/blinkocr/parser/serbia/SerbAccountParserSettings.html)
+	- used for parsing bank account numbers from Serbian payment slips
+- Serbian payment reference number parser - represented by [SerbReferenceParserSettings](javadoc/com/microblink/recognizers/ocr/blinkocr/parser/serbia/SerbReferenceParserSettings.html)
+	- used for parsing payment reference numbers from Serbian payment slips
 
 ### Obtaining results from BlinkOCR recognizer
 
