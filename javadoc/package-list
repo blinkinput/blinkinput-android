@@ -7,12 +7,14 @@ com.microblink.hardware.camera.focus
 com.microblink.image
 com.microblink.locale
 com.microblink.ocr
+com.microblink.recognition
 com.microblink.recognizers
 com.microblink.recognizers.ocr.blinkocr
 com.microblink.recognizers.ocr.blinkocr.engine
 com.microblink.recognizers.ocr.blinkocr.parser
 com.microblink.recognizers.ocr.blinkocr.parser.croatia
 com.microblink.recognizers.ocr.blinkocr.parser.generic
+com.microblink.recognizers.ocr.blinkocr.parser.macedonia
 com.microblink.recognizers.ocr.blinkocr.parser.serbia
 com.microblink.recognizers.ocr.blinkocr.parser.sweden
 com.microblink.recognizers.settings

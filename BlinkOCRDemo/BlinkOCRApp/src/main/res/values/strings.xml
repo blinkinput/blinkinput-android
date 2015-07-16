@@ -15,6 +15,9 @@
     <string name="email_title">E-Mail</string>
     <string name="email_msg">Position e-mail in this frame</string>
 
+    <string name="date_title">Date</string>
+    <string name="date_msg">Position date in this frame</string>
+
     <string name="raw_title">Raw text</string>
     <string name="raw_msg">Position text in this frame</string>
 

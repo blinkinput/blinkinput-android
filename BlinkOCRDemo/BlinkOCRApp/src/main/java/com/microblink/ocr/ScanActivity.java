@@ -15,10 +15,12 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.microblink.geometry.Rectangle;
 import com.microblink.hardware.SuccessCallback;
 import com.microblink.help.HelpActivity;
+import com.microblink.recognition.InvalidLicenceKeyException;
 import com.microblink.recognizers.BaseRecognitionResult;
 import com.microblink.recognizers.ocr.blinkocr.BlinkOCRRecognitionResult;
 import com.microblink.recognizers.ocr.blinkocr.BlinkOCRRecognizerSettings;
@@ -92,7 +94,13 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
         // instead of letterboxing it
         mRecognizerView.setAspectMode(CameraAspectMode.ASPECT_FILL);
         // license key is required for recognizer to work.
-        mRecognizerView.setLicenseKey("TGOQR47C-KGCCVLIT-KMRNMYVR-GJRTHIMD-NX4ETSQZ-DXMSFVTC-WEZGGM5B-IPP6CEDT");
+        try {
+            mRecognizerView.setLicenseKey("YAZKPB4R-O37ANKYG-VMBOLXSK-EFRLCMTD-GOQYG3PY-JHFBSHOZ-ELLGFMJS-TWL7MPLM");
+        } catch (InvalidLicenceKeyException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Invalid license key!", Toast.LENGTH_SHORT).show();
+            finish();
+        }
         mRecognizerView.setOptimizeCameraForNearScan(true);
 
         // create BlinkOCR recognizer settings object and add parser to it

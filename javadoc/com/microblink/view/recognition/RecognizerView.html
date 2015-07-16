@@ -178,7 +178,7 @@ extends <a href="../../../../com/microblink/view/BaseCameraView.html" title="cla
 <!--   -->
 </a>
 <h3>Fields inherited from class&nbsp;com.microblink.view.<a href="../../../../com/microblink/view/BaseCameraView.html" title="class in com.microblink.view">BaseCameraView</a></h3>
-<code><a href="../../../../com/microblink/view/BaseCameraView.html#mCameraEventsListener">mCameraEventsListener</a>, <a href="../../../../com/microblink/view/BaseCameraView.html#mErrorState">mErrorState</a></code></li>
+<code><a href="../../../../com/microblink/view/BaseCameraView.html#mCameraEventsListener">mCameraEventsListener</a>, <a href="../../../../com/microblink/view/BaseCameraView.html#mDeviceManager">mDeviceManager</a>, <a href="../../../../com/microblink/view/BaseCameraView.html#mErrorState">mErrorState</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="fields_inherited_from_class_android.view.ViewGroup">
@@ -398,13 +398,13 @@ extends <a href="../../../../com/microblink/view/BaseCameraView.html" title="cla
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
+<td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/view/recognition/RecognizerView.html#setLicenseKey(java.lang.String)">setLicenseKey</a></strong>(java.lang.String&nbsp;licenseKey)</code>
 <div class="block">Set license key and unlock the library.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>boolean</code></td>
+<td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/view/recognition/RecognizerView.html#setLicenseKey(java.lang.String, java.lang.String)">setLicenseKey</a></strong>(java.lang.String&nbsp;licenseKey,
              java.lang.String&nbsp;licensee)</code>
 <div class="block">Set license key and unlock the library.</div>
@@ -896,11 +896,13 @@ extends <a href="../../../../com/microblink/view/BaseCameraView.html" title="cla
 <ul class="blockList">
 <li class="blockList">
 <h4>setLicenseKey</h4>
-<pre>public final&nbsp;boolean&nbsp;setLicenseKey(java.lang.String&nbsp;licenseKey)</pre>
+<pre>public final&nbsp;void&nbsp;setLicenseKey(java.lang.String&nbsp;licenseKey)
+                         throws <a href="../../../../com/microblink/recognition/InvalidLicenceKeyException.html" title="class in com.microblink.recognition">InvalidLicenceKeyException</a></pre>
 <div class="block">Set license key and unlock the library. Application package will be used to validate license key.
  This method must be called before calling create to have effect.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>licenseKey</code> - license key for unlocking the library</dd>
-<dt><span class="strong">Returns:</span></dt><dd>true if unlock was success, otherwise false</dd></dl>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="../../../../com/microblink/recognition/InvalidLicenceKeyException.html" title="class in com.microblink.recognition">InvalidLicenceKeyException</a></code> - if license key is not valid</dd></dl>
 </li>
 </ul>
 <a name="setLicenseKey(java.lang.String, java.lang.String)">
@@ -909,12 +911,14 @@ extends <a href="../../../../com/microblink/view/BaseCameraView.html" title="cla
 <ul class="blockList">
 <li class="blockList">
 <h4>setLicenseKey</h4>
-<pre>public final&nbsp;boolean&nbsp;setLicenseKey(java.lang.String&nbsp;licenseKey,
-                    java.lang.String&nbsp;licensee)</pre>
+<pre>public final&nbsp;void&nbsp;setLicenseKey(java.lang.String&nbsp;licenseKey,
+                 java.lang.String&nbsp;licensee)
+                         throws <a href="../../../../com/microblink/recognition/InvalidLicenceKeyException.html" title="class in com.microblink.recognition">InvalidLicenceKeyException</a></pre>
 <div class="block">Set license key and unlock the library. Also define licensee that will be used to validate license key.
  This method must be called before calling create to have effect.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>licenseKey</code> - license key for unlocking the library</dd><dd><code>licensee</code> - licensee</dd>
-<dt><span class="strong">Returns:</span></dt><dd>true if unlock was success, otherwise false</dd></dl>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="../../../../com/microblink/recognition/InvalidLicenceKeyException.html" title="class in com.microblink.recognition">InvalidLicenceKeyException</a></code> - if license key is not valid</dd></dl>
 </li>
 </ul>
 <a name="setScanningRegion(com.microblink.geometry.Rectangle, boolean)">
