@@ -1,5 +1,11 @@
 # Release notes
 
+## 1.5.0
+- added support for Macedonian parsers
+- added date parser
+- fixed crash in DirectAPI when recognizer was terminated in the middle of recognition process
+- removed support for ARMv6 processors because those are too slow for OCR
+
 ## 1.4.0
 - added support for Serbian parsers
 - fixed camera orientation detection when RecognizerView is not initialized with Activity context
