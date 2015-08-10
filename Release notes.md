@@ -1,5 +1,11 @@
 # Release notes
 
+## 1.6.0
+- removed dependency to deprecated [Horizontal Variable ListView](https://github.com/sephiroth74/HorizontalVariableListView) - default activity now only requires [Android support library](https://developer.android.com/tools/support-library/index.html)
+- new and improved android camera management
+	- on devices that support it, utilize [Camera2 API](https://developer.android.com/reference/android/hardware/camera2/package-summary.html) for better per frame camera control
+	- new and improved algorithm for choosing which frame is of good enough quality to be processed - there is now less latency from initialization of camera until first scan result
+
 ## 1.5.0
 - added support for Macedonian parsers
 - added date parser
