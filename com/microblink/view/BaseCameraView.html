@@ -34,7 +34,7 @@
 <div class="subNav">
 <ul class="navList">
 <li>Prev Class</li>
-<li><a href="../../../com/microblink/view/BaseCameraView.LayoutParams.html" title="class in com.microblink.view"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../com/microblink/view/BaseCameraView.CameraViewState.html" title="enum in com.microblink.view"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?com/microblink/view/BaseCameraView.html" target="_top">Frames</a></li>
@@ -137,6 +137,10 @@ extends android.view.ViewGroup</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.CameraViewState.html" title="enum in com.microblink.view">BaseCameraView.CameraViewState</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.LayoutParams.html" title="class in com.microblink.view">BaseCameraView.LayoutParams</a></strong></code>
 <div class="block">Layout params for BaseCameraView.</div>
 </td>
@@ -177,12 +181,16 @@ extends android.view.ViewGroup</pre>
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>protected <a href="../../../com/microblink/view/BaseCameraView.CameraViewState.html" title="enum in com.microblink.view">BaseCameraView.CameraViewState</a></code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#mCameraViewState">mCameraViewState</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>protected DeviceManager</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#mDeviceManager">mDeviceManager</a></strong></code>
 <div class="block">Device manager that will load device list from resources</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#mErrorState">mErrorState</a></strong></code>
 <div class="block">Flag indicating there has been an unrecoverable error</div>
@@ -342,115 +350,125 @@ extends android.view.ViewGroup</pre>
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code><a href="../../../com/microblink/view/BaseCameraView.CameraViewState.html" title="enum in com.microblink.view">BaseCameraView.CameraViewState</a></code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#getCameraViewState()">getCameraViewState</a></strong>()</code>
+<div class="block">Returns the current lifecycle state of camera view.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>protected int</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#getConfigurationOrientation()">getConfigurationOrientation</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>Orientation</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#getCurrentOrientation()">getCurrentOrientation</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#getHostScreenOrientation()">getHostScreenOrientation</a></strong>()</code>
 <div class="block">Returns the host's screen orientation as detected internally.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>Orientation</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#getInitialOrientation()">getInitialOrientation</a></strong>()</code>
 <div class="block">Returns the initial orientation of rotatable view as set by setInitialOrientation.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>CameraType</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#getOpenedCameraType()">getOpenedCameraType</a></strong>()</code>
 <div class="block">Returns the type of the currently opened camera or null if currently there is no opened camera.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>OrientationChangeListener</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#getOrientationChangeListener()">getOrientationChangeListener</a></strong>()</code>
 <div class="block">Returns the current oreintation change listener</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#getRotationAnimationDuration()">getRotationAnimationDuration</a></strong>()</code>
 <div class="block">Returns the duration of rotatable view's rotation animation in miliseconds.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a></code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#getVisiblePart()">getVisiblePart</a></strong>()</code>
 <div class="block">Returns the rectangle that which part of camera frame is visible in view</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>float</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#getZoomLevel()">getZoomLevel</a></strong>()</code>
 <div class="block">Returns the current camera zoom level.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#isCameraActive()">isCameraActive</a></strong>()</code>
 <div class="block">Returns true if camera is currently active.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#isCameraFocused()">isCameraFocused</a></strong>()</code>
 <div class="block">Returns true if camera is currently in focus</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#isCameraTorchSupported()">isCameraTorchSupported</a></strong>()</code>
 <div class="block">Returns true if camera has got torch.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#isDeviceShaking()">isDeviceShaking</a></strong>()</code>
 <div class="block">Returns true if the device is being shaken</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#isOrientationAllowed(Orientation)">isOrientationAllowed</a></strong>(Orientation&nbsp;orientation)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#isPinchToZoomAllowed()">isPinchToZoomAllowed</a></strong>()</code>
 <div class="block">Returns true if camera view will handle pinch events to manage camera zoom level.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#isTapToFocusAllowed()">isTapToFocusAllowed</a></strong>()</code>
 <div class="block">Returns true if camera view will handle tap events to ask camera to perform autofocus
  on tapped area.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#onAutofocusFailed()">onAutofocusFailed</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#onAutofocusStarted(android.graphics.Rect[])">onAutofocusStarted</a></strong>(android.graphics.Rect[]&nbsp;areas)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#onAutofocusStopped(android.graphics.Rect[])">onAutofocusStopped</a></strong>(android.graphics.Rect[]&nbsp;areas)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#onCameraPinchEvent(float)">onCameraPinchEvent</a></strong>(float&nbsp;scale)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#onCameraPreviewStarted()">onCameraPreviewStarted</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#onCameraPreviewStopped()">onCameraPreviewStopped</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
@@ -488,32 +506,20 @@ extends android.view.ViewGroup</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#pauseFrameGrabbing()">pauseFrameGrabbing</a></strong>()</code>
-<div class="block">Pauses the frame grabbing loop</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#prepareCameraSettings(CameraSettings)">prepareCameraSettings</a></strong>(CameraSettings&nbsp;settings)</code>
 <div class="block">Called inside onCreate method before creating camera manager.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected abstract boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#requireAutofocusFeature()">requireAutofocusFeature</a></strong>()</code>
 <div class="block">If autofocus feature is required, please return true from this method.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#resume()">resume</a></strong>()</code>
 <div class="block">This method must be called from activity's onResume.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#resumeFrameGrabbing(ResumeGrabberCaller)">resumeFrameGrabbing</a></strong>(ResumeGrabberCaller&nbsp;rgc)</code>
-<div class="block">Resumes the frame grabbing loop.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -549,8 +555,8 @@ extends android.view.ViewGroup</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setFocusAreaRaw(com.microblink.geometry.Rectangle)">setFocusAreaRaw</a></strong>(<a href="../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a>&nbsp;focusArea)</code>
-<div class="block">Sets the area where camera will search for</div>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setForceUseLegacyCamera(boolean)">setForceUseLegacyCamera</a></strong>(boolean&nbsp;useLegacyCamera)</code>
+<div class="block">With this method you can request using legacy Camera API even on devices that natively support new Camera2 API.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -561,66 +567,79 @@ extends android.view.ViewGroup</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setOnSizeChangedListener(com.microblink.view.OnSizeChangedListener)">setOnSizeChangedListener</a></strong>(<a href="../../../com/microblink/view/OnSizeChangedListener.html" title="interface in com.microblink.view">OnSizeChangedListener</a>&nbsp;onSizeChangedListener)</code>
-<div class="block">Sets the listener that will be notified when size of child views changes.</div>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setMeteringAreas(com.microblink.geometry.Rectangle[])">setMeteringAreas</a></strong>(<a href="../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a>[]&nbsp;meteringAreas)</code>
+<div class="block">Sets the areas where camera will perform focus, exposure and white balance meterings.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setOptimizeCameraForNearScan(boolean)">setOptimizeCameraForNearScan</a></strong>(boolean&nbsp;nearScan)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setOnSizeChangedListener(com.microblink.view.OnSizeChangedListener)">setOnSizeChangedListener</a></strong>(<a href="../../../com/microblink/view/OnSizeChangedListener.html" title="interface in com.microblink.view">OnSizeChangedListener</a>&nbsp;onSizeChangedListener)</code>
+<div class="block">Sets the listener that will be notified when size of child views changes.</div>
+</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setOptimizeCameraForNearScan(boolean)">setOptimizeCameraForNearScan</a></strong>(boolean&nbsp;nearScan)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setOrientationAllowedListener(com.microblink.view.OrientationAllowedListener)">setOrientationAllowedListener</a></strong>(<a href="../../../com/microblink/view/OrientationAllowedListener.html" title="interface in com.microblink.view">OrientationAllowedListener</a>&nbsp;orientationAllowedListener)</code>
 <div class="block">Sets the listener that will be asked if device orientation is allowed prior rotating
  rotatable view and native recognizer to that orientation.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setOrientationChangeListener(OrientationChangeListener)">setOrientationChangeListener</a></strong>(OrientationChangeListener&nbsp;orientationChangeListener)</code>
 <div class="block">Sets the orientation listener that will receive orientation change events that are already reported
  to BaseCameraView.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setPhotoMode(boolean)">setPhotoMode</a></strong>(boolean&nbsp;photoMode)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setPinchToZoomAllowed(boolean)">setPinchToZoomAllowed</a></strong>(boolean&nbsp;allowPinchToZoom)</code>
 <div class="block">Sets whether camear view will handle pinch events to manage camera zoom level.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setRotationAnimationDuration(int)">setRotationAnimationDuration</a></strong>(int&nbsp;rotationAnimationDuration)</code>
 <div class="block">Sets the duration of rotatable view rotation animation (valid only if setAnimateRotation(true) was called).</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setShakeListener(com.microblink.hardware.accelerometer.ShakeCallback)">setShakeListener</a></strong>(<a href="../../../com/microblink/hardware/accelerometer/ShakeCallback.html" title="interface in com.microblink.hardware.accelerometer">ShakeCallback</a>&nbsp;shakeCallback)</code>
 <div class="block">Sets the shake callback that will be notified about device shake events.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setShouldAlwaysUseHighestPossibleResolution(boolean)">setShouldAlwaysUseHighestPossibleResolution</a></strong>(boolean&nbsp;useHighestPossibleResolution)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setTapToFocusAllowed(boolean)">setTapToFocusAllowed</a></strong>(boolean&nbsp;allowTapToFocus)</code>
 <div class="block">Sets whether camera view will handle tap events to ask camera to perform autofocus
  on tapped area.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setTorchState(boolean, com.microblink.hardware.SuccessCallback)">setTorchState</a></strong>(boolean&nbsp;on,
              <a href="../../../com/microblink/hardware/SuccessCallback.html" title="interface in com.microblink.hardware">SuccessCallback</a>&nbsp;successCallback)</code>
 <div class="block">Turns the torch on the camera on or off.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setUseTextureViewForCameraDisplay(boolean)">setUseTextureViewForCameraDisplay</a></strong>(boolean&nbsp;forceTextureView)</code>
+<div class="block">In order to display camera preview, camera view must use one of two android's view's that are
+ capable of displaying camera preview video stream.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -713,11 +732,20 @@ extends android.view.ViewGroup</pre>
 <a name="mDeviceManager">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>mDeviceManager</h4>
 <pre>protected&nbsp;DeviceManager mDeviceManager</pre>
 <div class="block">Device manager that will load device list from resources</div>
+</li>
+</ul>
+<a name="mCameraViewState">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>mCameraViewState</h4>
+<pre>protected&nbsp;<a href="../../../com/microblink/view/BaseCameraView.CameraViewState.html" title="enum in com.microblink.view">BaseCameraView.CameraViewState</a> mCameraViewState</pre>
 </li>
 </ul>
 </li>
@@ -983,6 +1011,15 @@ extends android.view.ViewGroup</pre>
 <pre>protected&nbsp;void&nbsp;onCameraPreviewStarted()</pre>
 </li>
 </ul>
+<a name="onCameraPreviewStopped()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onCameraPreviewStopped</h4>
+<pre>protected&nbsp;void&nbsp;onCameraPreviewStopped()</pre>
+</li>
+</ul>
 <a name="start()">
 <!--   -->
 </a>
@@ -1168,6 +1205,17 @@ extends android.view.ViewGroup</pre>
 <dl><dt><span class="strong">Returns:</span></dt><dd>the current camera zoom level.</dd></dl>
 </li>
 </ul>
+<a name="getCameraViewState()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getCameraViewState</h4>
+<pre>public final&nbsp;<a href="../../../com/microblink/view/BaseCameraView.CameraViewState.html" title="enum in com.microblink.view">BaseCameraView.CameraViewState</a>&nbsp;getCameraViewState()</pre>
+<div class="block">Returns the current lifecycle state of camera view.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd></dd></dl>
+</li>
+</ul>
 <a name="setZoomLevel(float)">
 <!--   -->
 </a>
@@ -1229,17 +1277,6 @@ extends android.view.ViewGroup</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>allowPinchToZoom</code> - whether or not pinch to zoom is allowed. Default is false.</dd></dl>
 </li>
 </ul>
-<a name="resumeFrameGrabbing(ResumeGrabberCaller)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>resumeFrameGrabbing</h4>
-<pre>protected final&nbsp;void&nbsp;resumeFrameGrabbing(ResumeGrabberCaller&nbsp;rgc)</pre>
-<div class="block">Resumes the frame grabbing loop.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>rgc</code> - The identifier of caller of this method.</dd></dl>
-</li>
-</ul>
 <a name="isDeviceShaking()">
 <!--   -->
 </a>
@@ -1249,16 +1286,6 @@ extends android.view.ViewGroup</pre>
 <pre>public final&nbsp;boolean&nbsp;isDeviceShaking()</pre>
 <div class="block">Returns true if the device is being shaken</div>
 <dl><dt><span class="strong">Returns:</span></dt><dd>true if the device is being shaken</dd></dl>
-</li>
-</ul>
-<a name="pauseFrameGrabbing()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>pauseFrameGrabbing</h4>
-<pre>protected final&nbsp;void&nbsp;pauseFrameGrabbing()</pre>
-<div class="block">Pauses the frame grabbing loop</div>
 </li>
 </ul>
 <a name="getCameraPreviewWidth()">
@@ -1334,15 +1361,19 @@ extends android.view.ViewGroup</pre>
 <pre>public final&nbsp;void&nbsp;onAutofocusFailed()</pre>
 </li>
 </ul>
-<a name="setFocusAreaRaw(com.microblink.geometry.Rectangle)">
+<a name="setMeteringAreas(com.microblink.geometry.Rectangle[])">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setFocusAreaRaw</h4>
-<pre>public&nbsp;void&nbsp;setFocusAreaRaw(<a href="../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a>&nbsp;focusArea)</pre>
-<div class="block">Sets the area where camera will search for</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>focusArea</code> - </dd></dl>
+<h4>setMeteringAreas</h4>
+<pre>public final&nbsp;void&nbsp;setMeteringAreas(<a href="../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a>[]&nbsp;meteringAreas)</pre>
+<div class="block">Sets the areas where camera will perform focus, exposure and white balance meterings.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>meteringAreas</code> - array of rectangles that define areas where camera will perform focus, exposure and white balance meterings.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.lang.NullPointerException</code> - if at least one element of meteringAreas is null</dd>
+<dd><code>java.lang.IllegalArgumentException</code> - if at least on element of meteringAreas has either zero surface or is not inside view</dd>
+<dd><code>java.lang.IllegalStateException</code> - if camera is not active</dd></dl>
 </li>
 </ul>
 <a name="onAutofocusStarted(android.graphics.Rect[])">
@@ -1493,6 +1524,19 @@ extends android.view.ViewGroup</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>useHighestPossibleResolution</code> - If set to true, highest possible camera preview resolution will be chosen, even on lower end phones.</dd></dl>
 </li>
 </ul>
+<a name="setForceUseLegacyCamera(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setForceUseLegacyCamera</h4>
+<pre>public final&nbsp;void&nbsp;setForceUseLegacyCamera(boolean&nbsp;useLegacyCamera)</pre>
+<div class="block">With this method you can request using legacy Camera API even on devices that natively support new Camera2 API.
+ Set this to true only if you have problems with camera management on Lollipop and newer devices.
+ Using legacy camera API is less efficient than new Camera2 API.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>useLegacyCamera</code> - If set to true, legacy Camera API will be used even on devices that support new Camera2 API.</dd></dl>
+</li>
+</ul>
 <a name="setPhotoMode(boolean)">
 <!--   -->
 </a>
@@ -1517,6 +1561,27 @@ extends android.view.ViewGroup</pre>
  but might have harder time focusing on far objects. If you expect that most of your scans
  will be performed by holding the device very near the object, turn on that parameter. By default,
  this parameter is set to false.</dd></dl>
+</li>
+</ul>
+<a name="setUseTextureViewForCameraDisplay(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setUseTextureViewForCameraDisplay</h4>
+<pre>public final&nbsp;void&nbsp;setUseTextureViewForCameraDisplay(boolean&nbsp;forceTextureView)</pre>
+<div class="block">In order to display camera preview, camera view must use one of two android's view's that are
+ capable of displaying camera preview video stream. When using Camera2 API on Lollipop devices
+ that support it, TextureView will always be used, regardless of this setting, however if legacy
+ camera API is used, SurfaceView will be preferred because it is faster. Sometimes, when you
+ create complex UI on top of camera screen, animations or UI may render incorrectly on some
+ devices when using SurfaceView for displaying camera preview. In that case, you can call this
+ method with parameter 'true' which will ensure TextureView to be used for displaying camera
+ preview rather than SurfaceView. TextureView is slower, but is more UI friendly so it allows
+ creation of more complex UI on top of camera preview. Please note that TextureView requires
+ hardware acceleration to be enabled in your app and on the device. TextureView requires API
+ level 14 (on older API levels, this setting will be ignored and SurfaceView will be used).</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>forceTextureView</code> - Whether TextureView should be used even for legacy camera API.</dd></dl>
 </li>
 </ul>
 <a name="getOrientationChangeListener()">
@@ -1629,7 +1694,7 @@ extends android.view.ViewGroup</pre>
 <div class="subNav">
 <ul class="navList">
 <li>Prev Class</li>
-<li><a href="../../../com/microblink/view/BaseCameraView.LayoutParams.html" title="class in com.microblink.view"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../com/microblink/view/BaseCameraView.CameraViewState.html" title="enum in com.microblink.view"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?com/microblink/view/BaseCameraView.html" target="_top">Frames</a></li>

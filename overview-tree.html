@@ -65,10 +65,10 @@
 <ul class="horizontal">
 <li><a href="com/microblink/activity/package-tree.html">com.microblink.activity</a>, </li>
 <li><a href="com/microblink/directApi/package-tree.html">com.microblink.directApi</a>, </li>
+<li><a href="com/microblink/directApi/frame/package-tree.html">com.microblink.directApi.frame</a>, </li>
 <li><a href="com/microblink/geometry/package-tree.html">com.microblink.geometry</a>, </li>
 <li><a href="com/microblink/hardware/package-tree.html">com.microblink.hardware</a>, </li>
 <li><a href="com/microblink/hardware/accelerometer/package-tree.html">com.microblink.hardware.accelerometer</a>, </li>
-<li><a href="com/microblink/hardware/camera/focus/package-tree.html">com.microblink.hardware.camera.focus</a>, </li>
 <li><a href="com/microblink/image/package-tree.html">com.microblink.image</a>, </li>
 <li><a href="com/microblink/locale/package-tree.html">com.microblink.locale</a>, </li>
 <li><a href="com/microblink/ocr/package-tree.html">com.microblink.ocr</a>, </li>
@@ -100,6 +100,7 @@
 <li type="circle">com.microblink.recognizers.<a href="com/microblink/recognizers/LibraryInfoResult.html" title="class in com.microblink.recognizers"><span class="strong">LibraryInfoResult</span></a></li>
 </ul>
 </li>
+<li type="circle">com.microblink.directApi.frame.<a href="com/microblink/directApi/frame/BitmapCameraFrame.html" title="class in com.microblink.directApi.frame"><span class="strong">BitmapCameraFrame</span></a></li>
 <li type="circle">com.microblink.recognizers.ocr.blinkocr.engine.<a href="com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCRCharKey.html" title="class in com.microblink.recognizers.ocr.blinkocr.engine"><span class="strong">BlinkOCRCharKey</span></a> (implements android.os.Parcelable)</li>
 <li type="circle">com.microblink.recognizers.ocr.blinkocr.engine.<a href="com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html" title="class in com.microblink.recognizers.ocr.blinkocr.engine"><span class="strong">BlinkOCREngineOptions</span></a> (implements android.os.Parcelable)</li>
 <li type="circle">android.content.Context
@@ -129,6 +130,7 @@
 <li type="circle">com.microblink.recognizers.ocr.blinkocr.parser.<a href="com/microblink/recognizers/ocr/blinkocr/parser/OcrParserSettings.html" title="class in com.microblink.recognizers.ocr.blinkocr.parser"><span class="strong">OcrParserSettings</span></a> (implements android.os.Parcelable)
 <ul>
 <li type="circle">com.microblink.recognizers.ocr.blinkocr.parser.generic.<a href="com/microblink/recognizers/ocr/blinkocr/parser/generic/AmountParserSettings.html" title="class in com.microblink.recognizers.ocr.blinkocr.parser.generic"><span class="strong">AmountParserSettings</span></a> (implements android.os.Parcelable)</li>
+<li type="circle">com.microblink.recognizers.ocr.blinkocr.parser.croatia.<a href="com/microblink/recognizers/ocr/blinkocr/parser/croatia/CroAmountParserSettings.html" title="class in com.microblink.recognizers.ocr.blinkocr.parser.croatia"><span class="strong">CroAmountParserSettings</span></a> (implements android.os.Parcelable)</li>
 <li type="circle">com.microblink.recognizers.ocr.blinkocr.parser.croatia.<a href="com/microblink/recognizers/ocr/blinkocr/parser/croatia/CroReferenceParserSettings.html" title="class in com.microblink.recognizers.ocr.blinkocr.parser.croatia"><span class="strong">CroReferenceParserSettings</span></a> (implements android.os.Parcelable)</li>
 <li type="circle">com.microblink.recognizers.ocr.blinkocr.parser.generic.<a href="com/microblink/recognizers/ocr/blinkocr/parser/generic/DateParserSettings.html" title="class in com.microblink.recognizers.ocr.blinkocr.parser.generic"><span class="strong">DateParserSettings</span></a></li>
 <li type="circle">com.microblink.recognizers.ocr.blinkocr.parser.generic.<a href="com/microblink/recognizers/ocr/blinkocr/parser/generic/EMailParserSettings.html" title="class in com.microblink.recognizers.ocr.blinkocr.parser.generic"><span class="strong">EMailParserSettings</span></a></li>
@@ -191,11 +193,7 @@
 </ul>
 <h2 title="Interface Hierarchy">Interface Hierarchy</h2>
 <ul>
-<li type="circle">com.microblink.hardware.camera.focus.<a href="com/microblink/hardware/camera/focus/AutofocusListener.html" title="interface in com.microblink.hardware.camera.focus"><span class="strong">AutofocusListener</span></a>
-<ul>
 <li type="circle">com.microblink.view.<a href="com/microblink/view/CameraEventsListener.html" title="interface in com.microblink.view"><span class="strong">CameraEventsListener</span></a></li>
-</ul>
-</li>
 <li type="circle">com.microblink.directApi.<a href="com/microblink/directApi/DirectApiErrorListener.html" title="interface in com.microblink.directApi"><span class="strong">DirectApiErrorListener</span></a></li>
 <li type="circle">com.microblink.view.<a href="com/microblink/view/OnSizeChangedListener.html" title="interface in com.microblink.view"><span class="strong">OnSizeChangedListener</span></a></li>
 <li type="circle">com.microblink.view.<a href="com/microblink/view/OrientationAllowedListener.html" title="interface in com.microblink.view"><span class="strong">OrientationAllowedListener</span></a></li>
@@ -220,11 +218,14 @@
 <li type="circle">com.microblink.image.<a href="com/microblink/image/ImageFormat.html" title="enum in com.microblink.image"><span class="strong">ImageFormat</span></a></li>
 <li type="circle">com.microblink.image.<a href="com/microblink/image/ImageType.html" title="enum in com.microblink.image"><span class="strong">ImageType</span></a></li>
 <li type="circle">com.microblink.locale.<a href="com/microblink/locale/Language.html" title="enum in com.microblink.locale"><span class="strong">Language</span></a></li>
+<li type="circle">com.microblink.recognizers.settings.<a href="com/microblink/recognizers/settings/GenericRecognizerSettings.FrameQualityEstimationMode.html" title="enum in com.microblink.recognizers.settings"><span class="strong">GenericRecognizerSettings.FrameQualityEstimationMode</span></a></li>
 <li type="circle">com.microblink.recognizers.settings.<a href="com/microblink/recognizers/settings/RecognizerSettingsStatus.html" title="enum in com.microblink.recognizers.settings"><span class="strong">RecognizerSettingsStatus</span></a></li>
+<li type="circle">com.microblink.results.ocr.<a href="com/microblink/results/ocr/OcrFont.html" title="enum in com.microblink.results.ocr"><span class="strong">OcrFont</span></a></li>
+<li type="circle">com.microblink.view.<a href="com/microblink/view/BaseCameraView.CameraViewState.html" title="enum in com.microblink.view"><span class="strong">BaseCameraView.CameraViewState</span></a></li>
 <li type="circle">com.microblink.view.<a href="com/microblink/view/CameraAspectMode.html" title="enum in com.microblink.view"><span class="strong">CameraAspectMode</span></a> (implements android.os.Parcelable)</li>
 <li type="circle">com.microblink.view.<a href="com/microblink/view/NotSupportedReason.html" title="enum in com.microblink.view"><span class="strong">NotSupportedReason</span></a></li>
 <li type="circle">com.microblink.view.recognition.<a href="com/microblink/view/recognition/DetectionStatus.html" title="enum in com.microblink.view.recognition"><span class="strong">DetectionStatus</span></a></li>
-<li type="circle">com.microblink.recognizers.ocr.blinkocr.engine.<a href="com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCRFont.html" title="enum in com.microblink.recognizers.ocr.blinkocr.engine"><span class="strong">BlinkOCRFont</span></a></li>
+<li type="circle">com.microblink.activity.<a href="com/microblink/activity/ShowOcrResultMode.html" title="enum in com.microblink.activity"><span class="strong">ShowOcrResultMode</span></a> (implements android.os.Parcelable)</li>
 </ul>
 </li>
 </ul>

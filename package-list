@@ -1,9 +1,9 @@
 com.microblink.activity
 com.microblink.directApi
+com.microblink.directApi.frame
 com.microblink.geometry
 com.microblink.hardware
 com.microblink.hardware.accelerometer
-com.microblink.hardware.camera.focus
 com.microblink.image
 com.microblink.locale
 com.microblink.ocr

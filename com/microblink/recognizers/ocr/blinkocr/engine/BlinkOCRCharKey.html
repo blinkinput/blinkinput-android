@@ -100,7 +100,15 @@
 <pre>public class <span class="strong">BlinkOCRCharKey</span>
 extends java.lang.Object
 implements android.os.Parcelable</pre>
-<div class="block">Class representing a char in specific font.</div>
+<div class="block">Class representing a char in specific font.
+
+ For example to define char 'k' in font Arial, use
+          BlinkOCRCharKey keyK = new BlinkOCRCharKey((int)'k', BlinkOCRFont.ARIAL);
+
+ For example to define char 'ü' in any font, use
+          BlinkOCRCharKey keyU = new BlinkOCRCharKey((int)'ü', BlinkOCRFont.ANY);
+
+ Created by dodo on 22/05/15.</div>
 </li>
 </ul>
 </div>
@@ -160,8 +168,8 @@ implements android.os.Parcelable</pre>
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCRCharKey.html#BlinkOCRCharKey(int, com.microblink.recognizers.ocr.blinkocr.engine.BlinkOCRFont)">BlinkOCRCharKey</a></strong>(int&nbsp;key,
-               <a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCRFont.html" title="enum in com.microblink.recognizers.ocr.blinkocr.engine">BlinkOCRFont</a>&nbsp;font)</code>&nbsp;</td>
+<td class="colOne"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCRCharKey.html#BlinkOCRCharKey(int, com.microblink.results.ocr.OcrFont)">BlinkOCRCharKey</a></strong>(int&nbsp;key,
+               <a href="../../../../../../com/microblink/results/ocr/OcrFont.html" title="enum in com.microblink.results.ocr">OcrFont</a>&nbsp;font)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -184,13 +192,10 @@ implements android.os.Parcelable</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCRCharKey.html#equals(java.lang.Object)">equals</a></strong>(java.lang.Object&nbsp;o)</code>
-<div class="block">Compares this instance with the specified object and indicates if they
- are equal.</div>
-</td>
+<td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCRCharKey.html#equals(java.lang.Object)">equals</a></strong>(java.lang.Object&nbsp;o)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCRFont.html" title="enum in com.microblink.recognizers.ocr.blinkocr.engine">BlinkOCRFont</a></code></td>
+<td class="colFirst"><code><a href="../../../../../../com/microblink/results/ocr/OcrFont.html" title="enum in com.microblink.results.ocr">OcrFont</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCRCharKey.html#getFont()">getFont</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
@@ -199,9 +204,7 @@ implements android.os.Parcelable</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCRCharKey.html#hashCode()">hashCode</a></strong>()</code>
-<div class="block">Returns an integer hash code for this object.</div>
-</td>
+<td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCRCharKey.html#hashCode()">hashCode</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
@@ -247,14 +250,14 @@ implements android.os.Parcelable</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="BlinkOCRCharKey(int, com.microblink.recognizers.ocr.blinkocr.engine.BlinkOCRFont)">
+<a name="BlinkOCRCharKey(int, com.microblink.results.ocr.OcrFont)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>BlinkOCRCharKey</h4>
 <pre>public&nbsp;BlinkOCRCharKey(int&nbsp;key,
-               <a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCRFont.html" title="enum in com.microblink.recognizers.ocr.blinkocr.engine">BlinkOCRFont</a>&nbsp;font)</pre>
+               <a href="../../../../../../com/microblink/results/ocr/OcrFont.html" title="enum in com.microblink.results.ocr">OcrFont</a>&nbsp;font)</pre>
 </li>
 </ul>
 </li>
@@ -280,7 +283,7 @@ implements android.os.Parcelable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getFont</h4>
-<pre>public&nbsp;<a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCRFont.html" title="enum in com.microblink.recognizers.ocr.blinkocr.engine">BlinkOCRFont</a>&nbsp;getFont()</pre>
+<pre>public&nbsp;<a href="../../../../../../com/microblink/results/ocr/OcrFont.html" title="enum in com.microblink.results.ocr">OcrFont</a>&nbsp;getFont()</pre>
 </li>
 </ul>
 <a name="hashCode()">
@@ -290,21 +293,10 @@ implements android.os.Parcelable</pre>
 <li class="blockList">
 <h4>hashCode</h4>
 <pre>public&nbsp;int&nbsp;hashCode()</pre>
-<div class="block">Returns an integer hash code for this object. By contract, any two
- objects for which <a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCRCharKey.html#equals(java.lang.Object)"><code>equals(java.lang.Object)</code></a> returns <code>true</code> must return
- the same hash code value. This means that subclasses of <code>Object</code>
- usually override both methods or neither method.
- <p/>
- <p>Note that hash values must not change over time unless information used in equals
- comparisons also changes.
- <p/>
- <p>See <a href="../../../../../..reference/java/lang/Object.html#writing_hashCode">Writing a correct
- <code>hashCode</code> method</a>
- if you intend implementing your own <code>hashCode</code> method.</div>
 <dl>
 <dt><strong>Overrides:</strong></dt>
 <dd><code>hashCode</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
-<dt><span class="strong">Returns:</span></dt><dd>this object's hash code.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCRCharKey.html#equals(java.lang.Object)"><code>equals(java.lang.Object)</code></a></dd></dl>
+</dl>
 </li>
 </ul>
 <a name="equals(java.lang.Object)">
@@ -314,26 +306,10 @@ implements android.os.Parcelable</pre>
 <li class="blockList">
 <h4>equals</h4>
 <pre>public&nbsp;boolean&nbsp;equals(java.lang.Object&nbsp;o)</pre>
-<div class="block">Compares this instance with the specified object and indicates if they
- are equal. In order to be equal, <code>o</code> must represent the same object
- as this instance using a class-specific comparison. The general contract
- is that this comparison should be reflexive, symmetric, and transitive.
- Also, no object reference other than null is equal to null.
- <p/>
- <p>The default implementation returns <code>true</code> only if <code>this ==
- o</code>. See <a href="../../../../../..reference/java/lang/Object.html#writing_equals">Writing a correct
- <code>equals</code> method</a>
- if you intend implementing your own <code>equals</code> method.
- <p/>
- <p>The general contract for the <code>equals</code> and <a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCRCharKey.html#hashCode()"><code>hashCode()</code></a> methods is that if <code>equals</code> returns <code>true</code> for
- any two objects, then <code>hashCode()</code> must return the same value for
- these objects. This means that subclasses of <code>Object</code> usually
- override either both methods or neither of them.</div>
 <dl>
 <dt><strong>Overrides:</strong></dt>
 <dd><code>equals</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the object to compare this instance with.</dd>
-<dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the specified object is equal to this <code>Object</code>; <code>false</code> otherwise.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCRCharKey.html#hashCode()"><code>hashCode()</code></a></dd></dl>
+</dl>
 </li>
 </ul>
 <a name="describeContents()">

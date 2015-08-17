@@ -34,7 +34,7 @@
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../com/microblink/results/ocr/OcrBlock.html" title="class in com.microblink.results.ocr"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../../com/microblink/results/ocr/OcrLine.html" title="class in com.microblink.results.ocr"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../com/microblink/results/ocr/OcrFont.html" title="enum in com.microblink.results.ocr"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?com/microblink/results/ocr/OcrChar.html" target="_top">Frames</a></li>
@@ -159,13 +159,15 @@ implements android.os.Parcelable</pre>
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#OcrChar(char, int, com.microblink.geometry.Rectangle, int, boolean, boolean, boolean)">OcrChar</a></strong>(char&nbsp;value,
+<td class="colOne"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#OcrChar(char, int, com.microblink.geometry.Rectangle, int, boolean, boolean, boolean, com.microblink.results.ocr.OcrFont, com.microblink.results.ocr.OcrChar[])">OcrChar</a></strong>(char&nbsp;value,
        int&nbsp;height,
        <a href="../../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a>&nbsp;position,
        int&nbsp;quality,
        boolean&nbsp;bold,
        boolean&nbsp;italic,
-       boolean&nbsp;uncertain)</code>&nbsp;</td>
+       boolean&nbsp;uncertain,
+       <a href="../../../../com/microblink/results/ocr/OcrFont.html" title="enum in com.microblink.results.ocr">OcrFont</a>&nbsp;font,
+       <a href="../../../../com/microblink/results/ocr/OcrChar.html" title="class in com.microblink.results.ocr">OcrChar</a>[]&nbsp;variants)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -187,66 +189,64 @@ implements android.os.Parcelable</pre>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#describeContents()">describeContents</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#getHeight()">getHeight</a></strong>()</code>&nbsp;</td>
+<td class="colFirst"><code><a href="../../../../com/microblink/results/ocr/OcrFont.html" title="enum in com.microblink.results.ocr">OcrFont</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#getFont()">getFont</a></strong>()</code>
+<div class="block">Returns the font of the character</div>
+</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#getPosition()">getPosition</a></strong>()</code>&nbsp;</td>
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#getHeight()">getHeight</a></strong>()</code>
+<div class="block">Returns the height of the char, in pixels.</div>
+</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#getPosition()">getPosition</a></strong>()</code>
+<div class="block">Returns the position of char in image</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#getQuality()">getQuality</a></strong>()</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#getQuality()">getQuality</a></strong>()</code>
+<div class="block">Returns the recognition quality of the char.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../com/microblink/results/ocr/OcrChar.html" title="class in com.microblink.results.ocr">OcrChar</a>[]</code></td>
+<td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#getRecognitionVariants()">getRecognitionVariants</a></strong>()</code>
+<div class="block">Returns the recognition variants of this char or null if there are no variants.</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>char</code></td>
-<td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#getValue()">getValue</a></strong>()</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#getValue()">getValue</a></strong>()</code>
+<div class="block">Returns the value of the char.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#isBold()">isBold</a></strong>()</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#isBold()">isBold</a></strong>()</code>
+<div class="block">Returns true if char is bold.</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#isItalic()">isItalic</a></strong>()</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#isItalic()">isItalic</a></strong>()</code>
+<div class="block">Returns true if char is italic.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#isUncertain()">isUncertain</a></strong>()</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#isUncertain()">isUncertain</a></strong>()</code>
+<div class="block">Returns true if OCR engine thinks this char is uncertain</div>
+</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#setBold(boolean)">setBold</a></strong>(boolean&nbsp;bold)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#setHeight(int)">setHeight</a></strong>(int&nbsp;height)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#setItalic(boolean)">setItalic</a></strong>(boolean&nbsp;italic)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#setPosition(com.microblink.geometry.Rectangle)">setPosition</a></strong>(<a href="../../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a>&nbsp;position)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#setQuality(int)">setQuality</a></strong>(int&nbsp;quality)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#setUncertain(boolean)">setUncertain</a></strong>(boolean&nbsp;uncertain)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#setValue(char)">setValue</a></strong>(char&nbsp;value)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#toString()">toString</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrChar.html#writeToParcel(android.os.Parcel, int)">writeToParcel</a></strong>(android.os.Parcel&nbsp;dest,
              int&nbsp;flags)</code>&nbsp;</td>
@@ -290,7 +290,7 @@ implements android.os.Parcelable</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="OcrChar(char, int, com.microblink.geometry.Rectangle, int, boolean, boolean, boolean)">
+<a name="OcrChar(char, int, com.microblink.geometry.Rectangle, int, boolean, boolean, boolean, com.microblink.results.ocr.OcrFont, com.microblink.results.ocr.OcrChar[])">
 <!--   -->
 </a>
 <ul class="blockListLast">
@@ -302,7 +302,9 @@ implements android.os.Parcelable</pre>
        int&nbsp;quality,
        boolean&nbsp;bold,
        boolean&nbsp;italic,
-       boolean&nbsp;uncertain)</pre>
+       boolean&nbsp;uncertain,
+       <a href="../../../../com/microblink/results/ocr/OcrFont.html" title="enum in com.microblink.results.ocr">OcrFont</a>&nbsp;font,
+       <a href="../../../../com/microblink/results/ocr/OcrChar.html" title="class in com.microblink.results.ocr">OcrChar</a>[]&nbsp;variants)</pre>
 </li>
 </ul>
 </li>
@@ -320,17 +322,8 @@ implements android.os.Parcelable</pre>
 <li class="blockList">
 <h4>getValue</h4>
 <pre>public&nbsp;char&nbsp;getValue()</pre>
-<dl><dt><span class="strong">Returns:</span></dt><dd>the value</dd></dl>
-</li>
-</ul>
-<a name="setValue(char)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setValue</h4>
-<pre>public&nbsp;void&nbsp;setValue(char&nbsp;value)</pre>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>value</code> - the value to set</dd></dl>
+<div class="block">Returns the value of the char.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>the value of the char</dd></dl>
 </li>
 </ul>
 <a name="getHeight()">
@@ -340,17 +333,8 @@ implements android.os.Parcelable</pre>
 <li class="blockList">
 <h4>getHeight</h4>
 <pre>public&nbsp;int&nbsp;getHeight()</pre>
-<dl><dt><span class="strong">Returns:</span></dt><dd>the height</dd></dl>
-</li>
-</ul>
-<a name="setHeight(int)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setHeight</h4>
-<pre>public&nbsp;void&nbsp;setHeight(int&nbsp;height)</pre>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>height</code> - the height to set</dd></dl>
+<div class="block">Returns the height of the char, in pixels.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>the height of the char, in pixels.</dd></dl>
 </li>
 </ul>
 <a name="isBold()">
@@ -360,17 +344,8 @@ implements android.os.Parcelable</pre>
 <li class="blockList">
 <h4>isBold</h4>
 <pre>public&nbsp;boolean&nbsp;isBold()</pre>
-<dl><dt><span class="strong">Returns:</span></dt><dd>the bold</dd></dl>
-</li>
-</ul>
-<a name="setBold(boolean)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setBold</h4>
-<pre>public&nbsp;void&nbsp;setBold(boolean&nbsp;bold)</pre>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>bold</code> - the bold to set</dd></dl>
+<div class="block">Returns true if char is bold.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>true if char is bold.</dd></dl>
 </li>
 </ul>
 <a name="isItalic()">
@@ -380,17 +355,8 @@ implements android.os.Parcelable</pre>
 <li class="blockList">
 <h4>isItalic</h4>
 <pre>public&nbsp;boolean&nbsp;isItalic()</pre>
-<dl><dt><span class="strong">Returns:</span></dt><dd>the italic</dd></dl>
-</li>
-</ul>
-<a name="setItalic(boolean)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setItalic</h4>
-<pre>public&nbsp;void&nbsp;setItalic(boolean&nbsp;italic)</pre>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>italic</code> - the italic to set</dd></dl>
+<div class="block">Returns true if char is italic.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>true if char is italic.</dd></dl>
 </li>
 </ul>
 <a name="isUncertain()">
@@ -400,17 +366,8 @@ implements android.os.Parcelable</pre>
 <li class="blockList">
 <h4>isUncertain</h4>
 <pre>public&nbsp;boolean&nbsp;isUncertain()</pre>
-<dl><dt><span class="strong">Returns:</span></dt><dd>the uncertain</dd></dl>
-</li>
-</ul>
-<a name="setUncertain(boolean)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setUncertain</h4>
-<pre>public&nbsp;void&nbsp;setUncertain(boolean&nbsp;uncertain)</pre>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>uncertain</code> - the uncertain to set</dd></dl>
+<div class="block">Returns true if OCR engine thinks this char is uncertain</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>true if OCR engine thinks this char is uncertain</dd></dl>
 </li>
 </ul>
 <a name="getQuality()">
@@ -420,17 +377,8 @@ implements android.os.Parcelable</pre>
 <li class="blockList">
 <h4>getQuality</h4>
 <pre>public&nbsp;int&nbsp;getQuality()</pre>
-<dl><dt><span class="strong">Returns:</span></dt><dd>the quality</dd></dl>
-</li>
-</ul>
-<a name="setQuality(int)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setQuality</h4>
-<pre>public&nbsp;void&nbsp;setQuality(int&nbsp;quality)</pre>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>quality</code> - the quality to set</dd></dl>
+<div class="block">Returns the recognition quality of the char. Max quality is 100 and min quality is 0.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>the recognition quality of the char.</dd></dl>
 </li>
 </ul>
 <a name="getPosition()">
@@ -440,17 +388,32 @@ implements android.os.Parcelable</pre>
 <li class="blockList">
 <h4>getPosition</h4>
 <pre>public&nbsp;<a href="../../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a>&nbsp;getPosition()</pre>
-<dl><dt><span class="strong">Returns:</span></dt><dd>the position</dd></dl>
+<div class="block">Returns the position of char in image</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>the position of char in image</dd></dl>
 </li>
 </ul>
-<a name="setPosition(com.microblink.geometry.Rectangle)">
+<a name="getFont()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setPosition</h4>
-<pre>public&nbsp;void&nbsp;setPosition(<a href="../../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a>&nbsp;position)</pre>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>position</code> - the position to set</dd></dl>
+<h4>getFont</h4>
+<pre>public&nbsp;<a href="../../../../com/microblink/results/ocr/OcrFont.html" title="enum in com.microblink.results.ocr">OcrFont</a>&nbsp;getFont()</pre>
+<div class="block">Returns the font of the character</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>the font of the character</dd></dl>
+</li>
+</ul>
+<a name="getRecognitionVariants()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getRecognitionVariants</h4>
+<pre>public&nbsp;<a href="../../../../com/microblink/results/ocr/OcrChar.html" title="class in com.microblink.results.ocr">OcrChar</a>[]&nbsp;getRecognitionVariants()</pre>
+<div class="block">Returns the recognition variants of this char or null if there are no variants.
+ Note that char is defined by all its parameters (value, font, position, quality, etc.),
+ so in recognition variants it is possible to have same char value with different font.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>the recognition variants of this char or null if there are no variants</dd></dl>
 </li>
 </ul>
 <a name="toString()">
@@ -519,7 +482,7 @@ implements android.os.Parcelable</pre>
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../com/microblink/results/ocr/OcrBlock.html" title="class in com.microblink.results.ocr"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../../com/microblink/results/ocr/OcrLine.html" title="class in com.microblink.results.ocr"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../com/microblink/results/ocr/OcrFont.html" title="enum in com.microblink.results.ocr"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?com/microblink/results/ocr/OcrChar.html" target="_top">Frames</a></li>

@@ -140,42 +140,48 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>android.graphics.Bitmap</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#convertToBitmap()">convertToBitmap</a></strong>()</code>
+<div class="block">Converts this image into Android Bitmap.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#getHeight()">getHeight</a></strong>()</code>
 <div class="block">Returns the height of the image.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../com/microblink/image/ImageFormat.html" title="enum in com.microblink.image">ImageFormat</a></code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#getImageFormat()">getImageFormat</a></strong>()</code>
 <div class="block">Returns the format of the image.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#getImageName()">getImageName</a></strong>()</code>
 <div class="block">Returns the name of the image.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../com/microblink/image/ImagePlane.html" title="class in com.microblink.image">ImagePlane</a>[]</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#getImagePlanes()">getImagePlanes</a></strong>()</code>
 <div class="block">Returns the planes of the image.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../com/microblink/image/ImageType.html" title="enum in com.microblink.image">ImageType</a></code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#getImageType()">getImageType</a></strong>()</code>
 <div class="block">Returns the type of the image.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>android.graphics.Rect</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#getROI()">getROI</a></strong>()</code>
 <div class="block">Returns the region of interest in image.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#getWidth()">getWidth</a></strong>()</code>
 <div class="block">Returns the width of the image.</div>
@@ -295,7 +301,7 @@ extends java.lang.Object</pre>
 <a name="getROI()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>getROI</h4>
 <pre>public&nbsp;android.graphics.Rect&nbsp;getROI()</pre>
@@ -303,6 +309,20 @@ extends java.lang.Object</pre>
  YUV_NV21 images that will contain the entire image in buffer and to obtain
  ROI-ed image, you should use YuvImage helper class (see: https://developer.android.com/reference/android/graphics/YuvImage.html)</div>
 <dl><dt><span class="strong">Returns:</span></dt><dd>the region of interest in image.</dd></dl>
+</li>
+</ul>
+<a name="convertToBitmap()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>convertToBitmap</h4>
+<pre>public&nbsp;android.graphics.Bitmap&nbsp;convertToBitmap()</pre>
+<div class="block">Converts this image into Android Bitmap. This is a _very slow_ process that involves
+ copying and converting a lot of data.
+ Returned bitmap has its own pixel buffer, so it may remain valid even after this
+ image's buffers become invalid (usually after ImageListener's onImageAvailable method ends).</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>Image converted to Android Bitmap.</dd></dl>
 </li>
 </ul>
 </li>

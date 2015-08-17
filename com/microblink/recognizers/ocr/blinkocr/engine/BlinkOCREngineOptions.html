@@ -34,7 +34,7 @@
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCRCharKey.html" title="class in com.microblink.recognizers.ocr.blinkocr.engine"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCRFont.html" title="enum in com.microblink.recognizers.ocr.blinkocr.engine"><span class="strong">Next Class</span></a></li>
+<li>Next Class</li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../../index.html?com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html" target="_top">Frames</a></li>
@@ -181,75 +181,108 @@ implements android.os.Parcelable</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html#addAllDigitsToWhitelist(com.microblink.results.ocr.OcrFont)">addAllDigitsToWhitelist</a></strong>(<a href="../../../../../../com/microblink/results/ocr/OcrFont.html" title="enum in com.microblink.results.ocr">OcrFont</a>&nbsp;font)</code>
+<div class="block">Adds all digits with given font to whitelist.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html#addCharIntervalToWhitelist(char, char, com.microblink.results.ocr.OcrFont)">addCharIntervalToWhitelist</a></strong>(char&nbsp;firstValue,
+                          char&nbsp;lastValue,
+                          <a href="../../../../../../com/microblink/results/ocr/OcrFont.html" title="enum in com.microblink.results.ocr">OcrFont</a>&nbsp;font)</code>
+<div class="block">Adds a interval of chars including first and last to whitelist in given font (use OcrFont.ANY to cover all available fonts).</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html#addCharToWhitelist(com.microblink.recognizers.ocr.blinkocr.engine.BlinkOCRCharKey)">addCharToWhitelist</a></strong>(<a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCRCharKey.html" title="class in com.microblink.recognizers.ocr.blinkocr.engine">BlinkOCRCharKey</a>&nbsp;charKey)</code>
 <div class="block">Adds a char+font combination to set of allowed chars.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html#addCharToWhitelist(char, com.microblink.results.ocr.OcrFont)">addCharToWhitelist</a></strong>(char&nbsp;value,
+                  <a href="../../../../../../com/microblink/results/ocr/OcrFont.html" title="enum in com.microblink.results.ocr">OcrFont</a>&nbsp;font)</code>
+<div class="block">Adds a char+font combination to set of allowed chars.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html#addLowercaseCharsToWhitelist(com.microblink.results.ocr.OcrFont)">addLowercaseCharsToWhitelist</a></strong>(<a href="../../../../../../com/microblink/results/ocr/OcrFont.html" title="enum in com.microblink.results.ocr">OcrFont</a>&nbsp;font)</code>
+<div class="block">Adds all lowercase ascii chars with given font to whitelist.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html#addUppercaseCharsToWhitelist(com.microblink.results.ocr.OcrFont)">addUppercaseCharsToWhitelist</a></strong>(<a href="../../../../../../com/microblink/results/ocr/OcrFont.html" title="enum in com.microblink.results.ocr">OcrFont</a>&nbsp;font)</code>
+<div class="block">Adds all uppercase ascii chars with given font to whitelist.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html#allowAllCharsAndAllFonts()">allowAllCharsAndAllFonts</a></strong>()</code>
 <div class="block">Allows all supported chars in all supported fonts.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html#describeContents()">describeContents</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCRCharKey.html" title="class in com.microblink.recognizers.ocr.blinkocr.engine">BlinkOCRCharKey</a>&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html#getCharWhitelist()">getCharWhitelist</a></strong>()</code>
 <div class="block">Returns the set of all supported char+font combinations.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html#getMaximumCharsExpected()">getMaximumCharsExpected</a></strong>()</code>
 <div class="block">Returns the maximum number of chars expected in the image.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html#getMaximumLineHeight()">getMaximumLineHeight</a></strong>()</code>
 <div class="block">Returns the maximum height of the line of text given in pixels.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html#getMinimumLineHeight()">getMinimumLineHeight</a></strong>()</code>
 <div class="block">Returns the minimum height of the line of text given in pixels.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html#isColorDropoutEnabled()">isColorDropoutEnabled</a></strong>()</code>
 <div class="block">Returns true if the additional image processing which drops background colors will be performed.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html#setColorDropoutEnabled(boolean)">setColorDropoutEnabled</a></strong>(boolean&nbsp;colorDropoutEnabled)</code>
 <div class="block">Specifies if the additional image processing which drops the background colors should be performed.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html#setMaximumCharsExpected(int)">setMaximumCharsExpected</a></strong>(int&nbsp;maximumCharsExpected)</code>
 <div class="block">Sets the maximum number of chars expected in the image.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html#setMaximumLineHeight(int)">setMaximumLineHeight</a></strong>(int&nbsp;maximumLineHeight)</code>
 <div class="block">Sets the maximum height of the line of text given in pixels.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html#setMinimumLineHeight(int)">setMinimumLineHeight</a></strong>(int&nbsp;minimumLineHeight)</code>
 <div class="block">Sets the minimum height of the line of thxt given in pixels.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html#writeToParcel(android.os.Parcel, int)">writeToParcel</a></strong>(android.os.Parcel&nbsp;dest,
              int&nbsp;flags)</code>&nbsp;</td>
@@ -415,8 +448,79 @@ implements android.os.Parcelable</pre>
 <li class="blockList">
 <h4>addCharToWhitelist</h4>
 <pre>public&nbsp;void&nbsp;addCharToWhitelist(<a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCRCharKey.html" title="class in com.microblink.recognizers.ocr.blinkocr.engine">BlinkOCRCharKey</a>&nbsp;charKey)</pre>
-<div class="block">Adds a char+font combination to set of allowed chars.</div>
+<div class="block">Adds a char+font combination to set of allowed chars.
+ For example to define char 'k' in font Arial, use
+          addCharToWhitelist(new BlinkOCRCharKey((int) 'k', BlinkOCRFont.ARIAL));
+
+ For example to define char 'ü' in any font, use
+          addCharToWhitelist(new BlinkOCRCharKey((int) 'ü', BlinkOCRFont.ANY));</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>charKey</code> - char+font combination that should be allowed</dd></dl>
+</li>
+</ul>
+<a name="addCharToWhitelist(char, com.microblink.results.ocr.OcrFont)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addCharToWhitelist</h4>
+<pre>public&nbsp;void&nbsp;addCharToWhitelist(char&nbsp;value,
+                      <a href="../../../../../../com/microblink/results/ocr/OcrFont.html" title="enum in com.microblink.results.ocr">OcrFont</a>&nbsp;font)</pre>
+<div class="block">Adds a char+font combination to set of allowed chars.
+ For example to define char 'k' in font Arial, use
+          addCharToWhitelist('k', BlinkOCRFont.ARIAL);
+
+ For example to define char 'ü' in any font, use
+          addCharToWhitelist('ü', BlinkOCRFont.ANY);</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>value</code> - Value of the char. Whitespace characters are ignored.</dd><dd><code>font</code> - Font in which char will be allowed. Use OcrFont.ANY to cover all available fonts.</dd></dl>
+</li>
+</ul>
+<a name="addCharIntervalToWhitelist(char, char, com.microblink.results.ocr.OcrFont)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addCharIntervalToWhitelist</h4>
+<pre>public&nbsp;void&nbsp;addCharIntervalToWhitelist(char&nbsp;firstValue,
+                              char&nbsp;lastValue,
+                              <a href="../../../../../../com/microblink/results/ocr/OcrFont.html" title="enum in com.microblink.results.ocr">OcrFont</a>&nbsp;font)</pre>
+<div class="block">Adds a interval of chars including first and last to whitelist in given font (use OcrFont.ANY to cover all available fonts).</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>firstValue</code> - first char that will be added to whitelist</dd><dd><code>lastValue</code> - last char that will be added to whitelist</dd><dd><code>font</code> - font in which chars will be allowed. Use OcrFont.ANY to cover all available fonts.</dd></dl>
+</li>
+</ul>
+<a name="addAllDigitsToWhitelist(com.microblink.results.ocr.OcrFont)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addAllDigitsToWhitelist</h4>
+<pre>public&nbsp;void&nbsp;addAllDigitsToWhitelist(<a href="../../../../../../com/microblink/results/ocr/OcrFont.html" title="enum in com.microblink.results.ocr">OcrFont</a>&nbsp;font)</pre>
+<div class="block">Adds all digits with given font to whitelist.
+ This method is same as calling addCharIntervalToWhitelist('0', '9', font);</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>font</code> - font in which chars will be allowed. Use OcrFont.ANY to cover all available fonts.</dd></dl>
+</li>
+</ul>
+<a name="addLowercaseCharsToWhitelist(com.microblink.results.ocr.OcrFont)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addLowercaseCharsToWhitelist</h4>
+<pre>public&nbsp;void&nbsp;addLowercaseCharsToWhitelist(<a href="../../../../../../com/microblink/results/ocr/OcrFont.html" title="enum in com.microblink.results.ocr">OcrFont</a>&nbsp;font)</pre>
+<div class="block">Adds all lowercase ascii chars with given font to whitelist.
+ This method is same as calling addCharIntervalToWhitelist('a', 'z', font);</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>font</code> - font in which chars will be allowed. Use OcrFont.ANY to cover all available fonts.</dd></dl>
+</li>
+</ul>
+<a name="addUppercaseCharsToWhitelist(com.microblink.results.ocr.OcrFont)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addUppercaseCharsToWhitelist</h4>
+<pre>public&nbsp;void&nbsp;addUppercaseCharsToWhitelist(<a href="../../../../../../com/microblink/results/ocr/OcrFont.html" title="enum in com.microblink.results.ocr">OcrFont</a>&nbsp;font)</pre>
+<div class="block">Adds all uppercase ascii chars with given font to whitelist.
+ This method is same as calling addCharIntervalToWhitelist('A', 'Z', font);</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>font</code> - font in which chars will be allowed. Use OcrFont.ANY to cover all available fonts.</dd></dl>
 </li>
 </ul>
 <a name="allowAllCharsAndAllFonts()">
@@ -494,7 +598,7 @@ implements android.os.Parcelable</pre>
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCRCharKey.html" title="class in com.microblink.recognizers.ocr.blinkocr.engine"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCRFont.html" title="enum in com.microblink.recognizers.ocr.blinkocr.engine"><span class="strong">Next Class</span></a></li>
+<li>Next Class</li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../../index.html?com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html" target="_top">Frames</a></li>

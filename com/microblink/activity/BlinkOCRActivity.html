@@ -34,7 +34,7 @@
 <div class="subNav">
 <ul class="navList">
 <li>Prev Class</li>
-<li>Next Class</li>
+<li><a href="../../../com/microblink/activity/ShowOcrResultMode.html" title="enum in com.microblink.activity"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?com/microblink/activity/BlinkOCRActivity.html" target="_top">Frames</a></li>
@@ -113,7 +113,7 @@
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd>android.content.ComponentCallbacks, android.content.ComponentCallbacks2, android.view.KeyEvent.Callback, android.view.LayoutInflater.Factory, android.view.LayoutInflater.Factory2, android.view.View.OnCreateContextMenuListener, android.view.Window.Callback, <a href="../../../com/microblink/hardware/camera/focus/AutofocusListener.html" title="interface in com.microblink.hardware.camera.focus">AutofocusListener</a>, <a href="../../../com/microblink/view/CameraEventsListener.html" title="interface in com.microblink.view">CameraEventsListener</a>, <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a></dd>
+<dd>android.content.ComponentCallbacks, android.content.ComponentCallbacks2, android.view.KeyEvent.Callback, android.view.LayoutInflater.Factory, android.view.LayoutInflater.Factory2, android.view.View.OnCreateContextMenuListener, android.view.Window.Callback, <a href="../../../com/microblink/view/CameraEventsListener.html" title="interface in com.microblink.view">CameraEventsListener</a>, <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a></dd>
 </dl>
 <hr>
 <br>
@@ -147,7 +147,9 @@ implements <a href="../../../com/microblink/view/CameraEventsListener.html" titl
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#EXTRAS_IMAGE_LISTENER">EXTRAS_IMAGE_LISTENER</a></strong></code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#EXTRAS_IMAGE_LISTENER">EXTRAS_IMAGE_LISTENER</a></strong></code>
+<div class="block">Define an ImageListener that will obtain images that are being processed.</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
@@ -184,6 +186,26 @@ implements <a href="../../../com/microblink/view/CameraEventsListener.html" titl
 <td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#EXTRAS_SCAN_RESULTS">EXTRAS_SCAN_RESULTS</a></strong></code>
 <div class="block">Key for obtaining scan results (if not scanning in infinite loop)</div>
 </td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#EXTRAS_SHOW_OCR_RESULT">EXTRAS_SHOW_OCR_RESULT</a></strong></code>
+<div class="block">Defines whether OCR results will be displayed in UI</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#EXTRAS_SHOW_OCR_RESULT_MODE">EXTRAS_SHOW_OCR_RESULT_MODE</a></strong></code>
+<div class="block">Defines how OCR results will be displayed in UI</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#mShowOcrResult">mShowOcrResult</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected <a href="../../../com/microblink/activity/ShowOcrResultMode.html" title="enum in com.microblink.activity">ShowOcrResultMode</a></code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#mShowOcrResultMode">mShowOcrResultMode</a></strong></code>&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -240,21 +262,15 @@ implements <a href="../../../com/microblink/view/CameraEventsListener.html" titl
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onAutofocusFailed()">onAutofocusFailed</a></strong>()</code>
-<div class="block">This method will be called when camera focusing has failed.</div>
-</td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onAutofocusFailed()">onAutofocusFailed</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onAutofocusStarted(android.graphics.Rect[])">onAutofocusStarted</a></strong>(android.graphics.Rect[]&nbsp;focusAreas)</code>
-<div class="block">This method will be called when camera focusing has started.</div>
-</td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onAutofocusStarted(android.graphics.Rect[])">onAutofocusStarted</a></strong>(android.graphics.Rect[]&nbsp;focusAreas)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onAutofocusStopped(android.graphics.Rect[])">onAutofocusStopped</a></strong>(android.graphics.Rect[]&nbsp;focusAreas)</code>
-<div class="block">This method will be called when camera focusing has stopped.</div>
-</td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onAutofocusStopped(android.graphics.Rect[])">onAutofocusStopped</a></strong>(android.graphics.Rect[]&nbsp;focusAreas)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
@@ -281,48 +297,54 @@ implements <a href="../../../com/microblink/view/CameraEventsListener.html" titl
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onConfigurationChanged(android.content.res.Configuration)">onConfigurationChanged</a></strong>(android.content.res.Configuration&nbsp;newConfig)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onCameraPreviewStopped()">onCameraPreviewStopped</a></strong>()</code>
+<div class="block">Called inside pause method of CameraView just haver camera preview has been stopped.</div>
+</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onCreate(android.os.Bundle)">onCreate</a></strong>(android.os.Bundle&nbsp;savedInstanceState)</code>&nbsp;</td>
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onConfigurationChanged(android.content.res.Configuration)">onConfigurationChanged</a></strong>(android.content.res.Configuration&nbsp;newConfig)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onDestroy()">onDestroy</a></strong>()</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onCreate(android.os.Bundle)">onCreate</a></strong>(android.os.Bundle&nbsp;savedInstanceState)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onDestroy()">onDestroy</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onNotSupported(com.microblink.view.NotSupportedReason)">onNotSupported</a></strong>(<a href="../../../com/microblink/view/NotSupportedReason.html" title="enum in com.microblink.view">NotSupportedReason</a>&nbsp;reason)</code>
 <div class="block">Called when camera or scanning is not supported on device.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onPause()">onPause</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onResume()">onResume</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onScanningDone(com.microblink.recognizers.BaseRecognitionResult[], RecognitionType)">onScanningDone</a></strong>(<a href="../../../com/microblink/recognizers/BaseRecognitionResult.html" title="class in com.microblink.recognizers">BaseRecognitionResult</a>[]&nbsp;dataArray,
               RecognitionType&nbsp;recognitionType)</code>
 <div class="block">This method is called when slip has been scanned.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onStart()">onStart</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onStartupError(java.lang.Throwable)">onStartupError</a></strong>(java.lang.Throwable&nbsp;exc)</code>
 <div class="block">Called when attempt to start the camera results in exception.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onStop()">onStop</a></strong>()</code>&nbsp;</td>
 </tr>
@@ -442,6 +464,28 @@ implements <a href="../../../com/microblink/view/CameraEventsListener.html" titl
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.microblink.activity.BlinkOCRActivity.EXTRAS_INFINITE_LOOP_SCAN">Constant Field Values</a></dd></dl>
 </li>
 </ul>
+<a name="EXTRAS_SHOW_OCR_RESULT">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>EXTRAS_SHOW_OCR_RESULT</h4>
+<pre>public static final&nbsp;java.lang.String EXTRAS_SHOW_OCR_RESULT</pre>
+<div class="block">Defines whether OCR results will be displayed in UI</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.microblink.activity.BlinkOCRActivity.EXTRAS_SHOW_OCR_RESULT">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="EXTRAS_SHOW_OCR_RESULT_MODE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>EXTRAS_SHOW_OCR_RESULT_MODE</h4>
+<pre>public static final&nbsp;java.lang.String EXTRAS_SHOW_OCR_RESULT_MODE</pre>
+<div class="block">Defines how OCR results will be displayed in UI</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.microblink.activity.BlinkOCRActivity.EXTRAS_SHOW_OCR_RESULT_MODE">Constant Field Values</a></dd></dl>
+</li>
+</ul>
 <a name="EXTRAS_RECOGNITION_RESULT_LIST">
 <!--   -->
 </a>
@@ -456,11 +500,33 @@ implements <a href="../../../com/microblink/view/CameraEventsListener.html" titl
 <a name="EXTRAS_IMAGE_LISTENER">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>EXTRAS_IMAGE_LISTENER</h4>
 <pre>public static final&nbsp;java.lang.String EXTRAS_IMAGE_LISTENER</pre>
+<div class="block">Define an ImageListener that will obtain images that are being processed.
+ Make sure that your ImageListener implementation correctly implements Parcelable
+ interface with static CREATOR field. Without this, you might encounter a runtime error.
+ ImageListener interface is located in com.microblink.image package.</div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.microblink.activity.BlinkOCRActivity.EXTRAS_IMAGE_LISTENER">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="mShowOcrResult">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>mShowOcrResult</h4>
+<pre>protected&nbsp;boolean mShowOcrResult</pre>
+</li>
+</ul>
+<a name="mShowOcrResultMode">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>mShowOcrResultMode</h4>
+<pre>protected&nbsp;<a href="../../../com/microblink/activity/ShowOcrResultMode.html" title="enum in com.microblink.activity">ShowOcrResultMode</a> mShowOcrResultMode</pre>
 </li>
 </ul>
 </li>
@@ -598,6 +664,22 @@ implements <a href="../../../com/microblink/view/CameraEventsListener.html" titl
 </dl>
 </li>
 </ul>
+<a name="onCameraPreviewStopped()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onCameraPreviewStopped</h4>
+<pre>public&nbsp;void&nbsp;onCameraPreviewStopped()</pre>
+<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../com/microblink/view/CameraEventsListener.html#onCameraPreviewStopped()">CameraEventsListener</a></code></strong></div>
+<div class="block">Called inside pause method of CameraView just haver camera preview has been stopped.
+ After this method is called, frames will no longer arrive to ICameraCallback.</div>
+<dl>
+<dt><strong>Specified by:</strong></dt>
+<dd><code><a href="../../../com/microblink/view/CameraEventsListener.html#onCameraPreviewStopped()">onCameraPreviewStopped</a></code>&nbsp;in interface&nbsp;<code><a href="../../../com/microblink/view/CameraEventsListener.html" title="interface in com.microblink.view">CameraEventsListener</a></code></dd>
+</dl>
+</li>
+</ul>
 <a name="onStartupError(java.lang.Throwable)">
 <!--   -->
 </a>
@@ -642,16 +724,6 @@ implements <a href="../../../com/microblink/view/CameraEventsListener.html" titl
 <li class="blockList">
 <h4>onAutofocusFailed</h4>
 <pre>public&nbsp;void&nbsp;onAutofocusFailed()</pre>
-<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../com/microblink/hardware/camera/focus/AutofocusListener.html#onAutofocusFailed()">AutofocusListener</a></code></strong></div>
-<div class="block">This method will be called when camera focusing has failed.
- Camera manager usually tries different focusing strategies
- and this method is called when all those strategies fail to
- indicate that either object on which camera is being focused
- is too close or ambient light conditions are poor.</div>
-<dl>
-<dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../com/microblink/hardware/camera/focus/AutofocusListener.html#onAutofocusFailed()">onAutofocusFailed</a></code>&nbsp;in interface&nbsp;<code><a href="../../../com/microblink/hardware/camera/focus/AutofocusListener.html" title="interface in com.microblink.hardware.camera.focus">AutofocusListener</a></code></dd>
-</dl>
 </li>
 </ul>
 <a name="onAutofocusStarted(android.graphics.Rect[])">
@@ -661,13 +733,6 @@ implements <a href="../../../com/microblink/view/CameraEventsListener.html" titl
 <li class="blockList">
 <h4>onAutofocusStarted</h4>
 <pre>public&nbsp;void&nbsp;onAutofocusStarted(android.graphics.Rect[]&nbsp;focusAreas)</pre>
-<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../com/microblink/hardware/camera/focus/AutofocusListener.html#onAutofocusStarted(android.graphics.Rect[])">AutofocusListener</a></code></strong></div>
-<div class="block">This method will be called when camera focusing has started.
- You can utilize this method to draw focusing animation on UI.</div>
-<dl>
-<dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../com/microblink/hardware/camera/focus/AutofocusListener.html#onAutofocusStarted(android.graphics.Rect[])">onAutofocusStarted</a></code>&nbsp;in interface&nbsp;<code><a href="../../../com/microblink/hardware/camera/focus/AutofocusListener.html" title="interface in com.microblink.hardware.camera.focus">AutofocusListener</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>focusAreas</code> - Areas where focus is being measured. Null on devices that do not support fine-grained camera control</dd></dl>
 </li>
 </ul>
 <a name="onAutofocusStopped(android.graphics.Rect[])">
@@ -677,13 +742,6 @@ implements <a href="../../../com/microblink/view/CameraEventsListener.html" titl
 <li class="blockList">
 <h4>onAutofocusStopped</h4>
 <pre>public&nbsp;void&nbsp;onAutofocusStopped(android.graphics.Rect[]&nbsp;focusAreas)</pre>
-<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../com/microblink/hardware/camera/focus/AutofocusListener.html#onAutofocusStopped(android.graphics.Rect[])">AutofocusListener</a></code></strong></div>
-<div class="block">This method will be called when camera focusing has stopped.
- You can utilize this method to remove focusing animation from UI.</div>
-<dl>
-<dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../com/microblink/hardware/camera/focus/AutofocusListener.html#onAutofocusStopped(android.graphics.Rect[])">onAutofocusStopped</a></code>&nbsp;in interface&nbsp;<code><a href="../../../com/microblink/hardware/camera/focus/AutofocusListener.html" title="interface in com.microblink.hardware.camera.focus">AutofocusListener</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>focusAreas</code> - Areas where focus is being measured. Null on devices that do not support fine-grained camera control</dd></dl>
 </li>
 </ul>
 <a name="onScanningDone(com.microblink.recognizers.BaseRecognitionResult[], RecognitionType)">
@@ -766,7 +824,7 @@ implements <a href="../../../com/microblink/view/CameraEventsListener.html" titl
 <div class="subNav">
 <ul class="navList">
 <li>Prev Class</li>
-<li>Next Class</li>
+<li><a href="../../../com/microblink/activity/ShowOcrResultMode.html" title="enum in com.microblink.activity"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?com/microblink/activity/BlinkOCRActivity.html" target="_top">Frames</a></li>

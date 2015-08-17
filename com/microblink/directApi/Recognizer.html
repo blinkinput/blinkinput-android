@@ -151,7 +151,7 @@ extends java.lang.Object</pre>
           <a href="../../../com/microblink/recognizers/settings/GenericRecognizerSettings.html" title="class in com.microblink.recognizers.settings">GenericRecognizerSettings</a>&nbsp;genericSettings,
           <a href="../../../com/microblink/recognizers/settings/RecognizerSettings.html" title="class in com.microblink.recognizers.settings">RecognizerSettings</a>[]&nbsp;settings,
           <a href="../../../com/microblink/directApi/DirectApiErrorListener.html" title="interface in com.microblink.directApi">DirectApiErrorListener</a>&nbsp;errorListener)</code>
-<div class="block">Initialize native library for recognition.</div>
+<div class="block">Initialize native library for recognition and returns true if initialization has been performed.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -166,6 +166,25 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/directApi/Recognizer.html#recognize(android.graphics.Bitmap, com.microblink.view.recognition.ScanResultListener)">recognize</a></strong>(android.graphics.Bitmap&nbsp;image,
          <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener)</code>
+<div class="block">Perform recognition of image represented as Android Bitmap.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/directApi/Recognizer.html#recognizeWithSettings(android.graphics.Bitmap, com.microblink.geometry.Rectangle, com.microblink.view.recognition.ScanResultListener, com.microblink.recognizers.settings.RecognizerSettings[], com.microblink.recognizers.settings.GenericRecognizerSettings)">recognizeWithSettings</a></strong>(android.graphics.Bitmap&nbsp;image,
+                     <a href="../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a>&nbsp;scanRegion,
+                     <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener,
+                     <a href="../../../com/microblink/recognizers/settings/RecognizerSettings.html" title="class in com.microblink.recognizers.settings">RecognizerSettings</a>[]&nbsp;settings,
+                     <a href="../../../com/microblink/recognizers/settings/GenericRecognizerSettings.html" title="class in com.microblink.recognizers.settings">GenericRecognizerSettings</a>&nbsp;genericSettings)</code>
+<div class="block">Perform recognition of image represented as Android Bitmap.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/directApi/Recognizer.html#recognizeWithSettings(android.graphics.Bitmap, com.microblink.view.recognition.ScanResultListener, com.microblink.recognizers.settings.RecognizerSettings[], com.microblink.recognizers.settings.GenericRecognizerSettings)">recognizeWithSettings</a></strong>(android.graphics.Bitmap&nbsp;image,
+                     <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener,
+                     <a href="../../../com/microblink/recognizers/settings/RecognizerSettings.html" title="class in com.microblink.recognizers.settings">RecognizerSettings</a>[]&nbsp;settings,
+                     <a href="../../../com/microblink/recognizers/settings/GenericRecognizerSettings.html" title="class in com.microblink.recognizers.settings">GenericRecognizerSettings</a>&nbsp;genericSettings)</code>
 <div class="block">Perform recognition of image represented as Android Bitmap.</div>
 </td>
 </tr>
@@ -289,9 +308,19 @@ extends java.lang.Object</pre>
               <a href="../../../com/microblink/recognizers/settings/GenericRecognizerSettings.html" title="class in com.microblink.recognizers.settings">GenericRecognizerSettings</a>&nbsp;genericSettings,
               <a href="../../../com/microblink/recognizers/settings/RecognizerSettings.html" title="class in com.microblink.recognizers.settings">RecognizerSettings</a>[]&nbsp;settings,
               <a href="../../../com/microblink/directApi/DirectApiErrorListener.html" title="interface in com.microblink.directApi">DirectApiErrorListener</a>&nbsp;errorListener)</pre>
-<div class="block">Initialize native library for recognition.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>context</code> - Application context used for loading required resources.</dd><dd><code>genericSettings</code> - Generic settings applied to all recognizers and whole recognition process.</dd><dd><code>settings</code> - Array of enabled recognizer settings that define the scanning process.</dd><dd><code>errorListener</code> - Listener that will be notified of any error during initialization of native library
-                      in background thread.</dd>
+<div class="block">Initialize native library for recognition and returns true if initialization has been performed.
+
+ Please note that native library is singleton, i.e. it is used from both this DirectAPI recognizer
+ and RecognizerView. So if both RecognizerView and DirectAPI try to initialize the native library
+ at the same time, the following will happen:
+  - if first initialized from RecognizerView, this method will return false, indicating failure to
+    initialize DirectAPI
+  - if first initialized from here, method will return true, HOWEVER if after that native library
+    is initialized again from RecognizerView, **RecognizerView's settings will be applied**, in that
+    case calling recognize method will use RecognizerView's settings - to prevent that, you must use
+    recognizeWithSettings method
+ All in all, RecognizerView's settings always have priority over DirectAPI's settings.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>context</code> - Application context used for loading required resources.</dd><dd><code>genericSettings</code> - Generic settings applied to all recognizers and whole recognition process.</dd><dd><code>settings</code> - Array of enabled recognizer settings that define the scanning process.</dd><dd><code>errorListener</code> - Listener that will be notified of any error in native library in background thread.</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code>java.lang.IllegalStateException</code> - if recognizer is already initialized</dd>
 <dd><code>java.lang.NullPointerException</code> - if context, settings array or errorListener is null</dd></dl>
@@ -339,6 +368,51 @@ extends java.lang.Object</pre>
                    and height are percentages of image height. Therefore, rectangle(0.f, 0.f, 1.f, 1.f)
                    represents the whole image, whilst rectangle(0.5f, 0.f, 0.5f, 1.f) represents the
                    right half of the image.</dd><dd><code>resultListener</code> - Result listener that will handle recognition done event.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.lang.IllegalStateException</code> - if recognizer is not initialized or is currently working</dd>
+<dd><code>java.lang.NullPointerException</code> - if given null scan result listener</dd></dl>
+</li>
+</ul>
+<a name="recognizeWithSettings(android.graphics.Bitmap, com.microblink.view.recognition.ScanResultListener, com.microblink.recognizers.settings.RecognizerSettings[], com.microblink.recognizers.settings.GenericRecognizerSettings)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>recognizeWithSettings</h4>
+<pre>public&nbsp;void&nbsp;recognizeWithSettings(android.graphics.Bitmap&nbsp;image,
+                         <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener,
+                         <a href="../../../com/microblink/recognizers/settings/RecognizerSettings.html" title="class in com.microblink.recognizers.settings">RecognizerSettings</a>[]&nbsp;settings,
+                         <a href="../../../com/microblink/recognizers/settings/GenericRecognizerSettings.html" title="class in com.microblink.recognizers.settings">GenericRecognizerSettings</a>&nbsp;genericSettings)</pre>
+<div class="block">Perform recognition of image represented as Android Bitmap.
+
+ Unlike method recognize, this method will apply given settings for recognition of current image. This may be much
+ slower than using method recognize, but it is the only option if RecognizerView was initialized after this Recognizer.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>image</code> - Image that needs to be recognized.</dd><dd><code>resultListener</code> - Result listener that will handle recognition done event.</dd><dd><code>settings</code> - Array of enabled recognizer settings that define the scanning process only during this method call.</dd><dd><code>genericSettings</code> - Generic settings applied to all recognizers and whole recognition process.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.lang.IllegalStateException</code> - if recognizer is not initialized or is currently working</dd>
+<dd><code>java.lang.NullPointerException</code> - if given null scan result listener</dd></dl>
+</li>
+</ul>
+<a name="recognizeWithSettings(android.graphics.Bitmap, com.microblink.geometry.Rectangle, com.microblink.view.recognition.ScanResultListener, com.microblink.recognizers.settings.RecognizerSettings[], com.microblink.recognizers.settings.GenericRecognizerSettings)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>recognizeWithSettings</h4>
+<pre>public&nbsp;void&nbsp;recognizeWithSettings(android.graphics.Bitmap&nbsp;image,
+                         <a href="../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a>&nbsp;scanRegion,
+                         <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener,
+                         <a href="../../../com/microblink/recognizers/settings/RecognizerSettings.html" title="class in com.microblink.recognizers.settings">RecognizerSettings</a>[]&nbsp;settings,
+                         <a href="../../../com/microblink/recognizers/settings/GenericRecognizerSettings.html" title="class in com.microblink.recognizers.settings">GenericRecognizerSettings</a>&nbsp;genericSettings)</pre>
+<div class="block">Perform recognition of image represented as Android Bitmap.
+
+ Unlike method recognize, this method will apply given settings for recognition of current image. This may be much
+ slower than using method recognize, but it is the only option if RecognizerView was initialized after this Recognizer.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>image</code> - Image that needs to be recognized.</dd><dd><code>scanRegion</code> - Region of image that needs to be recognized. Rectangle is given as percentages
+                   of image size - x coordinate and width are percentages of image width and y coordinate
+                   and height are percentages of image height. Therefore, rectangle(0.f, 0.f, 1.f, 1.f)
+                   represents the whole image, whilst rectangle(0.5f, 0.f, 0.5f, 1.f) represents the
+                   right half of the image.</dd><dd><code>resultListener</code> - Result listener that will handle recognition done event.</dd><dd><code>settings</code> - Array of enabled recognizer settings that define the scanning process only during this method call.</dd><dd><code>genericSettings</code> - Generic settings applied to all recognizers and whole recognition process.</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code>java.lang.IllegalStateException</code> - if recognizer is not initialized or is currently working</dd>
 <dd><code>java.lang.NullPointerException</code> - if given null scan result listener</dd></dl>

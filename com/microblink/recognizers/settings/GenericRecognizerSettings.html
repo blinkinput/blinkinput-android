@@ -34,7 +34,7 @@
 <div class="subNav">
 <ul class="navList">
 <li>Prev Class</li>
-<li><a href="../../../../com/microblink/recognizers/settings/ParserSettingsKeys.html" title="class in com.microblink.recognizers.settings"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../com/microblink/recognizers/settings/GenericRecognizerSettings.FrameQualityEstimationMode.html" title="enum in com.microblink.recognizers.settings"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?com/microblink/recognizers/settings/GenericRecognizerSettings.html" target="_top">Frames</a></li>
@@ -58,7 +58,7 @@
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested_class_summary">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_summary">Method</a></li>
@@ -117,6 +117,17 @@ extends <a href="../../../../com/microblink/recognizers/settings/RecognizerSetti
 <!--   -->
 </a>
 <h3>Nested Class Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Nested Class Summary table, listing nested classes, and an explanation">
+<caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><strong><a href="../../../../com/microblink/recognizers/settings/GenericRecognizerSettings.FrameQualityEstimationMode.html" title="enum in com.microblink.recognizers.settings">GenericRecognizerSettings.FrameQualityEstimationMode</a></strong></code>&nbsp;</td>
+</tr>
+</table>
 <ul class="blockList">
 <li class="blockList"><a name="nested_classes_inherited_from_class_android.os.Parcelable">
 <!--   -->
@@ -212,20 +223,30 @@ extends <a href="../../../../com/microblink/recognizers/settings/RecognizerSetti
 <td class="colLast"><code><strong><a href="../../../../com/microblink/recognizers/settings/GenericRecognizerSettings.html#describeContents()">describeContents</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../com/microblink/recognizers/settings/GenericRecognizerSettings.FrameQualityEstimationMode.html" title="enum in com.microblink.recognizers.settings">GenericRecognizerSettings.FrameQualityEstimationMode</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../com/microblink/recognizers/settings/GenericRecognizerSettings.html#getFrameQualityEstimationMode()">getFrameQualityEstimationMode</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/recognizers/settings/GenericRecognizerSettings.html#getNumMsBeforeTimeout()">getNumMsBeforeTimeout</a></strong>()</code>
 <div class="block">Returns the duration in miliseconds that needs to pass since scanning has begun in order to define timeout.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/recognizers/settings/GenericRecognizerSettings.html#getRecognitionMode()">getRecognitionMode</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/recognizers/settings/GenericRecognizerSettings.html#setAllowMultipleScanResultsOnSingleImage(boolean)">setAllowMultipleScanResultsOnSingleImage</a></strong>(boolean&nbsp;multiScan)</code>
 <div class="block">Sets whether or not outputting of multiple scan results from same image
  is allowed.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../com/microblink/recognizers/settings/GenericRecognizerSettings.html#setFrameQualityEstimationMode(com.microblink.recognizers.settings.GenericRecognizerSettings.FrameQualityEstimationMode)">setFrameQualityEstimationMode</a></strong>(<a href="../../../../com/microblink/recognizers/settings/GenericRecognizerSettings.FrameQualityEstimationMode.html" title="enum in com.microblink.recognizers.settings">GenericRecognizerSettings.FrameQualityEstimationMode</a>&nbsp;mode)</code>
+<div class="block">Sets the mode of the frame quality estimation.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -422,6 +443,29 @@ extends <a href="../../../../com/microblink/recognizers/settings/RecognizerSetti
 <dl><dt><span class="strong">Returns:</span></dt><dd>the duration in miliseconds that needs to pass since scanning has begun in order to define timeout.</dd></dl>
 </li>
 </ul>
+<a name="setFrameQualityEstimationMode(com.microblink.recognizers.settings.GenericRecognizerSettings.FrameQualityEstimationMode)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setFrameQualityEstimationMode</h4>
+<pre>public&nbsp;void&nbsp;setFrameQualityEstimationMode(<a href="../../../../com/microblink/recognizers/settings/GenericRecognizerSettings.FrameQualityEstimationMode.html" title="enum in com.microblink.recognizers.settings">GenericRecognizerSettings.FrameQualityEstimationMode</a>&nbsp;mode)</pre>
+<div class="block">Sets the mode of the frame quality estimation. If automatic, it will be used if at least one enabled
+ recognizer requires it or if device is fast enough to perform it always (default). If always on or always off,
+ it will not depend on active recognizers nor device.
+ Frame quality estimation helps choosing the best possible frame from camera stream for processing.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>mode</code> - Desired mode of frame quality estimation.</dd></dl>
+</li>
+</ul>
+<a name="getFrameQualityEstimationMode()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getFrameQualityEstimationMode</h4>
+<pre>public&nbsp;<a href="../../../../com/microblink/recognizers/settings/GenericRecognizerSettings.FrameQualityEstimationMode.html" title="enum in com.microblink.recognizers.settings">GenericRecognizerSettings.FrameQualityEstimationMode</a>&nbsp;getFrameQualityEstimationMode()</pre>
+</li>
+</ul>
 <a name="describeContents()">
 <!--   -->
 </a>
@@ -479,7 +523,7 @@ extends <a href="../../../../com/microblink/recognizers/settings/RecognizerSetti
 <div class="subNav">
 <ul class="navList">
 <li>Prev Class</li>
-<li><a href="../../../../com/microblink/recognizers/settings/ParserSettingsKeys.html" title="class in com.microblink.recognizers.settings"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../com/microblink/recognizers/settings/GenericRecognizerSettings.FrameQualityEstimationMode.html" title="enum in com.microblink.recognizers.settings"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?com/microblink/recognizers/settings/GenericRecognizerSettings.html" target="_top">Frames</a></li>
@@ -503,7 +547,7 @@ extends <a href="../../../../com/microblink/recognizers/settings/RecognizerSetti
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested_class_summary">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_summary">Method</a></li>
