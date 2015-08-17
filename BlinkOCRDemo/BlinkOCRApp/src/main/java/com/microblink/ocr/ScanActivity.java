@@ -204,6 +204,11 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
     }
 
     @Override
+    public void onCameraPreviewStopped() {
+        // this method is called when camera preview has stopped
+    }
+
+    @Override
     public void onStartupError(Throwable exc) {
         // this method is called when error happens whilst loading RecognizerView
         // this can be either because camera is busy and cannot be opened
