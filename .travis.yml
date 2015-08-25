@@ -4,6 +4,7 @@ android:
     components:
         - build-tools-22.0.0
         - android-22
+        - extra-android-m2repository
 script:
     - cd BlinkOCRDemo
     - ./gradlew clean assembleRelease
