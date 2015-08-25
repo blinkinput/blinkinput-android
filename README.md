@@ -1,5 +1,7 @@
 # _BlinkOCR_ SDK for Android
 
+[![Build Status](https://travis-ci.org/BlinkOCR/blinkocr-android.png)](https://travis-ci.org/BlinkOCR/blinkocr-android)
+
 _BlinkOCR_ SDK for Android is SDK that enables you to easily add near real time OCR functionality to your app. With provided camera management you can easily create an app that scans receipts, e-mails and much more. You can also scan images stored as [Android Bitmaps](http://developer.android.com/reference/android/graphics/Bitmap.html) that are loaded either from gallery, network or SD card.
 
 With _BlinkOCR_ you can scan free-form text or specialized formats like dates, amounts, e-mails and much more. Using specialized formats yields much better scanning quality than using free-form text mode.
