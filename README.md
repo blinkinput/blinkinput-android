@@ -8,7 +8,7 @@ With _BlinkOCR_ you can scan free-form text or specialized formats like dates, a
 
 Using _BlinkOCR_ in your app requires a valid license key. You can obtain a trial license key by registering to [Microblink dashboard](https://microblink.com/login). After registering, you will be able to generate a license key for your app. License key is bound to [package name](http://tools.android.com/tech-docs/new-build-system/applicationid-vs-packagename) of your app, so please make sure you enter the correct package name when asked.
 
-See below for more information about how to integrate _BlinkOCR_ SDK into your app.
+See below for more information about how to integrate _BlinkOCR_ SDK into your app and also check latest [Release notes](Release notes.md).
 
 # Table of contents
 
@@ -124,7 +124,7 @@ After that, you just need to add _BlinkOCR_ as a dependency to your application:
 
 ```
 dependencies {
-    compile 'com.microblink:blinkocr:1.6.0'
+    compile 'com.microblink:blinkocr:1.7.0'
 }
 ```
 
@@ -146,7 +146,7 @@ Open your pom.xml file and add these directives as appropriate:
 	<dependency>
 		  <groupId>com.microblink</groupId>
 		  <artifactId>blinkocr</artifactId>
-		  <version>1.6.0</version>
+		  <version>1.7.0</version>
   	</dependency>
 <dependencies>
 ```
@@ -401,7 +401,9 @@ public class MyScanActivity extends Activity implements ScanResultListener, Came
     	
     	// When this method gets called, scanning gets paused. To resume scanning after this
     	// method has been called, call resumeScanning method.
-    	mRecognizerView.resumeScanning();
+    	// resumeScanning method receives boolean indicating whether internal
+    	// recognizer state should be reset
+    	mRecognizerView.resumeScanning(true);
     }
     
     @Override
@@ -532,20 +534,26 @@ With this method you can set a [ScanResultListener](https://blinkocr.github.io/b
 ##### <a name="recognizerView_setCameraEventsListener"></a> `setCameraEventsListener(CameraEventsListener)`
 With this method you can set a [CameraEventsListener](https://blinkocr.github.io/blinkocr-android/com/microblink/view/CameraEventsListener.html) which will be notified when various camera events occur, such as when camera preview has started, autofocus has failed or there has been an error while starting the camera.
 
-##### <a name="recognizerView_recognizeBitmap"></a> `recognizeBitmap(Bitmap, ScanResultListener)`
-This method can be used to request recognition of [Android Bitmap](https://developer.android.com/reference/android/graphics/Bitmap.html) between video frames. This method will implicitly call [pauseScanning](#recognizerView_pauseScanning) to prevent analysis of video frames while bitmap is being processed. The scan result will be returned via provided ScanResultListener, thus not polluting RecognizerView's default ScanResultListener. This method is much easier to use than [making all precautions when DirectAPI and RecognizerView are both active](#directAPIWithRecognizer).
+##### <a name="recognizerView_canRecognizeBitmap"></a> `canRecognizeBitmapOrImage()`
+With this method you can query `RecognizerView` if it is capable of recognizing [Android Bitmaps](https://developer.android.com/reference/android/graphics/Bitmap.html) or [Image objects](https://blinkocr.github.io/blinkocr-android/com/microblink/image/Image.html). `RecognizerView` is capable of that if it has been started or resumed.
 
-##### <a name="recognizerView_recognizeBitmapWithSettings"></a> `recognizeBitmapWithSettings(Bitmap, ScanResultListener, RecognizerSettings[], GenericRecognizerSettings)`
-Same as [recognizeBitmap](#recognizerView_recognizeBitmap), except given settings will be used for this single recognition and default settings will be restored after recognition ends.
+##### <a name="recognizerView_recognizeBitmap"></a> `recognizeBitmap(Bitmap, ScanResultListener)` and `recognizeBitmap(Bitmap, Orientation, ScanResultListener)`
+This method can be used to request recognition of [Android Bitmap](https://developer.android.com/reference/android/graphics/Bitmap.html) between video frames. This method will implicitly call [pauseScanning](#recognizerView_pauseScanning) to prevent analysis of video frames while bitmap is being processed. The scan result will be returned via provided [ScanResultListener](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/ScanResultListener.html), thus not polluting RecognizerView's default ScanResultListener. This method is much easier to use than [making all precautions when DirectAPI and RecognizerView are both active](#directAPIWithRecognizer). The version of method that does not receive information about bitmap's orientation assumes current device's orientation for given bitmap.
+
+##### <a name="recognizerView_recognizeBitmapWithSettings"></a> `recognizeBitmapWithSettings(Bitmap, ScanResultListener, RecognizerSettings[], GenericRecognizerSettings)` and `recognizeBitmapWithSettings(Bitmap, Orientation, ScanResultListener, RecognizerSettings[], GenericRecognizerSettings)`
+Same as [recognizeBitmap](#recognizerView_recognizeBitmap), except given settings will be used for this single recognition and default settings will be restored after recognition ends. The version of method that does not receive information about bitmap's orientation assumes current device's orientation for given bitmap.
+
+##### <a name="recognizerView_recognizeImage"></a> `recognizeImage(Image, ScanResultListener)`
+Use this method to directly recognize [Image object](https://blinkocr.github.io/blinkocr-android/com/microblink/image/Image.html) obtained via [ImageListener](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageListener.html) while recognizer is active. Recognition will be performed with given recognition settings. This method will implicitly pause scanning video frames. You must call [resumeScanning](#recognizerView_resumeScanning) to resume scanning video frames. If error happens due to illegal settings, onStartupError will be invoked of the CameraViewEventsListener that was set before calling create().
+
+##### <a name="recognizerView_recognizeImageWithSettings"></a> `recognizeImageWithSettings(Image, ScanResultListener, RecognizerSettings[], GenericRecognizerSettings)`
+Same as [recognizeImage](#recognizerView_recognizeImage), except given settings will be used for this single recognition and default settings will be restored after recognition ends. 
 
 ##### <a name="recognizerView_pauseScanning"></a> `pauseScanning()`
 This method pauses the scanning loop, but keeps both camera and native library initialized. This method is called internally when scan completes before `onScanningDone` is called.
 
-##### <a name="recognizerView_resumeScanning"></a> `resumeScanning()`
-With this method you can resume the paused scanning loop. This method implicitly calls `resetRecognitionState()`.
-
-##### <a name="recognizerView_resumeScanningWithoutStateReset"></a> `resumeScanningWithoutStateReset()`
-With this method you can resume the paused scanning loop without resetting recognition state. Be aware that after resuming, old recognition state might be reused for boosting recognition result. This may not be always a desired behaviour.
+##### <a name="recognizerView_resumeScanning"></a> `resumeScanning(boolean)`
+With this method you can resume the paused scanning loop. If called with `true` parameter, implicitly calls `resetRecognitionState()`. If called with `false`, old recognition state will not be reset, so it could be reused for boosting recognition result. This may not be always a desired behaviour.
 
 ##### <a name="recognizerView_resetRecognitionState"></a> `resetRecognitionState()`
 With this method you can reset internal recognition state. State is usually kept to improve recognition quality over time, but without resetting recognition state sometimes you might get poorer results (for example if you scan one object and then another without resetting state you might end up with result that contains properties from both scanned objects).
