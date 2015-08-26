@@ -1,5 +1,11 @@
 # Release notes
 
+## 1.7.0
+- [ImageListener](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageListener.html) can now receive [DEWARPED](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageType.html#DEWARPED) images and [Image](https://blinkocr.github.io/blinkocr-android/com/microblink/image/Image.html) now contains information about its [Orientation](https://blinkocr.github.io/blinkocr-android/com/microblink/hardware/orientation/Orientation.html)
+- [recognizeBitmap](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#recognizeBitmap(android.graphics.Bitmap, com.microblink.view.recognition.ScanResultListener)) method can now receive orientation of given [Bitmap](https://developer.android.com/reference/android/graphics/Bitmap.html)
+- it is now possible to recognize [Image](https://blinkocr.github.io/blinkocr-android/com/microblink/image/Image.html) objects directly, without slow conversion into [Bitmap](https://developer.android.com/reference/android/graphics/Bitmap.html)
+- removed method `resumeScanningWithoutStateReset` - method `resumeScanning` of [RecognizerView](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html) now receives `boolean` indicating whether internal state should be reset
+
 ## 1.6.0
 - removed dependency to deprecated [Horizontal Variable ListView](https://github.com/sephiroth74/HorizontalVariableListView) - default activity now only requires [Android support library](https://developer.android.com/tools/support-library/index.html)
 - new and improved android camera management
