@@ -48,7 +48,7 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.setLogLevel(Log.LogLevel.LOG_VERBOSE);
+
         setContentView(R.layout.activity_scan);
 
         for(ScanConfiguration conf : mConfiguration) {
@@ -282,7 +282,7 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
                 // group to getOcrResult method
             }
         }
-        mRecognizerView.resumeScanningWithoutStateReset();
+        mRecognizerView.resumeScanning(false);
     }
 
     public void onBtnExitClicked(View v) {
