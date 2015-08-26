@@ -116,13 +116,14 @@ extends java.lang.Object</pre>
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../com/microblink/image/Image.html#Image(int, int, com.microblink.image.ImageType, com.microblink.image.ImageFormat, java.lang.String, com.microblink.image.ImagePlane[], android.graphics.Rect)">Image</a></strong>(int&nbsp;width,
+<td class="colOne"><code><strong><a href="../../../com/microblink/image/Image.html#Image(int, int, com.microblink.image.ImageType, com.microblink.image.ImageFormat, java.lang.String, com.microblink.image.ImagePlane[], android.graphics.Rect, com.microblink.hardware.orientation.Orientation)">Image</a></strong>(int&nbsp;width,
      int&nbsp;height,
      <a href="../../../com/microblink/image/ImageType.html" title="enum in com.microblink.image">ImageType</a>&nbsp;imageType,
      <a href="../../../com/microblink/image/ImageFormat.html" title="enum in com.microblink.image">ImageFormat</a>&nbsp;imageFormat,
      java.lang.String&nbsp;imgName,
      <a href="../../../com/microblink/image/ImagePlane.html" title="class in com.microblink.image">ImagePlane</a>[]&nbsp;imagePlanes,
-     android.graphics.Rect&nbsp;roi)</code>&nbsp;</td>
+     android.graphics.Rect&nbsp;roi,
+     <a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;imageOrientation)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -140,27 +141,39 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code><a href="../../../com/microblink/image/Image.html" title="class in com.microblink.image">Image</a></code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#clone()">clone</a></strong>()</code>
+<div class="block">Creates and returns a copy of this image object.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>android.graphics.Bitmap</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#convertToBitmap()">convertToBitmap</a></strong>()</code>
 <div class="block">Converts this image into Android Bitmap.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#getHeight()">getHeight</a></strong>()</code>
 <div class="block">Returns the height of the image.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../com/microblink/image/ImageFormat.html" title="enum in com.microblink.image">ImageFormat</a></code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#getImageFormat()">getImageFormat</a></strong>()</code>
 <div class="block">Returns the format of the image.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#getImageName()">getImageName</a></strong>()</code>
 <div class="block">Returns the name of the image.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a></code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#getImageOrientation()">getImageOrientation</a></strong>()</code>
+<div class="block">Returns the orientation of the image.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -187,13 +200,23 @@ extends java.lang.Object</pre>
 <div class="block">Returns the width of the image.</div>
 </td>
 </tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#setImageOrientation(com.microblink.hardware.orientation.Orientation)">setImageOrientation</a></strong>(<a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;orientation)</code>
+<div class="block">Use this method to change Image's orientation.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#setROI(android.graphics.Rect)">setROI</a></strong>(android.graphics.Rect&nbsp;roi)</code>&nbsp;</td>
+</tr>
 </table>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+<code>equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
 </ul>
 </li>
 </ul>
@@ -209,7 +232,7 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="Image(int, int, com.microblink.image.ImageType, com.microblink.image.ImageFormat, java.lang.String, com.microblink.image.ImagePlane[], android.graphics.Rect)">
+<a name="Image(int, int, com.microblink.image.ImageType, com.microblink.image.ImageFormat, java.lang.String, com.microblink.image.ImagePlane[], android.graphics.Rect, com.microblink.hardware.orientation.Orientation)">
 <!--   -->
 </a>
 <ul class="blockListLast">
@@ -221,7 +244,8 @@ extends java.lang.Object</pre>
      <a href="../../../com/microblink/image/ImageFormat.html" title="enum in com.microblink.image">ImageFormat</a>&nbsp;imageFormat,
      java.lang.String&nbsp;imgName,
      <a href="../../../com/microblink/image/ImagePlane.html" title="class in com.microblink.image">ImagePlane</a>[]&nbsp;imagePlanes,
-     android.graphics.Rect&nbsp;roi)</pre>
+     android.graphics.Rect&nbsp;roi,
+     <a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;imageOrientation)</pre>
 </li>
 </ul>
 </li>
@@ -232,6 +256,21 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="clone()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>clone</h4>
+<pre>public&nbsp;<a href="../../../com/microblink/image/Image.html" title="class in com.microblink.image">Image</a>&nbsp;clone()</pre>
+<div class="block">Creates and returns a copy of this image object. This method makes a copy of image pixels.
+ Use it if you want to</div>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code>clone</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+<dt><span class="strong">Returns:</span></dt><dd>a copy of this image object</dd></dl>
+</li>
+</ul>
 <a name="getWidth()">
 <!--   -->
 </a>
@@ -311,6 +350,45 @@ extends java.lang.Object</pre>
 <dl><dt><span class="strong">Returns:</span></dt><dd>the region of interest in image.</dd></dl>
 </li>
 </ul>
+<a name="setROI(android.graphics.Rect)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setROI</h4>
+<pre>public&nbsp;void&nbsp;setROI(android.graphics.Rect&nbsp;roi)</pre>
+</li>
+</ul>
+<a name="getImageOrientation()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getImageOrientation</h4>
+<pre>public&nbsp;<a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;getImageOrientation()</pre>
+<div class="block">Returns the orientation of the image. Orientation is defined as orientation of the device when the image was taken.
+ To explain the orientation further, let's assume that image contains a line of text.
+ If orientation is Orientation.ORIENTATION_LANDSCAPE_RIGHT, the line of text would be horizontal from left to right (normal reading orientation).
+ If orientation is Orientation.ORIENTATION_PORTRAIT, the line of text would be vertical from bottom to top. In order to read the text, you would
+ need to rotate image by 90 degrees clockwise.
+ If orientation is Orientation.ORIENTATION_PORTRAIT_UPSIDE, the line of text would be vertical from top to bottom. In order to read the text,
+ you would need to rotate image by 90 degrees counterclockwise.
+ If orientation is Orientation.ORIENTATION_LANDSCAPE_LEFT, the line of text would be horizontal from right to left (upside down). In order to
+ read the text, you would need to rotate image by 180 degrees.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>the orientation of the image</dd></dl>
+</li>
+</ul>
+<a name="setImageOrientation(com.microblink.hardware.orientation.Orientation)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setImageOrientation</h4>
+<pre>public&nbsp;void&nbsp;setImageOrientation(<a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;orientation)</pre>
+<div class="block">Use this method to change Image's orientation. This can be useful for different interpretations of</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>orientation</code> - </dd></dl>
+</li>
+</ul>
 <a name="convertToBitmap()">
 <!--   -->
 </a>
@@ -318,7 +396,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>convertToBitmap</h4>
 <pre>public&nbsp;android.graphics.Bitmap&nbsp;convertToBitmap()</pre>
-<div class="block">Converts this image into Android Bitmap. This is a _very slow_ process that involves
+<div class="block">Converts this image into Android Bitmap. This is a very slow process that involves
  copying and converting a lot of data.
  Returned bitmap has its own pixel buffer, so it may remain valid even after this
  image's buffers become invalid (usually after ImageListener's onImageAvailable method ends).</div>

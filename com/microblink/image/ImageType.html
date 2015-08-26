@@ -149,11 +149,16 @@ extends java.lang.Enum&lt;<a href="../../../com/microblink/image/ImageType.html"
 </td>
 </tr>
 <tr class="altColor">
+<td class="colOne"><code><strong><a href="../../../com/microblink/image/ImageType.html#OCR_PREPROCESSED">OCR_PREPROCESSED</a></strong></code>
+<div class="block">This is grayscale image preprocessed with OCR engine.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colOne"><code><strong><a href="../../../com/microblink/image/ImageType.html#ORIGINAL">ORIGINAL</a></strong></code>
 <div class="block">This is the original image that arrived from camera.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colOne"><code><strong><a href="../../../com/microblink/image/ImageType.html#SUCCESSFUL_SCAN">SUCCESSFUL_SCAN</a></strong></code>
 <div class="block">This is the original image that arrived from camera that was used to recognize
  item.</div>
@@ -281,7 +286,7 @@ the order they are declared.</div>
 <a name="BEST_QUALITY">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>BEST_QUALITY</h4>
 <pre>public static final&nbsp;<a href="../../../com/microblink/image/ImageType.html" title="enum in com.microblink.image">ImageType</a> BEST_QUALITY</pre>
@@ -289,6 +294,17 @@ the order they are declared.</div>
  from local set of camera frames. Usually this is the image that you will want to process.
  This image is not always available - this depends on build settings and enabled recognizers.
  If image is available, it will usually be in YUV_NV21 format.</div>
+</li>
+</ul>
+<a name="OCR_PREPROCESSED">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>OCR_PREPROCESSED</h4>
+<pre>public static final&nbsp;<a href="../../../com/microblink/image/ImageType.html" title="enum in com.microblink.image">ImageType</a> OCR_PREPROCESSED</pre>
+<div class="block">This is grayscale image preprocessed with OCR engine.
+ This is the image that will be used for segmentation and classification of characters.</div>
 </li>
 </ul>
 </li>

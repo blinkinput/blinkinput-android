@@ -134,18 +134,24 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code><a href="../../../com/microblink/image/ImagePlane.html" title="class in com.microblink.image">ImagePlane</a></code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/image/ImagePlane.html#clone()">clone</a></strong>()</code>
+<div class="block">Creates and returns a copy of this image plane.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>java.nio.ByteBuffer</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/image/ImagePlane.html#getBuffer()">getBuffer</a></strong>()</code>
 <div class="block">Returns the native buffer that contains image plane's pixels.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/image/ImagePlane.html#getPixelStride()">getPixelStride</a></strong>()</code>
 <div class="block">Returns the pixel stride for image plane.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/image/ImagePlane.html#getRowStride()">getRowStride</a></strong>()</code>
 <div class="block">Returns the row stride for image plane.</div>
@@ -157,7 +163,7 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+<code>equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
 </ul>
 </li>
 </ul>
@@ -218,13 +224,27 @@ extends java.lang.Object</pre>
 <a name="getRowStride()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>getRowStride</h4>
 <pre>public&nbsp;int&nbsp;getRowStride()</pre>
 <div class="block">Returns the row stride for image plane. Row stride is byte difference between two
  consecutive rows in image.</div>
 <dl><dt><span class="strong">Returns:</span></dt><dd>the row stride for image plane</dd></dl>
+</li>
+</ul>
+<a name="clone()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>clone</h4>
+<pre>public&nbsp;<a href="../../../com/microblink/image/ImagePlane.html" title="class in com.microblink.image">ImagePlane</a>&nbsp;clone()</pre>
+<div class="block">Creates and returns a copy of this image plane. Image pixels are copied in this process.</div>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code>clone</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+<dt><span class="strong">Returns:</span></dt><dd>a copy of this image plane</dd></dl>
 </li>
 </ul>
 </li>
