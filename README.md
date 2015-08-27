@@ -124,7 +124,7 @@ After that, you just need to add _BlinkOCR_ as a dependency to your application:
 
 ```
 dependencies {
-    compile 'com.microblink:blinkocr:1.7.0'
+    compile 'com.microblink:blinkocr:1.7.1'
 }
 ```
 
@@ -146,7 +146,7 @@ Open your pom.xml file and add these directives as appropriate:
 	<dependency>
 		  <groupId>com.microblink</groupId>
 		  <artifactId>blinkocr</artifactId>
-		  <version>1.7.0</version>
+		  <version>1.7.1</version>
   	</dependency>
 <dependencies>
 ```
