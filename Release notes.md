@@ -1,5 +1,31 @@
 # Release notes
 
+## 1.8.0
+- added support for scanning barcodes
+- fixed race condition causing memory leak or rare crashes
+- fixed `NullPointerException` in `BaseCameraView.dispatchTouchEvent`
+- fixed bug that caused returning scan result from old video frame
+- fixed `NullPointerException` in camera2 management
+- fixed rare race condition in gesture recognizer
+- fixed segmentation fault on recognizer reconfiguration operation
+- fixed freeze when camera was being quickly turned on and off
+- ensured `RecognizerView` lifecycle methods are called on UI thread
+- ensure `onCameraPreviewStarted` is not called if camera is immediately closed after start before the call should have taken place
+- ensure `onScanningDone` is not called after `RecognizerView` has been paused, even if it had result ready just before pausing
+- default maximum number of chars in `raw parser` is now 3000 (it used to be 600)
+- it is now possible to define maximum allowed number of char recognition variants via `BlinkOCREngineOptions`. Default value is `0`.
+- when calling `onDisplayOcrResult` callback, make sure OCR char recognition variants are not sent to Java - this is both slow and not required
+- added support for using _BlinkOCR_ as camera capture API. To do that, implement following:
+	- when using `RecognizerView` do not call `setRecognitionSettings` or call it with `null` or empty array
+	- implement `ImageListener` interface and set the listener with `setImageListener`
+	- as a reminder - you can process video frames obtained that way using direct API method `recognizeImageWithSettings`
+- reorganized integration demo apps
+	- `BlinkOCRSegmentDemo` shows how to use simple Intent-based API to scan little text segments
+	- `BlinkOCRFullScreen` shows how to perform full camera frame generic OCR, how to draw OCR results on screen and how to obtain `OcrResult` object for further processing
+	- `BlinkOCRDirectAPI` shows how to perform OCR of `Bitmap` object obtained from camera
+	- `BlinkOCRBarcodeDemo` shows how to scan a PDF417 or Code128 barcode
+	- all demo apps now use Maven integration method because it is much easier than importing AAR manually
+
 ## 1.7.1
 - fixed NullPointerException when RecognizerSettings array element was `null`
 
