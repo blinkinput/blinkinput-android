@@ -9,6 +9,7 @@
 - fixed rare race condition in gesture recognizer
 - fixed segmentation fault on recognizer reconfiguration operation
 - fixed freeze when camera was being quickly turned on and off
+- fixed bug in IBAN parser that caused not to parse IBAN's that contain letters, such as in UK, Ireland or Netherlands
 - ensured `RecognizerView` lifecycle methods are called on UI thread
 - ensure `onCameraPreviewStarted` is not called if camera is immediately closed after start before the call should have taken place
 - ensure `onScanningDone` is not called after `RecognizerView` has been paused, even if it had result ready just before pausing
@@ -21,10 +22,14 @@
 	- as a reminder - you can process video frames obtained that way using direct API method `recognizeImageWithSettings`
 - reorganized integration demo apps
 	- `BlinkOCRSegmentDemo` shows how to use simple Intent-based API to scan little text segments
-	- `BlinkOCRFullScreen` shows how to perform full camera frame generic OCR, how to draw OCR results on screen and how to obtain `OcrResult` object for further processing
+	- `BlinkOCRFullScreen` shows how to perform full camera frame generic OCR, how to draw OCR results on screen and how to obtain `OcrResult` object for further processing. This app also shows how to scan Code128 or Code39 barcode on same screen that is used for OCR.
 	- `BlinkOCRDirectAPI` shows how to perform OCR of `Bitmap` object obtained from camera
-	- `BlinkOCRBarcodeDemo` shows how to scan a PDF417 or Code128 barcode
 	- all demo apps now use Maven integration method because it is much easier than importing AAR manually
+- **removed** parsers specific to country standards - these are now available as part of our [PhotoPay](https://microblink.com/photopay) product
+	- removed croatian parsers
+	- removed serbian parsers
+	- removed macedonian parsers
+	- removed swedish parsers
 
 ## 1.7.1
 - fixed NullPointerException when RecognizerSettings array element was `null`
