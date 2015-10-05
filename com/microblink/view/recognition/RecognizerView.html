@@ -257,14 +257,6 @@ extends <a href="../../../../com/microblink/view/BaseCameraView.html" title="cla
               boolean&nbsp;allowInvalid)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>java.lang.Object</code></td>
-<td class="colLast"><code><strong><a href="../../../../com/microblink/view/recognition/RecognizerView.html#getBestFrameMutex()">getBestFrameMutex</a></strong>()</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>ICameraFrame</code></td>
-<td class="colLast"><code><strong><a href="../../../../com/microblink/view/recognition/RecognizerView.html#getCurrentlyBestFrame()">getCurrentlyBestFrame</a></strong>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../com/microblink/recognizers/settings/GenericRecognizerSettings.html" title="class in com.microblink.recognizers.settings">GenericRecognizerSettings</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/view/recognition/RecognizerView.html#getGenericRecognizerSettings()">getGenericRecognizerSettings</a></strong>()</code>
 <div class="block">Returns the currently active generic settings that affect all recognizers and whole recognition process.</div>
@@ -310,46 +302,46 @@ extends <a href="../../../../com/microblink/view/BaseCameraView.html" title="cla
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../com/microblink/view/recognition/RecognizerView.html#invalidateBestFrame()">invalidateBestFrame</a></strong>()</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/view/recognition/RecognizerView.html#isRecognitionPaused()">isRecognitionPaused</a></strong>()</code>
 <div class="block">Returns true if recognizer is currently paused (camera preview may still be active).</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/view/recognition/RecognizerView.html#onCameraFrame(ICameraFrame)">onCameraFrame</a></strong>(ICameraFrame&nbsp;frame)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/view/recognition/RecognizerView.html#onCameraPreviewStarted()">onCameraPreviewStarted</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/view/recognition/RecognizerView.html#onCameraPreviewStopped()">onCameraPreviewStopped</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/view/recognition/RecognizerView.html#onOrientationChange(com.microblink.hardware.orientation.Orientation)">onOrientationChange</a></strong>(<a href="../../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;orientation)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/view/recognition/RecognizerView.html#onTakePictureFail()">onTakePictureFail</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/view/recognition/RecognizerView.html#pause()">pause</a></strong>()</code>
 <div class="block">This method must be called from activity's onPause.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/view/recognition/RecognizerView.html#pauseScanning()">pauseScanning</a></strong>()</code>
 <div class="block">Pauses the scanning loop.</div>
 </td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../../com/microblink/view/recognition/RecognizerView.html#pauseScanningInternal(boolean)">pauseScanningInternal</a></strong>(boolean&nbsp;notifyNothingDetected)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
@@ -518,12 +510,16 @@ extends <a href="../../../../com/microblink/view/BaseCameraView.html" title="cla
 <td class="colLast"><code><strong><a href="../../../../com/microblink/view/recognition/RecognizerView.html#shouldStartCamera()">shouldStartCamera</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>ICameraFrame</code></td>
+<td class="colLast"><code><strong><a href="../../../../com/microblink/view/recognition/RecognizerView.html#snapCurrentlyBestFrame()">snapCurrentlyBestFrame</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/view/recognition/RecognizerView.html#start()">start</a></strong>()</code>
 <div class="block">This method must be called from activity's onStart.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/view/recognition/RecognizerView.html#stop()">stop</a></strong>()</code>
 <div class="block">This method must be called from activity's onStop.</div>
@@ -764,6 +760,15 @@ extends <a href="../../../../com/microblink/view/BaseCameraView.html" title="cla
  If resetState is 'false', recognition state will not be reset, so scanning after resume may use old scan data
  to boost quality.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>resetState</code> - should internal state be reset when resuming scanning</dd></dl>
+</li>
+</ul>
+<a name="pauseScanningInternal(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>pauseScanningInternal</h4>
+<pre>protected&nbsp;void&nbsp;pauseScanningInternal(boolean&nbsp;notifyNothingDetected)</pre>
 </li>
 </ul>
 <a name="pauseScanning()">
@@ -1265,31 +1270,13 @@ extends <a href="../../../../com/microblink/view/BaseCameraView.html" title="cla
 <dl><dt><span class="strong">Returns:</span></dt><dd>the listener that will obtain the results of the scanning.</dd></dl>
 </li>
 </ul>
-<a name="getBestFrameMutex()">
+<a name="snapCurrentlyBestFrame()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getBestFrameMutex</h4>
-<pre>public&nbsp;java.lang.Object&nbsp;getBestFrameMutex()</pre>
-</li>
-</ul>
-<a name="getCurrentlyBestFrame()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getCurrentlyBestFrame</h4>
-<pre>public&nbsp;ICameraFrame&nbsp;getCurrentlyBestFrame()</pre>
-</li>
-</ul>
-<a name="invalidateBestFrame()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>invalidateBestFrame</h4>
-<pre>public&nbsp;void&nbsp;invalidateBestFrame()</pre>
+<h4>snapCurrentlyBestFrame</h4>
+<pre>public&nbsp;ICameraFrame&nbsp;snapCurrentlyBestFrame()</pre>
 </li>
 </ul>
 <a name="getRecognitionCallback()">

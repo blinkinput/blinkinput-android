@@ -101,7 +101,7 @@
 extends java.lang.Object
 implements android.os.Parcelable</pre>
 <div class="block">Options used in OCR.
-
+ <p/>
  Created by dodo on 22/05/15.</div>
 </li>
 </ul>
@@ -236,32 +236,46 @@ implements android.os.Parcelable</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html#getMaximumAllowedCharRecognitionVariants()">getMaximumAllowedCharRecognitionVariants</a></strong>()</code>
+<div class="block">Returns the maximum allowed number of char recognition variants OCR engine will produce
+ for each OcrChar.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html#getMaximumCharsExpected()">getMaximumCharsExpected</a></strong>()</code>
 <div class="block">Returns the maximum number of chars expected in the image.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html#getMaximumLineHeight()">getMaximumLineHeight</a></strong>()</code>
 <div class="block">Returns the maximum height of the line of text given in pixels.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html#getMinimumLineHeight()">getMinimumLineHeight</a></strong>()</code>
 <div class="block">Returns the minimum height of the line of text given in pixels.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html#isColorDropoutEnabled()">isColorDropoutEnabled</a></strong>()</code>
 <div class="block">Returns true if the additional image processing which drops background colors will be performed.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html#setColorDropoutEnabled(boolean)">setColorDropoutEnabled</a></strong>(boolean&nbsp;colorDropoutEnabled)</code>
 <div class="block">Specifies if the additional image processing which drops the background colors should be performed.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCREngineOptions.html#setMaximumAllowedCharRecognitionVariants(int)">setMaximumAllowedCharRecognitionVariants</a></strong>(int&nbsp;maximumAllowedCharRecognitionVariants)</code>
+<div class="block">Sets the maximum allowed number of char recognition variants OCR engine will produce
+ for each OcrChar.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -343,6 +357,36 @@ implements android.os.Parcelable</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="getMaximumAllowedCharRecognitionVariants()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getMaximumAllowedCharRecognitionVariants</h4>
+<pre>public&nbsp;int&nbsp;getMaximumAllowedCharRecognitionVariants()</pre>
+<div class="block">Returns the maximum allowed number of char recognition variants OCR engine will produce
+ for each OcrChar.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>the maximum allowed number of char recognition variants OCR engine will produce
+ for each OcrChar.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../../com/microblink/results/ocr/OcrChar.html" title="class in com.microblink.results.ocr"><code>OcrChar</code></a></dd></dl>
+</li>
+</ul>
+<a name="setMaximumAllowedCharRecognitionVariants(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setMaximumAllowedCharRecognitionVariants</h4>
+<pre>public&nbsp;void&nbsp;setMaximumAllowedCharRecognitionVariants(int&nbsp;maximumAllowedCharRecognitionVariants)</pre>
+<div class="block">Sets the maximum allowed number of char recognition variants OCR engine will produce
+ for each OcrChar. By default, OCR engine will not produce char recognition variants
+ (i.e. maximum allowed char recognition variants is 0). By setting this number to higher
+ values, you can create more flexible OCR postprocessing algorithm because more char
+ recognition variants will be available to you. However, setting it too high can lead
+ to significant performance problems.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>maximumAllowedCharRecognitionVariants</code> - maximum allowed number of char recognition
+                                              variants OCR engine will produce for each OcrChar</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../../com/microblink/results/ocr/OcrChar.html" title="class in com.microblink.results.ocr"><code>OcrChar</code></a></dd></dl>
+</li>
+</ul>
 <a name="getMinimumLineHeight()">
 <!--   -->
 </a>
@@ -434,7 +478,7 @@ implements android.os.Parcelable</pre>
 <h4>setColorDropoutEnabled</h4>
 <pre>public&nbsp;void&nbsp;setColorDropoutEnabled(boolean&nbsp;colorDropoutEnabled)</pre>
 <div class="block">Specifies if the additional image processing which drops the background colors should be performed.
-
+ <p/>
  Use this if you have black text on color backgrounds.
  If you have black text on white background, using this is not needed as it slows down processing.
  If you have color text, don't use it at all because color dropout will remove the text.</div>
@@ -450,10 +494,10 @@ implements android.os.Parcelable</pre>
 <pre>public&nbsp;void&nbsp;addCharToWhitelist(<a href="../../../../../../com/microblink/recognizers/ocr/blinkocr/engine/BlinkOCRCharKey.html" title="class in com.microblink.recognizers.ocr.blinkocr.engine">BlinkOCRCharKey</a>&nbsp;charKey)</pre>
 <div class="block">Adds a char+font combination to set of allowed chars.
  For example to define char 'k' in font Arial, use
-          addCharToWhitelist(new BlinkOCRCharKey((int) 'k', BlinkOCRFont.ARIAL));
-
+ addCharToWhitelist(new BlinkOCRCharKey((int) 'k', BlinkOCRFont.ARIAL));
+ <p/>
  For example to define char 'ü' in any font, use
-          addCharToWhitelist(new BlinkOCRCharKey((int) 'ü', BlinkOCRFont.ANY));</div>
+ addCharToWhitelist(new BlinkOCRCharKey((int) 'ü', BlinkOCRFont.ANY));</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>charKey</code> - char+font combination that should be allowed</dd></dl>
 </li>
 </ul>
@@ -467,10 +511,10 @@ implements android.os.Parcelable</pre>
                       <a href="../../../../../../com/microblink/results/ocr/OcrFont.html" title="enum in com.microblink.results.ocr">OcrFont</a>&nbsp;font)</pre>
 <div class="block">Adds a char+font combination to set of allowed chars.
  For example to define char 'k' in font Arial, use
-          addCharToWhitelist('k', BlinkOCRFont.ARIAL);
-
+ addCharToWhitelist('k', BlinkOCRFont.ARIAL);
+ <p/>
  For example to define char 'ü' in any font, use
-          addCharToWhitelist('ü', BlinkOCRFont.ANY);</div>
+ addCharToWhitelist('ü', BlinkOCRFont.ANY);</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>value</code> - Value of the char. Whitespace characters are ignored.</dd><dd><code>font</code> - Font in which char will be allowed. Use OcrFont.ANY to cover all available fonts.</dd></dl>
 </li>
 </ul>
