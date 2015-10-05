@@ -26,6 +26,6 @@ android {
 }
 
 dependencies {
-    compile 'com.microblink:blinkocr:1.8.0@aar'
-    compile 'com.android.support:support-v4:23.0.1'
+    compile "com.microblink:blinkocr:${rootProject.ext.blinkOcrVersion}@aar"
+    compile "com.android.support:support-v4:${rootProject.ext.androidSupportVersion}@aar"
 }
