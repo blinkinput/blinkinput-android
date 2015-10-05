@@ -1,1 +1,1 @@
-include ':BlinkOCRApp', ':LibRecognizer'
+include ':BlinkOCRSegmentDemo'

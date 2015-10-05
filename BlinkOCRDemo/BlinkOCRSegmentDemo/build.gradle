@@ -1,0 +1,31 @@
+apply plugin: 'com.android.application'
+
+repositories {
+    maven { url 'http://maven.microblink.com' }
+    mavenLocal()
+}
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion '23.0.1'
+    defaultConfig {
+        applicationId 'com.microblink.ocr'
+        minSdkVersion 10
+        targetSdkVersion 22
+    }
+    lintOptions {
+        checkReleaseBuilds false
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+            signingConfig = debug.signingConfig
+        }
+    }
+}
+
+dependencies {
+    compile 'com.microblink:blinkocr:1.8.0@aar'
+    compile 'com.android.support:support-v4:23.0.1'
+}
