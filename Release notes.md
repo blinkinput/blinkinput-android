@@ -21,7 +21,7 @@
 	- implement `ImageListener` interface and set the listener with `setImageListener`
 	- as a reminder - you can process video frames obtained that way using direct API method `recognizeImageWithSettings`
 - reorganized integration demo apps
-	- `BlinkOCRSegmentDemo` shows how to use simple Intent-based API to scan little text segments
+	- `BlinkOCRSegmentDemo` shows how to use simple Intent-based API to scan little text segments. It also shows you how to create a custom scan activity for scanning little text segments.
 	- `BlinkOCRFullScreen` shows how to perform full camera frame generic OCR, how to draw OCR results on screen and how to obtain `OcrResult` object for further processing. This app also shows how to scan Code128 or Code39 barcode on same screen that is used for OCR.
 	- `BlinkOCRDirectAPI` shows how to perform OCR of `Bitmap` object obtained from camera
 	- all demo apps now use Maven integration method because it is much easier than importing AAR manually
