@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/BlinkOCR/blinkocr-android.png)](https://travis-ci.org/BlinkOCR/blinkocr-android)
 
-_BlinkOCR_ SDK for Android is SDK that enables you to easily add near real time OCR functionality to your app. With provided camera management you can easily create an app that scans receipts, e-mails and much more. You can also scan images stored as [Android Bitmaps](http://developer.android.com/reference/android/graphics/Bitmap.html) that are loaded either from gallery, network or SD card.
+_BlinkOCR_ SDK for Android is SDK that enables you to easily add near real time OCR functionality to your app. With provided camera management you can easily create an app that scans receipts, e-mails and much more. As of version `1.8.0` you can also scan barcodes when using [custom UI integration](#recognizerView). You can also scan images stored as [Android Bitmaps](http://developer.android.com/reference/android/graphics/Bitmap.html) that are loaded either from gallery, network or SD card.
 
 With _BlinkOCR_ you can scan free-form text or specialized formats like dates, amounts, e-mails and much more. Using specialized formats yields much better scanning quality than using free-form text mode.
 
@@ -15,14 +15,14 @@ See below for more information about how to integrate _BlinkOCR_ SDK into your a
 * [Android _BlinkOCR_ integration instructions](#intro)
 * [Quick Start](#quickStart)
   * [Quick start with demo app](#quickDemo)
-  * [Quick integration of _BlinkOCR_ into your app](#quickIntegration)
+  * [Integrating _BlinkOCR_ into your project using Maven](#mavenIntegration)
+  * [Android studio integration instructions](#quickIntegration)
   * [Eclipse integration instructions](#eclipseIntegration)
-  * [How to integrate _BlinkOCR_ into your project using Maven](#mavenIntegration)
   * [_BlinkOCR's_ dependencies](#dependencies)
-  * [Performing your first scan](#quickScan)
+  * [Performing your first segment scan](#quickScan)
 * [Advanced _BlinkOCR_ integration instructions](#advancedIntegration)
   * [Checking if _BlinkOCR_ is supported](#supportCheck)
-  * [Customization of `BlinkOCRActivity` activity](#scanActivityCustomization)
+  * [Customization of `BlinkOCRActivity` activity](#segmentScanActivityCustomization)
   * [Embedding `RecognizerView` into custom scan activity](#recognizerView)
   * [`RecognizerView` reference](#recognizerViewReference)
 * [Using direct API for recognition of Android Bitmaps](#directAPI)
@@ -32,6 +32,9 @@ See below for more information about how to integrate _BlinkOCR_ SDK into your a
 * [Recognition settings and results](#recognitionSettingsAndResults)
   * [Generic settings](#genericSettings)
   * [Scanning segments with BlinkOCR recognizer](#blinkOCR)
+  * [Scanning PDF417 barcodes](#pdf417Recognizer)
+  * [Scanning one dimensional barcodes with _BlinkOCR_'s implementation](#custom1DBarDecoder)
+  * [Scanning barcodes with ZXing implementation](#zxing)
 * [Processor architecture considerations](#archConsider)
   * [Reducing the final size of your app](#reduceSize)
   * [Combining _BlinkOCR_ with other native libraries](#combineNativeLibraries)
@@ -42,16 +45,19 @@ See below for more information about how to integrate _BlinkOCR_ SDK into your a
 
 # <a name="intro"></a> Android _BlinkOCR_ integration instructions
 
-The package contains Android Archive (AAR) that contains everything you need to use _BlinkOCR_ library. Besides AAR, package also contains a demo project that contains following modules:
+The package contains Android Archive (AAR) that contains everything you need to use _BlinkOCR_ library. This AAR is also available in maven repository for easier integration into your app. For more information about maven integration procedure, check [maven integration section](#mavenIntegration).
 
+Besides AAR, package also contains a demo project that contains following modules:
 
-
- - BlinkOCRApp demonstrates integration of BlinkOCR component
+- _BlinkOCRSegmentDemo_ shows how to use simple Intent-based API to scan little text segments. It also shows you how to create a custom scan activity for scanning little text segments.
+- _BlinkOCRFullScreen_ shows how to perform full camera frame generic OCR, how to draw OCR results on screen and how to obtain [OcrResult](https://blinkocr.github.io/blinkocr-android/com/microblink/results/ocr/OcrResult.html) object for further processing. This app also shows how to scan Code128 or Code39 barcode on same screen that is used for OCR.
+- _BlinkOCRDirectAPI_ shows how to perform OCR of [Android Bitmaps](https://developer.android.com/reference/android/graphics/Bitmap.html)
  
-_BlinkOCR_ is supported on Android SDK version 10 (Android 2.3) or later.
+_BlinkOCR_ is supported on Android SDK version 10 (Android 2.3.3) or later.
 
+The library contains one activity: `BlinkOCRActivity`. It is responsible for camera control and recognition of small segments. It is ideal if you need to quickly scan small text segments, like date, amount or e-mail. 
 
-The library contains one activity: `BlinkOCRActivity`. It is responsible for camera control and recognition. If you create your own scanning UI, you will need to embed `RecognizerView` into your activity and pass activity's lifecycle events to it and it will control the camera and recognition process.
+For advanced use cases, you will need to embed `RecognizerView` into your activity and pass activity's lifecycle events to it and it will control the camera and recognition process. For more information, see [Embedding `RecognizerView` into custom scan activity](#recognizerView).
 
 # <a name="quickStart"></a> Quick Start
 
@@ -62,7 +68,66 @@ The library contains one activity: `BlinkOCRActivity`. It is responsible for cam
 3. In File dialog select _BlinkOCRDemo_ folder.
 4. Wait for project to load. If Android studio asks you to reload project on startup, select `Yes`.
 
-## <a name="quickIntegration"></a> Quick integration of _BlinkOCR_ into your app
+## <a name="mavenIntegration"></a> Integrating _BlinkOCR_ into your project using Maven
+
+Maven repository for _BlinkOCR_ SDK is: [http://maven.microblink.com](http://maven.microblink.com). If you do not want to perform integration via Maven, simply skip to [Android Studio integration instructions](#quickIntegration) or [Eclipse integration instructions](#eclipseIntegration).
+
+### Using gradle or Android Studio
+
+In your `build.gradle` you first need to add _BlinkOCR_ maven repository to repositories list:
+
+```
+repositories {
+	maven { url 'http://maven.microblink.com' }
+}
+```
+
+After that, you just need to add _BlinkOCR_ as a dependency to your application:
+
+```
+dependencies {
+    compile 'com.microblink:blinkocr:1.8.0'
+}
+```
+
+If you plan to use ProGuard, add following lines to your `proguard-rules.pro`:
+	
+```
+-keep class com.microblink.** { *; }
+-keepclassmembers class com.microblink.** { *; }
+-dontwarn android.hardware.**
+-dontwarn android.support.v4.**
+```
+
+Finally, add _BlinkOCR's_ dependencies. See [_BlinkOCR's_ dependencies](#dependencies) section for more information.
+
+### Using android-maven-plugin
+
+[Android Maven Plugin](https://simpligility.github.io/android-maven-plugin/) v4.0.0 or newer is required.
+
+Open your `pom.xml` file and add these directives as appropriate:
+
+```xml
+<repositories>
+   	<repository>
+       	<id>MicroblinkRepo</id>
+       	<url>http://maven.microblink.com</url>
+   	</repository>
+</repositories>
+
+<dependencies>
+	<dependency>
+		  <groupId>com.microblink</groupId>
+		  <artifactId>blinkocr</artifactId>
+		  <version>1.8.0</version>
+		  <type>aar</type>
+  	</dependency>
+</dependencies>
+```
+
+Do not forget to add _BlinkOCR's_ dependencies to your app's dependencies. To see what are dependencies of _BlinkOCR_, check section [_BlinkOCR's_ dependencies](#dependencies).
+
+## <a name="quickIntegration"></a> Android studio integration instructions
 
 1. In Android Studio menu, click _File_, select _New_ and then select _Module_.
 2. In new window, select _Import .JAR or .AAR Package_, and click _Next_.
@@ -78,9 +143,7 @@ The library contains one activity: `BlinkOCRActivity`. It is responsible for cam
 	
 	```
 	-keep class com.microblink.** { *; }
-	-keepclassmembers class com.microblink.** {
-		*;
-	}
+	-keepclassmembers class com.microblink.** { *; }
 	-dontwarn android.hardware.**
 	-dontwarn android.support.v4.**
 	```
@@ -105,55 +168,8 @@ You’ve already created the project that contains almost everything you need. N
 1. In the project you want to use the library (henceforth, "target project") add the library project as a dependency
 2. Open the `AndroidManifest.xml` file inside `LibRecognizer.aar` file and make sure to copy all permissions, features and activities to the `AndroidManifest.xml` file of the target project.
 3. Clean and Rebuild your target project
-4. Add _BlinkOCR's_ dependencies. See [_BlinkOCR's_ dependencies](#dependencies) section for more information.
-
-## <a name="mavenIntegration"></a> How to integrate _BlinkOCR_ into your project using Maven
-
-Maven repository for _BlinkOCR_ SDK is: [http://maven.microblink.com](http://maven.microblink.com).
-
-### Using gradle
-In your build.gradle you first need to add _BlinkOCR_ maven repository to repositories list:
-
-```
-repositories {
-	maven { url 'http://maven.microblink.com' }
-}
-```
-
-After that, you just need to add _BlinkOCR_ as a dependency to your application:
-
-```
-dependencies {
-    compile 'com.microblink:blinkocr:1.7.1'
-}
-```
-
-Do not forget to add _BlinkOCR's_ dependencies to your app's dependencies. To see what are dependencies of _BlinkOCR_, check section [_BlinkOCR's_ dependencies](#dependencies).
-
-### Using android-maven-plugin
-
-Open your pom.xml file and add these directives as appropriate:
-
-```xml
-<repositories>
-   	<repository>
-       	<id>MicroblinkRepo</id>
-       	<url>http://maven.microblink.com</url>
-   	</repository>
-</repositories>
-
-<dependencies>
-	<dependency>
-		  <groupId>com.microblink</groupId>
-		  <artifactId>blinkocr</artifactId>
-		  <version>1.7.1</version>
-  	</dependency>
-<dependencies>
-```
-
-Maven dependency requires android-maven-plugin version 4.0.0 (AAR support is required).
-
-Do not forget to add _BlinkOCR's_ dependencies to your app's dependencies. To see what are dependencies of _BlinkOCR_, check section [_BlinkOCR's_ dependencies](#dependencies).
+4. If you plan to use ProGuard, add same statements as in [Android studio guide](#quickIntegration) to your ProGuard configuration file.
+5. Add _BlinkOCR's_ dependencies. See [_BlinkOCR's_ dependencies](#dependencies) section for more information.
 
 ## <a name="dependencies"></a> _BlinkOCR's_ dependencies
 
@@ -162,12 +178,12 @@ _BlinkOCR_ depends on [Android support library](https://developer.android.com/to
 To include that library into your app, in Android studio simply add following line in `dependencies` section:
 
 ```
-compile 'com.android.support:support-v4:22.2.1'
+compile 'com.android.support:support-v4:23.0.1'
 ```
 
-If using Eclipse, you have already performed the step in [Eclipse integration instructions](#eclipseIntegration) in which you have copied android-support-v4.jar into `libs` folder of your Eclipse library. Just make sure Android support library version is at least `22.2.1`.
+If using Eclipse, you have already performed the step in [Eclipse integration instructions](#eclipseIntegration) in which you have copied `android-support-v4.jar` into `libs` folder of your Eclipse library. Just make sure Android support library version is at least `23.0.1`.
 
-## <a name="quickScan"></a> Performing your first scan
+## <a name="quickScan"></a> Performing your first segment scan
 1. You can start recognition process by starting `BlinkOCRActivity` activity with Intent initialized in the following way:
 	
 	```java
@@ -230,7 +246,7 @@ This section will cover more advanced details in _BlinkOCR_ integration. First p
 ### _BlinkOCR_ requirements
 Even before starting the scan activity, you should check if _BlinkOCR_ is supported on current device. In order to be supported, device needs to have camera. 
 
-Android 2.3 is the minimum android version on which _BlinkOCR_ is supported, but if required we may support even Android 2.2 devices, however additional testing on those devices will be required.
+Android 2.3 is the minimum android version on which _BlinkOCR_ is supported.
 
 Camera video preview resolution also matters. In order to perform successful scans, camera preview resolution cannot be too low. _BlinkOCR_ requires minimum 480p camera preview resolution in order to perform scan. It must be noted that camera preview resolution is not the same as the video record resolution, although on most devices those are the same. However, there are some devices that allow recording of HD video (720p resolution), but do not allow high enough camera preview resolution (for example, [Sony Xperia Go](http://www.gsmarena.com/sony_xperia_go-4782.php) supports video record resolution at 720p, but camera preview resolution is only 320p - _BlinkOCR_ does not work on that device).
 
@@ -249,7 +265,7 @@ if(supportStatus == RecognizerCompatibilityStatus.RECOGNIZER_SUPPORTED) {
 }
 ```
 
-## <a name="scanActivityCustomization"></a> Customization of `BlinkOCRActivity` activity
+## <a name="segmentScanActivityCustomization"></a> Customization of `BlinkOCRActivity` activity
 
 ### `BlinkOCRActivity` intent extras
 
@@ -299,7 +315,7 @@ This section will discuss possible parameters that can be sent over `Intent` for
 	intent.putExtra(BlinkOCRActivity.EXTRAS_SHOW_OCR_RESULT, false);
 	```
 
-* **`BlinkOCRActivity.EXTRAS_IMAGE_LISTENER`** - with this extra you can set your implementation of [ImageListener interface](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageListener.html) that will obtain images that are being processed. Make sure that your [ImageListener](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageListener.html) implementation correctly implements [Parcelable](https://developer.android.com/reference/android/os/Parcelable.html) interface with static [CREATOR](https://developer.android.com/reference/android/os/Parcelable.Creator.html) field. Without this, you might encounter a runtime error. For more information and example, see [Using ImageListener to obtain images that are being processed](#imageListener)
+* **`BlinkOCRActivity.EXTRAS_IMAGE_LISTENER`** - with this extra you can set your implementation of [ImageListener interface](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageListener.html) that will obtain images that are being processed. Make sure that your [ImageListener](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageListener.html) implementation correctly implements [Parcelable](https://developer.android.com/reference/android/os/Parcelable.html) interface with static [CREATOR](https://developer.android.com/reference/android/os/Parcelable.Creator.html) field. Without this, you might encounter a runtime error. For more information and example, see [Using ImageListener to obtain images that are being processed](#imageListener). Please make sure that images that you obtained with ImageListener given over Intent cannot be used for processing via [DirectAPI](#directAPI). If you are interested in using [DirectAPI](#directAPI) together with [RecognizerView](#recognizerView), please [check this section](#directAPIWithRecognizer).
 
 ## <a name="recognizerView"></a> Embedding `RecognizerView` into custom scan activity
 This section will discuss how to embed `RecognizerView` into your scan activity and perform scan.
@@ -481,7 +497,7 @@ __Important__
 If you use `sensor` or similar screen orientation for your scan activity there is a catch. No matter if your activity is set to be restarted on configuration change or only notified via `onConfigurationChanged` method, if your activity's orientation is changed from `portrait` to `reversePortrait` or from `landscape` to `reverseLandscape` or vice versa, your activity will not be notified of this change in any way - it will not be neither restarted nor `onConfigurationChanged` will be called - the views in your activity will just be rotated by 180 degrees. This is a problem because it will make your camera preview upside down. In order to fix this, you first need to [find a way how to get notified of this change](https://stackoverflow.com/questions/9909037/how-to-detect-screen-rotation-through-180-degrees-from-landscape-to-landscape-or) and then you should call `changeConfiguration` method of `RecognizerView` so it will correct camera preview orientation.
 
 ## <a name="recognizerViewReference"></a> `RecognizerView` reference
-The complete reference of `RecognizerView` is available in [Javadoc](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html). The usage example is provided in `` demo app provided with SDK. This section just gives a quick overview of `RecognizerView's` most important methods.
+The complete reference of `RecognizerView` is available in [Javadoc](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html). The usage example is provided in `BlinkOCRFullScreen` demo app provided with SDK. This section just gives a quick overview of `RecognizerView's` most important methods.
 
 ##### <a name="recognizerView_create"></a> `create()`
 This method should be called in activity's `onCreate` method. It will initialize `RecognizerView's` internal fields and will initialize camera control thread. This method must be called after all other settings are already defined, such as listeners and recognition settings. After calling this method, you can add child views to `RecognizerView` with method `addChildView(View, boolean)`.
@@ -811,7 +827,7 @@ Sets the mode of the frame quality estimation. Frame quality estimation is the p
 
 ## <a name="blinkOCR"></a> Scanning segments with BlinkOCR recognizer
 
-This section discusses the setting up of BlinkOCR recognizer and obtaining results from it. You should also check the `BlinkOCRApp` demo for example.
+This section discusses the setting up of BlinkOCR recognizer and obtaining results from it. You should also check the demo for example.
 
 ### Setting up BlinkOCR recognizer
 
@@ -855,28 +871,6 @@ The following is a list of available parsers:
 	- used for parsing dates in various formats
 - Raw parser - represented by [RawParserSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/ocr/blinkocr/parser/generic/RawParserSettings.html)
 	- used for obtaining raw OCR result
-
-- Croatian reference parser - represented by [CroReferenceParserSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/ocr/blinkocr/parser/croatia/CroReferenceParserSettings.html)
-	- used for parsing croatian payment reference numbers from OCR result
-
-- Swedish amount parser - represented by [SweAmountParserSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/ocr/blinkocr/parser/sweden/SweAmountParserSettings.html)
-	- used for parsing amounts from OCR of Swedish payment slips
-- Swedish bank giro number parser - represented by [SweBankGiroParserSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/ocr/blinkocr/parser/sweden/SweBankGiroParserSettings.html)
-	- used for parsing bank giro numbers from OCR of Swedish payment slips
-- Swedish payment reference number parser - represented by [SweReferenceParserSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/ocr/blinkocr/parser/sweden/SweReferenceParserSettings.html)
-	- used for parsing payment reference numbers from OCR of Swedish payment slips
-- Swedish slip code parser - represented by [SweSlipCodeParserSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/ocr/blinkocr/parser/sweden/SweSlipCodeParserSettings.html)
-	- used for parsing slip codes from OCR of Swedish payment slips
-
-- Serbian bank account number parser - represented by [SerbAccountParserSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/ocr/blinkocr/parser/serbia/SerbAccountParserSettings.html)
-	- used for parsing bank account numbers from Serbian payment slips
-- Serbian payment reference number parser - represented by [SerbReferenceParserSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/ocr/blinkocr/parser/serbia/SerbReferenceParserSettings.html)
-	- used for parsing payment reference numbers from Serbian payment slips
-
-- Macedonian bank account number parser - represented by [MkdAccountParserSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/ocr/blinkocr/parser/macedonia/MkdAccountParserSettings.html)
-	- used for parsing bank account numbers from Macedonian payment slips
-- Macedonian payment reference number parser - represented by [MkdReferenceParserSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/ocr/blinkocr/parser/macedonia/MkdReferenceParserSettings.html)
-	- used for parsing payment reference numbers from Macedonian payment slips
 
 ### Obtaining results from BlinkOCR recognizer
 
@@ -933,6 +927,252 @@ Returns the [OCR result](https://blinkocr.github.io/blinkocr-android/com/microbl
 ##### `OcrResult getOcrResult(String parserGroupName)`
 Returns the [OCR result](https://blinkocr.github.io/blinkocr-android/com/microblink/results/ocr/OcrResult.html) structure for parser group named `parserGroupName`.
 
+## <a name="pdf417Recognizer"></a> Scanning PDF417 barcodes
+
+This section discusses the settings for setting up PDF417 recognizer and explains how to obtain results from PDF417 recognizer.
+
+### Setting up PDF417 recognizer
+
+To activate PDF417 recognizer, you need to create a [Pdf417RecognizerSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/barcode/pdf417/Pdf417RecognizerSettings.html) and add it to `RecognizerSettings` array. You can do this using following code snippet:
+
+```java
+private RecognizerSettings[] setupSettingsArray() {
+	Pdf417RecognizerSettings sett = new Pdf417RecognizerSettings();
+	// disable scanning of white barcodes on black background
+	sett.setInverseScanning(false);
+	// allow scanning of barcodes that have invalid checksum
+	sett.setUncertainScanning(true);
+	// disable scanning of barcodes that do not have quiet zone
+	// as defined by the standard
+	sett.setNullQuietZoneAllowed(false);
+
+	// now add sett to recognizer settings array that is used to configure
+	// recognition
+	return new RecognizerSettings[] { sett };
+}
+```
+
+As can be seen from example, you can tweak PDF417 recognition parameters with methods of `Pdf417RecognizerSettings`.
+
+##### `setUncertainScanning(boolean)`
+By setting this to `true`, you will enable scanning of non-standard elements, but there is no guarantee that all data will be read. This option is used when multiple rows are missing (e.g. not whole barcode is printed). Default is `false`.
+
+##### `setNullQuietZoneAllowed(boolean)`
+By setting this to `true`, you will allow scanning barcodes which don't have quiet zone surrounding it (e.g. text concatenated with barcode). This option can significantly increase recognition time. Default is `false`.
+
+##### `setInverseScanning(boolean)`
+By setting this to `true`, you will enable scanning of barcodes with inverse intensity values (i.e. white barcodes on dark background). This option can significantly increase recognition time. Default is `false`.
+
+### Obtaining results from PDF417 recognizer
+PDF417 recognizer produces [Pdf417ScanResult](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/barcode/pdf417/Pdf417ScanResult.html). You can use `instanceof` operator to check if element in results array is instance of `Pdf417ScanResult` class. See the following snippet for an example:
+
+```java
+@Override
+public void onScanningDone(BaseRecognitionResult[] dataArray, RecognitionType recognitionType) {
+	for(BaseRecognitionResult baseResult : dataArray) {
+		if(baseResult instanceof Pdf417ScanResult) {
+			Pdf417ScanResult result = (Pdf417ScanResult) baseResult;
+			
+	        // getStringData getter will return the string version of barcode contents
+			String barcodeData = result.getStringData();
+			// isUncertain getter will tell you if scanned barcode is uncertain
+			boolean uncertainData = result.isUncertain();
+			// getRawData getter will return the raw data information object of barcode contents
+			BarcodeDetailedData rawData = result.getRawData();
+			// BarcodeDetailedData contains information about barcode's binary layout, if you
+			// are only interested in raw bytes, you can obtain them with getAllData getter
+			byte[] rawDataBuffer = rawData.getAllData();
+		}
+	}
+}
+```
+
+As you can see from the example, obtaining data is rather simple. You just need to call several methods of the `Pdf417ScanResult` object:
+
+##### `String getStringData()`
+This method will return the string representation of barcode contents. Note that PDF417 barcode can contain binary data so sometimes it makes little sense to obtain only string representation of barcode data.
+
+##### `boolean isUncertain()`
+This method will return the boolean indicating if scanned barcode is uncertain. This can return `true` only if scanning of uncertain barcodes is allowed, as explained earlier.
+
+##### `BarcodeDetailedData getRawData()`
+This method will return the object that contains information about barcode's binary layout. You can see information about that object in [javadoc](https://blinkocr.github.io/blinkocr-android/com/microblink/results/barcode/BarcodeDetailedData.html). However, if you only need to access byte array containing, you can call method `getAllData` of `BarcodeDetailedData` object.
+
+##### `Quadrilateral getPositionOnImage()`
+Returns the position of barcode on image. Note that returned coordinates are in image's coordinate system which is not related to view coordinate system used for UI.
+
+## <a name="custom1DBarDecoder"></a> Scanning one dimensional barcodes with _BlinkOCR_'s implementation
+
+This section discusses the settings for setting up 1D barcode recognizer that uses _BlinkOCR_'s implementation of scanning algorithms and explains how to obtain results from that recognizer. Henceforth, the 1D barcode recognizer that uses _BlinkOCR_'s implementation of scanning algorithms will be refered as "Bardecoder recognizer".
+
+### Setting up Bardecoder recognizer
+
+To activate Bardecoder recognizer, you need to create a [BarDecoderRecognizerSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/barcode/bardecoder/BarDecoderRecognizerSettings.html) and add it to `RecognizerSettings` array. You can do this using following code snippet:
+
+```java
+private RecognizerSettings[] setupSettingsArray() {
+	BarDecoderRecognizerSettings sett = new BarDecoderRecognizerSettings();
+	// activate scanning of Code39 barcodes
+	sett.setScanCode39(true);
+	// activate scanning of Code128 barcodes
+	sett.setScanCode128(true);
+	// disable scanning of white barcodes on black background
+	sett.setInverseScanning(false);
+	// disable slower algorithm for low resolution barcodes
+	sett.setTryHarder(false);
+
+	// now add sett to recognizer settings array that is used to configure
+	// recognition
+	return new RecognizerSettings[] { sett };
+}
+```
+
+As can be seen from example, you can tweak Bardecoder recognition parameters with methods of `BarDecoderRecognizerSettings`.
+
+##### `setScanCode128(boolean)`
+Method activates or deactivates the scanning of Code128 1D barcodes. Default (initial) value is `false`.
+
+##### `setScanCode39(boolean)`
+Method activates or deactivates the scanning of Code39 1D barcodes. Default (initial) value is `false`.
+
+##### `setInverseScanning(boolean)`
+By setting this to `true`, you will enable scanning of barcodes with inverse intensity values (i.e. white barcodes on dark background). This option can significantly increase recognition time. Default is `false`.
+
+##### `setTryHarder(boolean)`
+By setting this to `true`, you will enabled scanning of lower resolution barcodes at cost of additional processing time. This option can significantly increase recognition time. Default is `false`.
+
+### Obtaining results from Bardecoder recognizer
+
+Bardecoder recognizer produces [BarDecoderScanResult](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/barcode/bardecoder/BarDecoderScanResult.html). You can use `instanceof` operator to check if element in results array is instance of `BarDecoderScanResult` class. See the following snippet for example:
+
+```java
+@Override
+public void onScanningDone(BaseRecognitionResult[] dataArray, RecognitionType recognitionType) {
+	for(BaseRecognitionResult baseResult : dataArray) {
+		if(baseResult instanceof BarDecoderScanResult) {
+			BarDecoderScanResult result = (BarDecoderScanResult) baseResult;
+			
+			// getBarcodeType getter will return a BarcodeType enum that will define
+			// the type of the barcode scanned
+			BarcodeType barType = result.getBarcodeType();
+	        // getStringData getter will return the string version of barcode contents
+			String barcodeData = result.getStringData();
+			// getRawData getter will return the raw data information object of barcode contents
+			BarcodeDetailedData rawData = result.getRawData();
+			// BarcodeDetailedData contains information about barcode's binary layout, if you
+			// are only interested in raw bytes, you can obtain them with getAllData getter
+			byte[] rawDataBuffer = rawData.getAllData();
+		}
+	}
+}
+```
+
+As you can see from the example, obtaining data is rather simple. You just need to call several methods of the `BarDecoderScanResult` object:
+
+##### `String getStringData()`
+This method will return the string representation of barcode contents. 
+
+##### `BarcodeDetailedData getRawData()`
+This method will return the object that contains information about barcode's binary layout. You can see information about that object in [javadoc](https://blinkocr.github.io/blinkocr-android/com/microblink/results/barcode/BarcodeDetailedData.html). However, if you only need to access byte array containing, you can call method `getAllData` of `BarcodeDetailedData` object.
+
+##### `String getExtendedStringData()`
+This method will return the string representation of extended barcode contents. This is available only if barcode that supports extended encoding mode was scanned (e.g. code39).
+
+##### `BarcodeDetailedData getExtendedRawData()`
+This method will return the object that contains information about barcode's binary layout when decoded in extended mode. You can see information about that object in [javadoc](https://blinkocr.github.io/blinkocr-android/com/microblink/results/barcode/BarcodeDetailedData.html). However, if you only need to access byte array containing, you can call method `getAllData` of `BarcodeDetailedData` object. This is available only if barcode that supports extended encoding mode was scanned (e.g. code39).
+
+##### `getBarcodeType()`
+This method will return a [BarcodeType](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/barcode/BarcodeType.html) enum that defines the type of barcode scanned.
+
+## <a name="zxing"></a> Scanning barcodes with ZXing implementation
+
+This section discusses the settings for setting up barcode recognizer that use ZXing's implementation of scanning algorithms and explains how to obtain results from it. _BlinkOCR_ uses ZXing's [c++ port](https://github.com/zxing/zxing/tree/00f634024ceeee591f54e6984ea7dd666fab22ae/cpp) to support barcodes for which we still do not have our own scanning algorithms. Also, since ZXing's c++ port is not maintained anymore, we also provide updates and bugfixes to it inside our codebase.
+
+### Setting up ZXing recognizer
+
+To activate ZXing recognizer, you need to create [ZXingRecognizerSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/barcode/zxing/ZXingRecognizerSettings.html) and add it to `RecognizerSettings` array. You can do this using the following code snippet:
+
+```java
+private RecognizerSettings[] setupSettingsArray() {
+	ZXingRecognizerSettings sett=  new ZXingRecognizerSettings();
+	// disable scanning of white barcodes on black background
+	sett.setInverseScanning(false);
+	// activate scanning of QR codes
+	sett.setScanQRCode(true);
+
+	// now add sett to recognizer settings array that is used to configure
+	// recognition
+	return new RecognizerSettings[] { sett };
+}
+```
+
+As can be seen from example, you can tweak ZXing recognition parameters with methods of `ZXingRecognizerSettings`. Note that some barcodes, such as Code 39 are available for scanning with [_BlinkOCR_'s implementation](#custom1DBarDecoder). You can choose to use only one implementation or both (just put both settings objects into `RecognizerSettings` array). Using both implementations increases the chance of correct barcode recognition, but requires more processing time. Of course, we recommend using the _BlinkOCR_'s implementation for supported barcodes.
+
+##### `setScanAztecCode(boolean)`
+Method activates or deactivates the scanning of Aztec 2D barcodes. Default (initial) value is `false`.
+
+##### `setScanCode128(boolean)`
+Method activates or deactivates the scanning of Code128 1D barcodes. Default (initial) value is `false`.
+
+##### `setScanCode39(boolean)`
+Method activates or deactivates the scanning of Code39 1D barcodes. Default (initial) value is `false`.
+
+##### `setScanDataMatrixCode(boolean)`
+Method activates or deactivates the scanning of Data Matrix 2D barcodes. Default (initial) value is `false`.
+
+##### `setScanEAN13Code(boolean)`
+Method activates or deactivates the scanning of EAN 13 1D barcodes. Default (initial) value is `false`.
+
+##### `setScanEAN8Code(boolean)`
+Method activates or deactivates the scanning of EAN 8 1D barcodes. Default (initial) value is `false`.
+
+##### `shouldScanITFCode(boolean)`
+Method activates or deactivates the scanning of ITF 1D barcodes. Default (initial) value is `false`.
+
+##### `setScanQRCode(boolean)`
+Method activates or deactivates the scanning of QR 2D barcodes. Default (initial) value is `false`.
+
+##### `setScanUPCACode(boolean)`
+Method activates or deactivates the scanning of UPC A 1D barcodes. Default (initial) value is `false`.
+
+##### `setScanUPCECode(boolean)`
+Method activates or deactivates the scanning of UPC E 1D barcodes. Default (initial) value is `false`.
+
+##### `setInverseScanning(boolean)`
+By setting this to `true`, you will enable scanning of barcodes with inverse intensity values (i.e. white barcodes on dark background). This option can significantly increase recognition time. Default is `false`.
+
+##### `setSlowThoroughScan(boolean)`
+Use this method to enable slower, but more thorough scan procedure when scanning barcodes. By default, this option is turned on.
+
+### Obtaining results from ZXing recognizer
+
+ZXing recognizer produces [ZXingScanResult](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/barcode/zxing/ZXingScanResult.html). You can use `instanceof` operator to check if element in results array is instance of `ZXingScanResult` class. See the following snippet for example:
+
+```java
+@Override
+public void onScanningDone(BaseRecognitionResult[] dataArray, RecognitionType recognitionType) {
+	for(BaseRecognitionResult baseResult : dataArray) {
+		if(baseResult instanceof ZXingScanResult) {
+			ZXingScanResult result = (ZXingScanResult) baseResult;
+			
+			// getBarcodeType getter will return a BarcodeType enum that will define
+			// the type of the barcode scanned
+			BarcodeType barType = result.getBarcodeType();
+	        // getStringData getter will return the string version of barcode contents
+			String barcodeData = result.getStringData();
+		}
+	}
+}
+```
+
+As you can see from the example, obtaining data is rather simple. You just need to call several methods of the `ZXingScanResult` object:
+
+##### `String getStringData()`
+This method will return the string representation of barcode contents. 
+
+##### `getBarcodeType()`
+This method will return a [BarcodeType](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/barcode/BarcodeType.html) enum that defines the type of barcode scanned.
+
 # <a name="archConsider"></a> Processor architecture considerations
 
 _BlinkOCR_ is distributed with both ARMv7, ARM64 and x86 native library binaries.
@@ -976,7 +1216,7 @@ With that build instructions, gradle will build four different APK files for you
 
 ```
 // map for the version code
-def abiVersionCodes = ['armeabi-v7a':1, 'x86':2, 'arm64-v8a':3]
+def abiVersionCodes = ['armeabi-v7a':1, 'arm64-v8a':2, 'x86':3]
 
 import com.android.build.OutputFile
 
