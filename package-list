@@ -4,6 +4,7 @@ com.microblink.directApi.frame
 com.microblink.geometry
 com.microblink.hardware
 com.microblink.hardware.accelerometer
+com.microblink.hardware.camera
 com.microblink.hardware.orientation
 com.microblink.image
 com.microblink.image.frame

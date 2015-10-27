@@ -376,7 +376,7 @@ extends android.view.ViewGroup</pre>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>CameraType</code></td>
+<td class="colFirst"><code><a href="../../../com/microblink/hardware/camera/CameraType.html" title="enum in com.microblink.hardware.camera">CameraType</a></code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#getOpenedCameraType()">getOpenedCameraType</a></strong>()</code>
 <div class="block">Returns the type of the currently opened camera or null if currently there is no opened camera.</div>
 </td>
@@ -549,7 +549,7 @@ extends android.view.ViewGroup</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setCameraType(CameraType)">setCameraType</a></strong>(CameraType&nbsp;cameraType)</code>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setCameraType(com.microblink.hardware.camera.CameraType)">setCameraType</a></strong>(<a href="../../../com/microblink/hardware/camera/CameraType.html" title="enum in com.microblink.hardware.camera">CameraType</a>&nbsp;cameraType)</code>
 <div class="block">Sets the camera type that will be used.</div>
 </td>
 </tr>
@@ -619,28 +619,28 @@ extends android.view.ViewGroup</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setShouldAlwaysUseHighestPossibleResolution(boolean)">setShouldAlwaysUseHighestPossibleResolution</a></strong>(boolean&nbsp;useHighestPossibleResolution)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setTapToFocusAllowed(boolean)">setTapToFocusAllowed</a></strong>(boolean&nbsp;allowTapToFocus)</code>
 <div class="block">Sets whether camera view will handle tap events to ask camera to perform autofocus
  on tapped area.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setTorchState(boolean, com.microblink.hardware.SuccessCallback)">setTorchState</a></strong>(boolean&nbsp;on,
              <a href="../../../com/microblink/hardware/SuccessCallback.html" title="interface in com.microblink.hardware">SuccessCallback</a>&nbsp;successCallback)</code>
 <div class="block">Turns the torch on the camera on or off.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setUseTextureViewForCameraDisplay(boolean)">setUseTextureViewForCameraDisplay</a></strong>(boolean&nbsp;forceTextureView)</code>
 <div class="block">In order to display camera preview, camera view must use one of two android's view's that are
  capable of displaying camera preview video stream.</div>
 </td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#setVideoResolutionPreset(com.microblink.hardware.camera.VideoResolutionPreset)">setVideoResolutionPreset</a></strong>(<a href="../../../com/microblink/hardware/camera/VideoResolutionPreset.html" title="enum in com.microblink.hardware.camera">VideoResolutionPreset</a>&nbsp;preset)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
@@ -1138,7 +1138,7 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getOpenedCameraType</h4>
-<pre>public final&nbsp;CameraType&nbsp;getOpenedCameraType()</pre>
+<pre>public final&nbsp;<a href="../../../com/microblink/hardware/camera/CameraType.html" title="enum in com.microblink.hardware.camera">CameraType</a>&nbsp;getOpenedCameraType()</pre>
 <div class="block">Returns the type of the currently opened camera or null if currently there is no opened camera.</div>
 <dl><dt><span class="strong">Returns:</span></dt><dd>the type of the currently opened camera or null if currently there is no opened camera.</dd></dl>
 </li>
@@ -1459,13 +1459,13 @@ extends android.view.ViewGroup</pre>
 <pre>protected final&nbsp;int&nbsp;getConfigurationOrientation()</pre>
 </li>
 </ul>
-<a name="setCameraType(CameraType)">
+<a name="setCameraType(com.microblink.hardware.camera.CameraType)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setCameraType</h4>
-<pre>public&nbsp;void&nbsp;setCameraType(CameraType&nbsp;cameraType)</pre>
+<pre>public&nbsp;void&nbsp;setCameraType(<a href="../../../com/microblink/hardware/camera/CameraType.html" title="enum in com.microblink.hardware.camera">CameraType</a>&nbsp;cameraType)</pre>
 <div class="block">Sets the camera type that will be used. You must set this before calling create method.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>cameraType</code> - </dd></dl>
 </li>
@@ -1514,14 +1514,14 @@ extends android.view.ViewGroup</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>onSizeChangedListener</code> - </dd></dl>
 </li>
 </ul>
-<a name="setShouldAlwaysUseHighestPossibleResolution(boolean)">
+<a name="setVideoResolutionPreset(com.microblink.hardware.camera.VideoResolutionPreset)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setShouldAlwaysUseHighestPossibleResolution</h4>
-<pre>public final&nbsp;void&nbsp;setShouldAlwaysUseHighestPossibleResolution(boolean&nbsp;useHighestPossibleResolution)</pre>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>useHighestPossibleResolution</code> - If set to true, highest possible camera preview resolution will be chosen, even on lower end phones.</dd></dl>
+<h4>setVideoResolutionPreset</h4>
+<pre>public final&nbsp;void&nbsp;setVideoResolutionPreset(<a href="../../../com/microblink/hardware/camera/VideoResolutionPreset.html" title="enum in com.microblink.hardware.camera">VideoResolutionPreset</a>&nbsp;preset)</pre>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>preset</code> - Sets the preset that will be used for choosing camera video resolution.</dd></dl>
 </li>
 </ul>
 <a name="setForceUseLegacyCamera(boolean)">
