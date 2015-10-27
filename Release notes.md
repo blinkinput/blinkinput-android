@@ -1,5 +1,13 @@
 # Release notes
 
+## 1.9.0
+- fixed auto-exposure bug on Nexus 6
+- improved OCR quality and performance
+- fixed autofocus issue on devices that do not support continuous autofocus
+- support for defining camera video resolution preset
+	- to define video resolution preset via Intent, use `BlinkOCRActivity.EXTRAS_CAMERA_VIDEO_PRESET`
+	- to define video resolution preset on `RecognizerView`, use method `setVideoResolutionPreset`
+
 ## 1.8.0
 - added support for scanning barcodes
 - fixed race condition causing memory leak or rare crashes
