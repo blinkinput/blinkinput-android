@@ -19,6 +19,6 @@ allprojects {
 // versions of libraries that all modules require
 
 project.ext {
-    blinkOcrVersion = '1.8.0'
+    blinkOcrVersion = '1.9.0'
     androidSupportVersion = '23.0.1'
 }
