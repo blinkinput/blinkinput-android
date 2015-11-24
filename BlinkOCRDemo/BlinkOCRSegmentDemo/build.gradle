@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '23.0.1'
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
         applicationId 'com.microblink.ocr'
         minSdkVersion 10
@@ -22,5 +22,5 @@ android {
 
 dependencies {
     compile "com.microblink:blinkocr:${rootProject.ext.blinkOcrVersion}@aar"
-    compile "com.android.support:support-v4:${rootProject.ext.androidSupportVersion}@aar"
+    compile "com.android.support:appcompat-v7:${rootProject.ext.appCompatVersion}"
 }
