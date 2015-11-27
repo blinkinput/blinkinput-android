@@ -1,15 +1,15 @@
 package com.microblink.ocr;
 
-import com.microblink.recognizers.ocr.blinkocr.parser.generic.DateParserSettings;
-import com.microblink.recognizers.ocr.blinkocr.parser.generic.EMailParserSettings;
-import com.microblink.recognizers.ocr.blinkocr.parser.generic.RawParserSettings;
+import com.microblink.recognizers.blinkocr.parser.generic.DateParserSettings;
+import com.microblink.recognizers.blinkocr.parser.generic.EMailParserSettings;
+import com.microblink.recognizers.blinkocr.parser.generic.RawParserSettings;
 
 /**
  * Created by dodo on 03/03/15.
  */
 public class Configurator {
     public static ScanConfiguration[] createScanConfigurations() {
-        // here we will create scan configuration for E-Mail and Raw text
+        // here we will create scan configuration for Date, E-Mail and Raw text
         // in Raw text parser we will enable Sieve algorithm which will
         // reuse OCR results from multiple video frames to improve quality
 

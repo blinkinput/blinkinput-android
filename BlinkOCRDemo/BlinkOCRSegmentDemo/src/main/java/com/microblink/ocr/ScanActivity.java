@@ -1,5 +1,6 @@
 package com.microblink.ocr;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -21,28 +22,44 @@ import com.microblink.hardware.SuccessCallback;
 import com.microblink.help.HelpActivity;
 import com.microblink.recognition.InvalidLicenceKeyException;
 import com.microblink.recognizers.BaseRecognitionResult;
-import com.microblink.recognizers.ocr.blinkocr.BlinkOCRRecognitionResult;
-import com.microblink.recognizers.ocr.blinkocr.BlinkOCRRecognizerSettings;
+import com.microblink.recognizers.RecognitionResults;
+import com.microblink.recognizers.blinkocr.BlinkOCRRecognitionResult;
+import com.microblink.recognizers.blinkocr.BlinkOCRRecognizerSettings;
+import com.microblink.recognizers.settings.RecognitionSettings;
 import com.microblink.recognizers.settings.RecognizerSettings;
+import com.microblink.util.CameraPermissionManager;
 import com.microblink.util.Log;
 import com.microblink.view.CameraAspectMode;
 import com.microblink.view.CameraEventsListener;
-import com.microblink.view.NotSupportedReason;
-import com.microblink.view.recognition.RecognitionType;
 import com.microblink.view.recognition.RecognizerView;
 import com.microblink.view.recognition.ScanResultListener;
 
 
 public class ScanActivity extends Activity implements CameraEventsListener, ScanResultListener {
 
+    private static final String LICENSE_KEY = "CNDHGUQS-3REAUYG3-OJYH4FCG-QNW7QSOK-DEO5SIWW-MKYTEYZT-UGBW36CJ-YIELTPLQ";
+
+    /** RecognizerView is the builtin view that controls camera and recognition */
     private RecognizerView mRecognizerView;
+    /** CameraPermissionManager is provided helper class that can be used to obtain the permission to use camera.
+     * It is used on Android 6.0 (API level 23) or newer.
+     */
+    private CameraPermissionManager mCameraPermissionManager;
+    /** Button that controls flashlight state. */
     private ImageButton mFlashButton;
+    /** Layout which holds scan result. */
     private View mResultView;
+    /** Shows scan result string. */
     private EditText mResult;
+    /** Flashlight state. */
     private boolean mTorchOn = false;
+    /** Shows the message of current scan configuration to user. */
     private TextView mMessage;
+    /** Shows the title of current scan configuration to user. */
     private SlidingTabLayout mTitleIndicator;
+    /** Array of scan configurations. */
     private ScanConfiguration[] mConfiguration = Configurator.createScanConfigurations();
+    /** Index of selected configuration. */
     private int mSelectedConfiguration = 0;
 
     @Override
@@ -51,10 +68,12 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
 
         setContentView(R.layout.activity_scan);
 
+        // load configuration titles from string resources in application context
         for(ScanConfiguration conf : mConfiguration) {
             conf.loadTitle(this);
         }
 
+        // obtain references to needed member variables
         mRecognizerView = (RecognizerView) findViewById(R.id.rec_view);
         mFlashButton = (ImageButton) findViewById(R.id.btnFlash);
         mResultView = findViewById(R.id.layResult);
@@ -68,18 +87,25 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
         mTitleIndicator = (SlidingTabLayout) findViewById(R.id.indicator);
         mTitleIndicator.setViewPager(viewPager);
 
-
+        // set ViewPager.OnPageChangeListener to enable the layout
+        // to update it's scroll position correctly
         mTitleIndicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            public void onPageScrolled(int position, float positionOffset,
+                                       int positionOffsetPixels) {
 
             }
 
             @Override
             public void onPageSelected(int position) {
+                // update currently selected configuration
                 mSelectedConfiguration = position;
-                setupMessage(true);
+                // hide previous result
+                mResultView.setVisibility(View.INVISIBLE);
+                // update message and title based on selected configuration
+                // and update recognizer settings (flag is set to true)
+                updateUI(true);
             }
 
             @Override
@@ -93,12 +119,13 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
         mRecognizerView.setCameraEventsListener(this);
         // scan result listener is requires as it will receive recognition results
         mRecognizerView.setScanResultListener(this);
+
         // we want camera to use whole available view space by cropping the camera preview
         // instead of letterboxing it
         mRecognizerView.setAspectMode(CameraAspectMode.ASPECT_FILL);
         // license key is required for recognizer to work.
         try {
-            mRecognizerView.setLicenseKey("CNDHGUQS-3REAUYG3-OJYH4FCG-QNW7QSOK-DEO5SIWW-MKYTEYZT-UGBW36CJ-YIELTPLQ");
+            mRecognizerView.setLicenseKey(LICENSE_KEY);
         } catch (InvalidLicenceKeyException e) {
             e.printStackTrace();
             Toast.makeText(this, "Invalid license key!", Toast.LENGTH_SHORT).show();
@@ -106,12 +133,19 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
         }
         mRecognizerView.setOptimizeCameraForNearScan(true);
 
+        // initialize BlinkOCR recognizer with currently selected parser
         // create BlinkOCR recognizer settings object and add parser to it
-        BlinkOCRRecognizerSettings settings = new BlinkOCRRecognizerSettings();
-        settings.addParser(mConfiguration[mSelectedConfiguration].getParserName(), mConfiguration[mSelectedConfiguration].getParserSettings());
-        // add BlinkOCR recognizer settings object to array of all recognizer settings and initialize
-        // recognizer with that array
-        mRecognizerView.setRecognitionSettings(new RecognizerSettings[]{settings});
+        BlinkOCRRecognizerSettings ocrSett = new BlinkOCRRecognizerSettings();
+        ocrSett.addParser(mConfiguration[mSelectedConfiguration].getParserName(),
+                mConfiguration[mSelectedConfiguration].getParserSettings());
+
+        // prepare the recognition settings
+        RecognitionSettings recognitionSettings = new RecognitionSettings();
+        // add BlinkOCR recognizer settings object to recognizer settings array
+        // BlinkOCR recognizer will be used in the recognition process
+        recognitionSettings.setRecognizerSettingsArray(new RecognizerSettings[]{ocrSett});
+
+        mRecognizerView.setRecognitionSettings(recognitionSettings);
         // define the scanning region of the image that will be scanned.
         // You must ensure that scanning region define here is the same as in the layout
         // The coordinates for scanning region are relative to recognizer view:
@@ -122,25 +156,47 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
         // will result in very poor performance.
         mRecognizerView.setScanningRegion(new Rectangle(0.1f, 0.34f, 0.8f, 0.13f), false);
 
+        // instantiate the camera permission manager
+        mCameraPermissionManager = new CameraPermissionManager(this);
+        // get the built in layout that should be displayed when camera permission is not given
+        View v = mCameraPermissionManager.getAskPermissionOverlay();
+        if (v != null) {
+            // add it to the current layout that contains the recognizer view
+            ViewGroup vg = (ViewGroup) findViewById(R.id.segment_scan_root);
+            vg.addView(v);
+        }
+
         // all activity's lifecycle methods must be passed to recognizer view
         mRecognizerView.create();
-
-        setupMessage(false);
+        // update message and title based on selected configuration
+        // update of recognizer settings is not needed (flag is set to false)
+        updateUI(false);
     }
 
 
-
-    private void setupMessage(boolean updateRecognizerView) {
+    /**
+     * Updates user interface based on currently selected configuration. Also updates the
+     * recognizers configuration if {@code updateRecognizerSettings} is set to {@code true}.
+     * @param updateRecognizerSettings Indicates whether the recognizers reconfiguration
+     *                                 will be performed, based on current settings.
+     */
+    private void updateUI (boolean updateRecognizerSettings) {
         mMessage.setText(mConfiguration[mSelectedConfiguration].getTextResource());
 
         mTitleIndicator.getViewPager().setCurrentItem(mSelectedConfiguration);
 
-        if(updateRecognizerView) {
-            BlinkOCRRecognizerSettings settings = new BlinkOCRRecognizerSettings();
-            settings.addParser(mConfiguration[mSelectedConfiguration].getParserName(), mConfiguration[mSelectedConfiguration].getParserSettings());
-            // unlike setRecognitionSettings that needs to be set before calling create, reconfigureRecognizers is designed
-            // to be called while recognizer is active.
-            mRecognizerView.reconfigureRecognizers(new RecognizerSettings[] {settings});
+        if(updateRecognizerSettings) {
+            RecognitionSettings recognitionSettings = new RecognitionSettings();
+
+            BlinkOCRRecognizerSettings ocrSett = new BlinkOCRRecognizerSettings();
+            ocrSett.addParser(mConfiguration[mSelectedConfiguration].getParserName(),
+                    mConfiguration[mSelectedConfiguration].getParserSettings());
+
+            recognitionSettings.setRecognizerSettingsArray(new RecognizerSettings[]{ocrSett});
+
+            // unlike setRecognitionSettings that needs to be set before calling create,
+            // reconfigureRecognizers is designed to be called while recognizer is active.
+            mRecognizerView.reconfigureRecognizers(recognitionSettings);
         }
     }
 
@@ -148,42 +204,61 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
     protected void onStart() {
         super.onStart();
         // all activity's lifecycle methods must be passed to recognizer view
-        mRecognizerView.start();
+        if(mRecognizerView != null) {
+            mRecognizerView.start();
+        }
+        // ask user to give a camera permission. Provided manager asks for
+        // permission only if it has not been already granted.
+        // on API level < 23, this method does nothing
+        mCameraPermissionManager.askForCameraPermission();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         // all activity's lifecycle methods must be passed to recognizer view
-        mRecognizerView.resume();
+        if(mRecognizerView != null) {
+            if (mCameraPermissionManager.hasCameraPermission()) {
+                // resume only if camera permission has been granted
+                mRecognizerView.resume();
+            }
+        }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         // all activity's lifecycle methods must be passed to recognizer view
-        mRecognizerView.pause();
+        if(mRecognizerView != null) {
+            mRecognizerView.pause();
+        }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         // all activity's lifecycle methods must be passed to recognizer view
-        mRecognizerView.stop();
+        if(mRecognizerView != null) {
+            mRecognizerView.stop();
+        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         // all activity's lifecycle methods must be passed to recognizer view
-        mRecognizerView.destroy();
+        if(mRecognizerView != null) {
+            mRecognizerView.destroy();
+        }
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        // all activity's lifecycle methods must be passed to recognizer view
-        mRecognizerView.changeConfiguration(newConfig);
+        // all activity lifecycle events must be passed on to recognizer view
+        if(mRecognizerView != null) {
+            mRecognizerView.changeConfiguration(newConfig);
+        }
     }
 
     @Override
@@ -211,33 +286,15 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
     }
 
     @Override
-    public void onStartupError(Throwable exc) {
-        // this method is called when error happens whilst loading RecognizerView
-        // this can be either because camera is busy and cannot be opened
-        // or native library could not be loaded because of unsupported processor architecture
-        Log.e(this, exc, "On startup error!");
+    public void onError(Throwable ex) {
+        // This method will be called when opening of camera resulted in exception or
+        // recognition process encountered an error.
+        // The error details will be given in exc parameter.
+        Log.e(this, ex, "Error");
         AlertDialog.Builder ab = new AlertDialog.Builder(this);
         ab.setCancelable(false)
-          .setTitle("Error")
-          .setMessage("Error while loading camera or library: " + exc.getMessage())
-          .setNeutralButton("OK", new DialogInterface.OnClickListener() {
-              @Override
-              public void onClick(DialogInterface dialog, int which) {
-                  if(dialog != null) dialog.dismiss();
-                  finish();
-              }
-          }).create().show();
-    }
-
-    @Override
-    public void onNotSupported(NotSupportedReason reason) {
-        // this method is called when RecognizerView detects that device is not
-        // supported and describes the not supported reason via enum
-        Log.e(this, "Not supported reason: {}", reason);
-        AlertDialog.Builder ab = new AlertDialog.Builder(this);
-        ab.setCancelable(false)
-                .setTitle("Feature not supported")
-                .setMessage("Feature not supported! Reason: " + reason.name())
+                .setTitle("Error")
+                .setMessage(ex.getMessage())
                 .setNeutralButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -245,6 +302,7 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
                         finish();
                     }
                 }).create().show();
+        finish();
     }
 
     @Override
@@ -266,7 +324,8 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
     }
 
     @Override
-    public void onScanningDone(BaseRecognitionResult[] dataArray, RecognitionType recognitionType) {
+    public void onScanningDone(RecognitionResults results) {
+        BaseRecognitionResult[] dataArray = results.getRecognitionResults();
         // we've enabled only one recognizer, so we expect only one element in dataArray
         if (dataArray != null && dataArray.length == 1) {
             if (dataArray[0] instanceof BlinkOCRRecognitionResult) {
@@ -284,7 +343,19 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
                 // group to getOcrResult method
             }
         }
+        // Finally, we resume scanning and reuse
+        // results from previous scan to make current scan of better quality.
+        // Note that preserving state preserves state of all
+        // recognizers, including barcode recognizers (if enabled).
+        // If you want to reset internal state call resumeScanning(true).
         mRecognizerView.resumeScanning(false);
+    }
+
+    @Override
+    @TargetApi(23)
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        // on API level 23, we need to pass request permission result to camera permission manager
+        mCameraPermissionManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     public void onBtnExitClicked(View v) {
@@ -321,9 +392,9 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
     public void onBtnAcceptClicked(View v) {
         // do something with data from mResult
         mSelectedConfiguration = (mSelectedConfiguration + 1) % mConfiguration.length;
-
+        // hide previous result
         mResultView.setVisibility(View.INVISIBLE);
-        setupMessage(true);
+        updateUI(true);
     }
 
     private class SamplePagerAdapter extends PagerAdapter {

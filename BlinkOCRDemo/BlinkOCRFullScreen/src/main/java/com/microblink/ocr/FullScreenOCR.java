@@ -160,6 +160,9 @@ public class FullScreenOCR extends Activity implements MetadataListener, CameraE
         if(mRecognizerView != null) {
             mRecognizerView.start();
         }
+        // ask user to give a camera permission. Provided manager asks for
+        // permission only if it has not been already granted.
+        // on API level < 23, this method does nothing
         mCameraPermissionManager.askForCameraPermission();
     }
 
@@ -169,6 +172,7 @@ public class FullScreenOCR extends Activity implements MetadataListener, CameraE
         // all activity lifecycle events must be passed on to RecognizerView
         if(mRecognizerView != null) {
             if (mCameraPermissionManager.hasCameraPermission()) {
+                // resume only if camera permission has been granted
                 mRecognizerView.resume();
             }
         }
