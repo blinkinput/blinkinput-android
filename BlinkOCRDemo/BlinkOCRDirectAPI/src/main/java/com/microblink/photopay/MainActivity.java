@@ -16,16 +16,17 @@ import android.widget.Toast;
 import com.microblink.directApi.DirectApiErrorListener;
 import com.microblink.directApi.Recognizer;
 import com.microblink.hardware.orientation.Orientation;
+import com.microblink.recognition.FeatureNotSupportedException;
 import com.microblink.recognition.InvalidLicenceKeyException;
-import com.microblink.recognizers.ocr.blinkocr.BlinkOCRRecognitionResult;
-import com.microblink.recognizers.ocr.blinkocr.BlinkOCRRecognizerSettings;
-import com.microblink.recognizers.ocr.blinkocr.engine.BlinkOCREngineOptions;
-import com.microblink.recognizers.ocr.blinkocr.parser.generic.RawParserSettings;
-import com.microblink.recognizers.settings.RecognizerSettings;
-import com.microblink.results.ocr.OcrFont;
-import com.microblink.view.recognition.ScanResultListener;
 import com.microblink.recognizers.BaseRecognitionResult;
-import com.microblink.view.recognition.RecognitionType;
+import com.microblink.recognizers.RecognitionResults;
+import com.microblink.recognizers.blinkocr.BlinkOCRRecognitionResult;
+import com.microblink.recognizers.blinkocr.BlinkOCRRecognizerSettings;
+import com.microblink.recognizers.blinkocr.engine.BlinkOCREngineOptions;
+import com.microblink.recognizers.blinkocr.parser.generic.RawParserSettings;
+import com.microblink.recognizers.settings.RecognitionSettings;
+import com.microblink.recognizers.settings.RecognizerSettings;
+import com.microblink.view.recognition.ScanResultListener;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,6 +41,7 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -50,31 +52,46 @@ public class MainActivity extends Activity {
     protected void onStart() {
         super.onStart();
 
-        mRecognizer = Recognizer.getSingletonInstance();
+        // get the recognizer instance
+        try {
+            mRecognizer = Recognizer.getSingletonInstance();
+        } catch (FeatureNotSupportedException e) {
+            Toast.makeText(this, "Feature not supported! Reason: " + e.getReason().getDescription(), Toast.LENGTH_LONG).show();
+            finish();
+            return;
+        }
 
-        // set license key
+        // set the license key
         try {
             mRecognizer.setLicenseKey(this, "CNDHGUQS-3REAUYG3-OJYH4FCG-QNW7QSOK-DEO5SIWW-MKYTEYZT-UGBW36CJ-YIELTPLQ");
         } catch (InvalidLicenceKeyException e) {
             Log.e(TAG, "Failed to set licence key!");
             Toast.makeText(this, "Failed to set licence key!", Toast.LENGTH_LONG).show();
             finish();
+            mRecognizer = null;
             return;
         }
+
+        // prepare recognition settings
+        RecognitionSettings settings = new RecognitionSettings();
 
         // prepare settings for raw OCR
         BlinkOCRRecognizerSettings sett = new BlinkOCRRecognizerSettings();
         RawParserSettings rawSett = new RawParserSettings();
 
+        // set OCR engine options
         BlinkOCREngineOptions engineOptions = new BlinkOCREngineOptions();
+        // set to false to scan colored text (set to true only for black text on color background)
         engineOptions.setColorDropoutEnabled(false);
-
         rawSett.setOcrEngineOptions(engineOptions);
 
+        // add raw parser to default parser group
         sett.addParser("Raw", rawSett);
 
-        // initialize recognizer singleton
-        mRecognizer.initialize(this, null, new RecognizerSettings[] {sett}, new DirectApiErrorListener() {
+        settings.setRecognizerSettingsArray(new RecognizerSettings[] { sett });
+
+        // initialize recognizer singleton with defined settings
+        mRecognizer.initialize(this, settings, new DirectApiErrorListener() {
             @Override
             public void onRecognizerError(Throwable throwable) {
                 Log.e(TAG, "Failed to initialize recognizer.", throwable);
@@ -85,6 +102,7 @@ public class MainActivity extends Activity {
     }
 
     public void onScanAssetClick(View v) {
+        // check whether the recognizer is ready
         if(mRecognizer.getCurrentState() != Recognizer.State.READY) {
             Log.e(TAG, "Recognizer not ready!");
             return;
@@ -104,7 +122,6 @@ public class MainActivity extends Activity {
         }
 
         if(bitmap != null) {
-            mRecognizer.setOrientation(Orientation.ORIENTATION_LANDSCAPE_RIGHT);
             // disable button
             mScanAssetBtn.setEnabled(false);
             // show progress dialog
@@ -114,17 +131,21 @@ public class MainActivity extends Activity {
             pd.setCancelable(false);
             pd.show();
             // recognize image
-            mRecognizer.recognize(bitmap, new ScanResultListener() {
+            mRecognizer.recognizeBitmap(bitmap, Orientation.ORIENTATION_LANDSCAPE_RIGHT, new ScanResultListener() {
                 @Override
-                public void onScanningDone(BaseRecognitionResult[] dataArray, RecognitionType recognitionType) {
-
+                public void onScanningDone(RecognitionResults results) {
+                    // get results array
+                    BaseRecognitionResult[] dataArray = results.getRecognitionResults();
                     if (dataArray != null && dataArray.length > 0) {
+                        // only single result from BlinkOCRRecognizer is expected
                         if (dataArray[0] instanceof BlinkOCRRecognitionResult) {
                             BlinkOCRRecognitionResult result = (BlinkOCRRecognitionResult) dataArray[0];
+                            // get string result from configured parser with parser name "Raw"
                             final String parsed = result.getParsedResult("Raw");
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
+                                    // enable scan button
                                     mScanAssetBtn.setEnabled(true);
                                     pd.dismiss();
 
@@ -141,6 +162,7 @@ public class MainActivity extends Activity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
+                                    // enable scan button
                                     mScanAssetBtn.setEnabled(true);
                                     pd.dismiss();
                                 }
@@ -148,10 +170,10 @@ public class MainActivity extends Activity {
                         }
                     } else {
                         Toast.makeText(MainActivity.this, "Nothing scanned!", Toast.LENGTH_SHORT).show();
-                        // enable button again
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                // enable scan button
                                 mScanAssetBtn.setEnabled(true);
                                 pd.dismiss();
                             }
@@ -165,7 +187,10 @@ public class MainActivity extends Activity {
     @Override
     protected void onStop() {
         super.onStop();
+        // terminate the native library and free unnecessary resources
         mRecognizer.terminate();
+        // for further use, recognizer must be initialized again
         mRecognizer = null;
     }
+
 }
