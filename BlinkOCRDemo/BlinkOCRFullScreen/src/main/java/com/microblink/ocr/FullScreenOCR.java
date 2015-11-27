@@ -1,65 +1,67 @@
 package com.microblink.ocr;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.res.Configuration;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.microblink.geometry.Point;
-import com.microblink.geometry.PointSet;
-import com.microblink.geometry.Quadrilateral;
 import com.microblink.hardware.orientation.Orientation;
+import com.microblink.metadata.Metadata;
+import com.microblink.metadata.MetadataListener;
+import com.microblink.metadata.MetadataSettings;
+import com.microblink.metadata.OcrMetadata;
+import com.microblink.metadata.detection.PointsDetectionMetadata;
 import com.microblink.recognition.InvalidLicenceKeyException;
 import com.microblink.recognizers.BaseRecognitionResult;
-import com.microblink.recognizers.barcode.bardecoder.BarDecoderRecognizerSettings;
-import com.microblink.recognizers.barcode.bardecoder.BarDecoderScanResult;
-import com.microblink.recognizers.ocr.blinkocr.BlinkOCRRecognitionResult;
-import com.microblink.recognizers.ocr.blinkocr.BlinkOCRRecognizerSettings;
-import com.microblink.recognizers.ocr.blinkocr.engine.BlinkOCREngineOptions;
-import com.microblink.recognizers.ocr.blinkocr.parser.generic.RawParserSettings;
-import com.microblink.recognizers.settings.GenericRecognizerSettings;
+import com.microblink.recognizers.RecognitionResults;
+import com.microblink.recognizers.blinkbarcode.bardecoder.BarDecoderRecognizerSettings;
+import com.microblink.recognizers.blinkbarcode.bardecoder.BarDecoderScanResult;
+import com.microblink.recognizers.blinkocr.BlinkOCRRecognitionResult;
+import com.microblink.recognizers.blinkocr.BlinkOCRRecognizerSettings;
+import com.microblink.recognizers.blinkocr.parser.generic.RawParserSettings;
+import com.microblink.recognizers.settings.RecognitionSettings;
 import com.microblink.recognizers.settings.RecognizerSettings;
 import com.microblink.results.ocr.OcrResult;
+import com.microblink.util.CameraPermissionManager;
 import com.microblink.util.Log;
+import com.microblink.view.BaseCameraView;
 import com.microblink.view.CameraAspectMode;
 import com.microblink.view.CameraEventsListener;
-import com.microblink.view.NotSupportedReason;
 import com.microblink.view.OrientationAllowedListener;
-import com.microblink.view.ocrResult.IOcrResultView;
 import com.microblink.view.ocrResult.OcrResultCharsView;
-import com.microblink.view.recognition.DetectionStatus;
-import com.microblink.view.recognition.OcrRecognizerViewEventListener;
-import com.microblink.view.recognition.RecognitionType;
 import com.microblink.view.recognition.RecognizerView;
 import com.microblink.view.recognition.ScanResultListener;
-import com.microblink.view.surface.ICameraView;
 import com.microblink.view.viewfinder.PointSetView;
 
-import java.util.List;
+public class FullScreenOCR extends Activity implements MetadataListener, CameraEventsListener, ScanResultListener {
 
-public class FullScreenOCR extends Activity implements OcrRecognizerViewEventListener, CameraEventsListener, ScanResultListener {
-
-    // RecognizerView is the view that controls camera and recognition
+    /** RecognizerView is the view that controls camera and recognition */
     private RecognizerView mRecognizerView;
-    // OcrResultCharsView is builtin view that can display OCR result on top of camera
+    /**  OcrResultCharsView is builtin view that can display OCR result on top of camera */
     private OcrResultCharsView mOcrResultView;
-    // PoinSetView is builtin view that can display points of interest on top of camera
+    /**  PoinSetView is builtin view that can display points of interest on top of camera */
     private PointSetView mPointSetView;
+    /** CameraPermissionManager is provided helper class that can be used to obtain the permission to use camera.
+     * It is used on Android 6.0 (API level 23) or newer.
+     */
+    private CameraPermissionManager mCameraPermissionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_screen_ocr);
-
+        // obtain reference to RecognizerView
         mRecognizerView = (RecognizerView) findViewById(R.id.recognizerView);
 
         // initialize BlinkOCR recognizer with only raw parser
         BlinkOCRRecognizerSettings ocrSett = new BlinkOCRRecognizerSettings();
         RawParserSettings rawSett = new RawParserSettings();
-
+        // add raw parser with name "Raw" to default parser group
+        // parser name is important for obtaining results later
         ocrSett.addParser("Raw", rawSett);
 
         // initialize 1D barcode recognizer and set it to scan Code39 and Code128 barcodes
@@ -67,7 +69,12 @@ public class FullScreenOCR extends Activity implements OcrRecognizerViewEventLis
         barSett.setScanCode128(true);
         barSett.setScanCode39(true);
 
-        mRecognizerView.setRecognitionSettings(new RecognizerSettings[]{ocrSett, barSett});
+        // prepare the recognition settings
+        RecognitionSettings recognitionSettings = new RecognitionSettings();
+        // BlinkOCRRecognizer and BarDecoderRecognizer will be used in the recognition process
+        recognitionSettings.setRecognizerSettingsArray(new RecognizerSettings[]{ocrSett, barSett});
+
+        mRecognizerView.setRecognitionSettings(recognitionSettings);
 
         // we want each frame to be scanned for both OCR and barcodes so we must
         // allow multiple scan results on single image.
@@ -75,11 +82,9 @@ public class FullScreenOCR extends Activity implements OcrRecognizerViewEventLis
         // of interest stops the recognition chain (for example in that case if barcode is found
         // OCR will not be performed - we do not want this, so we allow multiple scan results
         // on single image).
-        GenericRecognizerSettings genSett =  new GenericRecognizerSettings();
-        genSett.setAllowMultipleScanResultsOnSingleImage(true);
+        recognitionSettings.setAllowMultipleScanResultsOnSingleImage(true);
 
-        mRecognizerView.setGenericRecognizerSettings(genSett);
-
+        // set the license key
         try {
             mRecognizerView.setLicenseKey("CNDHGUQS-3REAUYG3-OJYH4FCG-QNW7QSOK-DEO5SIWW-MKYTEYZT-UGBW36CJ-YIELTPLQ");
         } catch (InvalidLicenceKeyException e) {
@@ -92,10 +97,16 @@ public class FullScreenOCR extends Activity implements OcrRecognizerViewEventLis
 
         // use all available view area for displaying camera, possibly cropping the camera frame
         mRecognizerView.setAspectMode(CameraAspectMode.ASPECT_FILL);
-        // OcrRecognizerViewEventListener is subclass of RecognizerViewEventsListener and besides
-        // being able to receive detection location it can also receive OCR results prepared for
-        // drawing on screen
-        mRecognizerView.setRecognizerViewEventListener(this);
+
+        // configure metadata settings and chose detection metadata
+        // that will be passed to metadata listener
+        MetadataSettings mdSett = new MetadataSettings();
+        // set OCR metadata to be available in metadata listener
+        mdSett.setOcrMetadataAllowed(true);
+        // enable detection metadata for obtaining points of interest
+        mdSett.setDetectionMetadataAllowed(true);
+        // metadata listener receives detection metadata during recognition process
+        mRecognizerView.setMetadataListener(this, mdSett);
         // camera events listener receives camera events, like when camera preview has started, stopped
         // or if camera error happened
         mRecognizerView.setCameraEventsListener(this);
@@ -111,6 +122,16 @@ public class FullScreenOCR extends Activity implements OcrRecognizerViewEventLis
                 return true;
             }
         });
+
+        // instantiate the camera permission manager
+        mCameraPermissionManager = new CameraPermissionManager(this);
+        // get the built in layout that should be displayed when camera permission is not given
+        View v = mCameraPermissionManager.getAskPermissionOverlay();
+        if (v != null) {
+            // add it to the current layout that contains the recognizer view
+            ViewGroup vg = (ViewGroup) findViewById(R.id.full_screen_root);
+            vg.addView(v);
+        }
 
         // all activity lifecycle events must be passed on to RecognizerView
         mRecognizerView.create();
@@ -139,6 +160,7 @@ public class FullScreenOCR extends Activity implements OcrRecognizerViewEventLis
         if(mRecognizerView != null) {
             mRecognizerView.start();
         }
+        mCameraPermissionManager.askForCameraPermission();
     }
 
     @Override
@@ -146,7 +168,9 @@ public class FullScreenOCR extends Activity implements OcrRecognizerViewEventLis
         super.onResume();
         // all activity lifecycle events must be passed on to RecognizerView
         if(mRecognizerView != null) {
-            mRecognizerView.resume();
+            if (mCameraPermissionManager.hasCameraPermission()) {
+                mRecognizerView.resume();
+            }
         }
     }
 
@@ -154,7 +178,7 @@ public class FullScreenOCR extends Activity implements OcrRecognizerViewEventLis
     protected void onPause() {
         super.onPause();
         // all activity lifecycle events must be passed on to RecognizerView
-        if(mRecognizerView != null) {
+        if(mRecognizerView != null && mRecognizerView.getCameraViewState() == BaseCameraView.CameraViewState.RESUMED) {
             mRecognizerView.pause();
         }
     }
@@ -183,37 +207,45 @@ public class FullScreenOCR extends Activity implements OcrRecognizerViewEventLis
         // all activity lifecycle events must be passed on to RecognizerView
         if(mRecognizerView != null) {
             mRecognizerView.changeConfiguration(newConfig);
+            mOcrResultView.setHostActivityOrientation(mRecognizerView.getHostScreenOrientation());
         }
     }
 
     @Override
-    public void onDisplayOcrResult(OcrResult ocrResult) {
-        // This method is called when recognition thread wants to display its OCR result
-        // This method is called on recognition thread, not on UI thread, so if you plan
-        // to use your own implementation for drawing OcrResult, make sure you do not change
-        // view hierarchy without posting to UI thread first.
-        mOcrResultView.setOcrResult(ocrResult);
-    }
+    public void onScanningDone(RecognitionResults results) {
+        // called when scanning completes. In this example, we first check if dataArray contains
+        // barcode result and display a barcode contents in the Toast.
+        // We also check if dataArray contains raw parser result and log it to ADB.
+        BaseRecognitionResult[] dataArray = results.getRecognitionResults();
+        for (BaseRecognitionResult r : dataArray) {
+            if (r instanceof BarDecoderScanResult) { // r is barcode scan result
+                BarDecoderScanResult bdsr = (BarDecoderScanResult) r;
 
-    @Override
-    public void onNothingDetected() {
-        // This method is called when no recognizer has been able to detect anything on camera frame.
-    }
+                // create toast with contents: Barcode type: barcode contents
+                StringBuilder sb = new StringBuilder();
+                sb.append(bdsr.getBarcodeType().name());
+                sb.append(": ");
+                sb.append(bdsr.getStringData());
 
-    @Override
-    public void onDisplayPointsOfInterest(List<Point> points, DetectionStatus detectionStatus) {
-        // This method is called when some recognizer has detected some points of interest and
-        // wants to display those points. In this demo, this method will be called when 1D barcode
-        // is detected.
-        mPointSetView.setPointSet(new PointSet(points));
-    }
+                Toast.makeText(this, sb.toString(), Toast.LENGTH_SHORT).show();
+            } else if (r instanceof BlinkOCRRecognitionResult) {
+                BlinkOCRRecognitionResult bocrRes = (BlinkOCRRecognitionResult) r;
 
-    @Override
-    public void onDisplayQuadrilateralObject(Quadrilateral quad, DetectionStatus detectionStatus) {
-        // This method is called when some recognizer has detected some quadrilateral object and
-        // wants to display its location. In this demo, no recognizer can call this method, but
-        // if you add PDF417 barcode recognizer to recognizer array in onCreate method, then
-        // when PDF417 barcode is detected, this method will be called with its location.
+                // obtain parse result from the parser named "Raw"
+                String rawParsed = bocrRes.getParsedResult("Raw");
+                Log.i("Parsed", rawParsed);
+
+                // obtain OCR result that was used for parsing
+                OcrResult ocrResult = bocrRes.getOcrResult();
+                Log.i("OcrResult", ocrResult.toString());
+            }
+        }
+
+        // Finally, we resume scanning and reset internal state. If you want OCR to reuse
+        // results from previous scan to make current scan of better quality, call
+        // resumeScanning(false). Note that preserving state preserves state of all
+        // recognizers, including barcode recognizers (if enabled).
+        mRecognizerView.resumeScanning(true);
     }
 
     @Override
@@ -231,78 +263,60 @@ public class FullScreenOCR extends Activity implements OcrRecognizerViewEventLis
     }
 
     @Override
-    public void onStartupError(Throwable exc) {
-        // called when unrecoverable exception occurs on initialization
-        // possible errors are: camera is unavailable; native library wasn't loaded
-        Log.e(this, exc, "Startup error");
-        Toast.makeText(this, "Startup error: " + exc.getMessage(), Toast.LENGTH_LONG).show();
+    public void onError(Throwable ex) {
+        // This method will be called when opening of camera resulted in exception or
+        // recognition process encountered an error.
+        // The error details will be given in exc parameter.
+        Log.e(this, ex, "Error");
+        Toast.makeText(this, "Error: " + ex.getMessage(), Toast.LENGTH_LONG).show();
         finish();
     }
 
+
+
     @Override
-    public void onNotSupported(NotSupportedReason reason) {
-        // called when recognition is attempted on unsupported device.
-        // You can use this method to inform the user that its device is not supported.
-        Log.e(this, "Not supported reason: {}", reason);
-        Toast.makeText(this, "Not supported reason: " + reason.name(), Toast.LENGTH_LONG).show();
-        finish();
+    public void onMetadataAvailable(Metadata metadata) {
+        // This method will be called when metadata becomes available during recognition process.
+        // Here, for every metadata type that is allowed through metadata settings,
+        // desired actions can be performed.
+        if (metadata instanceof OcrMetadata) {
+            // get the ocr result and show it inside ocr result view
+            mOcrResultView.setOcrResult(((OcrMetadata) metadata).getOcrResult());
+        } else if (metadata instanceof PointsDetectionMetadata) {
+            // show the points of interest inside point set view
+            mPointSetView.setPointSet(((PointsDetectionMetadata) metadata).getPoints());
+        }
     }
 
     @Override
     public void onAutofocusFailed() {
-        // called when camera cannot obtain a sharp focus on text, even after several retries.
-        // You should inform the user to attempt scanning under better light conditions.
+        // This method will be called when camera focusing has failed.
+        // Camera manager usually tries different focusing strategies and this method is called when all
+        // those strategies fail to indicate that either object on which camera is being focused is too
+        // close or ambient light conditions are poor.
     }
 
     @Override
-    public void onAutofocusStarted(Rect[] focusAreas) {
-        // called when camera starts focusing. The given array of rectangles are positions on
-        // RecognizerView's camera preview that camera uses for focus measurements. If you want,
-        // you can display those positions.
+    public void onAutofocusStarted(Rect[] rects) {
+        // This method will be called when camera focusing has started.
+        // You can utilize this method to draw focusing animation on UI.
+        // Areas parameter is array of rectangles where focus is being measured.
+        // It can be null on devices that do not support fine-grained camera control.
     }
 
     @Override
-    public void onAutofocusStopped(Rect[] focusAreas) {
-        // called when camera stops focusing. The given array of rectangles are positions on
-        // RecognizerView's camera preview that camera uses for focus measurements. If you want,
-        // you can display those positions.
+    public void onAutofocusStopped(Rect[] rects) {
+        // This method will be called when camera focusing has stopped.
+        // You can utilize this method to remove focusing animation on UI.
+        // Areas parameter is array of rectangles where focus is being measured.
+        // It can be null on devices that do not support fine-grained camera control.
     }
 
     @Override
-    public void onScanningDone(BaseRecognitionResult[] dataArray, RecognitionType recognitionType) {
-        // called when scanning completes. In this example, we first check if dataArray contains
-        // barcode result and display a barcode contents in the Toast.
-        // We also check if dataArray contains raw parser result and log it to ADB.
-
-        for (BaseRecognitionResult r : dataArray) {
-            if (r instanceof BarDecoderScanResult) { // r is barcode scan result
-                BarDecoderScanResult bdsr = (BarDecoderScanResult) r;
-
-                // create toast with contents: Barcode type: barcode contents
-
-                StringBuilder sb = new StringBuilder();
-                sb.append(bdsr.getBarcodeType().name());
-                sb.append(": ");
-                sb.append(bdsr.getStringData());
-
-                Toast.makeText(this, sb.toString(), Toast.LENGTH_SHORT).show();
-            } else if (r instanceof BlinkOCRRecognitionResult) {
-                BlinkOCRRecognitionResult bocrRes = (BlinkOCRRecognitionResult) r;
-
-                // obtain parse result of parser named "Raw"
-                String rawParsed = bocrRes.getParsedResult("Raw");
-                Log.i("Parsed", rawParsed);
-
-                // obtain OCR result that was used for parsing
-                OcrResult ocrResult = bocrRes.getOcrResult();
-                Log.i("OcrResult", ocrResult.toString());
-            }
-        }
-
-        // Finally, we resume scanning and reset internal state. If you want OCR to reuse
-        // results from previous scan to make current scan of better quality, call
-        // resumeScanning(false). Note that preserving state preserves state of all
-        // recognizers, including barcode recognizers (if enabled).
-        mRecognizerView.resumeScanning(true);
+    @TargetApi(23)
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        // on API level 23, request permission result should be passed to camera permission manager
+        mCameraPermissionManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
+
 }
