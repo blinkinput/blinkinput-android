@@ -174,7 +174,7 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
         View v = mCameraPermissionManager.getAskPermissionOverlay();
         if (v != null) {
             // add it to the current layout that contains the recognizer view
-            ViewGroup vg = (ViewGroup) findViewById(R.id.segment_scan_root);
+            ViewGroup vg = (ViewGroup) findViewById(R.id.custom_segment_scan_root);
             vg.addView(v);
         }
 

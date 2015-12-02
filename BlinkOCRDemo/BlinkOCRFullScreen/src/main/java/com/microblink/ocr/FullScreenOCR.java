@@ -39,6 +39,10 @@ import com.microblink.view.viewfinder.PointSetView;
 
 public class FullScreenOCR extends Activity implements MetadataListener, CameraEventsListener, ScanResultListener {
 
+    // obtain your licence key at http://microblink.com/login or
+    // contact us at http://help.microblink.com
+    private static final String LICENSE_KEY = "CNDHGUQS-3REAUYG3-OJYH4FCG-QNW7QSOK-DEO5SIWW-MKYTEYZT-UGBW36CJ-YIELTPLQ";
+
     /** RecognizerView is the built-in view that controls camera and recognition */
     private RecognizerView mRecognizerView;
     /**  OcrResultCharsView is built-in view that can display OCR result on top of camera */
@@ -87,9 +91,17 @@ public class FullScreenOCR extends Activity implements MetadataListener, CameraE
         // on single image).
         recognitionSettings.setAllowMultipleScanResultsOnSingleImage(true);
 
-        // set the license key
+        // In order for scanning to work, you must enter a valid licence key. Without licence key,
+        // scanning will not work. Licence key is bound the the package name of your app, so when
+        // obtaining your licence key from Microblink make sure you give us the correct package name
+        // of your app. You can obtain your licence key at http://microblink.com/login or contact us
+        // at http://help.microblink.com.
+        // Licence key also defines which recognizers are enabled and which are not. Since the licence
+        // key validation is performed on image processing thread in native code, all enabled recognizers
+        // that are disallowed by licence key will be turned off without any error and information
+        // about turning them off will be logged to ADB logcat.
         try {
-            mRecognizerView.setLicenseKey("CNDHGUQS-3REAUYG3-OJYH4FCG-QNW7QSOK-DEO5SIWW-MKYTEYZT-UGBW36CJ-YIELTPLQ");
+            mRecognizerView.setLicenseKey(LICENSE_KEY);
         } catch (InvalidLicenceKeyException e) {
             e.printStackTrace();
             Toast.makeText(this, "Invalid licence key", Toast.LENGTH_SHORT).show();
@@ -128,7 +140,7 @@ public class FullScreenOCR extends Activity implements MetadataListener, CameraE
 
         // instantiate the camera permission manager
         mCameraPermissionManager = new CameraPermissionManager(this);
-        // get the built in layout that should be displayed when camera permission is not given
+        // get the built-in overlay that should be displayed when camera permission is not given
         View v = mCameraPermissionManager.getAskPermissionOverlay();
         if (v != null) {
             // add it to the current layout that contains the recognizer view
