@@ -29,6 +29,7 @@ import com.microblink.recognizers.settings.RecognitionSettings;
 import com.microblink.recognizers.settings.RecognizerSettings;
 import com.microblink.util.CameraPermissionManager;
 import com.microblink.util.Log;
+import com.microblink.view.BaseCameraView;
 import com.microblink.view.CameraAspectMode;
 import com.microblink.view.CameraEventsListener;
 import com.microblink.view.recognition.RecognizerView;
@@ -37,6 +38,8 @@ import com.microblink.view.recognition.ScanResultListener;
 
 public class ScanActivity extends Activity implements CameraEventsListener, ScanResultListener {
 
+    // obtain your licence key at http://microblink.com/login or
+    // contact us at http://help.microblink.com
     private static final String LICENSE_KEY = "CNDHGUQS-3REAUYG3-OJYH4FCG-QNW7QSOK-DEO5SIWW-MKYTEYZT-UGBW36CJ-YIELTPLQ";
 
     /** RecognizerView is the builtin view that controls camera and recognition */
@@ -123,7 +126,15 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
         // we want camera to use whole available view space by cropping the camera preview
         // instead of letterboxing it
         mRecognizerView.setAspectMode(CameraAspectMode.ASPECT_FILL);
-        // license key is required for recognizer to work.
+        // In order for scanning to work, you must enter a valid licence key. Without licence key,
+        // scanning will not work. Licence key is bound the the package name of your app, so when
+        // obtaining your licence key from Microblink make sure you give us the correct package name
+        // of your app. You can obtain your licence key at http://microblink.com/login or contact us
+        // at http://help.microblink.com.
+        // Licence key also defines which recognizers are enabled and which are not. Since the licence
+        // key validation is performed on image processing thread in native code, all enabled recognizers
+        // that are disallowed by licence key will be turned off without any error and information
+        // about turning them off will be logged to ADB logcat.
         try {
             mRecognizerView.setLicenseKey(LICENSE_KEY);
         } catch (InvalidLicenceKeyException e) {
@@ -146,6 +157,7 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
         recognitionSettings.setRecognizerSettingsArray(new RecognizerSettings[]{ocrSett});
 
         mRecognizerView.setRecognitionSettings(recognitionSettings);
+
         // define the scanning region of the image that will be scanned.
         // You must ensure that scanning region define here is the same as in the layout
         // The coordinates for scanning region are relative to recognizer view:
@@ -230,7 +242,11 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
         super.onPause();
         // all activity's lifecycle methods must be passed to recognizer view
         if(mRecognizerView != null) {
-            mRecognizerView.pause();
+            // if permission was not given, RecognizerView was not resumed so we
+            // cannot pause it
+            if(mRecognizerView.getCameraViewState() == BaseCameraView.CameraViewState.RESUMED) {
+                mRecognizerView.pause();
+            }
         }
     }
 

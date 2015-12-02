@@ -1,4 +1,4 @@
-package com.microblink.photopay;
+package com.microblink.ocr;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -34,9 +34,15 @@ import java.io.InputStream;
 
 public class MainActivity extends Activity {
 
+    // obtain your licence key at http://microblink.com/login or
+    // contact us at http://help.microblink.com
+    private static final String LICENSE_KEY = "CNDHGUQS-3REAUYG3-OJYH4FCG-QNW7QSOK-DEO5SIWW-MKYTEYZT-UGBW36CJ-YIELTPLQ";
+
     private static final String TAG = "DirectApiDemo";
 
+    /** Recognizer instance. */
     private Recognizer mRecognizer = null;
+    /** Button which starts the recognition. */
     private Button mScanAssetBtn = null;
 
     @Override
@@ -61,9 +67,17 @@ public class MainActivity extends Activity {
             return;
         }
 
-        // set the license key
+        // In order for scanning to work, you must enter a valid licence key. Without licence key,
+        // scanning will not work. Licence key is bound the the package name of your app, so when
+        // obtaining your licence key from Microblink make sure you give us the correct package name
+        // of your app. You can obtain your licence key at http://microblink.com/login or contact us
+        // at http://help.microblink.com.
+        // Licence key also defines which recognizers are enabled and which are not. Since the licence
+        // key validation is performed on image processing thread in native code, all enabled recognizers
+        // that are disallowed by licence key will be turned off without any error and information
+        // about turning them off will be logged to ADB logcat.
         try {
-            mRecognizer.setLicenseKey(this, "CNDHGUQS-3REAUYG3-OJYH4FCG-QNW7QSOK-DEO5SIWW-MKYTEYZT-UGBW36CJ-YIELTPLQ");
+            mRecognizer.setLicenseKey(this, LICENSE_KEY);
         } catch (InvalidLicenceKeyException e) {
             Log.e(TAG, "Failed to set licence key!");
             Toast.makeText(this, "Failed to set licence key!", Toast.LENGTH_LONG).show();
@@ -72,11 +86,8 @@ public class MainActivity extends Activity {
             return;
         }
 
-        // prepare recognition settings
-        RecognitionSettings settings = new RecognitionSettings();
-
         // prepare settings for raw OCR
-        BlinkOCRRecognizerSettings sett = new BlinkOCRRecognizerSettings();
+        BlinkOCRRecognizerSettings ocrSett = new BlinkOCRRecognizerSettings();
         RawParserSettings rawSett = new RawParserSettings();
 
         // set OCR engine options
@@ -85,10 +96,15 @@ public class MainActivity extends Activity {
         engineOptions.setColorDropoutEnabled(false);
         rawSett.setOcrEngineOptions(engineOptions);
 
-        // add raw parser to default parser group
-        sett.addParser("Raw", rawSett);
+        // add raw parser with name "Raw" to default parser group
+        // parser name is important for obtaining results later
+        ocrSett.addParser("Raw", rawSett);
 
-        settings.setRecognizerSettingsArray(new RecognizerSettings[] { sett });
+        // prepare recognition settings
+        RecognitionSettings settings = new RecognitionSettings();
+        // set recognizer settings array that is used to configure recognition
+        // BlinkOCRRecognizer will be used in the recognition process
+        settings.setRecognizerSettingsArray(new RecognizerSettings[] { ocrSett });
 
         // initialize recognizer singleton with defined settings
         mRecognizer.initialize(this, settings, new DirectApiErrorListener() {
@@ -101,6 +117,9 @@ public class MainActivity extends Activity {
         });
     }
 
+    /**
+     * Handler for "Scan Asset" button.
+     */
     public void onScanAssetClick(View v) {
         // check whether the recognizer is ready
         if(mRecognizer.getCurrentState() != Recognizer.State.READY) {
@@ -145,10 +164,6 @@ public class MainActivity extends Activity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    // enable scan button
-                                    mScanAssetBtn.setEnabled(true);
-                                    pd.dismiss();
-
                                     AlertDialog.Builder b = new AlertDialog.Builder(MainActivity.this);
                                     b.setTitle("OCR").setMessage(parsed).setCancelable(false).setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                         @Override
@@ -158,27 +173,20 @@ public class MainActivity extends Activity {
                                     }).show();
                                 }
                             });
-                        } else {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    // enable scan button
-                                    mScanAssetBtn.setEnabled(true);
-                                    pd.dismiss();
-                                }
-                            });
                         }
                     } else {
                         Toast.makeText(MainActivity.this, "Nothing scanned!", Toast.LENGTH_SHORT).show();
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                // enable scan button
-                                mScanAssetBtn.setEnabled(true);
-                                pd.dismiss();
-                            }
-                        });
+
                     }
+                    // enable button again
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            // enable scan button
+                            mScanAssetBtn.setEnabled(true);
+                            pd.dismiss();
+                        }
+                    });
                 }
             });
         }

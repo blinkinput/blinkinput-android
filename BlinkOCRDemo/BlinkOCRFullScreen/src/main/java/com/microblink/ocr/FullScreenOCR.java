@@ -39,11 +39,11 @@ import com.microblink.view.viewfinder.PointSetView;
 
 public class FullScreenOCR extends Activity implements MetadataListener, CameraEventsListener, ScanResultListener {
 
-    /** RecognizerView is the view that controls camera and recognition */
+    /** RecognizerView is the built-in view that controls camera and recognition */
     private RecognizerView mRecognizerView;
-    /**  OcrResultCharsView is builtin view that can display OCR result on top of camera */
+    /**  OcrResultCharsView is built-in view that can display OCR result on top of camera */
     private OcrResultCharsView mOcrResultView;
-    /**  PoinSetView is builtin view that can display points of interest on top of camera */
+    /**  PoinSetView is built-in view that can display points of interest on top of camera */
     private PointSetView mPointSetView;
     /** CameraPermissionManager is provided helper class that can be used to obtain the permission to use camera.
      * It is used on Android 6.0 (API level 23) or newer.
@@ -56,6 +56,9 @@ public class FullScreenOCR extends Activity implements MetadataListener, CameraE
         setContentView(R.layout.activity_full_screen_ocr);
         // obtain reference to RecognizerView
         mRecognizerView = (RecognizerView) findViewById(R.id.recognizerView);
+
+        // set log level to information because ocr results will be passed to Log (information level)
+        Log.setLogLevel(Log.LogLevel.LOG_INFORMATION);
 
         // initialize BlinkOCR recognizer with only raw parser
         BlinkOCRRecognizerSettings ocrSett = new BlinkOCRRecognizerSettings();
@@ -182,6 +185,8 @@ public class FullScreenOCR extends Activity implements MetadataListener, CameraE
     protected void onPause() {
         super.onPause();
         // all activity lifecycle events must be passed on to RecognizerView
+        // if permission was not given, RecognizerView was not resumed so we
+        // cannot pause it
         if(mRecognizerView != null && mRecognizerView.getCameraViewState() == BaseCameraView.CameraViewState.RESUMED) {
             mRecognizerView.pause();
         }
