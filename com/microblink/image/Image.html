@@ -125,6 +125,21 @@ extends java.lang.Object</pre>
      android.graphics.Rect&nbsp;roi,
      <a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;imageOrientation)</code>&nbsp;</td>
 </tr>
+<tr class="rowColor">
+<td class="colOne"><code><strong><a href="../../../com/microblink/image/Image.html#Image(int, int, int, int, java.lang.String, int, int, int, int, int, java.nio.ByteBuffer, int, int)">Image</a></strong>(int&nbsp;width,
+     int&nbsp;height,
+     int&nbsp;imageType,
+     int&nbsp;imageFormat,
+     java.lang.String&nbsp;imgName,
+     int&nbsp;rectLeft,
+     int&nbsp;rectTop,
+     int&nbsp;rectRight,
+     int&nbsp;rectBottom,
+     int&nbsp;orientation,
+     java.nio.ByteBuffer&nbsp;pixelBuffer,
+     int&nbsp;pixelStride,
+     int&nbsp;rowStride)</code>&nbsp;</td>
+</tr>
 </table>
 </li>
 </ul>
@@ -153,51 +168,61 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#dispose()">dispose</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#getHeight()">getHeight</a></strong>()</code>
 <div class="block">Returns the height of the image.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../com/microblink/image/ImageFormat.html" title="enum in com.microblink.image">ImageFormat</a></code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#getImageFormat()">getImageFormat</a></strong>()</code>
 <div class="block">Returns the format of the image.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#getImageName()">getImageName</a></strong>()</code>
 <div class="block">Returns the name of the image.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a></code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#getImageOrientation()">getImageOrientation</a></strong>()</code>
 <div class="block">Returns the orientation of the image.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../com/microblink/image/ImagePlane.html" title="class in com.microblink.image">ImagePlane</a>[]</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#getImagePlanes()">getImagePlanes</a></strong>()</code>
 <div class="block">Returns the planes of the image.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../com/microblink/image/ImageType.html" title="enum in com.microblink.image">ImageType</a></code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#getImageType()">getImageType</a></strong>()</code>
 <div class="block">Returns the type of the image.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>android.graphics.Rect</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#getROI()">getROI</a></strong>()</code>
 <div class="block">Returns the region of interest in image.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#getWidth()">getWidth</a></strong>()</code>
 <div class="block">Returns the width of the image.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#isDisposed()">isDisposed</a></strong>()</code>
+<div class="block">Returns true if image's internal buffers are disposed and cannot be used anymore.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -208,7 +233,9 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#setROI(android.graphics.Rect)">setROI</a></strong>(android.graphics.Rect&nbsp;roi)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/image/Image.html#setROI(android.graphics.Rect)">setROI</a></strong>(android.graphics.Rect&nbsp;roi)</code>
+<div class="block">Sets the region of interest in image.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -235,7 +262,7 @@ extends java.lang.Object</pre>
 <a name="Image(int, int, com.microblink.image.ImageType, com.microblink.image.ImageFormat, java.lang.String, com.microblink.image.ImagePlane[], android.graphics.Rect, com.microblink.hardware.orientation.Orientation)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>Image</h4>
 <pre>public&nbsp;Image(int&nbsp;width,
@@ -248,6 +275,27 @@ extends java.lang.Object</pre>
      <a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;imageOrientation)</pre>
 </li>
 </ul>
+<a name="Image(int, int, int, int, java.lang.String, int, int, int, int, int, java.nio.ByteBuffer, int, int)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>Image</h4>
+<pre>public&nbsp;Image(int&nbsp;width,
+     int&nbsp;height,
+     int&nbsp;imageType,
+     int&nbsp;imageFormat,
+     java.lang.String&nbsp;imgName,
+     int&nbsp;rectLeft,
+     int&nbsp;rectTop,
+     int&nbsp;rectRight,
+     int&nbsp;rectBottom,
+     int&nbsp;orientation,
+     java.nio.ByteBuffer&nbsp;pixelBuffer,
+     int&nbsp;pixelStride,
+     int&nbsp;rowStride)</pre>
+</li>
+</ul>
 </li>
 </ul>
 <!-- ============ METHOD DETAIL ========== -->
@@ -256,6 +304,15 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="dispose()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>dispose</h4>
+<pre>public&nbsp;void&nbsp;dispose()</pre>
+</li>
+</ul>
 <a name="clone()">
 <!--   -->
 </a>
@@ -357,6 +414,9 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>setROI</h4>
 <pre>public&nbsp;void&nbsp;setROI(android.graphics.Rect&nbsp;roi)</pre>
+<div class="block">Sets the region of interest in image. You can use this method to set the ROI of
+ images that will be processed via DirectAPI.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>roi</code> - region of interest in image</dd></dl>
 </li>
 </ul>
 <a name="getImageOrientation()">
@@ -388,6 +448,17 @@ extends java.lang.Object</pre>
 <div class="block">Use this method to change Image's orientation. This can be useful for different interpretations of same image in
  different recognition contexts.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>orientation</code> - </dd></dl>
+</li>
+</ul>
+<a name="isDisposed()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isDisposed</h4>
+<pre>public&nbsp;boolean&nbsp;isDisposed()</pre>
+<div class="block">Returns true if image's internal buffers are disposed and cannot be used anymore.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>true if image's internal buffers are disposed and cannot be used anymore.</dd></dl>
 </li>
 </ul>
 <a name="convertToBitmap()">

@@ -159,9 +159,9 @@ implements android.os.Parcelable</pre>
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../com/microblink/results/ocr/OcrResult.html#OcrResult(com.microblink.results.ocr.OcrBlock[], java.lang.String, android.graphics.Matrix)">OcrResult</a></strong>(<a href="../../../../com/microblink/results/ocr/OcrBlock.html" title="class in com.microblink.results.ocr">OcrBlock</a>[]&nbsp;blocks,
-         java.lang.String&nbsp;resultName,
-         android.graphics.Matrix&nbsp;transformation)</code>&nbsp;</td>
+<td class="colOne"><code><strong><a href="../../../../com/microblink/results/ocr/OcrResult.html#OcrResult(long)">OcrResult</a></strong>(long&nbsp;nativePtr)</code>
+<div class="block">Constructor from native code</div>
+</td>
 </tr>
 </table>
 </li>
@@ -183,22 +183,26 @@ implements android.os.Parcelable</pre>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrResult.html#describeContents()">describeContents</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrResult.html#finalize()">finalize</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../com/microblink/results/ocr/OcrBlock.html" title="class in com.microblink.results.ocr">OcrBlock</a>[]</code></td>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrResult.html#getBlocks()">getBlocks</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrResult.html#getResultName()">getResultName</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>android.graphics.Matrix</code></td>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrResult.html#getTransformation()">getTransformation</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrResult.html#toString()">toString</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/results/ocr/OcrResult.html#writeToParcel(android.os.Parcel, int)">writeToParcel</a></strong>(android.os.Parcel&nbsp;dest,
              int&nbsp;flags)</code>&nbsp;</td>
@@ -209,7 +213,7 @@ implements android.os.Parcelable</pre>
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait</code></li>
+<code>clone, equals, getClass, hashCode, notify, notifyAll, wait, wait, wait</code></li>
 </ul>
 </li>
 </ul>
@@ -242,15 +246,14 @@ implements android.os.Parcelable</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="OcrResult(com.microblink.results.ocr.OcrBlock[], java.lang.String, android.graphics.Matrix)">
+<a name="OcrResult(long)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>OcrResult</h4>
-<pre>public&nbsp;OcrResult(<a href="../../../../com/microblink/results/ocr/OcrBlock.html" title="class in com.microblink.results.ocr">OcrBlock</a>[]&nbsp;blocks,
-         java.lang.String&nbsp;resultName,
-         android.graphics.Matrix&nbsp;transformation)</pre>
+<pre>public&nbsp;OcrResult(long&nbsp;nativePtr)</pre>
+<div class="block">Constructor from native code</div>
 </li>
 </ul>
 </li>
@@ -261,6 +264,21 @@ implements android.os.Parcelable</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="finalize()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>finalize</h4>
+<pre>protected&nbsp;void&nbsp;finalize()
+                 throws java.lang.Throwable</pre>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code>finalize</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.lang.Throwable</code></dd></dl>
+</li>
+</ul>
 <a name="getBlocks()">
 <!--   -->
 </a>

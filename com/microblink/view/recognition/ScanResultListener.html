@@ -33,7 +33,7 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../com/microblink/view/recognition/RecognizerViewEventListener.html" title="interface in com.microblink.view.recognition"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../com/microblink/view/recognition/RecognizerView.html" title="class in com.microblink.view.recognition"><span class="strong">Prev Class</span></a></li>
 <li>Next Class</li>
 </ul>
 <ul class="navList">
@@ -111,9 +111,8 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../com/microblink/view/recognition/ScanResultListener.html#onScanningDone(com.microblink.recognizers.BaseRecognitionResult[], RecognitionType)">onScanningDone</a></strong>(<a href="../../../../com/microblink/recognizers/BaseRecognitionResult.html" title="class in com.microblink.recognizers">BaseRecognitionResult</a>[]&nbsp;dataArray,
-              RecognitionType&nbsp;recognitionType)</code>
-<div class="block">This method is called when slip has been scanned.</div>
+<td class="colLast"><code><strong><a href="../../../../com/microblink/view/recognition/ScanResultListener.html#onScanningDone(com.microblink.recognizers.RecognitionResults)">onScanningDone</a></strong>(<a href="../../../../com/microblink/recognizers/RecognitionResults.html" title="class in com.microblink.recognizers">RecognitionResults</a>&nbsp;results)</code>
+<div class="block">This method is called when recognition is done.</div>
 </td>
 </tr>
 </table>
@@ -131,18 +130,15 @@
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="onScanningDone(com.microblink.recognizers.BaseRecognitionResult[], RecognitionType)">
+<a name="onScanningDone(com.microblink.recognizers.RecognitionResults)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>onScanningDone</h4>
-<pre>void&nbsp;onScanningDone(<a href="../../../../com/microblink/recognizers/BaseRecognitionResult.html" title="class in com.microblink.recognizers">BaseRecognitionResult</a>[]&nbsp;dataArray,
-                  RecognitionType&nbsp;recognitionType)</pre>
-<div class="block">This method is called when slip has been scanned. You can use this method
- to set the activity result and finish the activity, or you can call
- resumeScanning to perform one additional scan.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>dataArray</code> - List of slip scanning results.</dd><dd><code>recognitionType</code> - Type of the recognition.</dd></dl>
+<pre>void&nbsp;onScanningDone(<a href="../../../../com/microblink/recognizers/RecognitionResults.html" title="class in com.microblink.recognizers">RecognitionResults</a>&nbsp;results)</pre>
+<div class="block">This method is called when recognition is done.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>results</code> - Recognition results.</dd></dl>
 </li>
 </ul>
 </li>
@@ -170,7 +166,7 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../com/microblink/view/recognition/RecognizerViewEventListener.html" title="interface in com.microblink.view.recognition"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../com/microblink/view/recognition/RecognizerView.html" title="class in com.microblink.view.recognition"><span class="strong">Prev Class</span></a></li>
 <li>Next Class</li>
 </ul>
 <ul class="navList">

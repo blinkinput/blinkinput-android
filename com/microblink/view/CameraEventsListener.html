@@ -124,14 +124,8 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/view/CameraEventsListener.html#onNotSupported(com.microblink.view.NotSupportedReason)">onNotSupported</a></strong>(<a href="../../../com/microblink/view/NotSupportedReason.html" title="enum in com.microblink.view">NotSupportedReason</a>&nbsp;reason)</code>
-<div class="block">Called when camera or scanning is not supported on device.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/view/CameraEventsListener.html#onStartupError(java.lang.Throwable)">onStartupError</a></strong>(java.lang.Throwable&nbsp;exc)</code>
-<div class="block">Called when attempt to start the camera results in exception.</div>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/CameraEventsListener.html#onError(java.lang.Throwable)">onError</a></strong>(java.lang.Throwable&nbsp;exc)</code>
+<div class="block">Called when recognition results with exception.</div>
 </td>
 </tr>
 </table>
@@ -172,33 +166,24 @@
  After this method is called, frames will no longer arrive to ICameraCallback.</div>
 </li>
 </ul>
-<a name="onStartupError(java.lang.Throwable)">
+<a name="onError(java.lang.Throwable)">
 <!--   -->
 </a>
-<ul class="blockList">
+<ul class="blockListLast">
 <li class="blockList">
-<h4>onStartupError</h4>
-<pre>void&nbsp;onStartupError(java.lang.Throwable&nbsp;exc)</pre>
-<div class="block">Called when attempt to start the camera results in exception. Known exceptions
+<h4>onError</h4>
+<pre>void&nbsp;onError(java.lang.Throwable&nbsp;exc)</pre>
+<div class="block">Called when recognition results with exception. Known exceptions
  that can occur are following:
       * com.microblink.hardware.camera.CameraResolutionTooSmallException is thrown when largest possible camera preview
         resolution is not enough for making a successful scan
       * java.lang.UnsatisfiedLinkError is thrown when native library was not successfully loaded thus making scans impossible
       * com.microblink.recognition.RecognizerError is thrown when initialization or reinitialization of native recognizer fails
+      * com.microblink.recognition.FeatureNotSupportedException is thrown when scanning cannot be performed. The reason why
+        scanning cannot be perfomed can be obtained by calling getReason() method of thrown exception.
       * java.lang.Throwable is thrown in all other cases (for example when camera is not ready because it is used by other
         apps or some unknown error has occurred)</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>exc</code> - </dd></dl>
-</li>
-</ul>
-<a name="onNotSupported(com.microblink.view.NotSupportedReason)">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>onNotSupported</h4>
-<pre>void&nbsp;onNotSupported(<a href="../../../com/microblink/view/NotSupportedReason.html" title="enum in com.microblink.view">NotSupportedReason</a>&nbsp;reason)</pre>
-<div class="block">Called when camera or scanning is not supported on device. Reason for not being supported is given in 'reason' parameter.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>reason</code> - Reason describing why scanner is not supported on device.</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>exc</code> - Exception that occurred during recognition.</dd></dl>
 </li>
 </ul>
 </li>

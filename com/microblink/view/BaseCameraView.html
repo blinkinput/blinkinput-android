@@ -34,7 +34,7 @@
 <div class="subNav">
 <ul class="navList">
 <li>Prev Class</li>
-<li><a href="../../../com/microblink/view/BaseCameraView.CameraViewState.html" title="enum in com.microblink.view"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../com/microblink/view/BaseCameraView.BaseCameraListener.html" title="class in com.microblink.view"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?com/microblink/view/BaseCameraView.html" target="_top">Frames</a></li>
@@ -136,10 +136,22 @@ extends android.view.ViewGroup</pre>
 <th class="colLast" scope="col">Class and Description</th>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>protected class&nbsp;</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.BaseCameraListener.html" title="class in com.microblink.view">BaseCameraView.BaseCameraListener</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected class&nbsp;</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.BaseCameraViewEventsListener.html" title="class in com.microblink.view">BaseCameraView.BaseCameraViewEventsListener</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected class&nbsp;</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.BaseOrientationChangeListener.html" title="class in com.microblink.view">BaseCameraView.BaseOrientationChangeListener</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.CameraViewState.html" title="enum in com.microblink.view">BaseCameraView.CameraViewState</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.LayoutParams.html" title="class in com.microblink.view">BaseCameraView.LayoutParams</a></strong></code>
 <div class="block">Layout params for BaseCameraView.</div>
@@ -284,20 +296,36 @@ extends android.view.ViewGroup</pre>
        android.view.ViewGroup.LayoutParams&nbsp;params)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>protected boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#areCameraPixelsLandscapeLeft()">areCameraPixelsLandscapeLeft</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#changeConfiguration(android.content.res.Configuration)">changeConfiguration</a></strong>(android.content.res.Configuration&nbsp;newConfiguration)</code>
 <div class="block">This method changes the view's configuration.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#checkLayoutParams(android.view.ViewGroup.LayoutParams)">checkLayoutParams</a></strong>(android.view.ViewGroup.LayoutParams&nbsp;p)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#create()">create</a></strong>()</code>
 <div class="block">Creates the view and its subviews and initializes camera settings.</div>
 </td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected abstract CameraListener</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#createCameraListener()">createCameraListener</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected ICameraView.CameraViewEventListener</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#createCameraViewEventsListener()">createCameraViewEventsListener</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected OrientationChangeListener</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#createOrientationChangeListener()">createOrientationChangeListener</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
@@ -447,22 +475,6 @@ extends android.view.ViewGroup</pre>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#onAutofocusFailed()">onAutofocusFailed</a></strong>()</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#onAutofocusStarted(android.graphics.Rect[])">onAutofocusStarted</a></strong>(android.graphics.Rect[]&nbsp;areas)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#onAutofocusStopped(android.graphics.Rect[])">onAutofocusStopped</a></strong>(android.graphics.Rect[]&nbsp;areas)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#onCameraPinchEvent(float)">onCameraPinchEvent</a></strong>(float&nbsp;scale)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#onCameraPreviewStarted()">onCameraPreviewStarted</a></strong>()</code>&nbsp;</td>
 </tr>
@@ -471,17 +483,12 @@ extends android.view.ViewGroup</pre>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#onCameraPreviewStopped()">onCameraPreviewStopped</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#onCameraTapEvent(float, float)">onCameraTapEvent</a></strong>(float&nbsp;x,
-                float&nbsp;y)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code>protected ICameraManager</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#onCreateCameraManager(CameraSettings)">onCreateCameraManager</a></strong>(CameraSettings&nbsp;settings)</code>
 <div class="block">Called inside onCreate method.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#onLayout(boolean, int, int, int, int)">onLayout</a></strong>(boolean&nbsp;changed,
         int&nbsp;l,
@@ -489,14 +496,10 @@ extends android.view.ViewGroup</pre>
         int&nbsp;r,
         int&nbsp;b)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#onMeasure(int, int)">onMeasure</a></strong>(int&nbsp;widthMeasureSpec,
          int&nbsp;heightMeasureSpec)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/view/BaseCameraView.html#onOrientationChange(com.microblink.hardware.orientation.Orientation)">onOrientationChange</a></strong>(<a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;orientation)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
@@ -1058,25 +1061,6 @@ extends android.view.ViewGroup</pre>
 <pre>public&nbsp;void&nbsp;stop()</pre>
 </li>
 </ul>
-<a name="onCameraTapEvent(float, float)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>onCameraTapEvent</h4>
-<pre>public&nbsp;void&nbsp;onCameraTapEvent(float&nbsp;x,
-                    float&nbsp;y)</pre>
-</li>
-</ul>
-<a name="onCameraPinchEvent(float)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>onCameraPinchEvent</h4>
-<pre>public&nbsp;void&nbsp;onCameraPinchEvent(float&nbsp;scale)</pre>
-</li>
-</ul>
 <a name="onMeasure(int, int)">
 <!--   -->
 </a>
@@ -1176,15 +1160,6 @@ extends android.view.ViewGroup</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>on</code> - If true, torch will be turned on, if false, torch will be turned off.</dd><dd><code>successCallback</code> - callback that will receive information if torch was successfully put in desired state</dd></dl>
 </li>
 </ul>
-<a name="onOrientationChange(com.microblink.hardware.orientation.Orientation)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>onOrientationChange</h4>
-<pre>public&nbsp;void&nbsp;onOrientationChange(<a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;orientation)</pre>
-</li>
-</ul>
 <a name="getCurrentOrientation()">
 <!--   -->
 </a>
@@ -1192,6 +1167,15 @@ extends android.view.ViewGroup</pre>
 <li class="blockList">
 <h4>getCurrentOrientation</h4>
 <pre>public&nbsp;<a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;getCurrentOrientation()</pre>
+</li>
+</ul>
+<a name="areCameraPixelsLandscapeLeft()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>areCameraPixelsLandscapeLeft</h4>
+<pre>protected&nbsp;boolean&nbsp;areCameraPixelsLandscapeLeft()</pre>
 </li>
 </ul>
 <a name="getZoomLevel()">
@@ -1352,15 +1336,6 @@ extends android.view.ViewGroup</pre>
 <pre>protected final&nbsp;boolean&nbsp;isOrientationAllowed(<a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;orientation)</pre>
 </li>
 </ul>
-<a name="onAutofocusFailed()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>onAutofocusFailed</h4>
-<pre>public final&nbsp;void&nbsp;onAutofocusFailed()</pre>
-</li>
-</ul>
 <a name="setMeteringAreas(com.microblink.geometry.Rectangle[])">
 <!--   -->
 </a>
@@ -1374,24 +1349,6 @@ extends android.view.ViewGroup</pre>
 <dd><code>java.lang.NullPointerException</code> - if at least one element of meteringAreas is null</dd>
 <dd><code>java.lang.IllegalArgumentException</code> - if at least on element of meteringAreas has either zero surface or is not inside view</dd>
 <dd><code>java.lang.IllegalStateException</code> - if camera is not active</dd></dl>
-</li>
-</ul>
-<a name="onAutofocusStarted(android.graphics.Rect[])">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>onAutofocusStarted</h4>
-<pre>public final&nbsp;void&nbsp;onAutofocusStarted(android.graphics.Rect[]&nbsp;areas)</pre>
-</li>
-</ul>
-<a name="onAutofocusStopped(android.graphics.Rect[])">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>onAutofocusStopped</h4>
-<pre>public final&nbsp;void&nbsp;onAutofocusStopped(android.graphics.Rect[]&nbsp;areas)</pre>
 </li>
 </ul>
 <a name="setRotationAnimationDuration(int)">
@@ -1435,8 +1392,9 @@ extends android.view.ViewGroup</pre>
 <h4>setOrientationAllowedListener</h4>
 <pre>public&nbsp;void&nbsp;setOrientationAllowedListener(<a href="../../../com/microblink/view/OrientationAllowedListener.html" title="interface in com.microblink.view">OrientationAllowedListener</a>&nbsp;orientationAllowedListener)</pre>
 <div class="block">Sets the listener that will be asked if device orientation is allowed prior rotating
- rotatable view and native recognizer to that orientation.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>orientationAllowedListener</code> - </dd></dl>
+ rotatable view and native recognizer to that orientation. If you do not set this
+ listener, recognition will be performed only in orientation defined by current activity's
+ orientation.</div>
 </li>
 </ul>
 <a name="isCameraActive()">
@@ -1556,11 +1514,11 @@ extends android.view.ViewGroup</pre>
 <h4>setOptimizeCameraForNearScan</h4>
 <pre>public final&nbsp;void&nbsp;setOptimizeCameraForNearScan(boolean&nbsp;nearScan)</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>nearScan</code> - Flag which indicates camera parameters should be optimized for near object scanning.
- When camera parameters are optimized for near object scanning, macro focus mode will be
- preferred over autofocus mode. Thus, camera will have easier time focusing on to near objects,
- but might have harder time focusing on far objects. If you expect that most of your scans
- will be performed by holding the device very near the object, turn on that parameter. By default,
- this parameter is set to false.</dd></dl>
+                 When camera parameters are optimized for near object scanning, macro focus mode will be
+                 preferred over autofocus mode. Thus, camera will have easier time focusing on to near objects,
+                 but might have harder time focusing on far objects. If you expect that most of your scans
+                 will be performed by holding the device very near the object, turn on that parameter. By default,
+                 this parameter is set to false.</dd></dl>
 </li>
 </ul>
 <a name="setUseTextureViewForCameraDisplay(boolean)">
@@ -1653,10 +1611,28 @@ extends android.view.ViewGroup</pre>
 <dl><dt><span class="strong">Returns:</span></dt><dd>the rectangle that which part of camera frame is visible in view</dd></dl>
 </li>
 </ul>
+<a name="createOrientationChangeListener()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>createOrientationChangeListener</h4>
+<pre>protected&nbsp;OrientationChangeListener&nbsp;createOrientationChangeListener()</pre>
+</li>
+</ul>
+<a name="createCameraViewEventsListener()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>createCameraViewEventsListener</h4>
+<pre>protected&nbsp;ICameraView.CameraViewEventListener&nbsp;createCameraViewEventsListener()</pre>
+</li>
+</ul>
 <a name="requireAutofocusFeature()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>requireAutofocusFeature</h4>
 <pre>protected abstract&nbsp;boolean&nbsp;requireAutofocusFeature()</pre>
@@ -1666,6 +1642,15 @@ extends android.view.ViewGroup</pre>
  application will not start. If autofocus is not required, application
  will work even on devices without autofocus.</div>
 <dl><dt><span class="strong">Returns:</span></dt><dd>True if autofocus is required, otherwise false.</dd></dl>
+</li>
+</ul>
+<a name="createCameraListener()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>createCameraListener</h4>
+<pre>protected abstract&nbsp;CameraListener&nbsp;createCameraListener()</pre>
 </li>
 </ul>
 </li>
@@ -1694,7 +1679,7 @@ extends android.view.ViewGroup</pre>
 <div class="subNav">
 <ul class="navList">
 <li>Prev Class</li>
-<li><a href="../../../com/microblink/view/BaseCameraView.CameraViewState.html" title="enum in com.microblink.view"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../com/microblink/view/BaseCameraView.BaseCameraListener.html" title="class in com.microblink.view"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?com/microblink/view/BaseCameraView.html" target="_top">Frames</a></li>

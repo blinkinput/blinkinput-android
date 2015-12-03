@@ -113,13 +113,13 @@
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd>android.content.ComponentCallbacks, android.content.ComponentCallbacks2, android.view.KeyEvent.Callback, android.view.LayoutInflater.Factory, android.view.LayoutInflater.Factory2, android.view.View.OnCreateContextMenuListener, android.view.Window.Callback, <a href="../../../com/microblink/view/CameraEventsListener.html" title="interface in com.microblink.view">CameraEventsListener</a>, <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a></dd>
+<dd>android.content.ComponentCallbacks, android.content.ComponentCallbacks2, android.view.KeyEvent.Callback, android.view.LayoutInflater.Factory, android.view.LayoutInflater.Factory2, android.view.View.OnCreateContextMenuListener, android.view.Window.Callback, <a href="../../../com/microblink/metadata/MetadataListener.html" title="interface in com.microblink.metadata">MetadataListener</a>, <a href="../../../com/microblink/view/CameraEventsListener.html" title="interface in com.microblink.view">CameraEventsListener</a>, <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public class <span class="strong">BlinkOCRActivity</span>
 extends android.app.Activity
-implements <a href="../../../com/microblink/view/CameraEventsListener.html" title="interface in com.microblink.view">CameraEventsListener</a>, <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a></pre>
+implements <a href="../../../com/microblink/view/CameraEventsListener.html" title="interface in com.microblink.view">CameraEventsListener</a>, <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>, <a href="../../../com/microblink/metadata/MetadataListener.html" title="interface in com.microblink.metadata">MetadataListener</a></pre>
 <div class="block">Created by dodo on 21/05/15.</div>
 </li>
 </ul>
@@ -177,8 +177,8 @@ implements <a href="../../../com/microblink/view/CameraEventsListener.html" titl
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#EXTRAS_RECOGNITION_RESULT_LIST">EXTRAS_RECOGNITION_RESULT_LIST</a></strong></code>
-<div class="block">List of recognition results after recognition</div>
+<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#EXTRAS_RECOGNITION_RESULTS">EXTRAS_RECOGNITION_RESULTS</a></strong></code>
+<div class="block">Recognition results after recognition</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -327,13 +327,23 @@ implements <a href="../../../com/microblink/view/CameraEventsListener.html" titl
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onNotSupported(com.microblink.view.NotSupportedReason)">onNotSupported</a></strong>(<a href="../../../com/microblink/view/NotSupportedReason.html" title="enum in com.microblink.view">NotSupportedReason</a>&nbsp;reason)</code>
-<div class="block">Called when camera or scanning is not supported on device.</div>
+<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onError(java.lang.Throwable)">onError</a></strong>(java.lang.Throwable&nbsp;exc)</code>
+<div class="block">Called when recognition results with exception.</div>
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onMetadataAvailable(com.microblink.metadata.Metadata)">onMetadataAvailable</a></strong>(<a href="../../../com/microblink/metadata/Metadata.html" title="class in com.microblink.metadata">Metadata</a>&nbsp;metadata)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onPause()">onPause</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onRequestPermissionsResult(int, java.lang.String[], int[])">onRequestPermissionsResult</a></strong>(int&nbsp;requestCode,
+                          java.lang.String[]&nbsp;permissions,
+                          int[]&nbsp;grantResults)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
@@ -341,9 +351,8 @@ implements <a href="../../../com/microblink/view/CameraEventsListener.html" titl
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onScanningDone(com.microblink.recognizers.BaseRecognitionResult[], RecognitionType)">onScanningDone</a></strong>(<a href="../../../com/microblink/recognizers/BaseRecognitionResult.html" title="class in com.microblink.recognizers">BaseRecognitionResult</a>[]&nbsp;dataArray,
-              RecognitionType&nbsp;recognitionType)</code>
-<div class="block">This method is called when slip has been scanned.</div>
+<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onScanningDone(com.microblink.recognizers.RecognitionResults)">onScanningDone</a></strong>(<a href="../../../com/microblink/recognizers/RecognitionResults.html" title="class in com.microblink.recognizers">RecognitionResults</a>&nbsp;results)</code>
+<div class="block">This method is called when recognition is done.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -351,12 +360,6 @@ implements <a href="../../../com/microblink/view/CameraEventsListener.html" titl
 <td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onStart()">onStart</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onStartupError(java.lang.Throwable)">onStartupError</a></strong>(java.lang.Throwable&nbsp;exc)</code>
-<div class="block">Called when attempt to start the camera results in exception.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/activity/BlinkOCRActivity.html#onStop()">onStop</a></strong>()</code>&nbsp;</td>
 </tr>
@@ -366,7 +369,7 @@ implements <a href="../../../com/microblink/view/CameraEventsListener.html" titl
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;android.app.Activity</h3>
-<code>addContentView, closeContextMenu, closeOptionsMenu, createPendingResult, dismissDialog, dispatchGenericMotionEvent, dispatchKeyEvent, dispatchKeyShortcutEvent, dispatchPopulateAccessibilityEvent, dispatchTouchEvent, dispatchTrackballEvent, dump, findViewById, finish, finishActivity, finishActivityFromChild, finishAffinity, finishAfterTransition, finishAndRemoveTask, finishFromChild, getActionBar, getApplication, getCallingActivity, getCallingPackage, getChangingConfigurations, getComponentName, getContentScene, getContentTransitionManager, getCurrentFocus, getFragmentManager, getIntent, getLastNonConfigurationInstance, getLayoutInflater, getLoaderManager, getLocalClassName, getMediaController, getMenuInflater, getParent, getParentActivityIntent, getPreferences, getReferrer, getRequestedOrientation, getSearchEvent, getSystemService, getTaskId, getTitle, getTitleColor, getVoiceInteractor, getVolumeControlStream, getWindow, getWindowManager, hasWindowFocus, invalidateOptionsMenu, isChangingConfigurations, isChild, isDestroyed, isFinishing, isImmersive, isTaskRoot, isVoiceInteraction, isVoiceInteractionRoot, managedQuery, moveTaskToBack, navigateUpTo, navigateUpToFromChild, onActionModeFinished, onActionModeStarted, onActivityReenter, onActivityResult, onApplyThemeResource, onAttachedToWindow, onAttachFragment, onBackPressed, onChildTitleChanged, onContentChanged, onContextItemSelected, onContextMenuClosed, onCreate, onCreateContextMenu, onCreateDescription, onCreateDialog, onCreateDialog, onCreateNavigateUpTaskStack, onCreateOptionsMenu, onCreatePanelMenu, onCreatePanelView, onCreateThumbnail, onCreateView, onCreateView, onDetachedFromWindow, onEnterAnimationComplete, onGenericMotionEvent, onKeyDown, onKeyLongPress, onKeyMultiple, onKeyShortcut, onKeyUp, onLowMemory, onMenuItemSelected, onMenuOpened, onNavigateUp, onNavigateUpFromChild, onNewIntent, onOptionsItemSelected, onOptionsMenuClosed, onPanelClosed, onPostCreate, onPostCreate, onPostResume, onPrepareDialog, onPrepareDialog, onPrepareNavigateUpTaskStack, onPrepareOptionsMenu, onPreparePanel, onProvideAssistContent, onProvideAssistData, onProvideReferrer, onRequestPermissionsResult, onRestart, onRestoreInstanceState, onRestoreInstanceState, onRetainNonConfigurationInstance, onSaveInstanceState, onSaveInstanceState, onSearchRequested, onSearchRequested, onStateNotSaved, onTitleChanged, onTouchEvent, onTrackballEvent, onTrimMemory, onUserInteraction, onUserLeaveHint, onVisibleBehindCanceled, onWindowAttributesChanged, onWindowFocusChanged, onWindowStartingActionMode, onWindowStartingActionMode, openContextMenu, openOptionsMenu, overridePendingTransition, postponeEnterTransition, recreate, registerForContextMenu, releaseInstance, removeDialog, reportFullyDrawn, requestPermissions, requestVisibleBehind, requestWindowFeature, runOnUiThread, setActionBar, setContentTransitionManager, setContentView, setContentView, setContentView, setDefaultKeyMode, setEnterSharedElementCallback, setExitSharedElementCallback, setFeatureDrawable, setFeatureDrawableAlpha, setFeatureDrawableResource, setFeatureDrawableUri, setFinishOnTouchOutside, setImmersive, setIntent, setMediaController, setProgress, setProgressBarIndeterminate, setProgressBarIndeterminateVisibility, setProgressBarVisibility, setRequestedOrientation, setResult, setResult, setSecondaryProgress, setTaskDescription, setTitle, setTitle, setTitleColor, setVisible, setVolumeControlStream, shouldShowRequestPermissionRationale, shouldUpRecreateTask, showAssist, showDialog, showDialog, showLockTaskEscapeMessage, startActionMode, startActionMode, startActivities, startActivities, startActivity, startActivity, startActivityForResult, startActivityForResult, startActivityFromChild, startActivityFromChild, startActivityFromFragment, startActivityFromFragment, startActivityIfNeeded, startActivityIfNeeded, startIntentSender, startIntentSender, startIntentSenderForResult, startIntentSenderForResult, startIntentSenderFromChild, startIntentSenderFromChild, startLockTask, startManagingCursor, startNextMatchingActivity, startNextMatchingActivity, startPostponedEnterTransition, startSearch, stopLockTask, stopManagingCursor, takeKeyEvents, triggerSearch, unregisterForContextMenu</code></li>
+<code>addContentView, closeContextMenu, closeOptionsMenu, createPendingResult, dismissDialog, dispatchGenericMotionEvent, dispatchKeyEvent, dispatchKeyShortcutEvent, dispatchPopulateAccessibilityEvent, dispatchTouchEvent, dispatchTrackballEvent, dump, findViewById, finish, finishActivity, finishActivityFromChild, finishAffinity, finishAfterTransition, finishAndRemoveTask, finishFromChild, getActionBar, getApplication, getCallingActivity, getCallingPackage, getChangingConfigurations, getComponentName, getContentScene, getContentTransitionManager, getCurrentFocus, getFragmentManager, getIntent, getLastNonConfigurationInstance, getLayoutInflater, getLoaderManager, getLocalClassName, getMediaController, getMenuInflater, getParent, getParentActivityIntent, getPreferences, getReferrer, getRequestedOrientation, getSearchEvent, getSystemService, getTaskId, getTitle, getTitleColor, getVoiceInteractor, getVolumeControlStream, getWindow, getWindowManager, hasWindowFocus, invalidateOptionsMenu, isChangingConfigurations, isChild, isDestroyed, isFinishing, isImmersive, isTaskRoot, isVoiceInteraction, isVoiceInteractionRoot, managedQuery, moveTaskToBack, navigateUpTo, navigateUpToFromChild, onActionModeFinished, onActionModeStarted, onActivityReenter, onActivityResult, onApplyThemeResource, onAttachedToWindow, onAttachFragment, onBackPressed, onChildTitleChanged, onContentChanged, onContextItemSelected, onContextMenuClosed, onCreate, onCreateContextMenu, onCreateDescription, onCreateDialog, onCreateDialog, onCreateNavigateUpTaskStack, onCreateOptionsMenu, onCreatePanelMenu, onCreatePanelView, onCreateThumbnail, onCreateView, onCreateView, onDetachedFromWindow, onEnterAnimationComplete, onGenericMotionEvent, onKeyDown, onKeyLongPress, onKeyMultiple, onKeyShortcut, onKeyUp, onLowMemory, onMenuItemSelected, onMenuOpened, onNavigateUp, onNavigateUpFromChild, onNewIntent, onOptionsItemSelected, onOptionsMenuClosed, onPanelClosed, onPostCreate, onPostCreate, onPostResume, onPrepareDialog, onPrepareDialog, onPrepareNavigateUpTaskStack, onPrepareOptionsMenu, onPreparePanel, onProvideAssistContent, onProvideAssistData, onProvideReferrer, onRestart, onRestoreInstanceState, onRestoreInstanceState, onRetainNonConfigurationInstance, onSaveInstanceState, onSaveInstanceState, onSearchRequested, onSearchRequested, onStateNotSaved, onTitleChanged, onTouchEvent, onTrackballEvent, onTrimMemory, onUserInteraction, onUserLeaveHint, onVisibleBehindCanceled, onWindowAttributesChanged, onWindowFocusChanged, onWindowStartingActionMode, onWindowStartingActionMode, openContextMenu, openOptionsMenu, overridePendingTransition, postponeEnterTransition, recreate, registerForContextMenu, releaseInstance, removeDialog, reportFullyDrawn, requestPermissions, requestVisibleBehind, requestWindowFeature, runOnUiThread, setActionBar, setContentTransitionManager, setContentView, setContentView, setContentView, setDefaultKeyMode, setEnterSharedElementCallback, setExitSharedElementCallback, setFeatureDrawable, setFeatureDrawableAlpha, setFeatureDrawableResource, setFeatureDrawableUri, setFinishOnTouchOutside, setImmersive, setIntent, setMediaController, setProgress, setProgressBarIndeterminate, setProgressBarIndeterminateVisibility, setProgressBarVisibility, setRequestedOrientation, setResult, setResult, setSecondaryProgress, setTaskDescription, setTitle, setTitle, setTitleColor, setVisible, setVolumeControlStream, shouldShowRequestPermissionRationale, shouldUpRecreateTask, showAssist, showDialog, showDialog, showLockTaskEscapeMessage, startActionMode, startActionMode, startActivities, startActivities, startActivity, startActivity, startActivityForResult, startActivityForResult, startActivityFromChild, startActivityFromChild, startActivityFromFragment, startActivityFromFragment, startActivityIfNeeded, startActivityIfNeeded, startIntentSender, startIntentSender, startIntentSenderForResult, startIntentSenderForResult, startIntentSenderFromChild, startIntentSenderFromChild, startLockTask, startManagingCursor, startNextMatchingActivity, startNextMatchingActivity, startPostponedEnterTransition, startSearch, stopLockTask, stopManagingCursor, takeKeyEvents, triggerSearch, unregisterForContextMenu</code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_android.view.ContextThemeWrapper">
@@ -498,15 +501,15 @@ implements <a href="../../../com/microblink/view/CameraEventsListener.html" titl
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.microblink.activity.BlinkOCRActivity.EXTRAS_SHOW_OCR_RESULT_MODE">Constant Field Values</a></dd></dl>
 </li>
 </ul>
-<a name="EXTRAS_RECOGNITION_RESULT_LIST">
+<a name="EXTRAS_RECOGNITION_RESULTS">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>EXTRAS_RECOGNITION_RESULT_LIST</h4>
-<pre>public static final&nbsp;java.lang.String EXTRAS_RECOGNITION_RESULT_LIST</pre>
-<div class="block">List of recognition results after recognition</div>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.microblink.activity.BlinkOCRActivity.EXTRAS_RECOGNITION_RESULT_LIST">Constant Field Values</a></dd></dl>
+<h4>EXTRAS_RECOGNITION_RESULTS</h4>
+<pre>public static final&nbsp;java.lang.String EXTRAS_RECOGNITION_RESULTS</pre>
+<div class="block">Recognition results after recognition</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.microblink.activity.BlinkOCRActivity.EXTRAS_RECOGNITION_RESULTS">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="EXTRAS_IMAGE_LISTENER">
@@ -608,6 +611,19 @@ implements <a href="../../../com/microblink/view/CameraEventsListener.html" titl
 </dl>
 </li>
 </ul>
+<a name="onMetadataAvailable(com.microblink.metadata.Metadata)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onMetadataAvailable</h4>
+<pre>public&nbsp;void&nbsp;onMetadataAvailable(<a href="../../../com/microblink/metadata/Metadata.html" title="class in com.microblink.metadata">Metadata</a>&nbsp;metadata)</pre>
+<dl>
+<dt><strong>Specified by:</strong></dt>
+<dd><code><a href="../../../com/microblink/metadata/MetadataListener.html#onMetadataAvailable(com.microblink.metadata.Metadata)">onMetadataAvailable</a></code>&nbsp;in interface&nbsp;<code><a href="../../../com/microblink/metadata/MetadataListener.html" title="interface in com.microblink.metadata">MetadataListener</a></code></dd>
+</dl>
+</li>
+</ul>
 <a name="onStart()">
 <!--   -->
 </a>
@@ -631,6 +647,21 @@ implements <a href="../../../com/microblink/view/CameraEventsListener.html" titl
 <dl>
 <dt><strong>Overrides:</strong></dt>
 <dd><code>onResume</code>&nbsp;in class&nbsp;<code>android.app.Activity</code></dd>
+</dl>
+</li>
+</ul>
+<a name="onRequestPermissionsResult(int, java.lang.String[], int[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onRequestPermissionsResult</h4>
+<pre>public&nbsp;void&nbsp;onRequestPermissionsResult(int&nbsp;requestCode,
+                              java.lang.String[]&nbsp;permissions,
+                              int[]&nbsp;grantResults)</pre>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code>onRequestPermissionsResult</code>&nbsp;in class&nbsp;<code>android.app.Activity</code></dd>
 </dl>
 </li>
 </ul>
@@ -721,41 +752,28 @@ implements <a href="../../../com/microblink/view/CameraEventsListener.html" titl
 </dl>
 </li>
 </ul>
-<a name="onStartupError(java.lang.Throwable)">
+<a name="onError(java.lang.Throwable)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>onStartupError</h4>
-<pre>public&nbsp;void&nbsp;onStartupError(java.lang.Throwable&nbsp;exc)</pre>
-<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../com/microblink/view/CameraEventsListener.html#onStartupError(java.lang.Throwable)">CameraEventsListener</a></code></strong></div>
-<div class="block">Called when attempt to start the camera results in exception. Known exceptions
+<h4>onError</h4>
+<pre>public&nbsp;void&nbsp;onError(java.lang.Throwable&nbsp;exc)</pre>
+<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../com/microblink/view/CameraEventsListener.html#onError(java.lang.Throwable)">CameraEventsListener</a></code></strong></div>
+<div class="block">Called when recognition results with exception. Known exceptions
  that can occur are following:
       * com.microblink.hardware.camera.CameraResolutionTooSmallException is thrown when largest possible camera preview
         resolution is not enough for making a successful scan
       * java.lang.UnsatisfiedLinkError is thrown when native library was not successfully loaded thus making scans impossible
       * com.microblink.recognition.RecognizerError is thrown when initialization or reinitialization of native recognizer fails
+      * com.microblink.recognition.FeatureNotSupportedException is thrown when scanning cannot be performed. The reason why
+        scanning cannot be perfomed can be obtained by calling getReason() method of thrown exception.
       * java.lang.Throwable is thrown in all other cases (for example when camera is not ready because it is used by other
         apps or some unknown error has occurred)</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../com/microblink/view/CameraEventsListener.html#onStartupError(java.lang.Throwable)">onStartupError</a></code>&nbsp;in interface&nbsp;<code><a href="../../../com/microblink/view/CameraEventsListener.html" title="interface in com.microblink.view">CameraEventsListener</a></code></dd>
-</dl>
-</li>
-</ul>
-<a name="onNotSupported(com.microblink.view.NotSupportedReason)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>onNotSupported</h4>
-<pre>public&nbsp;void&nbsp;onNotSupported(<a href="../../../com/microblink/view/NotSupportedReason.html" title="enum in com.microblink.view">NotSupportedReason</a>&nbsp;reason)</pre>
-<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../com/microblink/view/CameraEventsListener.html#onNotSupported(com.microblink.view.NotSupportedReason)">CameraEventsListener</a></code></strong></div>
-<div class="block">Called when camera or scanning is not supported on device. Reason for not being supported is given in 'reason' parameter.</div>
-<dl>
-<dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../com/microblink/view/CameraEventsListener.html#onNotSupported(com.microblink.view.NotSupportedReason)">onNotSupported</a></code>&nbsp;in interface&nbsp;<code><a href="../../../com/microblink/view/CameraEventsListener.html" title="interface in com.microblink.view">CameraEventsListener</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>reason</code> - Reason describing why scanner is not supported on device.</dd></dl>
+<dd><code><a href="../../../com/microblink/view/CameraEventsListener.html#onError(java.lang.Throwable)">onError</a></code>&nbsp;in interface&nbsp;<code><a href="../../../com/microblink/view/CameraEventsListener.html" title="interface in com.microblink.view">CameraEventsListener</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>exc</code> - Exception that occurred during recognition.</dd></dl>
 </li>
 </ul>
 <a name="onAutofocusFailed()">
@@ -785,22 +803,19 @@ implements <a href="../../../com/microblink/view/CameraEventsListener.html" titl
 <pre>public&nbsp;void&nbsp;onAutofocusStopped(android.graphics.Rect[]&nbsp;focusAreas)</pre>
 </li>
 </ul>
-<a name="onScanningDone(com.microblink.recognizers.BaseRecognitionResult[], RecognitionType)">
+<a name="onScanningDone(com.microblink.recognizers.RecognitionResults)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>onScanningDone</h4>
-<pre>public&nbsp;void&nbsp;onScanningDone(<a href="../../../com/microblink/recognizers/BaseRecognitionResult.html" title="class in com.microblink.recognizers">BaseRecognitionResult</a>[]&nbsp;dataArray,
-                  RecognitionType&nbsp;recognitionType)</pre>
-<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../com/microblink/view/recognition/ScanResultListener.html#onScanningDone(com.microblink.recognizers.BaseRecognitionResult[], RecognitionType)">ScanResultListener</a></code></strong></div>
-<div class="block">This method is called when slip has been scanned. You can use this method
- to set the activity result and finish the activity, or you can call
- resumeScanning to perform one additional scan.</div>
+<pre>public&nbsp;void&nbsp;onScanningDone(<a href="../../../com/microblink/recognizers/RecognitionResults.html" title="class in com.microblink.recognizers">RecognitionResults</a>&nbsp;results)</pre>
+<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../com/microblink/view/recognition/ScanResultListener.html#onScanningDone(com.microblink.recognizers.RecognitionResults)">ScanResultListener</a></code></strong></div>
+<div class="block">This method is called when recognition is done.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../com/microblink/view/recognition/ScanResultListener.html#onScanningDone(com.microblink.recognizers.BaseRecognitionResult[], RecognitionType)">onScanningDone</a></code>&nbsp;in interface&nbsp;<code><a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>dataArray</code> - List of slip scanning results.</dd><dd><code>recognitionType</code> - Type of the recognition.</dd></dl>
+<dd><code><a href="../../../com/microblink/view/recognition/ScanResultListener.html#onScanningDone(com.microblink.recognizers.RecognitionResults)">onScanningDone</a></code>&nbsp;in interface&nbsp;<code><a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>results</code> - Recognition results.</dd></dl>
 </li>
 </ul>
 <a name="onBtnExitClicked(android.view.View)">

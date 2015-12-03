@@ -147,74 +147,85 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/directApi/Recognizer.html#initialize(android.content.Context, com.microblink.recognizers.settings.GenericRecognizerSettings, com.microblink.recognizers.settings.RecognizerSettings[], com.microblink.directApi.DirectApiErrorListener)">initialize</a></strong>(android.content.Context&nbsp;context,
-          <a href="../../../com/microblink/recognizers/settings/GenericRecognizerSettings.html" title="class in com.microblink.recognizers.settings">GenericRecognizerSettings</a>&nbsp;genericSettings,
-          <a href="../../../com/microblink/recognizers/settings/RecognizerSettings.html" title="class in com.microblink.recognizers.settings">RecognizerSettings</a>[]&nbsp;settings,
+<td class="colLast"><code><strong><a href="../../../com/microblink/directApi/Recognizer.html#initialize(android.content.Context, com.microblink.recognizers.settings.RecognitionSettings, com.microblink.directApi.DirectApiErrorListener)">initialize</a></strong>(android.content.Context&nbsp;context,
+          <a href="../../../com/microblink/recognizers/settings/RecognitionSettings.html" title="class in com.microblink.recognizers.settings">RecognitionSettings</a>&nbsp;recognitionSettings,
           <a href="../../../com/microblink/directApi/DirectApiErrorListener.html" title="interface in com.microblink.directApi">DirectApiErrorListener</a>&nbsp;errorListener)</code>
 <div class="block">Initialize native library for recognition and returns true if initialization has been performed.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/directApi/Recognizer.html#recognize(android.graphics.Bitmap, com.microblink.geometry.Rectangle, com.microblink.view.recognition.ScanResultListener)">recognize</a></strong>(android.graphics.Bitmap&nbsp;image,
-         <a href="../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a>&nbsp;scanRegion,
-         <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener)</code>
+<td class="colLast"><code><strong><a href="../../../com/microblink/directApi/Recognizer.html#recognizeBitmap(android.graphics.Bitmap, com.microblink.hardware.orientation.Orientation, com.microblink.geometry.Rectangle, com.microblink.view.recognition.ScanResultListener)">recognizeBitmap</a></strong>(android.graphics.Bitmap&nbsp;image,
+               <a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;imageOrientation,
+               <a href="../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a>&nbsp;scanRegion,
+               <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener)</code>
 <div class="block">Perform recognition of image represented as Android Bitmap.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/directApi/Recognizer.html#recognize(android.graphics.Bitmap, com.microblink.view.recognition.ScanResultListener)">recognize</a></strong>(android.graphics.Bitmap&nbsp;image,
-         <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener)</code>
+<td class="colLast"><code><strong><a href="../../../com/microblink/directApi/Recognizer.html#recognizeBitmap(android.graphics.Bitmap, com.microblink.hardware.orientation.Orientation, com.microblink.view.recognition.ScanResultListener)">recognizeBitmap</a></strong>(android.graphics.Bitmap&nbsp;image,
+               <a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;imageOrientation,
+               <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener)</code>
 <div class="block">Perform recognition of image represented as Android Bitmap.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/directApi/Recognizer.html#recognizeWithSettings(android.graphics.Bitmap, com.microblink.geometry.Rectangle, com.microblink.view.recognition.ScanResultListener, com.microblink.recognizers.settings.RecognizerSettings[], com.microblink.recognizers.settings.GenericRecognizerSettings)">recognizeWithSettings</a></strong>(android.graphics.Bitmap&nbsp;image,
-                     <a href="../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a>&nbsp;scanRegion,
-                     <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener,
-                     <a href="../../../com/microblink/recognizers/settings/RecognizerSettings.html" title="class in com.microblink.recognizers.settings">RecognizerSettings</a>[]&nbsp;settings,
-                     <a href="../../../com/microblink/recognizers/settings/GenericRecognizerSettings.html" title="class in com.microblink.recognizers.settings">GenericRecognizerSettings</a>&nbsp;genericSettings)</code>
+<td class="colLast"><code><strong><a href="../../../com/microblink/directApi/Recognizer.html#recognizeBitmapWithSettings(android.graphics.Bitmap, com.microblink.hardware.orientation.Orientation, com.microblink.geometry.Rectangle, com.microblink.view.recognition.ScanResultListener, com.microblink.recognizers.settings.RecognitionSettings)">recognizeBitmapWithSettings</a></strong>(android.graphics.Bitmap&nbsp;image,
+                           <a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;imageOrientation,
+                           <a href="../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a>&nbsp;scanRegion,
+                           <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener,
+                           <a href="../../../com/microblink/recognizers/settings/RecognitionSettings.html" title="class in com.microblink.recognizers.settings">RecognitionSettings</a>&nbsp;recognitionSettings)</code>
 <div class="block">Perform recognition of image represented as Android Bitmap.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/directApi/Recognizer.html#recognizeWithSettings(android.graphics.Bitmap, com.microblink.view.recognition.ScanResultListener, com.microblink.recognizers.settings.RecognizerSettings[], com.microblink.recognizers.settings.GenericRecognizerSettings)">recognizeWithSettings</a></strong>(android.graphics.Bitmap&nbsp;image,
-                     <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener,
-                     <a href="../../../com/microblink/recognizers/settings/RecognizerSettings.html" title="class in com.microblink.recognizers.settings">RecognizerSettings</a>[]&nbsp;settings,
-                     <a href="../../../com/microblink/recognizers/settings/GenericRecognizerSettings.html" title="class in com.microblink.recognizers.settings">GenericRecognizerSettings</a>&nbsp;genericSettings)</code>
+<td class="colLast"><code><strong><a href="../../../com/microblink/directApi/Recognizer.html#recognizeBitmapWithSettings(android.graphics.Bitmap, com.microblink.hardware.orientation.Orientation, com.microblink.view.recognition.ScanResultListener, com.microblink.recognizers.settings.RecognitionSettings)">recognizeBitmapWithSettings</a></strong>(android.graphics.Bitmap&nbsp;image,
+                           <a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;imageOrientation,
+                           <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener,
+                           <a href="../../../com/microblink/recognizers/settings/RecognitionSettings.html" title="class in com.microblink.recognizers.settings">RecognitionSettings</a>&nbsp;recognitionSettings)</code>
 <div class="block">Perform recognition of image represented as Android Bitmap.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/directApi/Recognizer.html#setImageListener(com.microblink.image.ImageListener)">setImageListener</a></strong>(<a href="../../../com/microblink/image/ImageListener.html" title="interface in com.microblink.image">ImageListener</a>&nbsp;imageListener)</code>
-<div class="block">Sets the listener that will obtain images that are being processed.</div>
+<td class="colLast"><code><strong><a href="../../../com/microblink/directApi/Recognizer.html#recognizeImage(com.microblink.image.Image, com.microblink.view.recognition.ScanResultListener)">recognizeImage</a></strong>(<a href="../../../com/microblink/image/Image.html" title="class in com.microblink.image">Image</a>&nbsp;image,
+              <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener)</code>
+<div class="block">Use this method to directly recognize Image object obtained via MetadataListener while recognizer is active.</div>
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/directApi/Recognizer.html#recognizeImageWithSettings(com.microblink.image.Image, com.microblink.view.recognition.ScanResultListener, com.microblink.recognizers.settings.RecognitionSettings)">recognizeImageWithSettings</a></strong>(<a href="../../../com/microblink/image/Image.html" title="class in com.microblink.image">Image</a>&nbsp;image,
+                          <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener,
+                          <a href="../../../com/microblink/recognizers/settings/RecognitionSettings.html" title="class in com.microblink.recognizers.settings">RecognitionSettings</a>&nbsp;recognitionSettings)</code>
+<div class="block">Use this method to directly recognize Image object obtained via MetadataListener while recognizer is active.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/directApi/Recognizer.html#setLicenseKey(android.content.Context, java.lang.String)">setLicenseKey</a></strong>(android.content.Context&nbsp;context,
              java.lang.String&nbsp;licenseKey)</code>
 <div class="block">Sets the license key required for unlocking the library.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/directApi/Recognizer.html#setLicenseKey(java.lang.String, java.lang.String)">setLicenseKey</a></strong>(java.lang.String&nbsp;licenseKey,
              java.lang.String&nbsp;licensee)</code>
 <div class="block">Sets the license key required for unlocking the library.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/directApi/Recognizer.html#setOrientation(com.microblink.hardware.orientation.Orientation)">setOrientation</a></strong>(<a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;imageOrientation)</code>
-<div class="block">Define orientation of the image that will be recognized next.</div>
+<td class="colLast"><code><strong><a href="../../../com/microblink/directApi/Recognizer.html#setMetadataListener(com.microblink.metadata.MetadataListener, com.microblink.metadata.MetadataSettings)">setMetadataListener</a></strong>(<a href="../../../com/microblink/metadata/MetadataListener.html" title="interface in com.microblink.metadata">MetadataListener</a>&nbsp;metadataListener,
+                   <a href="../../../com/microblink/metadata/MetadataSettings.html" title="class in com.microblink.metadata">MetadataSettings</a>&nbsp;metadataSettings)</code>
+<div class="block">Sets the listener that will obtain metadata that is being processed.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/directApi/Recognizer.html#terminate()">terminate</a></strong>()</code>
 <div class="block">Terminates the native library.</div>
@@ -248,9 +259,12 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getSingletonInstance</h4>
-<pre>public static&nbsp;<a href="../../../com/microblink/directApi/Recognizer.html" title="class in com.microblink.directApi">Recognizer</a>&nbsp;getSingletonInstance()</pre>
+<pre>public static final&nbsp;<a href="../../../com/microblink/directApi/Recognizer.html" title="class in com.microblink.directApi">Recognizer</a>&nbsp;getSingletonInstance()
+                                             throws FeatureNotSupportedException</pre>
 <div class="block">Returns the recognizer singleton.</div>
-<dl><dt><span class="strong">Returns:</span></dt><dd>the recognizer singleton.</dd></dl>
+<dl><dt><span class="strong">Returns:</span></dt><dd>the recognizer singleton.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>FeatureNotSupportedException</code></dd></dl>
 </li>
 </ul>
 <a name="getCurrentState()">
@@ -259,7 +273,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getCurrentState</h4>
-<pre>public&nbsp;<a href="../../../com/microblink/directApi/Recognizer.State.html" title="enum in com.microblink.directApi">Recognizer.State</a>&nbsp;getCurrentState()</pre>
+<pre>public final&nbsp;<a href="../../../com/microblink/directApi/Recognizer.State.html" title="enum in com.microblink.directApi">Recognizer.State</a>&nbsp;getCurrentState()</pre>
 <div class="block">Returns the current state of the recognizer.</div>
 <dl><dt><span class="strong">Returns:</span></dt><dd>the current state of the recognizer.</dd></dl>
 </li>
@@ -270,9 +284,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setLicenseKey</h4>
-<pre>public&nbsp;void&nbsp;setLicenseKey(android.content.Context&nbsp;context,
+<pre>public final&nbsp;void&nbsp;setLicenseKey(android.content.Context&nbsp;context,
                  java.lang.String&nbsp;licenseKey)
-                   throws <a href="../../../com/microblink/recognition/InvalidLicenceKeyException.html" title="class in com.microblink.recognition">InvalidLicenceKeyException</a></pre>
+                         throws <a href="../../../com/microblink/recognition/InvalidLicenceKeyException.html" title="class in com.microblink.recognition">InvalidLicenceKeyException</a></pre>
 <div class="block">Sets the license key required for unlocking the library.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>context</code> - Application context used for license checking.</dd><dd><code>licenseKey</code> - License key.</dd>
 <dt><span class="strong">Throws:</span></dt>
@@ -286,9 +300,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setLicenseKey</h4>
-<pre>public&nbsp;void&nbsp;setLicenseKey(java.lang.String&nbsp;licenseKey,
+<pre>public final&nbsp;void&nbsp;setLicenseKey(java.lang.String&nbsp;licenseKey,
                  java.lang.String&nbsp;licensee)
-                   throws <a href="../../../com/microblink/recognition/InvalidLicenceKeyException.html" title="class in com.microblink.recognition">InvalidLicenceKeyException</a></pre>
+                         throws <a href="../../../com/microblink/recognition/InvalidLicenceKeyException.html" title="class in com.microblink.recognition">InvalidLicenceKeyException</a></pre>
 <div class="block">Sets the license key required for unlocking the library. Use this method when having license
  key that allows usage of library in multiple different applications (i.e. license key not bound
  to application's package name).</div>
@@ -298,123 +312,152 @@ extends java.lang.Object</pre>
 <dd><code><a href="../../../com/microblink/recognition/InvalidLicenceKeyException.html" title="class in com.microblink.recognition">InvalidLicenceKeyException</a></code> - if licence key is invalid</dd></dl>
 </li>
 </ul>
-<a name="initialize(android.content.Context, com.microblink.recognizers.settings.GenericRecognizerSettings, com.microblink.recognizers.settings.RecognizerSettings[], com.microblink.directApi.DirectApiErrorListener)">
+<a name="initialize(android.content.Context, com.microblink.recognizers.settings.RecognitionSettings, com.microblink.directApi.DirectApiErrorListener)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>initialize</h4>
-<pre>public&nbsp;void&nbsp;initialize(android.content.Context&nbsp;context,
-              <a href="../../../com/microblink/recognizers/settings/GenericRecognizerSettings.html" title="class in com.microblink.recognizers.settings">GenericRecognizerSettings</a>&nbsp;genericSettings,
-              <a href="../../../com/microblink/recognizers/settings/RecognizerSettings.html" title="class in com.microblink.recognizers.settings">RecognizerSettings</a>[]&nbsp;settings,
+<pre>public final&nbsp;void&nbsp;initialize(android.content.Context&nbsp;context,
+              <a href="../../../com/microblink/recognizers/settings/RecognitionSettings.html" title="class in com.microblink.recognizers.settings">RecognitionSettings</a>&nbsp;recognitionSettings,
               <a href="../../../com/microblink/directApi/DirectApiErrorListener.html" title="interface in com.microblink.directApi">DirectApiErrorListener</a>&nbsp;errorListener)</pre>
 <div class="block">Initialize native library for recognition and returns true if initialization has been performed.
-
+ <p/>
  Please note that native library is singleton, i.e. it is used from both this DirectAPI recognizer
  and RecognizerView. So if both RecognizerView and DirectAPI try to initialize the native library
  at the same time, the following will happen:
-  - if first initialized from RecognizerView, this method will return false, indicating failure to
-    initialize DirectAPI
-  - if first initialized from here, method will return true, HOWEVER if after that native library
-    is initialized again from RecognizerView, **RecognizerView's settings will be applied**, in that
-    case calling recognize method will use RecognizerView's settings - to prevent that, you must use
-    recognizeWithSettings method
+ - if first initialized from RecognizerView, this method will return false, indicating failure to
+ initialize DirectAPI
+ - if first initialized from here, method will return true, HOWEVER if after that native library
+ is initialized again from RecognizerView, **RecognizerView's settings will be applied**, in that
+ case calling recognize method will use RecognizerView's settings - to prevent that, you must use
+ recognizeWithSettings method
  All in all, RecognizerView's settings always have priority over DirectAPI's settings.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>context</code> - Application context used for loading required resources.</dd><dd><code>genericSettings</code> - Generic settings applied to all recognizers and whole recognition process.</dd><dd><code>settings</code> - Array of enabled recognizer settings that define the scanning process.</dd><dd><code>errorListener</code> - Listener that will be notified of any error in native library in background thread.</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>context</code> - Application context used for loading required resources.</dd><dd><code>recognitionSettings</code> - Recognition settings defining a recognition process.</dd><dd><code>errorListener</code> - Listener that will be notified of any error in native library in background thread.</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code>java.lang.IllegalStateException</code> - if recognizer is already initialized</dd>
 <dd><code>java.lang.NullPointerException</code> - if context, settings array or errorListener is null</dd></dl>
 </li>
 </ul>
-<a name="setOrientation(com.microblink.hardware.orientation.Orientation)">
+<a name="recognizeBitmap(android.graphics.Bitmap, com.microblink.hardware.orientation.Orientation, com.microblink.view.recognition.ScanResultListener)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setOrientation</h4>
-<pre>public&nbsp;void&nbsp;setOrientation(<a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;imageOrientation)</pre>
-<div class="block">Define orientation of the image that will be recognized next. This is required for
- recognizers that cannot automatically detect image orientation.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>imageOrientation</code> - Orientation of the image expressed as orientation of the device when image was taken.</dd></dl>
-</li>
-</ul>
-<a name="recognize(android.graphics.Bitmap, com.microblink.view.recognition.ScanResultListener)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>recognize</h4>
-<pre>public&nbsp;void&nbsp;recognize(android.graphics.Bitmap&nbsp;image,
-             <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener)</pre>
+<h4>recognizeBitmap</h4>
+<pre>public final&nbsp;void&nbsp;recognizeBitmap(android.graphics.Bitmap&nbsp;image,
+                   <a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;imageOrientation,
+                   <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener)</pre>
 <div class="block">Perform recognition of image represented as Android Bitmap.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>image</code> - Image that needs to be recognized.</dd><dd><code>resultListener</code> - Result listener that will handle recognition done event.</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>image</code> - Image that needs to be recognized.</dd><dd><code>imageOrientation</code> - Orientation of the bitmap image.</dd><dd><code>resultListener</code> - Result listener that will handle recognition done event.</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code>java.lang.IllegalStateException</code> - if recognizer is not initialized or is currently working</dd>
 <dd><code>java.lang.NullPointerException</code> - if given null scan result listener</dd></dl>
 </li>
 </ul>
-<a name="recognize(android.graphics.Bitmap, com.microblink.geometry.Rectangle, com.microblink.view.recognition.ScanResultListener)">
+<a name="recognizeBitmap(android.graphics.Bitmap, com.microblink.hardware.orientation.Orientation, com.microblink.geometry.Rectangle, com.microblink.view.recognition.ScanResultListener)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>recognize</h4>
-<pre>public&nbsp;void&nbsp;recognize(android.graphics.Bitmap&nbsp;image,
-             <a href="../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a>&nbsp;scanRegion,
-             <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener)</pre>
+<h4>recognizeBitmap</h4>
+<pre>public final&nbsp;void&nbsp;recognizeBitmap(android.graphics.Bitmap&nbsp;image,
+                   <a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;imageOrientation,
+                   <a href="../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a>&nbsp;scanRegion,
+                   <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener)</pre>
 <div class="block">Perform recognition of image represented as Android Bitmap.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>image</code> - Image that needs to be recognized.</dd><dd><code>scanRegion</code> - Region of image that needs to be recognized. Rectangle is given as percentages
-                   of image size - x coordinate and width are percentages of image width and y coordinate
-                   and height are percentages of image height. Therefore, rectangle(0.f, 0.f, 1.f, 1.f)
-                   represents the whole image, whilst rectangle(0.5f, 0.f, 0.5f, 1.f) represents the
-                   right half of the image.</dd><dd><code>resultListener</code> - Result listener that will handle recognition done event.</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>image</code> - Image that needs to be recognized.</dd><dd><code>imageOrientation</code> - Orientation of the bitmap image.</dd><dd><code>scanRegion</code> - Region of image that needs to be recognized. Rectangle is given as percentages
+                         of image size - x coordinate and width are percentages of image width and y coordinate
+                         and height are percentages of image height. Therefore, rectangle(0.f, 0.f, 1.f, 1.f)
+                         represents the whole image, whilst rectangle(0.5f, 0.f, 0.5f, 1.f) represents the
+                         right half of the image.</dd><dd><code>resultListener</code> - Result listener that will handle recognition done event.</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code>java.lang.IllegalStateException</code> - if recognizer is not initialized or is currently working</dd>
 <dd><code>java.lang.NullPointerException</code> - if given null scan result listener</dd></dl>
 </li>
 </ul>
-<a name="recognizeWithSettings(android.graphics.Bitmap, com.microblink.view.recognition.ScanResultListener, com.microblink.recognizers.settings.RecognizerSettings[], com.microblink.recognizers.settings.GenericRecognizerSettings)">
+<a name="recognizeBitmapWithSettings(android.graphics.Bitmap, com.microblink.hardware.orientation.Orientation, com.microblink.view.recognition.ScanResultListener, com.microblink.recognizers.settings.RecognitionSettings)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>recognizeWithSettings</h4>
-<pre>public&nbsp;void&nbsp;recognizeWithSettings(android.graphics.Bitmap&nbsp;image,
-                         <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener,
-                         <a href="../../../com/microblink/recognizers/settings/RecognizerSettings.html" title="class in com.microblink.recognizers.settings">RecognizerSettings</a>[]&nbsp;settings,
-                         <a href="../../../com/microblink/recognizers/settings/GenericRecognizerSettings.html" title="class in com.microblink.recognizers.settings">GenericRecognizerSettings</a>&nbsp;genericSettings)</pre>
+<h4>recognizeBitmapWithSettings</h4>
+<pre>public final&nbsp;void&nbsp;recognizeBitmapWithSettings(android.graphics.Bitmap&nbsp;image,
+                               <a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;imageOrientation,
+                               <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener,
+                               <a href="../../../com/microblink/recognizers/settings/RecognitionSettings.html" title="class in com.microblink.recognizers.settings">RecognitionSettings</a>&nbsp;recognitionSettings)</pre>
 <div class="block">Perform recognition of image represented as Android Bitmap.
-
+ <p/>
  Unlike method recognize, this method will apply given settings for recognition of current image. This may be much
  slower than using method recognize, but it is the only option if RecognizerView was initialized after this Recognizer.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>image</code> - Image that needs to be recognized.</dd><dd><code>resultListener</code> - Result listener that will handle recognition done event.</dd><dd><code>settings</code> - Array of enabled recognizer settings that define the scanning process only during this method call.</dd><dd><code>genericSettings</code> - Generic settings applied to all recognizers and whole recognition process.</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>image</code> - Image that needs to be recognized.</dd><dd><code>imageOrientation</code> - Orientation of the bitmap image.</dd><dd><code>resultListener</code> - Result listener that will handle recognition done event.</dd><dd><code>recognitionSettings</code> - Recognition settings that will be used to perform this recognition.</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code>java.lang.IllegalStateException</code> - if recognizer is not initialized or is currently working</dd>
 <dd><code>java.lang.NullPointerException</code> - if given null scan result listener</dd></dl>
 </li>
 </ul>
-<a name="recognizeWithSettings(android.graphics.Bitmap, com.microblink.geometry.Rectangle, com.microblink.view.recognition.ScanResultListener, com.microblink.recognizers.settings.RecognizerSettings[], com.microblink.recognizers.settings.GenericRecognizerSettings)">
+<a name="recognizeBitmapWithSettings(android.graphics.Bitmap, com.microblink.hardware.orientation.Orientation, com.microblink.geometry.Rectangle, com.microblink.view.recognition.ScanResultListener, com.microblink.recognizers.settings.RecognitionSettings)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>recognizeWithSettings</h4>
-<pre>public&nbsp;void&nbsp;recognizeWithSettings(android.graphics.Bitmap&nbsp;image,
-                         <a href="../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a>&nbsp;scanRegion,
-                         <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener,
-                         <a href="../../../com/microblink/recognizers/settings/RecognizerSettings.html" title="class in com.microblink.recognizers.settings">RecognizerSettings</a>[]&nbsp;settings,
-                         <a href="../../../com/microblink/recognizers/settings/GenericRecognizerSettings.html" title="class in com.microblink.recognizers.settings">GenericRecognizerSettings</a>&nbsp;genericSettings)</pre>
+<h4>recognizeBitmapWithSettings</h4>
+<pre>public final&nbsp;void&nbsp;recognizeBitmapWithSettings(android.graphics.Bitmap&nbsp;image,
+                               <a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;imageOrientation,
+                               <a href="../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a>&nbsp;scanRegion,
+                               <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener,
+                               <a href="../../../com/microblink/recognizers/settings/RecognitionSettings.html" title="class in com.microblink.recognizers.settings">RecognitionSettings</a>&nbsp;recognitionSettings)</pre>
 <div class="block">Perform recognition of image represented as Android Bitmap.
-
+ <p/>
  Unlike method recognize, this method will apply given settings for recognition of current image. This may be much
  slower than using method recognize, but it is the only option if RecognizerView was initialized after this Recognizer.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>image</code> - Image that needs to be recognized.</dd><dd><code>scanRegion</code> - Region of image that needs to be recognized. Rectangle is given as percentages
-                   of image size - x coordinate and width are percentages of image width and y coordinate
-                   and height are percentages of image height. Therefore, rectangle(0.f, 0.f, 1.f, 1.f)
-                   represents the whole image, whilst rectangle(0.5f, 0.f, 0.5f, 1.f) represents the
-                   right half of the image.</dd><dd><code>resultListener</code> - Result listener that will handle recognition done event.</dd><dd><code>settings</code> - Array of enabled recognizer settings that define the scanning process only during this method call.</dd><dd><code>genericSettings</code> - Generic settings applied to all recognizers and whole recognition process.</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>image</code> - Image that needs to be recognized.</dd><dd><code>imageOrientation</code> - Orientation of the bitmap image.</dd><dd><code>scanRegion</code> - Region of image that needs to be recognized. Rectangle is given as percentages
+                            of image size - x coordinate and width are percentages of image width and y coordinate
+                            and height are percentages of image height. Therefore, rectangle(0.f, 0.f, 1.f, 1.f)
+                            represents the whole image, whilst rectangle(0.5f, 0.f, 0.5f, 1.f) represents the
+                            right half of the image.</dd><dd><code>resultListener</code> - Result listener that will handle recognition done event.</dd><dd><code>recognitionSettings</code> - Recognition settings that will be used to perform this recognition.</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code>java.lang.IllegalStateException</code> - if recognizer is not initialized or is currently working</dd>
+<dd><code>java.lang.NullPointerException</code> - if given null scan result listener</dd></dl>
+</li>
+</ul>
+<a name="recognizeImage(com.microblink.image.Image, com.microblink.view.recognition.ScanResultListener)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>recognizeImage</h4>
+<pre>public final&nbsp;void&nbsp;recognizeImage(<a href="../../../com/microblink/image/Image.html" title="class in com.microblink.image">Image</a>&nbsp;image,
+                  <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener)</pre>
+<div class="block">Use this method to directly recognize Image object obtained via MetadataListener while recognizer is active.
+
+ Recognition will be performed with same settings that were used for initialization
+ of recognizer singleton.
+
+ Please note that Image object will be disposed as soon as onMetadataAvailable method ends. You must clone
+ the Image object by calling its clone() method to ensure Image lives long enough to be processed.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>image</code> - Image to be processed (usually obtained from ImageListener)</dd><dd><code>resultListener</code> - Listener that will be invoked with recognition result.</dd></dl>
+</li>
+</ul>
+<a name="recognizeImageWithSettings(com.microblink.image.Image, com.microblink.view.recognition.ScanResultListener, com.microblink.recognizers.settings.RecognitionSettings)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>recognizeImageWithSettings</h4>
+<pre>public final&nbsp;void&nbsp;recognizeImageWithSettings(<a href="../../../com/microblink/image/Image.html" title="class in com.microblink.image">Image</a>&nbsp;image,
+                              <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener,
+                              <a href="../../../com/microblink/recognizers/settings/RecognitionSettings.html" title="class in com.microblink.recognizers.settings">RecognitionSettings</a>&nbsp;recognitionSettings)</pre>
+<div class="block">Use this method to directly recognize Image object obtained via MetadataListener while recognizer is active.
+ Please note that Image object will be disposed as soon as onMetadataAvailable method ends. You must clone
+ the Image object by calling its clone() method to ensure Image lives long enough to be processed.
+ Recognition will be performed with given recognition settings.
+
+ If error happens due to illegal settings, onError will be invoked of the
+ DirectApiErrorListener that was set in initialize method.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>image</code> - Image to be processed (usually obtained from MetadataListener).</dd><dd><code>resultListener</code> - Listener that will be invoked with recognition result.</dd><dd><code>recognitionSettings</code> - Recognition settings that will be used to perform this recognition.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.lang.IllegalStateException</code> - if recognizer is not initialized or is currently working or Image object is already disposed</dd>
 <dd><code>java.lang.NullPointerException</code> - if given null scan result listener</dd></dl>
 </li>
 </ul>
@@ -428,15 +471,16 @@ extends java.lang.Object</pre>
 <div class="block">Terminates the native library.</div>
 </li>
 </ul>
-<a name="setImageListener(com.microblink.image.ImageListener)">
+<a name="setMetadataListener(com.microblink.metadata.MetadataListener, com.microblink.metadata.MetadataSettings)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>setImageListener</h4>
-<pre>public&nbsp;void&nbsp;setImageListener(<a href="../../../com/microblink/image/ImageListener.html" title="interface in com.microblink.image">ImageListener</a>&nbsp;imageListener)</pre>
-<div class="block">Sets the listener that will obtain images that are being processed.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>imageListener</code> - listener that will obtain images that are being processed.</dd></dl>
+<h4>setMetadataListener</h4>
+<pre>public&nbsp;void&nbsp;setMetadataListener(<a href="../../../com/microblink/metadata/MetadataListener.html" title="interface in com.microblink.metadata">MetadataListener</a>&nbsp;metadataListener,
+                       <a href="../../../com/microblink/metadata/MetadataSettings.html" title="class in com.microblink.metadata">MetadataSettings</a>&nbsp;metadataSettings)</pre>
+<div class="block">Sets the listener that will obtain metadata that is being processed.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>metadataListener</code> - metadata listener that will be notified about available metadata</dd><dd><code>metadataSettings</code> - settings defining which metadata should be reported to metadata listener</dd></dl>
 </li>
 </ul>
 </li>

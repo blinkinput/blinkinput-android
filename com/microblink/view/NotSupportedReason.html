@@ -154,6 +154,11 @@ extends java.lang.Enum&lt;<a href="../../../com/microblink/view/NotSupportedReas
 <div class="block">Indicates that current version of android is not supported.</div>
 </td>
 </tr>
+<tr class="altColor">
+<td class="colOne"><code><strong><a href="../../../com/microblink/view/NotSupportedReason.html#UNSUPPORTED_PROCESSOR_ARCHITECTURE">UNSUPPORTED_PROCESSOR_ARCHITECTURE</a></strong></code>
+<div class="block">Indicates that device has a processor that is not supported (for example ARMv7 processor without NEON SIMD instruction support)</div>
+</td>
+</tr>
 </table>
 </li>
 </ul>
@@ -170,12 +175,16 @@ extends java.lang.Enum&lt;<a href="../../../com/microblink/view/NotSupportedReas
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/view/NotSupportedReason.html#getDescription()">getDescription</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>static <a href="../../../com/microblink/view/NotSupportedReason.html" title="enum in com.microblink.view">NotSupportedReason</a></code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/NotSupportedReason.html#valueOf(java.lang.String)">valueOf</a></strong>(java.lang.String&nbsp;name)</code>
 <div class="block">Returns the enum constant of this type with the specified name.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static <a href="../../../com/microblink/view/NotSupportedReason.html" title="enum in com.microblink.view">NotSupportedReason</a>[]</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/view/NotSupportedReason.html#values()">values</a></strong>()</code>
 <div class="block">Returns an array containing the constants of this enum type, in
@@ -265,12 +274,22 @@ the order they are declared.</div>
 <a name="CUSTOM_UI_FORBIDDEN">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>CUSTOM_UI_FORBIDDEN</h4>
 <pre>public static final&nbsp;<a href="../../../com/microblink/view/NotSupportedReason.html" title="enum in com.microblink.view">NotSupportedReason</a> CUSTOM_UI_FORBIDDEN</pre>
 <div class="block">Indicates that current build configuration requires valid license key to be set with method setLicenseKey before using
  the scanner and set license key does not allow setting this view on custom activity.</div>
+</li>
+</ul>
+<a name="UNSUPPORTED_PROCESSOR_ARCHITECTURE">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>UNSUPPORTED_PROCESSOR_ARCHITECTURE</h4>
+<pre>public static final&nbsp;<a href="../../../com/microblink/view/NotSupportedReason.html" title="enum in com.microblink.view">NotSupportedReason</a> UNSUPPORTED_PROCESSOR_ARCHITECTURE</pre>
+<div class="block">Indicates that device has a processor that is not supported (for example ARMv7 processor without NEON SIMD instruction support)</div>
 </li>
 </ul>
 </li>
@@ -302,7 +321,7 @@ the order they are declared</dd></dl>
 <a name="valueOf(java.lang.String)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>valueOf</h4>
 <pre>public static&nbsp;<a href="../../../com/microblink/view/NotSupportedReason.html" title="enum in com.microblink.view">NotSupportedReason</a>&nbsp;valueOf(java.lang.String&nbsp;name)</pre>
@@ -316,6 +335,15 @@ not permitted.)</div>
 <dd><code>java.lang.IllegalArgumentException</code> - if this enum type has no constant
 with the specified name</dd>
 <dd><code>java.lang.NullPointerException</code> - if the argument is null</dd></dl>
+</li>
+</ul>
+<a name="getDescription()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getDescription</h4>
+<pre>public&nbsp;java.lang.String&nbsp;getDescription()</pre>
 </li>
 </ul>
 </li>

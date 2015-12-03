@@ -33,8 +33,8 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../com/microblink/recognizers/settings/ParserSettingsKeys.html" title="class in com.microblink.recognizers.settings"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../../com/microblink/recognizers/settings/RecognizerSettingsStatus.html" title="enum in com.microblink.recognizers.settings"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../com/microblink/recognizers/settings/RecognitionSettings.FrameQualityEstimationMode.html" title="enum in com.microblink.recognizers.settings"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../com/microblink/recognizers/settings/RecognizerSettingsUtils.html" title="class in com.microblink.recognizers.settings"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?com/microblink/recognizers/settings/RecognizerSettings.html" target="_top">Frames</a></li>
@@ -97,7 +97,7 @@
 </dl>
 <dl>
 <dt>Direct Known Subclasses:</dt>
-<dd><a href="../../../../com/microblink/recognizers/barcode/bardecoder/BarDecoderRecognizerSettings.html" title="class in com.microblink.recognizers.barcode.bardecoder">BarDecoderRecognizerSettings</a>, <a href="../../../../com/microblink/recognizers/ocr/blinkocr/BlinkOCRRecognizerSettings.html" title="class in com.microblink.recognizers.ocr.blinkocr">BlinkOCRRecognizerSettings</a>, <a href="../../../../com/microblink/recognizers/settings/GenericRecognizerSettings.html" title="class in com.microblink.recognizers.settings">GenericRecognizerSettings</a>, <a href="../../../../com/microblink/recognizers/barcode/pdf417/Pdf417RecognizerSettings.html" title="class in com.microblink.recognizers.barcode.pdf417">Pdf417RecognizerSettings</a>, <a href="../../../../com/microblink/recognizers/barcode/zxing/ZXingRecognizerSettings.html" title="class in com.microblink.recognizers.barcode.zxing">ZXingRecognizerSettings</a></dd>
+<dd><a href="../../../../com/microblink/recognizers/blinkbarcode/bardecoder/BarDecoderRecognizerSettings.html" title="class in com.microblink.recognizers.blinkbarcode.bardecoder">BarDecoderRecognizerSettings</a>, <a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognizerSettings</a>, <a href="../../../../com/microblink/recognizers/blinkbarcode/pdf417/Pdf417RecognizerSettings.html" title="class in com.microblink.recognizers.blinkbarcode.pdf417">Pdf417RecognizerSettings</a>, <a href="../../../../com/microblink/recognizers/blinkbarcode/zxing/ZXingRecognizerSettings.html" title="class in com.microblink.recognizers.blinkbarcode.zxing">ZXingRecognizerSettings</a></dd>
 </dl>
 <hr>
 <br>
@@ -138,9 +138,9 @@ implements android.os.Parcelable</pre>
 <th class="colLast" scope="col">Field and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>protected android.os.Bundle</code></td>
-<td class="colLast"><code><strong><a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#mSettingsBundle">mSettingsBundle</a></strong></code>
-<div class="block">bundle that contains all settings data</div>
+<td class="colFirst"><code>protected long</code></td>
+<td class="colLast"><code><strong><a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#mNativeContext">mNativeContext</a></strong></code>
+<div class="block">used for storing native RecognizerSettings class</div>
 </td>
 </tr>
 </table>
@@ -167,15 +167,7 @@ implements android.os.Parcelable</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected </code></td>
-<td class="colLast"><code><strong><a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#RecognizerSettings()">RecognizerSettings</a></strong>()</code>
-<div class="block">Default constructor with all recognizers turned off.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected </code></td>
-<td class="colLast"><code><strong><a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#RecognizerSettings(android.os.Parcel)">RecognizerSettings</a></strong>(android.os.Parcel&nbsp;in)</code>
-<div class="block">private constructor for constructing from parcelable</div>
-</td>
+<td class="colLast"><code><strong><a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#RecognizerSettings()">RecognizerSettings</a></strong>()</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -197,16 +189,18 @@ implements android.os.Parcelable</pre>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#describeContents()">describeContents</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>android.os.Bundle</code></td>
-<td class="colLast"><code><strong><a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#getAsBundle()">getAsBundle</a></strong>()</code>&nbsp;</td>
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#finalize()">finalize</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#isEnabled()">isEnabled</a></strong>()</code>&nbsp;</td>
+<td class="colFirst"><code>long</code></td>
+<td class="colLast"><code><strong><a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#getNativeContext()">getNativeContext</a></strong>()</code>
+<div class="block">Returns the pointer containing native part of the implementation.</div>
+</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#log()">log</a></strong>()</code>&nbsp;</td>
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#isEnabled()">isEnabled</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
@@ -224,18 +218,20 @@ implements android.os.Parcelable</pre>
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#setEnabled(boolean)">setEnabled</a></strong>(boolean&nbsp;enabled)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#writeToParcel(android.os.Parcel, int)">writeToParcel</a></strong>(android.os.Parcel&nbsp;dest,
-             int&nbsp;flags)</code>&nbsp;</td>
-</tr>
 </table>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+<code>clone, equals, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_android.os.Parcelable">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;android.os.Parcelable</h3>
+<code>writeToParcel</code></li>
 </ul>
 </li>
 </ul>
@@ -251,14 +247,14 @@ implements android.os.Parcelable</pre>
 <!--   -->
 </a>
 <h3>Field Detail</h3>
-<a name="mSettingsBundle">
+<a name="mNativeContext">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>mSettingsBundle</h4>
-<pre>protected&nbsp;android.os.Bundle mSettingsBundle</pre>
-<div class="block">bundle that contains all settings data</div>
+<h4>mNativeContext</h4>
+<pre>protected&nbsp;long mNativeContext</pre>
+<div class="block">used for storing native RecognizerSettings class</div>
 </li>
 </ul>
 </li>
@@ -272,22 +268,10 @@ implements android.os.Parcelable</pre>
 <a name="RecognizerSettings()">
 <!--   -->
 </a>
-<ul class="blockList">
-<li class="blockList">
-<h4>RecognizerSettings</h4>
-<pre>protected&nbsp;RecognizerSettings()</pre>
-<div class="block">Default constructor with all recognizers turned off.</div>
-</li>
-</ul>
-<a name="RecognizerSettings(android.os.Parcel)">
-<!--   -->
-</a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>RecognizerSettings</h4>
-<pre>protected&nbsp;RecognizerSettings(android.os.Parcel&nbsp;in)</pre>
-<div class="block">private constructor for constructing from parcelable</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>in</code> - parcelable from which will construct object</dd></dl>
+<pre>protected&nbsp;RecognizerSettings()</pre>
 </li>
 </ul>
 </li>
@@ -298,6 +282,32 @@ implements android.os.Parcelable</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="finalize()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>finalize</h4>
+<pre>protected&nbsp;void&nbsp;finalize()
+                 throws java.lang.Throwable</pre>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code>finalize</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.lang.Throwable</code></dd></dl>
+</li>
+</ul>
+<a name="getNativeContext()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getNativeContext</h4>
+<pre>public&nbsp;long&nbsp;getNativeContext()</pre>
+<div class="block">Returns the pointer containing native part of the implementation.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>the pointer containing native part of the implementation.</dd></dl>
+</li>
+</ul>
 <a name="requiresAutofocus()">
 <!--   -->
 </a>
@@ -338,49 +348,16 @@ implements android.os.Parcelable</pre>
 <pre>public&nbsp;boolean&nbsp;isEnabled()</pre>
 </li>
 </ul>
-<a name="log()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>log</h4>
-<pre>public&nbsp;void&nbsp;log()</pre>
-</li>
-</ul>
-<a name="getAsBundle()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getAsBundle</h4>
-<pre>public&nbsp;android.os.Bundle&nbsp;getAsBundle()</pre>
-<dl><dt><span class="strong">Returns:</span></dt><dd>RecognizerSettings object as Android bundle</dd></dl>
-</li>
-</ul>
 <a name="describeContents()">
 <!--   -->
 </a>
-<ul class="blockList">
+<ul class="blockListLast">
 <li class="blockList">
 <h4>describeContents</h4>
 <pre>public&nbsp;int&nbsp;describeContents()</pre>
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code>describeContents</code>&nbsp;in interface&nbsp;<code>android.os.Parcelable</code></dd>
-</dl>
-</li>
-</ul>
-<a name="writeToParcel(android.os.Parcel, int)">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>writeToParcel</h4>
-<pre>public&nbsp;void&nbsp;writeToParcel(android.os.Parcel&nbsp;dest,
-                 int&nbsp;flags)</pre>
-<dl>
-<dt><strong>Specified by:</strong></dt>
-<dd><code>writeToParcel</code>&nbsp;in interface&nbsp;<code>android.os.Parcelable</code></dd>
 </dl>
 </li>
 </ul>
@@ -409,8 +386,8 @@ implements android.os.Parcelable</pre>
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../com/microblink/recognizers/settings/ParserSettingsKeys.html" title="class in com.microblink.recognizers.settings"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../../com/microblink/recognizers/settings/RecognizerSettingsStatus.html" title="enum in com.microblink.recognizers.settings"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../com/microblink/recognizers/settings/RecognitionSettings.FrameQualityEstimationMode.html" title="enum in com.microblink.recognizers.settings"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../com/microblink/recognizers/settings/RecognizerSettingsUtils.html" title="class in com.microblink.recognizers.settings"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?com/microblink/recognizers/settings/RecognizerSettings.html" target="_top">Frames</a></li>

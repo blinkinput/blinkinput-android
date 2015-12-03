@@ -105,7 +105,7 @@
 <pre>public enum <span class="strong">ShowOcrResultMode</span>
 extends java.lang.Enum&lt;<a href="../../../com/microblink/activity/ShowOcrResultMode.html" title="enum in com.microblink.activity">ShowOcrResultMode</a>&gt;
 implements android.os.Parcelable</pre>
-<div class="block">Created by dodo on 03/08/15.</div>
+<div class="block">Mode in which OCR result will be drawn on camera preview.</div>
 </li>
 </ul>
 </div>
@@ -139,10 +139,14 @@ implements android.os.Parcelable</pre>
 <th class="colOne" scope="col">Enum Constant and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../com/microblink/activity/ShowOcrResultMode.html#ANIMATED_DOTS">ANIMATED_DOTS</a></strong></code>&nbsp;</td>
+<td class="colOne"><code><strong><a href="../../../com/microblink/activity/ShowOcrResultMode.html#ANIMATED_DOTS">ANIMATED_DOTS</a></strong></code>
+<div class="block">In place of character recognition, animated dot will be drawn</div>
+</td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><strong><a href="../../../com/microblink/activity/ShowOcrResultMode.html#STATIC_CHARS">STATIC_CHARS</a></strong></code>&nbsp;</td>
+<td class="colOne"><code><strong><a href="../../../com/microblink/activity/ShowOcrResultMode.html#STATIC_CHARS">STATIC_CHARS</a></strong></code>
+<div class="block">In place of character recognition, recognized value will be drawn.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -243,6 +247,7 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>ANIMATED_DOTS</h4>
 <pre>public static final&nbsp;<a href="../../../com/microblink/activity/ShowOcrResultMode.html" title="enum in com.microblink.activity">ShowOcrResultMode</a> ANIMATED_DOTS</pre>
+<div class="block">In place of character recognition, animated dot will be drawn</div>
 </li>
 </ul>
 <a name="STATIC_CHARS">
@@ -252,6 +257,8 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>STATIC_CHARS</h4>
 <pre>public static final&nbsp;<a href="../../../com/microblink/activity/ShowOcrResultMode.html" title="enum in com.microblink.activity">ShowOcrResultMode</a> STATIC_CHARS</pre>
+<div class="block">In place of character recognition, recognized value will be drawn. Color will be
+ chosen based on recognition quality - the higher recognition quality, the greener the color.</div>
 </li>
 </ul>
 </li>

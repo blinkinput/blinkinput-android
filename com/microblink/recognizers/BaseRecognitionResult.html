@@ -34,7 +34,7 @@
 <div class="subNav">
 <ul class="navList">
 <li>Prev Class</li>
-<li><a href="../../../com/microblink/recognizers/LibraryInfoResult.html" title="class in com.microblink.recognizers"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../com/microblink/recognizers/IResultHolder.html" title="interface in com.microblink.recognizers"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?com/microblink/recognizers/BaseRecognitionResult.html" target="_top">Frames</a></li>
@@ -59,13 +59,13 @@
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li><a href="#field_detail">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor_detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_detail">Method</a></li>
 </ul>
@@ -97,11 +97,11 @@
 </dl>
 <dl>
 <dt>Direct Known Subclasses:</dt>
-<dd><a href="../../../com/microblink/recognizers/barcode/bardecoder/BarDecoderScanResult.html" title="class in com.microblink.recognizers.barcode.bardecoder">BarDecoderScanResult</a>, <a href="../../../com/microblink/recognizers/ocr/blinkocr/BlinkOCRRecognitionResult.html" title="class in com.microblink.recognizers.ocr.blinkocr">BlinkOCRRecognitionResult</a>, <a href="../../../com/microblink/recognizers/LibraryInfoResult.html" title="class in com.microblink.recognizers">LibraryInfoResult</a>, <a href="../../../com/microblink/recognizers/barcode/pdf417/Pdf417ScanResult.html" title="class in com.microblink.recognizers.barcode.pdf417">Pdf417ScanResult</a>, <a href="../../../com/microblink/recognizers/barcode/zxing/ZXingScanResult.html" title="class in com.microblink.recognizers.barcode.zxing">ZXingScanResult</a></dd>
+<dd><a href="../../../com/microblink/recognizers/blinkbarcode/bardecoder/BarDecoderScanResult.html" title="class in com.microblink.recognizers.blinkbarcode.bardecoder">BarDecoderScanResult</a>, <a href="../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognitionResult</a>, <a href="../../../com/microblink/recognizers/LibraryInfoResult.html" title="class in com.microblink.recognizers">LibraryInfoResult</a>, <a href="../../../com/microblink/recognizers/blinkbarcode/pdf417/Pdf417ScanResult.html" title="class in com.microblink.recognizers.blinkbarcode.pdf417">Pdf417ScanResult</a>, <a href="../../../com/microblink/recognizers/blinkbarcode/zxing/ZXingScanResult.html" title="class in com.microblink.recognizers.blinkbarcode.zxing">ZXingScanResult</a></dd>
 </dl>
 <hr>
 <br>
-<pre>public class <span class="strong">BaseRecognitionResult</span>
+<pre>public abstract class <span class="strong">BaseRecognitionResult</span>
 extends java.lang.Object
 implements android.os.Parcelable</pre>
 <div class="block">Class with all payment data available after recognition process</div>
@@ -132,17 +132,6 @@ implements android.os.Parcelable</pre>
 <!--   -->
 </a>
 <h3>Field Summary</h3>
-<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Field Summary table, listing fields, and an explanation">
-<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Field and Description</th>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static android.os.Parcelable.Creator&lt;<a href="../../../com/microblink/recognizers/BaseRecognitionResult.html" title="class in com.microblink.recognizers">BaseRecognitionResult</a>&gt;</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/recognizers/BaseRecognitionResult.html#CREATOR">CREATOR</a></strong></code>&nbsp;</td>
-</tr>
-</table>
 <ul class="blockList">
 <li class="blockList"><a name="fields_inherited_from_class_android.os.Parcelable">
 <!--   -->
@@ -165,14 +154,20 @@ implements android.os.Parcelable</pre>
 <th class="colLast" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>protected </code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/recognizers/BaseRecognitionResult.html#BaseRecognitionResult(android.os.Bundle, boolean, boolean)">BaseRecognitionResult</a></strong>(android.os.Bundle&nbsp;dataBundle,
+                     boolean&nbsp;empty,
+                     boolean&nbsp;valid)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>&nbsp;</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/recognizers/BaseRecognitionResult.html#BaseRecognitionResult(android.os.Bundle, boolean, boolean)">BaseRecognitionResult</a></strong>(android.os.Bundle&nbsp;data,
+<td class="colLast"><code><strong><a href="../../../com/microblink/recognizers/BaseRecognitionResult.html#BaseRecognitionResult(long, boolean, boolean)">BaseRecognitionResult</a></strong>(long&nbsp;nativeHolderPtr,
                      boolean&nbsp;empty,
                      boolean&nbsp;valid)</code>
 <div class="block">Creates the RecognitionData object.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected </code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/recognizers/BaseRecognitionResult.html#BaseRecognitionResult(android.os.Parcel)">BaseRecognitionResult</a></strong>(android.os.Parcel&nbsp;in)</code>
 <div class="block">Constructor from Parcel</div>
@@ -201,12 +196,12 @@ implements android.os.Parcelable</pre>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>android.os.Bundle</code></td>
-<td class="colLast"><code><strong><a href="../../../com/microblink/recognizers/BaseRecognitionResult.html#getData()">getData</a></strong>()</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../com/microblink/recognizers/BaseRecognitionResult.html#getIntElement(java.lang.String)">getIntElement</a></strong>(java.lang.String&nbsp;key)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../com/microblink/recognizers/IResultHolder.html" title="interface in com.microblink.recognizers">IResultHolder</a></code></td>
+<td class="colLast"><code><strong><a href="../../../com/microblink/recognizers/BaseRecognitionResult.html#getResultHolder()">getResultHolder</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
@@ -261,40 +256,34 @@ implements android.os.Parcelable</pre>
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
-<!-- ============ FIELD DETAIL =========== -->
-<ul class="blockList">
-<li class="blockList"><a name="field_detail">
-<!--   -->
-</a>
-<h3>Field Detail</h3>
-<a name="CREATOR">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>CREATOR</h4>
-<pre>public static final&nbsp;android.os.Parcelable.Creator&lt;<a href="../../../com/microblink/recognizers/BaseRecognitionResult.html" title="class in com.microblink.recognizers">BaseRecognitionResult</a>&gt; CREATOR</pre>
-</li>
-</ul>
-</li>
-</ul>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <ul class="blockList">
 <li class="blockList"><a name="constructor_detail">
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
+<a name="BaseRecognitionResult(long, boolean, boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>BaseRecognitionResult</h4>
+<pre>public&nbsp;BaseRecognitionResult(long&nbsp;nativeHolderPtr,
+                     boolean&nbsp;empty,
+                     boolean&nbsp;valid)</pre>
+<div class="block">Creates the RecognitionData object.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>nativeHolderPtr</code> - pointer to native holder holding recognition results</dd><dd><code>empty</code> - Is RecognitionData empty?</dd><dd><code>valid</code> - Is RecognitionData valid?</dd></dl>
+</li>
+</ul>
 <a name="BaseRecognitionResult(android.os.Bundle, boolean, boolean)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>BaseRecognitionResult</h4>
-<pre>public&nbsp;BaseRecognitionResult(android.os.Bundle&nbsp;data,
+<pre>protected&nbsp;BaseRecognitionResult(android.os.Bundle&nbsp;dataBundle,
                      boolean&nbsp;empty,
                      boolean&nbsp;valid)</pre>
-<div class="block">Creates the RecognitionData object.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>data</code> - recognized elements</dd><dd><code>empty</code> - Is RecognitionData empty?</dd><dd><code>valid</code> - Is RecognitionData valid?</dd></dl>
 </li>
 </ul>
 <a name="BaseRecognitionResult(android.os.Parcel)">
@@ -316,13 +305,13 @@ implements android.os.Parcelable</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="getData()">
+<a name="getResultHolder()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getData</h4>
-<pre>public final&nbsp;android.os.Bundle&nbsp;getData()</pre>
+<h4>getResultHolder</h4>
+<pre>public final&nbsp;<a href="../../../com/microblink/recognizers/IResultHolder.html" title="interface in com.microblink.recognizers">IResultHolder</a>&nbsp;getResultHolder()</pre>
 </li>
 </ul>
 <a name="getTitle()">
@@ -457,7 +446,7 @@ implements android.os.Parcelable</pre>
 <div class="subNav">
 <ul class="navList">
 <li>Prev Class</li>
-<li><a href="../../../com/microblink/recognizers/LibraryInfoResult.html" title="class in com.microblink.recognizers"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../com/microblink/recognizers/IResultHolder.html" title="interface in com.microblink.recognizers"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?com/microblink/recognizers/BaseRecognitionResult.html" target="_top">Frames</a></li>
@@ -482,13 +471,13 @@ implements android.os.Parcelable</pre>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li><a href="#field_detail">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor_detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_detail">Method</a></li>
 </ul>

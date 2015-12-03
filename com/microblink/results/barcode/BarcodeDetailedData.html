@@ -161,9 +161,7 @@ implements android.os.Parcelable</pre>
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../com/microblink/results/barcode/BarcodeDetailedData.html#BarcodeDetailedData()">BarcodeDetailedData</a></strong>()</code>
-<div class="block">Default constructor</div>
-</td>
+<td class="colOne"><code><strong><a href="../../../../com/microblink/results/barcode/BarcodeDetailedData.html#BarcodeDetailedData(long)">BarcodeDetailedData</a></strong>(long&nbsp;nativePtr)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><code><strong><a href="../../../../com/microblink/results/barcode/BarcodeDetailedData.html#BarcodeDetailedData(android.os.Parcel)">BarcodeDetailedData</a></strong>(android.os.Parcel&nbsp;in)</code>
@@ -186,14 +184,12 @@ implements android.os.Parcelable</pre>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../com/microblink/results/barcode/BarcodeDetailedData.html#addElement(com.microblink.results.barcode.BarcodeElement)">addElement</a></strong>(<a href="../../../../com/microblink/results/barcode/BarcodeElement.html" title="class in com.microblink.results.barcode">BarcodeElement</a>&nbsp;element)</code>
-<div class="block">add new element to the barcode data</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/results/barcode/BarcodeDetailedData.html#describeContents()">describeContents</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../../com/microblink/results/barcode/BarcodeDetailedData.html#finalize()">finalize</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>byte[]</code></td>
@@ -202,7 +198,7 @@ implements android.os.Parcelable</pre>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>java.util.List&lt;<a href="../../../../com/microblink/results/barcode/BarcodeElement.html" title="class in com.microblink.results.barcode">BarcodeElement</a>&gt;</code></td>
+<td class="colFirst"><code><a href="../../../../com/microblink/results/barcode/BarcodeElement.html" title="class in com.microblink.results.barcode">BarcodeElement</a>[]</code></td>
 <td class="colLast"><code><strong><a href="../../../../com/microblink/results/barcode/BarcodeDetailedData.html#getElements()">getElements</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
@@ -220,7 +216,7 @@ implements android.os.Parcelable</pre>
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait</code></li>
+<code>clone, equals, getClass, hashCode, notify, notifyAll, wait, wait, wait</code></li>
 </ul>
 </li>
 </ul>
@@ -254,14 +250,13 @@ implements android.os.Parcelable</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="BarcodeDetailedData()">
+<a name="BarcodeDetailedData(long)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>BarcodeDetailedData</h4>
-<pre>public&nbsp;BarcodeDetailedData()</pre>
-<div class="block">Default constructor</div>
+<pre>public&nbsp;BarcodeDetailedData(long&nbsp;nativePtr)</pre>
 </li>
 </ul>
 <a name="BarcodeDetailedData(android.os.Parcel)">
@@ -283,25 +278,29 @@ implements android.os.Parcelable</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="finalize()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>finalize</h4>
+<pre>protected&nbsp;void&nbsp;finalize()
+                 throws java.lang.Throwable</pre>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code>finalize</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.lang.Throwable</code></dd></dl>
+</li>
+</ul>
 <a name="getElements()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getElements</h4>
-<pre>public&nbsp;java.util.List&lt;<a href="../../../../com/microblink/results/barcode/BarcodeElement.html" title="class in com.microblink.results.barcode">BarcodeElement</a>&gt;&nbsp;getElements()</pre>
+<pre>public&nbsp;<a href="../../../../com/microblink/results/barcode/BarcodeElement.html" title="class in com.microblink.results.barcode">BarcodeElement</a>[]&nbsp;getElements()</pre>
 <dl><dt><span class="strong">Returns:</span></dt><dd>the elements of the barcode</dd></dl>
-</li>
-</ul>
-<a name="addElement(com.microblink.results.barcode.BarcodeElement)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>addElement</h4>
-<pre>public&nbsp;void&nbsp;addElement(<a href="../../../../com/microblink/results/barcode/BarcodeElement.html" title="class in com.microblink.results.barcode">BarcodeElement</a>&nbsp;element)</pre>
-<div class="block">add new element to the barcode data</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>element</code> - element to be added</dd></dl>
 </li>
 </ul>
 <a name="describeContents()">
