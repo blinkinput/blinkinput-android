@@ -10,6 +10,11 @@
 	- if integrating using custom UI, you are required to ask user to give you permission to use camera. To make this easier, we have provided a _CameraPermissionManager_ class which does all heavylifting code about managing states when asking user for camera permission. Refer to demo apps to see how it is used.
 - BlinkOCR now depends on appcompat-v7 library, instead of full android-support library.
 	- even older versions of BlinkOCR required only features from appcompat-v7 so we now decided to make appcompat-v7 as dependency because it is much smaller than full support library and is also default dependency of all new Android apps.
+- completely rewritten JNI layer which now gives much lower overhead in communication between Java and native code
+	- in our internal tests, this yielded up to 3 times better performance in OCR
+- fixed issue with Nexus 5X upside down camera
+- when using DirectAPI, recognized Bitmap is not recycled anymore so it can be reused
+
 
 ## 1.9.0
 - fixed auto-exposure bug on Nexus 6
