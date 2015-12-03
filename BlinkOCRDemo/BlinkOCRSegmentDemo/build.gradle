@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId 'com.microblink.ocr'
         minSdkVersion 10
-        targetSdkVersion 22
+        targetSdkVersion rootProject.ext.targetSdkVersion
     }
     lintOptions {
         checkReleaseBuilds false
