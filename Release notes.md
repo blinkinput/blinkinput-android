@@ -1,5 +1,21 @@
 # Release notes
 
+## 2.1.0
+- fixed crash that occurred when detection image was being sent from native to Java
+- fixed issue that cause irrationaly refusal to scan anything on high-end devices
+- fixed bug in scanning 1D barcodes with ZXing when scanning region was set
+	- the bug caused not to honor set region
+- when embedding `RecognizerView` into custom scan activity, you no longer need to take care of whether runtime permissions are set or not. You can now simply pass all lifecycle events to `RecognizerView` and if camera permission is denied, a new callback method `onCameraPermissionDenied` of `CameraEventsListener` will be invoked to give you chance to ask user for permissions
+	- please refer to updated demo apps for example of new callback
+- **IMPORTANT** - `onScanningDone` callback method does not automatically pause scanning loop anymore. As soon as `onScanningDone` method ends, scanning will be automatically resumed without resetting state
+	- if you need to reset state, please call `resetRecognitionState` in your implementation of `onScanningDone`
+	- if you need to have scanning paused after `onScanningDone` ends, please call `pauseScanning` in your implementation of `onScanningDone`. Do not forget to call `resumeScanning` to resume scanning after it has been paused.
+- `pauseScanning` and `resumeScanning` calls are now counted, i.e. if you call `pauseScanning` twice, you will also need to call `resumeScanning` twice to actually resume scanning
+	- this is practical if you show multiple onboarding views over camera and you want the scanning paused while each is shown and you do not know in which order they will be dismissed. Now you can simply call `pauseScanning` on showing the onboarding view and `resumeScanning` on dismissing it, regardless of how many onboarding views you have
+	- if you want to show onboarding help first time your scan activity starts, you can call `setInitialScanningPaused(true)` which will ensure that first time camera is started, the scanning will not automatically start - you will need to call `resumeScanning` to start scanning after your onboarding view is dismissed
+- added support for `x86_64` architecture
+
+
 ## 2.0.0
 - new API which is easier to understand, but is not backward compatible. Please check [README](README.md) and updated demo applications for more information.
 - removed support for ARMv7 devices which do not support NEON SIMD
