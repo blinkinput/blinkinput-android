@@ -608,10 +608,10 @@ View width and height are defined in current context, i.e. they depend on screen
 You can use this method to define [metadata listener](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataListener.html) that will obtain various metadata
 from the current recognition process. Which metadata will be available depends on [metadata settings](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataSettings.html). For more information and examples, check demo applications.
 
-##### `setLicenseKey(String licenseKey)`
+##### <a name="recognizerView_setLicenseKey1"></a> [`setLicenseKey(String licenseKey)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#setLicenseKey(java.lang.String))
 This method sets the license key that will unlock all features of the native library. You can obtain your license key from [Microblink website](http://microblink.com/login).
 
-##### `setLicenseKey(String licenseKey, String licenseOwner)`
+##### <a name="recognizerView_setLicenseKey2"></a> [`setLicenseKey(String licenseKey, String licenseOwner)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#setLicenseKey(java.lang.String, java.lang.String))
 Use this method to set a license key that is bound to a licensee, not the application package name. You will use this method when you obtain a license key that allows you to use _BlinkOCR_ SDK in multiple applications. You can obtain your license key from [Microblink website](http://microblink.com/login).
 
 # <a name="directAPI"></a> Using direct API for recognition of Android Bitmaps
