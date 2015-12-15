@@ -17,6 +17,7 @@ import com.microblink.directApi.DirectApiErrorListener;
 import com.microblink.directApi.Recognizer;
 import com.microblink.geometry.Rectangle;
 import com.microblink.hardware.SuccessCallback;
+import com.microblink.hardware.camera.VideoResolutionPreset;
 import com.microblink.image.Image;
 import com.microblink.metadata.ImageMetadata;
 import com.microblink.metadata.Metadata;
@@ -87,6 +88,8 @@ public class CombinationScanActivity extends Activity implements CameraEventsLis
         mRecognizerView.setAspectMode(CameraAspectMode.ASPECT_FILL);
         // optimize camera lens for near object scanning
         mRecognizerView.setOptimizeCameraForNearScan(true);
+        // use 720p resolution instead of default 1080p to make everything work faster
+        mRecognizerView.setVideoResolutionPreset(VideoResolutionPreset.VIDEO_RESOLUTION_720p);
 
         // get the recognizer instance
         try {
@@ -183,10 +186,6 @@ public class CombinationScanActivity extends Activity implements CameraEventsLis
         if(mRecognizerView != null) {
             mRecognizerView.start();
         }
-        // ask user to give a camera permission. Provided manager asks for
-        // permission only if it has not been already granted.
-        // on API level < 23, this method does nothing
-        mCameraPermissionManager.askForCameraPermission();;
     }
 
     @Override
@@ -194,10 +193,7 @@ public class CombinationScanActivity extends Activity implements CameraEventsLis
         super.onResume();
         // all activity lifecycle events must be passed on to RecognizerView
         if(mRecognizerView != null) {
-            if (mCameraPermissionManager.hasCameraPermission()) {
-                // resume only if camera permission has been granted
-                mRecognizerView.resume();
-            }
+            mRecognizerView.resume();
         }
     }
 
@@ -205,9 +201,7 @@ public class CombinationScanActivity extends Activity implements CameraEventsLis
     protected void onPause() {
         super.onPause();
         // all activity lifecycle events must be passed on to RecognizerView
-        // if permission was not given, RecognizerView was not resumed so we
-        // cannot pause it
-        if(mRecognizerView != null && mRecognizerView.getCameraViewState() == BaseCameraView.CameraViewState.RESUMED) {
+        if(mRecognizerView != null) {
             mRecognizerView.pause();
         }
     }
@@ -319,6 +313,18 @@ public class CombinationScanActivity extends Activity implements CameraEventsLis
     }
 
     @Override
+    @TargetApi(23)
+    public void onCameraPermissionDenied() {
+        // this method is called on Android 6.0 and newer if camera permission was not given
+        // by user
+
+        // ask user to give a camera permission. Provided manager asks for
+        // permission only if it has not been already granted.
+        // on API level < 23, this method does nothing
+        mCameraPermissionManager.askForCameraPermission();
+    }
+
+    @Override
     public void onAutofocusFailed() {
         // This method will be called when camera focusing has failed.
         // Camera manager usually tries different focusing strategies and this method is called when all
@@ -345,7 +351,6 @@ public class CombinationScanActivity extends Activity implements CameraEventsLis
     @Override
     public void onScanningDone(RecognitionResults results) {
         BaseRecognitionResult[] dataArray = results.getRecognitionResults();
-        // after calling this method, video scanning loop is paused
         // we have enabled only one recognizer, so we expect only one element in dataArray
         if (dataArray != null && dataArray.length == 1) {
             if (dataArray[0] instanceof BlinkOCRRecognitionResult) {
@@ -386,6 +391,8 @@ public class CombinationScanActivity extends Activity implements CameraEventsLis
 
                             // check if recognizer is still active (required if onScanningDone was called after activity was destroyed)
                             if(mDirectApiRecognizer != null) {
+                                // pause scanning to prevent arrival of new results while DirectAPI processes image
+                                mRecognizerView.pauseScanning();
                                 // finally, perform recognition of image
                                 mDirectApiRecognizer.recognizeImage(mLastScannedImage, new ScanResultListener() {
                                     @Override
@@ -409,24 +416,12 @@ public class CombinationScanActivity extends Activity implements CameraEventsLis
                                 });
                             }
                             // if bitmap cannot be recognized, this means stop() and destroy() have been called, so resuming scanning makes no sense
-                        } else {
-                            // resume scanning and do not reset internal state to reuse results from previous scan to make current scan
-                            // of better quality. If you want OCR not to reuse results from previous scan, call resumeScanning(true).
-                            mRecognizerView.resumeScanning(false);
                         }
-                    } else {
-                        // resume scanning and do not reset internal state (false)
-                        mRecognizerView.resumeScanning(false);
                     }
                 }
-            } else {
-                // resume scanning and do not reset internal state (false)
-                mRecognizerView.resumeScanning(false);
             }
-        } else {
-            // resume scanning and do not reset internal state (false)
-            mRecognizerView.resumeScanning(false);
         }
+        // unless paused, scanning will be automatically resumed without internal state reset
     }
 
     /**

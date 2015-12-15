@@ -219,10 +219,6 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
         if(mRecognizerView != null) {
             mRecognizerView.start();
         }
-        // ask user to give a camera permission. Provided manager asks for
-        // permission only if it has not been already granted.
-        // on API level < 23, this method does nothing
-        mCameraPermissionManager.askForCameraPermission();
     }
 
     @Override
@@ -230,10 +226,7 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
         super.onResume();
         // all activity's lifecycle methods must be passed to recognizer view
         if(mRecognizerView != null) {
-            if (mCameraPermissionManager.hasCameraPermission()) {
-                // resume only if camera permission has been granted
-                mRecognizerView.resume();
-            }
+            mRecognizerView.resume();
         }
     }
 
@@ -242,11 +235,7 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
         super.onPause();
         // all activity's lifecycle methods must be passed to recognizer view
         if(mRecognizerView != null) {
-            // if permission was not given, RecognizerView was not resumed so we
-            // cannot pause it
-            if(mRecognizerView.getCameraViewState() == BaseCameraView.CameraViewState.RESUMED) {
-                mRecognizerView.pause();
-            }
+            mRecognizerView.pause();
         }
     }
 
@@ -322,6 +311,18 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
     }
 
     @Override
+    @TargetApi(23)
+    public void onCameraPermissionDenied() {
+        // this method is called on Android 6.0 and newer if camera permission was not given
+        // by user
+
+        // ask user to give a camera permission. Provided manager asks for
+        // permission only if it has not been already granted.
+        // on API level < 23, this method does nothing
+        mCameraPermissionManager.askForCameraPermission();
+    }
+
+    @Override
     public void onAutofocusFailed() {
         // This method is called when camera focusing has failed.
         // You should inform user to try scanning under different light.
@@ -359,12 +360,11 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
                 // group to getOcrResult method
             }
         }
-        // Finally, we resume scanning and reuse
+        // Finally, scanning will be resumed automatically and will reuse
         // results from previous scan to make current scan of better quality.
         // Note that preserving state preserves state of all
         // recognizers, including barcode recognizers (if enabled).
-        // If you want to reset internal state call resumeScanning(true).
-        mRecognizerView.resumeScanning(false);
+        // If you want to reset internal state call resetRecognitionState()
     }
 
     @Override

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.microblink.hardware.camera.VideoResolutionPreset;
 import com.microblink.hardware.orientation.Orientation;
 import com.microblink.metadata.Metadata;
 import com.microblink.metadata.MetadataListener;
@@ -112,6 +113,8 @@ public class FullScreenOCR extends Activity implements MetadataListener, CameraE
 
         // use all available view area for displaying camera, possibly cropping the camera frame
         mRecognizerView.setAspectMode(CameraAspectMode.ASPECT_FILL);
+        // use 720p resolution instead of default 1080p to make everything work faster
+        mRecognizerView.setVideoResolutionPreset(VideoResolutionPreset.VIDEO_RESOLUTION_720p);
 
         // configure metadata settings and chose detection metadata
         // that will be passed to metadata listener
@@ -175,10 +178,6 @@ public class FullScreenOCR extends Activity implements MetadataListener, CameraE
         if(mRecognizerView != null) {
             mRecognizerView.start();
         }
-        // ask user to give a camera permission. Provided manager asks for
-        // permission only if it has not been already granted.
-        // on API level < 23, this method does nothing
-        mCameraPermissionManager.askForCameraPermission();
     }
 
     @Override
@@ -186,10 +185,7 @@ public class FullScreenOCR extends Activity implements MetadataListener, CameraE
         super.onResume();
         // all activity lifecycle events must be passed on to RecognizerView
         if(mRecognizerView != null) {
-            if (mCameraPermissionManager.hasCameraPermission()) {
-                // resume only if camera permission has been granted
-                mRecognizerView.resume();
-            }
+            mRecognizerView.resume();
         }
     }
 
@@ -197,9 +193,7 @@ public class FullScreenOCR extends Activity implements MetadataListener, CameraE
     protected void onPause() {
         super.onPause();
         // all activity lifecycle events must be passed on to RecognizerView
-        // if permission was not given, RecognizerView was not resumed so we
-        // cannot pause it
-        if(mRecognizerView != null && mRecognizerView.getCameraViewState() == BaseCameraView.CameraViewState.RESUMED) {
+        if(mRecognizerView != null) {
             mRecognizerView.pause();
         }
     }
@@ -262,11 +256,9 @@ public class FullScreenOCR extends Activity implements MetadataListener, CameraE
             }
         }
 
-        // Finally, we resume scanning and reset internal state. If you want OCR to reuse
-        // results from previous scan to make current scan of better quality, call
-        // resumeScanning(false). Note that preserving state preserves state of all
-        // recognizers, including barcode recognizers (if enabled).
-        mRecognizerView.resumeScanning(true);
+        // Finally we reset recognizer's internal state so it will not combine old recognition
+        // results with new one. Scanning is resumed automatically after this method ends.
+        mRecognizerView.resetRecognitionState();
     }
 
     @Override
@@ -293,7 +285,17 @@ public class FullScreenOCR extends Activity implements MetadataListener, CameraE
         finish();
     }
 
+    @Override
+    @TargetApi(23)
+    public void onCameraPermissionDenied() {
+        // this method is called on Android 6.0 and newer if camera permission was not given
+        // by user
 
+        // ask user to give a camera permission. Provided manager asks for
+        // permission only if it has not been already granted.
+        // on API level < 23, this method does nothing
+        mCameraPermissionManager.askForCameraPermission();
+    }
 
     @Override
     public void onMetadataAvailable(Metadata metadata) {

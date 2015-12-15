@@ -86,7 +86,7 @@ After that, you just need to add _BlinkOCR_ and appCompat-v7 as a dependencies t
 
 ```
 dependencies {
-    compile 'com.microblink:blinkocr:2.0.0'
+    compile 'com.microblink:blinkocr:2.1.0'
     compile "com.android.support:appcompat-v7:23.1.1"
 }
 ```
@@ -118,7 +118,7 @@ Open your `pom.xml` file and add these directives as appropriate:
 	<dependency>
 		  <groupId>com.microblink</groupId>
 		  <artifactId>blinkocr</artifactId>
-		  <version>2.0.0</version>
+		  <version>2.1.0</version>
 		  <type>aar</type>
   	</dependency>
 </dependencies>
@@ -322,28 +322,16 @@ This section will discuss how to embed `RecognizerView` into your scan activity 
 2. It is recommended to keep your scan activity in one orientation, such as `portrait` or `landscape`. Setting `sensor` as scan activity's orientation will trigger full restart of activity whenever device orientation changes. This will provide very poor user experience because both camera and _BlinkOCR_ native library will have to be restarted every time. There are measures for this behaviour and will be discussed [later](#scanOrientation).
 3. In your activity's `onCreate` method, create a new `RecognizerView`, define its [settings and listeners](#recognizerViewReference) and then call its `create` method. After that, add your views that should be layouted on top of camera view.
 4. Override your activity's `onStart`, `onResume`, `onPause`, `onStop` and `onDestroy` methods and call `RecognizerView's` lifecycle methods `start`, `resume`, `pause`, `stop` and `destroy`. This will ensure correct camera and native resource management. If you plan to manage `RecognizerView's` lifecycle independently of host activity's lifecycle, make sure the order of calls to lifecycle methods is the same as is with activities (i.e. you should not call `resume` method if `create` and `start` were not called first).
-5. If you are targeting Android 6.0 or newer (API level 23), then you also have to consider asking user to give you permission to use camera. You can do that on your own, or you can use provided helper class [CameraPermisionManager](https://blinkocr.github.io/blinkocr-android/com/microblink/util/CameraPermissionManager.html), as shown in following example.
 
 Here is the minimum example of integration of `RecognizerView` as the only view in your activity:
 
 ```java
 public class MyScanActivity extends Activity implements ScanResultListener, CameraEventsListener {
+	private static final int PERMISSION_CAMERA_REQUEST_CODE = 69;
 	private RecognizerView mRecognizerView;
-	private CameraPermissionManager mCameraPermissionManager;
 		
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		// this example assumes that your activity has layout defined
-		// in file activity_scan.xml which has only one FrameLayout with
-		// id "@+id/scan_activity_root"
-
-		// set content view from XML
-		setContentView(R.layout.activity_scan);
-		
-		// get a reference to root layout to which we will add
-		// RecognizerView and permission overlay
-		ViewGroup rootView = (ViewGroup) findViewById(R.id.scan_activity_root);
-		
+	protected void onCreate(Bundle savedInstanceState) {				
 		// create RecognizerView
 		mRecognizerView = new RecognizerView(this);
 		   
@@ -357,13 +345,14 @@ public class MyScanActivity extends Activity implements ScanResultListener, Came
 		settings.setRecognizerSettingsArray(settArray);
 		mRecognizerView.setRecognitionSettings(settings);
 		
-        try {
-            // set license key
-            mRecognizerView.setLicenseKey(this, "your license key");
-        } catch (InvalidLicenceKeyException exc) {
-            return;
-        }
-           
+		try {
+		    // set license key
+		    mRecognizerView.setLicenseKey(this, "your license key");
+		} catch (InvalidLicenceKeyException exc) {
+		    finish();
+		    return;
+		}
+		
 		// scan result listener will be notified when scan result gets available
 		mRecognizerView.setScanResultListener(this);
 		// camera events listener will be notified about camera lifecycle and errors
@@ -376,15 +365,8 @@ public class MyScanActivity extends Activity implements ScanResultListener, Came
 		mRecognizerView.setAspectMode(CameraAspectMode.ASPECT_FILL);
 		   
 		mRecognizerView.create();
-
-		// add RecognizerView to rootView
-		rootView.addView(mRecognizerView);
-		// create CameraPermissionManager
-		mCameraPermissionManager = new CameraPermissionManager(this);
-		View v = mCameraPermissionManager.getAskPermisionOverlay();
-		if (v != null) {
-			viewRoot.addView(v);
-		}
+		
+		setContentView(mRecognizerView);
 	}
 	
 	@Override
@@ -392,30 +374,20 @@ public class MyScanActivity extends Activity implements ScanResultListener, Came
 	   super.onStart();
 	   // you need to pass all activity's lifecycle methods to RecognizerView
 	   mRecognizerView.start();
-	   // now is a good time to ask user to give a camera permission
-		// on API level < 23, this method does nothing
-	   mCameraPermissionManager.askForCameraPermission();
 	}
 	
 	@Override
 	protected void onResume() {
 	   	super.onResume();
 	   	// you need to pass all activity's lifecycle methods to RecognizerView
-		// we cannot resume camera if user has not given camera permission
-		if (mCameraPermissionManager.hasCameraPermission()) {
-            mRecognizerView.resume();
-        }
+       mRecognizerView.resume();
 	}
 
 	@Override
 	protected void onPause() {
 	   	super.onPause();
 	   	// you need to pass all activity's lifecycle methods to RecognizerView
-	  	// if permission was not given, RecognizerView was not resumed so we
-	   	// cannot pause it
-	   	if(mRecognizerView.getCameraViewState() == BaseCameraView.CameraViewState.RESUMED) {
-			mRecognizerView.pause();
-     	}
+		mRecognizerView.pause();
 	}
 
 	@Override
@@ -438,15 +410,7 @@ public class MyScanActivity extends Activity implements ScanResultListener, Came
 	   // you need to pass all activity's lifecycle methods to RecognizerView
 	   mRecognizerView.changeConfiguration(newConfig);
 	}
-	
-	@Override
-    @TargetApi(23)
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-    	// on API level 23, we need to pass request permission result
-    	// to camera permission manager
-       mCameraPermissionManager.onRequestPermissionsResult(requestCode, grantResults);
-    }
-	
+		
     @Override
     public void onScanningDone(RecognitionResults results) {
     	// this method is from ScanResultListener and will be called when scanning completes
@@ -456,11 +420,18 @@ public class MyScanActivity extends Activity implements ScanResultListener, Came
     	// given to RecognizerView.
     	// For more information, see chapter "Recognition settings and results")
     	
-    	// When this method gets called, scanning gets paused. To resume scanning after this
-    	// method has been called, call resumeScanning method.
-    	// resumeScanning method receives boolean indicating whether internal
-    	// recognizer state should be reset
-    	mRecognizerView.resumeScanning(true);
+    	// After this method ends, scanning will be resumed and recognition
+    	// state will be retained. If you want to prevent that, then
+    	// you should call:
+    	// mRecognizerView.resetRecognitionState();
+
+		// If you want to pause scanning to prevent receiving recognition
+		// results, you should call:
+		// mRecognizerView.pauseScanning();
+		// After scanning is paused, you will have to resume it with:
+		// mRecognizerView.resumeScanning(true);
+		// boolean in resumeScanning method indicates whether recognition
+		// state should be automatically reset when resuming scanning
     }
     
     @Override
@@ -481,6 +452,24 @@ public class MyScanActivity extends Activity implements ScanResultListener, Came
          * encountered an error. The error details will be given in exc
          * parameter.
          */
+    }
+    
+    @Override
+    @TargetApi(23)
+    public void onCameraPermissionDenied() {
+    	/**
+    	 * Called on Android 6.0 and newer if camera permission is not given
+    	 * by user. You should request permission from user to access camera.
+    	 */
+    	 requestPermissions(new String[]{Manifest.permission.CAMERA}, PERMISSION_CAMERA_REQUEST_CODE);
+    	 /**
+    	  * Please note that user might have not given permission to use 
+    	  * camera. In that case, you have to explain to user that without
+    	  * camera permissions scanning will not work.
+    	  * For more information about requesting permissions at runtime, check
+    	  * this article:
+    	  * https://developer.android.com/training/permissions/requesting.html
+    	  */
     }
     
     @Override
@@ -523,10 +512,6 @@ For that matter, we recommend setting your scan activity to either `portrait` or
 
 However, if you really want to set `screenOrientation` property to `sensor` or similar and want Android to handle orientation changes of your scan activity, then we recommend to set `configChanges` property of your activity to `orientation|screenSize`. This will tell Android not to restart your activity when device orientation changes. Instead, activity's `onConfigurationChanged` method will be called so that activity can be notified of the configuration change. In your implementation of this method, you should call `changeConfiguration` method of `RecognizerView` so it can adapt its camera surface and child views to new configuration. Note that on Android versions older than 4.0 changing of configuration will require restart of camera, which can be slow.
 
-__Important__
-
-If you use `sensor` or similar screen orientation for your scan activity there is a catch. No matter if your activity is set to be restarted on configuration change or only notified via `onConfigurationChanged` method, if your activity's orientation is changed from `portrait` to `reversePortrait` or from `landscape` to `reverseLandscape` or vice versa, your activity will not be notified of this change in any way - it will not be neither restarted nor `onConfigurationChanged` will be called - the views in your activity will just be rotated by 180 degrees. This is a problem because it will make your camera preview upside down. In order to fix this, you first need to [find a way how to get notified of this change](https://stackoverflow.com/questions/9909037/how-to-detect-screen-rotation-through-180-degrees-from-landscape-to-landscape-or) and then you should call `changeConfiguration` method of `RecognizerView` so it will correct camera preview orientation.
-
 ## <a name="recognizerViewReference"></a> `RecognizerView` reference
 The complete reference of `RecognizerView` is available in [Javadoc](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html). The usage example is provided in `BlinkOCRFullScreen` demo app provided with SDK. This section just gives a quick overview of `RecognizerView's` most important methods.
 
@@ -537,7 +522,7 @@ This method should be called in activity's `onCreate` method. It will initialize
 This method should be called in activity's `onStart` method. It will initialize background processing thread and start native library initialization on that thread.
 
 ##### <a name="recognizerView_resume"></a> [`resume()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#resume())
-This method should be called in activity's `onResume` method. It will trigger background initialization of camera.
+This method should be called in activity's `onResume` method. It will trigger background initialization of camera. After camera is loaded, it will start camera frame recognition, except if scanning loop is paused.
 
 ##### <a name="recognizerView_pause"></a> [`pause()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#pause())
 This method should be called in activity's `onPause` method. It will stop the camera, but will keep native library loaded.
@@ -576,10 +561,14 @@ With this method you can set a [ScanResultListener](https://blinkocr.github.io/b
 With this method you can set a [CameraEventsListener](https://blinkocr.github.io/blinkocr-android/com/microblink/view/CameraEventsListener.html) which will be notified when various camera events occur, such as when camera preview has started, autofocus has failed or there has been an error while using the camera or performing the recognition.
 
 ##### <a name="recognizerView_pauseScanning"></a> [`pauseScanning()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#pauseScanning())
-This method pauses the scanning loop, but keeps both camera and native library initialized. This method is called internally when scan completes before `onScanningDone` is called.
+This method pauses the scanning loop, but keeps both camera and native library initialized. Pause and resume scanning methods count the number of calls, so if you called `pauseScanning()` twice, you will have to call `resumeScanning` twice to actually resume scanning.
 
 ##### <a name="recognizerView_resumeScanning"></a> [`resumeScanning(boolean)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#resumeScanning(boolean))
-With this method you can resume the paused scanning loop. If called with `true` parameter, implicitly calls `resetRecognitionState()`. If called with `false`, old recognition state will not be reset, so it could be reused for boosting recognition result. This may not be always a desired behaviour.
+With this method you can resume the paused scanning loop. If called with `true` parameter, implicitly calls `resetRecognitionState()`. If called with `false`, old recognition state will not be reset, so it could be reused for boosting recognition result. This may not be always a desired behaviour.  Pause and resume scanning methods count the number of calls, so if you called `pauseScanning()` twice, you will have to call `resumeScanning` twice to actually resume scanning loop.
+
+
+##### <a name="recognizerView_setInitialScanningPaused"></a> [`setInitialScanningPaused()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#setInitialScanningPaused())
+This method lets you set up RecognizerView to not automatically resume scanning first time [resume](#recognizerView_resume) is called. An example use case of when you might want this is if you want to display onboarding help when opening camera first time and want to prevent scanning in background while onboarding is displayed over camera preview.
 
 ##### <a name="recognizerView_resetRecognitionState"></a> [`resetRecognitionState()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#resetRecognitionState())
 With this method you can reset internal recognition state. State is usually kept to improve recognition quality over time, but without resetting recognition state sometimes you might get poorer results (for example if you scan one object and then another without resetting state you might end up with result that contains properties from both scanned objects).
@@ -615,7 +604,7 @@ Each region is defined as [Rectangle](https://blinkocr.github.io/blinkocr-androi
 
 View width and height are defined in current context, i.e. they depend on screen orientation, as defined in `AndroidManifest.xml`. In portrait orientation view width will be smaller than height, whilst in landscape orientation width will be larger than height. This complies with view designer preview.
 
-##### <a name="recognizerView_setMetadataListener"></a> [`setMetadadaListener(MetadataListener, MetadataSettings)`](https://blinkocr.github.io/blinkocr-androidcom/microblink/view/recognition/RecognizerView.html#setMetadataListener(com.microblink.metadata.MetadataListener, com.microblink.metadata.MetadataSettings))
+##### <a name="recognizerView_setMetadataListener"></a> [`setMetadadaListener(MetadataListener, MetadataSettings)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#setMetadataListener(com.microblink.metadata.MetadataListener, com.microblink.metadata.MetadataSettings))
 You can use this method to define [metadata listener](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataListener.html) that will obtain various metadata
 from the current recognition process. Which metadata will be available depends on [metadata settings](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataSettings.html). For more information and examples, check demo applications.
 
@@ -655,14 +644,13 @@ public class DirectAPIActivity extends Activity implements ScanResultListener {
 			finish();
 			return;
 		}
-		
 	   try {
 	       // set license key
 	       mRecognizer.setLicenseKey(this, "your license key");
 	   } catch (InvalidLicenceKeyException exc) {
+	       finish();
 	       return;
 	   }
-
 		RecognitionSettings settings = new RecognitionSettings();
 		// setupSettingsArray method is described in chapter "Recognition 
 		// settings and results")
@@ -1201,13 +1189,15 @@ This method will return a [BarcodeType](https://blinkocr.github.io/blinkocr-andr
 
 # <a name="archConsider"></a> Processor architecture considerations
 
-_BlinkOCR_ is distributed with both ARMv7, ARM64 and x86 native library binaries.
+_BlinkOCR_ is distributed with both ARMv7, ARM64, x86 and x86_64 native library binaries.
 
 ARMv7 architecture gives the ability to take advantage of hardware accelerated floating point operations and SIMD processing with [NEON](http://www.arm.com/products/processors/technologies/neon.php). This gives _BlinkOCR_ a huge performance boost on devices that have ARMv7 processors. Most new devices (all since 2012.) have ARMv7 processor so it makes little sense not to take advantage of performance boosts that those processors can give. Also note that some devices with ARMv7 processors do not support NEON instruction sets. Most popular are those based on [NVIDIA Tegra 2](https://en.wikipedia.org/wiki/Tegra#Tegra_2) fall into this category. Since these devices are old by today's standard, _BlinkOCR_ does not support them.
 
 ARM64 is the new processor architecture that some new high end devices use. ARM64 processors are very powerful and also have the possibility to take advantage of new NEON64 SIMD instruction set to quickly process multiple pixels with single instruction.
 
 x86 architecture gives the ability to obtain native speed on x86 android devices, like [Prestigio 5430](http://www.gsmarena.com/prestigio_multiphone_5430_duo-5721.php). Without that, _BlinkOCR_ will not work on such devices, or it will be run on top of ARM emulator that is shipped with device - this will give a huge performance penalty.
+
+x86_64 architecture gives better performance than x86 on devices that use 64-bit Intel Atom processor.
 
 However, there are some issues to be considered:
 
@@ -1217,8 +1207,10 @@ However, there are some issues to be considered:
 - however, some x86 android devices ship with the builtin [ARM emulator](http://commonsware.com/blog/2013/11/21/libhoudini-what-it-means-for-developers.html) - such devices are able to run ARM binaries but with performance penalty. There is also a risk that builtin ARM emulator will not understand some specific ARM instruction and will crash.
 - ARM64 processors understand ARMv7 instruction set, but ARMv7 processors does not understand ARM64 instructions
 - if ARM64 processor executes ARMv7 code, it does not take advantage of modern NEON64 SIMD operations and does not take advantage of 64-bit registers it has - it runs in emulation mode
+- x86_64 processors understand x86 instruction set, but x86 processors do not understand x86_64 instruction set
+- if x86_64 processor executes x86 code, it does not take advantage of 64-bit registers and use two instructions instead of one for 64-bit operations
 
-`LibRecognizer.aar` archive contains ARMv7, ARM64 and x86 builds of native library. By default, when you integrate _BlinkOCR_ into your app, your app will contain native builds for all processor architectures. Thus, _BlinkOCR_ will work on ARMv7 and x86 devices and will use ARMv7 features on ARMv7 devices and ARM64 features on ARM64 devices. However, the size of your application will be rather large.
+`LibRecognizer.aar` archive contains ARMv7, ARM64, x86 and x86_64 builds of native library. By default, when you integrate _BlinkOCR_ into your app, your app will contain native builds for all processor architectures. Thus, _BlinkOCR_ will work on ARMv7, ARM64, x86 and x86_64 devices and will use ARMv7 features on ARMv7 devices and ARM64 features on ARM64 devices. However, the size of your application will be rather large.
 
 ## <a name="reduceSize"></a> Reducing the final size of your app
 
@@ -1231,7 +1223,7 @@ android {
     abi {
       enable true
       reset()
-      include 'x86', 'armeabi-v7a', 'arm64-v8a'
+      include 'x86', 'armeabi-v7a', 'arm64-v8a', 'x86_64'
       universalApk true
     }
   }
@@ -1242,7 +1234,7 @@ With that build instructions, gradle will build four different APK files for you
 
 ```
 // map for the version code
-def abiVersionCodes = ['armeabi-v7a':1, 'arm64-v8a':2, 'x86':3]
+def abiVersionCodes = ['armeabi-v7a':1, 'arm64-v8a':2, 'x86':3, 'x86_64':4]
 
 import com.android.build.OutputFile
 
@@ -1272,12 +1264,14 @@ Native libraryies in eclipse library project are located in subfolder `libs`:
 - `libs/armeabi-v7a` contains native libraries for ARMv7 processor arhitecture
 - `libs/x86` contains native libraries for x86 processor architecture
 - `libs/arm64-v8a` contains native libraries for ARM64 processor architecture
+- `libs/x86_64` contains native libraries for x86_64 processor architecture
 
 To remove a support for processor architecture, you should simply delete appropriate folder inside Eclipse library project:
 
 - to remove ARMv7 support, delete folder `libs/armeabi-v7a`
 - to remove x86 support, delete folder `libs/x86`
 - to remove ARM64 support, delete folder `libs/arm64-v8a`
+- to remove x86_64 support, delete folder `libs/x86_64`
 
 ### Consequences of removing processor architecture
 
@@ -1286,6 +1280,7 @@ However, removing a processor architecture has some consequences:
 - by removing ARMv7 support _BlinkOCR_ will not work on devices that have ARMv7 processors. 
 - by removing ARM64 support, _BlinkOCR_ will not use ARM64 features on ARM64 device
 - by removing x86 support, _BlinkOCR_ will not work on devices that have x86 processor, except in situations when devices have ARM emulator - in that case, _BlinkOCR_ will work, but will be slow
+- by removing x86_64 support, _BlinkOCR_ will not use 64-bit optimizations on x86_64 processor, but if x86 support is not removed, _BlinkOCR_ should work
 
 Our recommendation is to include all architectures into your app - it will work on all devices and will provide best user experience. However, if you really need to reduce the size of your app, we recommend releasing separate version of your app for each processor architecture.
 
