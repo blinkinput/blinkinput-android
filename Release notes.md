@@ -1,5 +1,14 @@
 # Release notes
 
+## 2.2.0
+- improved performance of conversion of `Image` object into `Bitmap`
+- fixed crash that could be caused by quickly restarting camera activity
+- fixed bug in camera layout in certain aspect ratios of camera view
+- fixed bug in segment scan when put on landscape activity
+- fixed bug in handling `setMeteringAreas`
+- `setMeteringAreas` now receives boolean indicating whether set areas should be rotated with device
+- added support for specifying camera aspect mode from XML
+
 ## 2.1.0
 - fixed crash that occurred when detection image was being sent from native to Java
 - fixed issue that cause irrationaly refusal to scan anything on high-end devices
