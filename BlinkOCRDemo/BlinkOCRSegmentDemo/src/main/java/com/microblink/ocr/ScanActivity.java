@@ -29,7 +29,6 @@ import com.microblink.recognizers.settings.RecognitionSettings;
 import com.microblink.recognizers.settings.RecognizerSettings;
 import com.microblink.util.CameraPermissionManager;
 import com.microblink.util.Log;
-import com.microblink.view.BaseCameraView;
 import com.microblink.view.CameraAspectMode;
 import com.microblink.view.CameraEventsListener;
 import com.microblink.view.recognition.RecognizerView;
@@ -282,7 +281,9 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
         // after camera is started, we can set the metering area for autofocus, white balance
         // and auto exposure measurements
         // we set the same rectangle as for scanning region
-        mRecognizerView.setMeteringAreas(new Rectangle[] {new Rectangle(0.1f, 0.34f, 0.8f, 0.13f)});
+        // we also define that this metering area will not follow device orientation changes because
+        // we have set non rotatable scanning region
+        mRecognizerView.setMeteringAreas(new Rectangle[] {new Rectangle(0.1f, 0.34f, 0.8f, 0.13f)}, false);
     }
 
     @Override

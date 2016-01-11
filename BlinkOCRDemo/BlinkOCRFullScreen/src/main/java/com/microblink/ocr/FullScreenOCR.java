@@ -159,7 +159,7 @@ public class FullScreenOCR extends Activity implements MetadataListener, CameraE
 
         // OCR result view will be added as child of recognizer view. This makes sure that if
         // recognizer view letter-boxes the camera preview (ASPECT_FIT camera mode), the OCR
-        // result view will be layed out exactly above camera preview
+        // result view will be laid out exactly above camera preview
         // Note that we can add child views to RecognizerView only after we called create on it.
         // The boolean parameter defines whether added view will be rotated with device. Allowed
         // orientations are defined with OrientationAllowedListener.

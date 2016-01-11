@@ -165,12 +165,7 @@ public class MainActivity extends Activity {
                                 @Override
                                 public void run() {
                                     AlertDialog.Builder b = new AlertDialog.Builder(MainActivity.this);
-                                    b.setTitle("OCR").setMessage(parsed).setCancelable(false).setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.dismiss();
-                                        }
-                                    }).show();
+                                    b.setTitle("OCR").setMessage(parsed).setCancelable(false).setNeutralButton("OK", null).show();
                                 }
                             });
                         }

@@ -86,7 +86,7 @@ After that, you just need to add _BlinkOCR_ and appCompat-v7 as a dependencies t
 
 ```
 dependencies {
-    compile 'com.microblink:blinkocr:2.1.0'
+    compile 'com.microblink:blinkocr:2.2.0'
     compile "com.android.support:appcompat-v7:23.1.1"
 }
 ```
@@ -118,7 +118,7 @@ Open your `pom.xml` file and add these directives as appropriate:
 	<dependency>
 		  <groupId>com.microblink</groupId>
 		  <artifactId>blinkocr</artifactId>
-		  <version>2.1.0</version>
+		  <version>2.2.0</version>
 		  <type>aar</type>
   	</dependency>
 </dependencies>
@@ -597,12 +597,14 @@ View width and height are defined in current context, i.e. they depend on screen
 
 Note that scanning region only reflects to native code - it does not have any impact on user interface. You are required to create a matching user interface that will visualize the same scanning region you set here.
 
-##### <a name="recognizerView_setMeteringAreas"/></a> [`setMeteringAreas(Rectangle[])`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/BaseCameraView.html#setMeteringAreas(com.microblink.geometry.Rectangle[]))
+##### <a name="recognizerView_setMeteringAreas"/></a> [`setMeteringAreas(Rectangle[],boolean)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/BaseCameraView.html#setMeteringAreas(com.microblink.geometry.Rectangle[],boolean))
 This method can only be called when camera is active. You can use this method to define regions which camera will use to perform meterings for focus, white balance and exposure corrections. On devices that do not support metering areas, this will be ignored. Some devices support multiple metering areas and some support only one. If device supports only one metering area, only the first rectangle from array will be used.
 
 Each region is defined as [Rectangle](https://blinkocr.github.io/blinkocr-android/com/microblink/geometry/Rectangle.html). First parameter of rectangle is x-coordinate represented as percentage of view width, second parameter is y-coordinate represented as percentage of view height, third parameter is region width represented as percentage of view width and fourth parameter is region height represented as percentage of view height.
 
-View width and height are defined in current context, i.e. they depend on screen orientation, as defined in `AndroidManifest.xml`. In portrait orientation view width will be smaller than height, whilst in landscape orientation width will be larger than height. This complies with view designer preview.
+View width and height are defined in current context, i.e. they depend on current device orientation. If you have custom [OrientationAllowedListener](https://blinkocr.github.io/blinkocr-android/com/microblink/view/OrientationAllowedListener.html), then device orientation will be the last orientation that you have allowed in your listener. If you don't have it set, orientation will be the orientation of activity as defined in `AndroidManifest.xml`. In portrait orientation view width will be smaller than height, whilst in landscape orientation width will be larger than height. This complies with view designer preview.
+
+Second boolean parameter indicates whether or not metering areas should be automatically updated when device orientation changes.
 
 ##### <a name="recognizerView_setMetadataListener"></a> [`setMetadadaListener(MetadataListener, MetadataSettings)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#setMetadataListener(com.microblink.metadata.MetadataListener, com.microblink.metadata.MetadataSettings))
 You can use this method to define [metadata listener](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataListener.html) that will obtain various metadata

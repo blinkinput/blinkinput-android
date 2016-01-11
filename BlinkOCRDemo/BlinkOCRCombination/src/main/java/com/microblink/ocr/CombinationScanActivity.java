@@ -255,7 +255,9 @@ public class CombinationScanActivity extends Activity implements CameraEventsLis
             // after camera is started, we can set the metering area for autofocus, white balance
             // and auto exposure measurements
             // we set the same rectangle as for scanning region
-            mRecognizerView.setMeteringAreas(new Rectangle[]{new Rectangle(0.05f, 0.17f, 0.9f, 0.47f)});
+            // we also define that this metering area will not follow device orientation changes because
+            // we have set non rotatable scanning region
+            mRecognizerView.setMeteringAreas(new Rectangle[]{new Rectangle(0.05f, 0.17f, 0.9f, 0.47f)}, false);
         }
     }
 
