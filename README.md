@@ -620,10 +620,10 @@ Use this method to set a license key that is bound to a licensee, not the applic
 
 This section will describe how to use direct API to recognize android Bitmaps without the need for camera. You can use direct API anywhere from your application, not just from activities.
 
-1. First, you need to obtain reference to [Recognizer singleton](https://blinkocr.github.io/blinkocr-android/com/microblink/directApi/Recognizer.html) using [getSingletonInstance](https://blinkocr.github.io/blinkocr-android/com/microblink/directApi/Recognizer.html#getSingletonInstance()).
-2. Second, you need to [initialize the recognizer](https://blinkocr.github.io/blinkocr-android/com/microblink/directApi/Recognizer.html#initialize(android.content.Context, com.microblink.recognizers.settings.RecognitionSettings, com.microblink.directApi.DirectApiErrorListener)).
-3. After initialization, you can use singleton to [process images](https://blinkocr.github.io/blinkocr-android/com/microblink/directApi/Recognizer.html#recognizeBitmap(android.graphics.Bitmap, com.microblink.hardware.orientation.Orientation, com.microblink.view.recognition.ScanResultListener)). You cannot process multiple images in parallel.
-4. Do not forget to [terminate](https://blinkocr.github.io/blinkocr-android/com/microblink/directApi/Recognizer.html#terminate()) the recognizer after usage (it is a shared resource).
+1. First, you need to obtain reference to [Recognizer singleton](https://blinkocr.github.io/blinkocr-android/com/microblink/directApi/Recognizer.html) using [getSingletonInstance](https://blinkocr.github.io/blinkocr-android/com/microblink/directApi/Recognizer.html#getSingletonInstance--).
+2. Second, you need to [initialize the recognizer](https://blinkocr.github.io/blinkocr-android/com/microblink/directApi/Recognizer.html#initialize-android.content.Context-com.microblink.recognizers.settings.RecognitionSettings-com.microblink.directApi.DirectApiErrorListener-).
+3. After initialization, you can use singleton to [process images](https://blinkocr.github.io/blinkocr-android/com/microblink/directApi/Recognizer.html#recognizeBitmap-android.graphics.Bitmap-com.microblink.hardware.orientation.Orientation-com.microblink.view.recognition.ScanResultListener-). You cannot process multiple images in parallel.
+4. Do not forget to [terminate](https://blinkocr.github.io/blinkocr-android/com/microblink/directApi/Recognizer.html#terminate--) the recognizer after usage (it is a shared resource).
 
 Here is the minimum example of usage of direct API for recognizing android Bitmap:
 
