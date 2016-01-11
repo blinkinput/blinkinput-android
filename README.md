@@ -515,80 +515,80 @@ However, if you really want to set `screenOrientation` property to `sensor` or s
 ## <a name="recognizerViewReference"></a> `RecognizerView` reference
 The complete reference of `RecognizerView` is available in [Javadoc](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html). The usage example is provided in `BlinkOCRFullScreen` demo app provided with SDK. This section just gives a quick overview of `RecognizerView's` most important methods.
 
-##### <a name="recognizerView_create"></a> [`create()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#create())
+##### <a name="recognizerView_create"></a> [`create()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#create--)
 This method should be called in activity's `onCreate` method. It will initialize `RecognizerView's` internal fields and will initialize camera control thread. This method must be called after all other settings are already defined, such as listeners and recognition settings. After calling this method, you can add child views to `RecognizerView` with method `addChildView(View, boolean)`.
 
-##### <a name="recognizerView_start"></a> [`start()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#start())
+##### <a name="recognizerView_start"></a> [`start()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#start--)
 This method should be called in activity's `onStart` method. It will initialize background processing thread and start native library initialization on that thread.
 
-##### <a name="recognizerView_resume"></a> [`resume()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#resume())
+##### <a name="recognizerView_resume"></a> [`resume()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#resume--)
 This method should be called in activity's `onResume` method. It will trigger background initialization of camera. After camera is loaded, it will start camera frame recognition, except if scanning loop is paused.
 
-##### <a name="recognizerView_pause"></a> [`pause()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#pause())
+##### <a name="recognizerView_pause"></a> [`pause()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#pause--)
 This method should be called in activity's `onPause` method. It will stop the camera, but will keep native library loaded.
 
-##### <a name="recognizerView_stop"></a> [`stop()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#stop())
+##### <a name="recognizerView_stop"></a> [`stop()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#stop--)
 This method should be called in activity's `onStop` method. It will deinitialize native library, terminate background processing thread and free all resources that are no longer necessary.
 
-##### <a name="recognizerView_destroy"></a> [`destroy()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#destroy())
+##### <a name="recognizerView_destroy"></a> [`destroy()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#destroy--)
 This method should be called in activity's `onDestroy` method. It will free all resources allocated in `create()` and will terminate camera control thread.
 
-##### <a name="recognizerView_changeConfiguration"></a> [`changeConfiguration(Configuration)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/BaseCameraView.html#changeConfiguration(android.content.res.Configuration))
+##### <a name="recognizerView_changeConfiguration"></a> [`changeConfiguration(Configuration)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/BaseCameraView.html#changeConfiguration-android.content.res.Configuration-)
 This method should be called in activity's `onConfigurationChanged` method. It will adapt camera surface to new configuration without the restart of the activity. See [Scan activity's orientation](#scanOrientation) for more information.
 
-##### <a name="recognizerView_setCameraType"></a> [`setCameraType(CameraType)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/BaseCameraView.html#setCameraType(com.microblink.hardware.camera.CameraType))
+##### <a name="recognizerView_setCameraType"></a> [`setCameraType(CameraType)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/BaseCameraView.html#setCameraType-com.microblink.hardware.camera.CameraType-)
 With this method you can define which camera on device will be used. Default camera used is back facing camera.
 
-##### <a name="recognizerView_setAspectMode"></a> [`setAspectMode(CameraAspectMode)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/BaseCameraView.html#setAspectMode(com.microblink.view.CameraAspectMode))
+##### <a name="recognizerView_setAspectMode"></a> [`setAspectMode(CameraAspectMode)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/BaseCameraView.html#setAspectMode-com.microblink.view.CameraAspectMode-)
 Define the [aspect mode of camera](https://blinkocr.github.io/blinkocr-android/com/microblink/view/CameraAspectMode.html). If set to `ASPECT_FIT` (default), then camera preview will be letterboxed inside available view space. If set to `ASPECT_FILL`, camera preview will be zoomed and cropped to use the entire view space.
 
-##### <a name="recognizerView_setVideoResolutionPreset"></a> [`setVideoResolutionPreset(VideoResolutionPreset)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/BaseCameraView.html#setVideoResolutionPreset(com.microblink.hardware.camera.VideoResolutionPreset))
+##### <a name="recognizerView_setVideoResolutionPreset"></a> [`setVideoResolutionPreset(VideoResolutionPreset)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/BaseCameraView.html#setVideoResolutionPreset-com.microblink.hardware.camera.VideoResolutionPreset-)
 Define the [video resolution preset](https://blinkocr.github.io/blinkocr-android/com/microblink/hardware/camera/VideoResolutionPreset.html) that will be used when choosing camera resolution for scanning.
 
-##### <a name="recognizerView_setRecognitionSettings"></a> [`setRecognitionSettings(RecognitionSettings)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#setRecognitionSettings(com.microblink.recognizers.settings.RecognitionSettings))
+##### <a name="recognizerView_setRecognitionSettings"></a> [`setRecognitionSettings(RecognitionSettings)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#setRecognitionSettings-com.microblink.recognizers.settings.RecognitionSettings-)
 With this method you can set recognition settings that contains information what will be scanned and how will scan be performed. For more information about recognition settings and results see [Recognition settings and results](#recognitionSettingsAndResults). This method must be called before `create()`.
 
-##### <a name="recognizerView_reconfigureRecognizers1"></a> [`reconfigureRecognizers(RecognitionSettings)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#reconfigureRecognizers(com.microblink.recognizers.settings.RecognitionSettings))
+##### <a name="recognizerView_reconfigureRecognizers1"></a> [`reconfigureRecognizers(RecognitionSettings)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#reconfigureRecognizers-com.microblink.recognizers.settings.RecognitionSettings-)
 With this method you can reconfigure the recognition process while recognizer is active. Unlike `setRecognitionSettings`, this method must be called while recognizer is active (i.e. after `resume` was called). For more information about recognition settings see [Recognition settings and results](#recognitionSettingsAndResults).
 
-##### <a name="recognizerView_setOrientationAllowedListener"></a> [`setOrientationAllowedListener(OrientationAllowedListener)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/BaseCameraView.html#setOrientationAllowedListener(com.microblink.view.OrientationAllowedListener))
+##### <a name="recognizerView_setOrientationAllowedListener"></a> [`setOrientationAllowedListener(OrientationAllowedListener)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/BaseCameraView.html#setOrientationAllowedListener-com.microblink.view.OrientationAllowedListener-)
 With this method you can set a [OrientationAllowedListener](https://blinkocr.github.io/blinkocr-android/com/microblink/view/OrientationAllowedListener.html) which will be asked if current orientation is allowed. If orientation is allowed, it will be used to rotate rotatable views to it and it will be passed to native library so that recognizers can be aware of the new orientation. If you do not set this listener, recognition will be performed only in orientation defined by current activity's orientation.
 
-##### <a name="recognizerView_setScanResultListener"></a> [`setScanResultListener(ScanResultListener)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#setScanResultListener(com.microblink.view.recognition.ScanResultListener))
+##### <a name="recognizerView_setScanResultListener"></a> [`setScanResultListener(ScanResultListener)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#setScanResultListener-com.microblink.view.recognition.ScanResultListener-)
 With this method you can set a [ScanResultListener](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/ScanResultListener.html) which will be notified when recognition completes. After recognition completes, `RecognizerView` will pause its scanning loop and to continue the scanning you will have to call `resumeScanning` method. In this method you can obtain data from scanning results. For more information see [Recognition settings and results](#recognitionSettingsAndResults).
 
-##### <a name="recognizerView_setCameraEventsListener"></a> [`setCameraEventsListener(CameraEventsListener)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/BaseCameraView.html#setCameraEventsListener(com.microblink.view.CameraEventsListener))
+##### <a name="recognizerView_setCameraEventsListener"></a> [`setCameraEventsListener(CameraEventsListener)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/BaseCameraView.html#setCameraEventsListener-com.microblink.view.CameraEventsListener-)
 With this method you can set a [CameraEventsListener](https://blinkocr.github.io/blinkocr-android/com/microblink/view/CameraEventsListener.html) which will be notified when various camera events occur, such as when camera preview has started, autofocus has failed or there has been an error while using the camera or performing the recognition.
 
-##### <a name="recognizerView_pauseScanning"></a> [`pauseScanning()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#pauseScanning())
+##### <a name="recognizerView_pauseScanning"></a> [`pauseScanning()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#pauseScanning--)
 This method pauses the scanning loop, but keeps both camera and native library initialized. Pause and resume scanning methods count the number of calls, so if you called `pauseScanning()` twice, you will have to call `resumeScanning` twice to actually resume scanning.
 
-##### <a name="recognizerView_resumeScanning"></a> [`resumeScanning(boolean)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#resumeScanning(boolean))
+##### <a name="recognizerView_resumeScanning"></a> [`resumeScanning(boolean)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#resumeScanning-boolean-)
 With this method you can resume the paused scanning loop. If called with `true` parameter, implicitly calls `resetRecognitionState()`. If called with `false`, old recognition state will not be reset, so it could be reused for boosting recognition result. This may not be always a desired behaviour.  Pause and resume scanning methods count the number of calls, so if you called `pauseScanning()` twice, you will have to call `resumeScanning` twice to actually resume scanning loop.
 
 
-##### <a name="recognizerView_setInitialScanningPaused"></a> [`setInitialScanningPaused()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#setInitialScanningPaused())
+##### <a name="recognizerView_setInitialScanningPaused"></a> [`setInitialScanningPaused()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#setInitialScanningPaused--)
 This method lets you set up RecognizerView to not automatically resume scanning first time [resume](#recognizerView_resume) is called. An example use case of when you might want this is if you want to display onboarding help when opening camera first time and want to prevent scanning in background while onboarding is displayed over camera preview.
 
-##### <a name="recognizerView_resetRecognitionState"></a> [`resetRecognitionState()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#resetRecognitionState())
+##### <a name="recognizerView_resetRecognitionState"></a> [`resetRecognitionState()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#resetRecognitionState--)
 With this method you can reset internal recognition state. State is usually kept to improve recognition quality over time, but without resetting recognition state sometimes you might get poorer results (for example if you scan one object and then another without resetting state you might end up with result that contains properties from both scanned objects).
 
-##### <a name="recognizerView_addChildView"></a> [`addChildView(View, boolean)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/BaseCameraView.html#addChildView(android.view.View, boolean))
+##### <a name="recognizerView_addChildView"></a> [`addChildView(View, boolean)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/BaseCameraView.html#addChildView-android.view.View-boolean-)
 With this method you can add your own view on top of `RecognizerView`. `RecognizerView` will ensure that your view will be layouted exactly above camera preview surface (which can be letterboxed if aspect ratio of camera preview size does not match the aspect ratio of `RecognizerView` and camera aspect mode is set to `ASPECT_FIT`). Boolean parameter defines whether your view should be rotated with device orientation changes. The rotation is independent of host activity's orientation changes and allowed orientations will be determined from [OrientationAllowedListener](https://blinkocr.github.io/blinkocr-android/com/microblink/view/OrientationAllowedListener.html). See also [Scan activity's orientation](#scanOrientation) for more information why you should rotate your views independently of activity.
 
-##### <a name="recognizerView_isCameraFocused"></a> [`isCameraFocused()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/BaseCameraView.html#isCameraFocused()) 
+##### <a name="recognizerView_isCameraFocused"></a> [`isCameraFocused()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/BaseCameraView.html#isCameraFocused--) 
 This method returns `true` if camera thinks it has focused on object. Note that camera has to be active for this method to work. If camera is not active, returns `false`.
 
-##### <a name="recognizerView_focusCamera"></a> [`focusCamera()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/BaseCameraView.html#focusCamera()) 
+##### <a name="recognizerView_focusCamera"></a> [`focusCamera()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/BaseCameraView.html#focusCamera--) 
 This method requests camera to perform autofocus. If camera does not support autofocus feature, method does nothing. Note that camera has to be active for this method to work.
 
-##### <a name="recognizerView_isCameraTorchSupported"></a> [`isCameraTorchSupported()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/BaseCameraView.html#isCameraTorchSupported())
+##### <a name="recognizerView_isCameraTorchSupported"></a> [`isCameraTorchSupported()`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/BaseCameraView.html#isCameraTorchSupported--)
 This method returns `true` if camera supports torch flash mode. Note that camera has to be active for this method to work. If camera is not active, returns `false`.
 
-##### <a name="recognizerView_setTorchState"></a> [`setTorchState(boolean, SuccessCallback)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/BaseCameraView.html#setTorchState(boolean, com.microblink.hardware.SuccessCallback)) 
+##### <a name="recognizerView_setTorchState"></a> [`setTorchState(boolean, SuccessCallback)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/BaseCameraView.html#setTorchState-boolean-com.microblink.hardware.SuccessCallback-) 
 If torch flash mode is supported on camera, this method can be used to enable/disable torch flash mode. After operation is performed, [SuccessCallback](https://blinkocr.github.io/blinkocr-android/com/microblink/hardware/SuccessCallback.html) will be called with boolean indicating whether operation has succeeded or not. Note that camera has to be active for this method to work and that callback might be called on background non-UI thread.
 
-##### <a name="recognizerView_setScanningRegion"></a> [`setScanningRegion(Rectangle, boolean)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#setScanningRegion(com.microblink.geometry.Rectangle, boolean))
+##### <a name="recognizerView_setScanningRegion"></a> [`setScanningRegion(Rectangle, boolean)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#setScanningRegion-com.microblink.geometry.Rectangle-boolean-)
 You can use this method to define the scanning region and define whether this scanning region will be rotated with device if [OrientationAllowedListener](https://blinkocr.github.io/blinkocr-android/com/microblink/view/OrientationAllowedListener.html) determines that orientation is allowed. This is useful if you have your own camera overlay on top of `RecognizerView` that is set as rotatable view - you can thus synchronize the rotation of the view with the rotation of the scanning region native code will scan.
 
 Scanning region is defined as [Rectangle](https://blinkocr.github.io/blinkocr-android/com/microblink/geometry/Rectangle.html). First parameter of rectangle is x-coordinate represented as percentage of view width, second parameter is y-coordinate represented as percentage of view height, third parameter is region width represented as percentage of view width and fourth parameter is region height represented as percentage of view height.
@@ -597,7 +597,7 @@ View width and height are defined in current context, i.e. they depend on screen
 
 Note that scanning region only reflects to native code - it does not have any impact on user interface. You are required to create a matching user interface that will visualize the same scanning region you set here.
 
-##### <a name="recognizerView_setMeteringAreas"/></a> [`setMeteringAreas(Rectangle[],boolean)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/BaseCameraView.html#setMeteringAreas(com.microblink.geometry.Rectangle[],boolean))
+##### <a name="recognizerView_setMeteringAreas"/></a> [`setMeteringAreas(Rectangle[],boolean)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/BaseCameraView.html#setMeteringAreas-com.microblink.geometry.Rectangle:A-boolean-)
 This method can only be called when camera is active. You can use this method to define regions which camera will use to perform meterings for focus, white balance and exposure corrections. On devices that do not support metering areas, this will be ignored. Some devices support multiple metering areas and some support only one. If device supports only one metering area, only the first rectangle from array will be used.
 
 Each region is defined as [Rectangle](https://blinkocr.github.io/blinkocr-android/com/microblink/geometry/Rectangle.html). First parameter of rectangle is x-coordinate represented as percentage of view width, second parameter is y-coordinate represented as percentage of view height, third parameter is region width represented as percentage of view width and fourth parameter is region height represented as percentage of view height.
@@ -606,14 +606,14 @@ View width and height are defined in current context, i.e. they depend on curren
 
 Second boolean parameter indicates whether or not metering areas should be automatically updated when device orientation changes.
 
-##### <a name="recognizerView_setMetadataListener"></a> [`setMetadadaListener(MetadataListener, MetadataSettings)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#setMetadataListener(com.microblink.metadata.MetadataListener, com.microblink.metadata.MetadataSettings))
+##### <a name="recognizerView_setMetadataListener"></a> [`setMetadadaListener(MetadataListener, MetadataSettings)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#setMetadataListener-com.microblink.metadata.MetadataListener-com.microblink.metadata.MetadataSettings-)
 You can use this method to define [metadata listener](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataListener.html) that will obtain various metadata
 from the current recognition process. Which metadata will be available depends on [metadata settings](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataSettings.html). For more information and examples, check demo applications.
 
-##### <a name="recognizerView_setLicenseKey1"></a> [`setLicenseKey(String licenseKey)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#setLicenseKey(java.lang.String))
+##### <a name="recognizerView_setLicenseKey1"></a> [`setLicenseKey(String licenseKey)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#setLicenseKey-java.lang.String-)
 This method sets the license key that will unlock all features of the native library. You can obtain your license key from [Microblink website](http://microblink.com/login).
 
-##### <a name="recognizerView_setLicenseKey2"></a> [`setLicenseKey(String licenseKey, String licenseOwner)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#setLicenseKey(java.lang.String, java.lang.String))
+##### <a name="recognizerView_setLicenseKey2"></a> [`setLicenseKey(String licenseKey, String licenseOwner)`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html#setLicenseKey-java.lang.String-java.lang.String-)
 Use this method to set a license key that is bound to a licensee, not the application package name. You will use this method when you obtain a license key that allows you to use _BlinkOCR_ SDK in multiple applications. You can obtain your license key from [Microblink website](http://microblink.com/login).
 
 # <a name="directAPI"></a> Using direct API for recognition of Android Bitmaps
@@ -701,17 +701,17 @@ public class DirectAPIActivity extends Activity implements ScanResultListener {
 DirectAPI's Recognizer singleton is actually a state machine which can be in one of 4 states: `OFFLINE`, `UNLOCKED`, `READY` and `WORKING`. 
 
 - When you obtain the reference to Recognizer singleton, it will be in `OFFLINE` state. 
-- First you need to unlock the Recognizer by providing a valid licence key using [`setLicenseKey`](https://blinkocr.github.io/blinkocr-android/com/microblink/directApi/Recognizer.html#setLicenseKey(android.content.Context, java.lang.String)) method. If you attempt to call `setLicenseKey` while Recognizer is not in `OFFLINE` state, you will get `IllegalStateException`.
+- First you need to unlock the Recognizer by providing a valid licence key using [`setLicenseKey`](https://blinkocr.github.io/blinkocr-android/com/microblink/directApi/Recognizer.html#setLicenseKey-android.content.Context-java.lang.String-) method. If you attempt to call `setLicenseKey` while Recognizer is not in `OFFLINE` state, you will get `IllegalStateException`.
 - After successful unlocking, Recognizer singleton will move to `UNLOCKED` state.
-- Once in `UNLOCKED` state, you can initialize Recognizer by calling [`initialize`](https://blinkocr.github.io/blinkocr-android/com/microblink/directApi/Recognizer.html#initialize(android.content.Context, com.microblink.recognizers.settings.RecognitionSettings, com.microblink.directApi.DirectApiErrorListener)) method. If you call `initialize` method while Recognizer is not in `UNLOCKED` state, you will get `IllegalStateException`.
+- Once in `UNLOCKED` state, you can initialize Recognizer by calling [`initialize`](https://blinkocr.github.io/blinkocr-android/com/microblink/directApi/Recognizer.html#initialize-android.content.Context-com.microblink.recognizers.settings.RecognitionSettings-com.microblink.directApi.DirectApiErrorListener-) method. If you call `initialize` method while Recognizer is not in `UNLOCKED` state, you will get `IllegalStateException`.
 - After successful initialization, Recognizer will move to `READY` state. Now you can call any of the `recognize*` methods.
 - When starting recognition with any of the `recognize*` methods, Recognizer will move to `WORKING` state. If you attempt to call these methods while Recognizer is not in `READY` state, you will get `IllegalStateException`
 - Recognition is performed on background thread so it is safe to call all Recognizer's method from UI thread
 - When recognition is finished, Recognizer first moves back to `READY` state and then returns the result via provided [`ScanResultListener`](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/ScanResultListener.html). 
-- Please note that `ScanResultListener`'s [`onScanningDone`](https://blinkocr.github.io/blinkocr-android(com/microblink/view/recognition/ScanResultListener.html#onScanningDone(com.microblink.recognizers.RecognitionResults))) method will be called on background processing thread, so make sure you do not perform UI operations in this calback.
-- By calling [`terminate`](https://blinkocr.github.io/blinkocr-android/com/microblink/directApi/Recognizer.html#terminate()) method, Recognizer singleton will release all its internal resources and will request processing thread to terminate. Note that even after calling `terminate` you might receive `onScanningDone` event if there was work in progress when `terminate` was called.
+- Please note that `ScanResultListener`'s [`onScanningDone`](https://blinkocr.github.io/blinkocr-android(com/microblink/view/recognition/ScanResultListener.html#onScanningDone-com.microblink.recognizers.RecognitionResults-)) method will be called on background processing thread, so make sure you do not perform UI operations in this calback.
+- By calling [`terminate`](https://blinkocr.github.io/blinkocr-android/com/microblink/directApi/Recognizer.html#terminate--) method, Recognizer singleton will release all its internal resources and will request processing thread to terminate. Note that even after calling `terminate` you might receive `onScanningDone` event if there was work in progress when `terminate` was called.
 - `terminate` method can be called from any Recognizer singleton's state
-- You can observe Recognizer singleton's state with method [`getCurrentState`](https://blinkocr.github.io/blinkocr-android/com/microblink/directApi/Recognizer.html#getCurrentState())
+- You can observe Recognizer singleton's state with method [`getCurrentState`](https://blinkocr.github.io/blinkocr-android/com/microblink/directApi/Recognizer.html#getCurrentState--)
 
 ## <a name="directAPIWithRecognizer"></a> Using DirectAPI while RecognizerView is active
 Both [RecognizerView](#recognizerView) and DirectAPI recognizer use the same internal singleton that manages native code. This singleton handles initialization and termination of native library and propagating recognition settings to native library. It is possible to use RecognizerView and DirectAPI together, as internal singleton will make sure correct synchronization and correct recognition settings are used. If you run into problems while using DirectAPI in combination with RecognizerView, [let us know](http://help.microblink.com)!
@@ -821,20 +821,20 @@ This chapter will discuss various recognition settings used to configure differe
 
 Recognition settings define what will be scanned and how will the recognition process be performed. Here is the list of methods that are most relevant:
 
-##### [`setAllowMultipleScanResultsOnSingleImage(boolean)`](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/settings/RecognitionSettings.html#setAllowMultipleScanResultsOnSingleImage(boolean))
+##### [`setAllowMultipleScanResultsOnSingleImage(boolean)`](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/settings/RecognitionSettings.html#setAllowMultipleScanResultsOnSingleImage-boolean-)
 Sets whether or not outputting of multiple scan results from same image is allowed. If that is `true`, it is possible to return multiple recognition results produced by different recognizers from same image. However, single recognizer can still produce only a single result from single image. By default, this option is `false`, i.e. the array of `BaseRecognitionResults` will contain at most 1 element. The upside of setting that option to `false` is the speed - if you enable lots of recognizers, as soon as the first recognizer succeeds in scanning, recognition chain will be terminated and other recognizers will not get a chance to analyze the image. The downside is that you are then unable to obtain multiple results from different recognizers from single image.
 
-##### [`setNumMsBeforeTimeout(int)`](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/settings/RecognitionSettings.html#setNumMsBeforeTimeout(int))
+##### [`setNumMsBeforeTimeout(int)`](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/settings/RecognitionSettings.html#setNumMsBeforeTimeout-int-)
 Sets the number of miliseconds _BlinkOCR_ will attempt to perform the scan it exits with timeout error. On timeout returned array of `BaseRecognitionResults` inside [RecognitionResults](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/RecognitionResults.html) might be null, empty or may contain only elements that are not valid ([`isValid`](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/BaseRecognitionResult.html#isValid()) returns `false`) or are empty ([`isEmpty`](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/BaseRecognitionResult.html#isEmpty()) returns `true`).
 
-##### [`setFrameQualityEstimationMode(FrameQualityEstimationMode)`](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/settings/RecognitionSettings.html#setFrameQualityEstimationMode(com.microblink.recognizers.settings.RecognitionSettings.FrameQualityEstimationMode))
+##### [`setFrameQualityEstimationMode(FrameQualityEstimationMode)`](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/settings/RecognitionSettings.html#setFrameQualityEstimationMode-com.microblink.recognizers.settings.RecognitionSettings.FrameQualityEstimationMode-)
 Sets the mode of the frame quality estimation. Frame quality estimation is the process of estimating the quality of video frame so only best quality frames can be chosen for processing so no time is wasted on processing frames that are of too poor quality to contain any meaningful information. It is **not** used when performing recognition of [Android bitmaps](https://developer.android.com/reference/android/graphics/Bitmap.html) using [Direct API](#directAPI). You can choose 3 different frame quality estimation modes: automatic, always on and always off.
 
 - In **automatic** mode (default), frame quality estimation will be used if device contains multiple processor cores or if on single core device at least one active recognizer requires frame quality estimation.
 - In **always on** mode, frame quality estimation will be used always, regardless of device or active recognizers.
 - In **always off** mode, frame quality estimation will be always disabled, regardless of device or active recognizers. This is not recommended setting because it can significantly decrease quality of the scanning process.
 
-##### [`setRecognizerSettingsArray(RecognizerSettings[])`](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/settings/RecognitionSettings.html#setRecognizerSettingsArray(com.microblink.recognizers.settings.RecognizerSettings[]))
+##### [`setRecognizerSettingsArray(RecognizerSettings[])`](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/settings/RecognitionSettings.html#setRecognizerSettingsArray-com.microblink.recognizers.settings.RecognizerSettings:A-)
 Sets the array of [RecognizerSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/settings/RecognizerSettings.html) that will define which recognizers should be activated and how should the be set up. The list of available _RecognizerSettings_ and their specifics are given below.
 
 ## <a name="blinkOCR"></a> Scanning segments with BlinkOCR recognizer
