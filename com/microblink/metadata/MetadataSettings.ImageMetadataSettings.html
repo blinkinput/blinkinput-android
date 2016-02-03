@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -73,13 +73,13 @@ var activeTableTab = "activeTableTab";
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
@@ -106,13 +106,18 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <dl>
+<dt>All Implemented Interfaces:</dt>
+<dd>android.os.Parcelable</dd>
+</dl>
+<dl>
 <dt>Enclosing class:</dt>
 <dd><a href="../../../com/microblink/metadata/MetadataSettings.html" title="class in com.microblink.metadata">MetadataSettings</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public static class <span class="typeNameLabel">MetadataSettings.ImageMetadataSettings</span>
-extends java.lang.Object</pre>
+extends java.lang.Object
+implements android.os.Parcelable</pre>
 <div class="block">Settings specific to which image metadata will be available in MetadataListener</div>
 </li>
 </ul>
@@ -137,6 +142,39 @@ extends java.lang.Object</pre>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/metadata/MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings.html" title="class in com.microblink.metadata">MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings</a></span></code>&nbsp;</td>
 </tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a name="nested.classes.inherited.from.class.android.os.Parcelable">
+<!--   -->
+</a>
+<h3>Nested classes/interfaces inherited from interface&nbsp;android.os.Parcelable</h3>
+<code>android.os.Parcelable.ClassLoaderCreator&lt;T&gt;, android.os.Parcelable.Creator&lt;T&gt;</code></li>
+</ul>
+</li>
+</ul>
+<!-- =========== FIELD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field.summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Field Summary table, listing fields, and an explanation">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static android.os.Parcelable.Creator&lt;<a href="../../../com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html" title="class in com.microblink.metadata">MetadataSettings.ImageMetadataSettings</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html#CREATOR">CREATOR</a></span></code>&nbsp;</td>
+</tr>
+</table>
+<ul class="blockList">
+<li class="blockList"><a name="fields.inherited.from.class.android.os.Parcelable">
+<!--   -->
+</a>
+<h3>Fields inherited from interface&nbsp;android.os.Parcelable</h3>
+<code>CONTENTS_FILE_DESCRIPTOR, PARCELABLE_WRITE_RETURN_VALUE</code></li>
+</ul>
 </li>
 </ul>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -148,10 +186,16 @@ extends java.lang.Object</pre>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Constructor Summary table, listing constructors, and an explanation">
 <caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
-<th class="colOne" scope="col">Constructor and Description</th>
+<th class="colFirst" scope="col">Modifier</th>
+<th class="colLast" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html#ImageMetadataSettings--">ImageMetadataSettings</a></span>()</code>&nbsp;</td>
+<td class="colFirst"><code>&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html#ImageMetadataSettings--">ImageMetadataSettings</a></span>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected </code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html#ImageMetadataSettings-android.os.Parcel-">ImageMetadataSettings</a></span>(android.os.Parcel&nbsp;in)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -169,52 +213,61 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html#describeContents--">describeContents</a></span>()</code>&nbsp;</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../com/microblink/metadata/MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings.html" title="class in com.microblink.metadata">MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html#getDebugImageMetadataSettings--">getDebugImageMetadataSettings</a></span>()</code>
 <div class="block">Returns the object containing settings defining which debug images should be available in MetadataListener.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html#isCurrentVideoFrameEnabled--">isCurrentVideoFrameEnabled</a></span>()</code>
 <div class="block">Returns true if current video frame should be available in MetadataListener.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html#isDewarpedImageEnabled--">isDewarpedImageEnabled</a></span>()</code>
 <div class="block">Returns true if dewarped image should be available in MetadataListener.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html#isSuccessfulScanFrameEnabled--">isSuccessfulScanFrameEnabled</a></span>()</code>
 <div class="block">Returns true if image that was used to obtain valid scanning result will be available in MetadataListener.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html#setCurrentVideoFrameEnabled-boolean-">setCurrentVideoFrameEnabled</a></span>(boolean&nbsp;currentVideoFrameEnabled)</code>
 <div class="block">Sets whether current video frame should be available in MetadataListener.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html#setDebugImageMetadataSettings-com.microblink.metadata.MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings-">setDebugImageMetadataSettings</a></span>(<a href="../../../com/microblink/metadata/MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings.html" title="class in com.microblink.metadata">MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings</a>&nbsp;debugImageMetadataSettings)</code>
 <div class="block">Sets object containing settings defining which debug images should be available in MetadataListener.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html#setDewarpedImageEnabled-boolean-">setDewarpedImageEnabled</a></span>(boolean&nbsp;dewarpedImageEnabled)</code>
 <div class="block">Sets whether dewarped image should be available in MetadataListener.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html#setSuccessfulScanFrameEnabled-boolean-">setSuccessfulScanFrameEnabled</a></span>(boolean&nbsp;successfulScanFrameEnabled)</code>
 <div class="block">Sets whether image that was used to obtain valid scanning result will be available in MetadataListener.</div>
 </td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html#writeToParcel-android.os.Parcel-int-">writeToParcel</a></span>(android.os.Parcel&nbsp;dest,
+             int&nbsp;flags)</code>&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -232,6 +285,23 @@ extends java.lang.Object</pre>
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field.detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a name="CREATOR">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>CREATOR</h4>
+<pre>public static final&nbsp;android.os.Parcelable.Creator&lt;<a href="../../../com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html" title="class in com.microblink.metadata">MetadataSettings.ImageMetadataSettings</a>&gt; CREATOR</pre>
+</li>
+</ul>
+</li>
+</ul>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <ul class="blockList">
 <li class="blockList"><a name="constructor.detail">
@@ -241,10 +311,19 @@ extends java.lang.Object</pre>
 <a name="ImageMetadataSettings--">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>ImageMetadataSettings</h4>
 <pre>public&nbsp;ImageMetadataSettings()</pre>
+</li>
+</ul>
+<a name="ImageMetadataSettings-android.os.Parcel-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>ImageMetadataSettings</h4>
+<pre>protected&nbsp;ImageMetadataSettings(android.os.Parcel&nbsp;in)</pre>
 </li>
 </ul>
 </li>
@@ -356,7 +435,7 @@ extends java.lang.Object</pre>
 <a name="setDebugImageMetadataSettings-com.microblink.metadata.MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>setDebugImageMetadataSettings</h4>
 <pre>public&nbsp;void&nbsp;setDebugImageMetadataSettings(<a href="../../../com/microblink/metadata/MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings.html" title="class in com.microblink.metadata">MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings</a>&nbsp;debugImageMetadataSettings)</pre>
@@ -364,6 +443,33 @@ extends java.lang.Object</pre>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>debugImageMetadataSettings</code> - object containing settings defining which debug images should be available in MetadataListener.</dd>
+</dl>
+</li>
+</ul>
+<a name="describeContents--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>describeContents</h4>
+<pre>public&nbsp;int&nbsp;describeContents()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code>describeContents</code>&nbsp;in interface&nbsp;<code>android.os.Parcelable</code></dd>
+</dl>
+</li>
+</ul>
+<a name="writeToParcel-android.os.Parcel-int-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>writeToParcel</h4>
+<pre>public&nbsp;void&nbsp;writeToParcel(android.os.Parcel&nbsp;dest,
+                          int&nbsp;flags)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code>writeToParcel</code>&nbsp;in interface&nbsp;<code>android.os.Parcelable</code></dd>
 </dl>
 </li>
 </ul>
@@ -420,13 +526,13 @@ extends java.lang.Object</pre>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
