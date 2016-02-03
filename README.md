@@ -86,7 +86,7 @@ After that, you just need to add _BlinkOCR_ and appCompat-v7 as a dependencies t
 
 ```
 dependencies {
-    compile 'com.microblink:blinkocr:2.2.0'
+    compile 'com.microblink:blinkocr:2.3.0'
     compile "com.android.support:appcompat-v7:23.1.1"
 }
 ```
@@ -118,7 +118,7 @@ Open your `pom.xml` file and add these directives as appropriate:
 	<dependency>
 		  <groupId>com.microblink</groupId>
 		  <artifactId>blinkocr</artifactId>
-		  <version>2.2.0</version>
+		  <version>2.3.0</version>
 		  <type>aar</type>
   	</dependency>
 </dependencies>
