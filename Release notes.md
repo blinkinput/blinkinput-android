@@ -1,5 +1,11 @@
 # Release notes
 
+## 2.3.0
+- support detecting on activity flip event
+- fixed crash in RecognizerCompatibility on ARMv7 without NEON
+- added RecognizerCompatibility to javadoc
+- fixed NPE in BarcodeDetailedData
+
 ## 2.2.0
 - improved performance of conversion of `Image` object into `Bitmap`
 - fixed crash that could be caused by quickly restarting camera activity
