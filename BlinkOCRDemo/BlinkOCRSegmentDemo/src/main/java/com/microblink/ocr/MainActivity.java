@@ -8,8 +8,11 @@ import android.widget.Toast;
 
 import com.microblink.activity.BlinkOCRActivity;
 import com.microblink.help.HelpActivity;
+import com.microblink.recognizers.blinkocr.engine.BlinkOCREngineOptions;
 import com.microblink.recognizers.blinkocr.parser.generic.AmountParserSettings;
 import com.microblink.recognizers.blinkocr.parser.generic.IbanParserSettings;
+import com.microblink.recognizers.blinkocr.parser.regex.RegexParserSettings;
+import com.microblink.results.ocr.OcrFont;
 
 
 public class MainActivity extends Activity {
@@ -21,6 +24,9 @@ public class MainActivity extends Activity {
     private static final String NAME_TOTAL_AMOUNT = "TotalAmount";
     private static final String NAME_TAX = "Tax";
     private static final String NAME_IBAN = "IBAN";
+
+    private static final int BLINK_OCR_VIN_REQUEST_CODE = 101;
+    private static final String NAME_VIN = "VIN";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +80,57 @@ public class MainActivity extends Activity {
     }
 
     /**
+     * Called as handler for "regex example" button
+     */
+    public void regexExample(View v) {
+        /*
+         * In this example we will use default BlinkOCRActivity to drive the recognition,
+         * but here we will show how to setup a Regex parser. Regex parser allows configuring
+         * custom regular expression which should be extracted from OCR result.
+         *
+         * In this example we will show how to setup Regex parser to scan Vehicle Identification Numbers
+         * (VINs) also known as Chassis numbers of a car. The VIN is 17-character string constisting
+         * of digits and uppercase letters.
+         */
+
+        // same as in simple integration example, we will invoke scanning on BlinkOCRActivity,
+        // so we need to setup an Intent for it.
+        Intent intent = new Intent(this, BlinkOCRActivity.class);
+        // license key is required for recognizer to work.
+        intent.putExtra(BlinkOCRActivity.EXTRAS_LICENSE_KEY, LICENSE_KEY);
+
+        // now let's setup OCR engine parameters for scanning VIN:
+        BlinkOCREngineOptions engineOptions = new BlinkOCREngineOptions();
+        // only uppercase chars and digits are allowed. Don't waste time on classifying other characters as we
+        // do not need them.
+        engineOptions.addAllDigitsToWhitelist(OcrFont.OCR_FONT_ANY).addUppercaseCharsToWhitelist(OcrFont.OCR_FONT_ANY);
+        // do not bother with text lines that are smaller than 40 pixels
+        engineOptions.setMinimumLineHeight(40);
+        // we expect the VIN to be black text, so we can drop all colors from image - this will give better accuracy
+        // because coloured text will be automatically discarded.
+        engineOptions.setColorDropoutEnabled(true);
+
+        // now let's create a RegexParser
+        RegexParserSettings regexParserSettings = new RegexParserSettings("[A-Z0-9]{17}", engineOptions);
+
+        // same as in simple integration, create a scan configuration array
+        ScanConfiguration conf[] = new ScanConfiguration[] {
+                new ScanConfiguration(R.string.vin_title, R.string.vin_msg, NAME_VIN, regexParserSettings)
+        };
+
+        intent.putExtra(BlinkOCRActivity.EXTRAS_SCAN_CONFIGURATION, conf);
+
+        // optionally, if we want the help screen to be available to user on camera screen,
+        // we can simply prepare an intent for help activity and pass it to BlinkOCRActivity
+        Intent helpIntent = new Intent(this, HelpActivity.class);
+        intent.putExtra(BlinkOCRActivity.EXTRAS_HELP_INTENT, helpIntent);
+
+        // once intent is prepared, we start the BlinkOCRActivity which will preform scan and return results
+        // by calling onActivityResult
+        startActivityForResult(intent, BLINK_OCR_VIN_REQUEST_CODE);
+    }
+
+    /**
      * This method is called whenever control is returned from activity started with
      * startActivityForResult.
      */
@@ -92,6 +149,14 @@ public class MainActivity extends Activity {
             String iban = result.getString(NAME_IBAN);
 
             Toast.makeText(this, "To IBAN: " + iban + " we will pay total " + totalAmount + ", tax: " + taxAmount, Toast.LENGTH_LONG).show();
+        } else if (requestCode == BLINK_OCR_VIN_REQUEST_CODE && resultCode == BlinkOCRActivity.RESULT_OK) {
+            // now we can obtain bundle with scan results
+            Bundle result = data.getBundleExtra(BlinkOCRActivity.EXTRAS_SCAN_RESULTS);
+
+            // each result is stored under key equal to the name of the scan configuration that generated it
+            String vin = result.getString(NAME_VIN);
+
+            Toast.makeText(this, "Vehicle identification number is: " + vin, Toast.LENGTH_LONG).show();
         }
     }
 }

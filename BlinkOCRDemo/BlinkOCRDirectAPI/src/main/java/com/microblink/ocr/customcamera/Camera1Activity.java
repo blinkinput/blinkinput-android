@@ -7,6 +7,7 @@ import android.graphics.ImageFormat;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.TextView;
@@ -25,7 +26,6 @@ import com.microblink.recognizers.BaseRecognitionResult;
 import com.microblink.recognizers.RecognitionResults;
 import com.microblink.recognizers.blinkocr.BlinkOCRRecognitionResult;
 import com.microblink.recognizers.settings.RecognitionSettings;
-import com.microblink.util.Log;
 import com.microblink.view.recognition.ScanResultListener;
 
 import java.io.IOException;
@@ -33,6 +33,8 @@ import java.util.List;
 
 @SuppressWarnings("deprecation")
 public class Camera1Activity extends Activity implements ScanResultListener, SurfaceHolder.Callback, Camera.PreviewCallback {
+
+    private static final String TAG = "Camera1Activity";
 
     private SurfaceView mSurfaceView;
     private Camera mCamera;
@@ -48,6 +50,8 @@ public class Camera1Activity extends Activity implements ScanResultListener, Sur
     private String mLicenseKey;
 
     private TextView mTvResult;
+
+    private long mTimestamp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,6 +147,7 @@ public class Camera1Activity extends Activity implements ScanResultListener, Sur
             mFrameWidth = bestSize.width;
             mFrameHeight = bestSize.height;
 
+            Log.i(TAG, "Chosen frame size: " + mFrameWidth + "x" + mFrameHeight);
 
 
             mCamera.setParameters(params);
@@ -156,10 +161,10 @@ public class Camera1Activity extends Activity implements ScanResultListener, Sur
             mCamera.startPreview();
 
         } catch (RuntimeException exc) {
-            Log.e(this, exc, "Failed to open camera");
+            Log.e(TAG, "Failed to open camera", exc);
             finish();
         } catch (IOException e) {
-            Log.e(this, e, "Failed to set preview display!");
+            Log.e(TAG, "Failed to set preview display!", e);
             finish();
         }
     }
@@ -185,6 +190,7 @@ public class Camera1Activity extends Activity implements ScanResultListener, Sur
 
     @Override
     public void onScanningDone(RecognitionResults results) {
+        Log.i(TAG, "Recognition took " + (System.currentTimeMillis() - mTimestamp) + " ms");
         // get results array
         BaseRecognitionResult[] dataArray = results.getRecognitionResults();
         if (dataArray != null && dataArray.length > 0) {
@@ -227,6 +233,7 @@ public class Camera1Activity extends Activity implements ScanResultListener, Sur
         if (mRecognizer.getCurrentState() == Recognizer.State.READY) {
             // create image
             Image img = ImageBuilder.buildImageFromCamera1NV21Frame(data, mFrameWidth, mFrameHeight, Orientation.ORIENTATION_LANDSCAPE_RIGHT, null);
+            mTimestamp = System.currentTimeMillis();
             mRecognizer.recognizeImage(img, this);
         } else {
             // just ask for another frame

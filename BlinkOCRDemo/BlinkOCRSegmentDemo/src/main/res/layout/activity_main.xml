@@ -17,11 +17,21 @@
         android:text="Simple integration"/>
 
     <Button
+        android:id="@+id/btnCustomUI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="advancedIntegration"
         android:text="Custom scan UI integration"
         android:layout_below="@+id/btnSimple"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/btnRegex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="regexExample"
+        android:text="Regex parser example"
+        android:layout_below="@+id/btnCustomUI"
         android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

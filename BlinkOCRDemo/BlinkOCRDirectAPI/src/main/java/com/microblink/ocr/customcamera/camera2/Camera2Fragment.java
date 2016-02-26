@@ -106,6 +106,8 @@ public class Camera2Fragment extends Fragment implements ScanResultListener {
      */
     private static final int MAX_PREVIEW_HEIGHT = 1080;
 
+    private long mTimestamp;
+
     /**
      * {@link TextureView.SurfaceTextureListener} handles several lifecycle events on a
      * {@link TextureView}.
@@ -225,10 +227,11 @@ public class Camera2Fragment extends Fragment implements ScanResultListener {
                         // use helper method to build image object from Camera2 frame in YUV_420_888 format
                         com.microblink.image.Image image = ImageBuilder.buildImageFromCamera2Image(mImageBeingRecognized, Orientation.ORIENTATION_LANDSCAPE_RIGHT, null);
                         Log.i(TAG, "Starting recognition");
+                        mTimestamp = System.currentTimeMillis();
                         // recognize prepared image
                         mRecognizer.recognizeImage(image, Camera2Fragment.this);
                     } else {
-                        Log.i(TAG, "Recognizer is busy. Dropping current frame");
+//                        Log.v(TAG, "Recognizer is busy. Dropping current frame");
                         img.close();
                     }
                 }
@@ -687,6 +690,7 @@ public class Camera2Fragment extends Fragment implements ScanResultListener {
 
     @Override
     public void onScanningDone(RecognitionResults results) {
+        Log.i(TAG, "Recognition took " + (System.currentTimeMillis() - mTimestamp) + " ms");
         // get results array
         BaseRecognitionResult[] dataArray = results.getRecognitionResults();
         if (dataArray != null && dataArray.length > 0) {

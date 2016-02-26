@@ -70,11 +70,6 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
 
         setContentView(R.layout.activity_scan);
 
-        // load configuration titles from string resources in application context
-        for(ScanConfiguration conf : mConfiguration) {
-            conf.loadTitle(this);
-        }
-
         // obtain references to needed member variables
         mRecognizerView = (RecognizerView) findViewById(R.id.rec_view);
         mFlashButton = (ImageButton) findViewById(R.id.btnFlash);
@@ -192,7 +187,7 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
      *                                 will be performed, based on current settings.
      */
     private void updateUI (boolean updateRecognizerSettings) {
-        mMessage.setText(mConfiguration[mSelectedConfiguration].getTextResource());
+        mMessage.setText(mConfiguration[mSelectedConfiguration].getText(this));
 
         mTitleIndicator.getViewPager().setCurrentItem(mSelectedConfiguration);
 
@@ -442,7 +437,7 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
          */
         @Override
         public CharSequence getPageTitle(int position) {
-            return getResources().getString(mConfiguration[position].getTitleResource());
+            return mConfiguration[position].getTitle(ScanActivity.this);
         }
         /**
          * Instantiate the {@link View} which should be displayed at {@code position}. Here we
