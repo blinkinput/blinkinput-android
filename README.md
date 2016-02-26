@@ -86,7 +86,7 @@ After that, you just need to add _BlinkOCR_ and appCompat-v7 as a dependencies t
 
 ```
 dependencies {
-    compile 'com.microblink:blinkocr:2.3.0'
+    compile 'com.microblink:blinkocr:2.4.0'
     compile "com.android.support:appcompat-v7:23.1.1"
 }
 ```
@@ -118,7 +118,7 @@ Open your `pom.xml` file and add these directives as appropriate:
 	<dependency>
 		  <groupId>com.microblink</groupId>
 		  <artifactId>blinkocr</artifactId>
-		  <version>2.3.0</version>
+		  <version>2.4.0</version>
 		  <type>aar</type>
   	</dependency>
 </dependencies>
@@ -156,7 +156,7 @@ However, if you still want to use Eclipse, you will need to convert AAR archive 
 
 1. In Eclipse, create a new _Android library project_ in your workspace.
 2. Clear the `src` and `res` folders.
-3. Unzip the `LibRecognizer.aar` file. You can rename it to zip and then unzip it or use any tool.
+3. Unzip the `LibRecognizer.aar` file. You can rename it to zip and then unzip it using any tool.
 4. Copy the `classes.jar` to `libs` folder of your Eclipse library project. If `libs` folder does not exist, create it.
 5. Copy the contents of `jni` folder to `libs` folder of your Eclipse library project.
 6. Replace the `res` folder on library project with the `res` folder of the `LibRecognizer.aar` file.
@@ -165,9 +165,10 @@ You’ve already created the project that contains almost everything you need. N
 
 1. In the project you want to use the library (henceforth, "target project") add the library project as a dependency
 2. Open the `AndroidManifest.xml` file inside `LibRecognizer.aar` file and make sure to copy all permissions, features and activities to the `AndroidManifest.xml` file of the target project.
-3. Clean and Rebuild your target project
-4. If you plan to use ProGuard, add same statements as in [Android studio guide](#quickIntegration) to your ProGuard configuration file.
-5. Add appcompat-v7 library to your workspace and reference it by target project (modern ADT plugin for Eclipse does this automatically for all new android projects).
+3. Copy the contents of `assets` folder from `LibRecognizer.aar` into `assets` folder of target project. If `assets` folder in target project does not exist, create it.
+4. Clean and Rebuild your target project
+5. If you plan to use ProGuard, add same statements as in [Android studio guide](#quickIntegration) to your ProGuard configuration file.
+6. Add appcompat-v7 library to your workspace and reference it by target project (modern ADT plugin for Eclipse does this automatically for all new android projects).
 
 ## <a name="quickScan"></a> Performing your first segment scan
 1. You can start recognition process by starting `BlinkOCRActivity` activity with Intent initialized in the following way:
