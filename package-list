@@ -21,6 +21,7 @@ com.microblink.recognizers.blinkocr
 com.microblink.recognizers.blinkocr.engine
 com.microblink.recognizers.blinkocr.parser
 com.microblink.recognizers.blinkocr.parser.generic
+com.microblink.recognizers.blinkocr.parser.regex
 com.microblink.recognizers.settings
 com.microblink.results.barcode
 com.microblink.results.ocr

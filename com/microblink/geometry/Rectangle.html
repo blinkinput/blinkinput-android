@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":9,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
+var methods = {"i0":10,"i1":9,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -176,7 +176,9 @@ implements android.os.Parcelable</pre>
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Rectangle.html#Rectangle-float-float-float-float-">Rectangle</a></span>(float&nbsp;x,
          float&nbsp;y,
          float&nbsp;width,
-         float&nbsp;height)</code>&nbsp;</td>
+         float&nbsp;height)</code>
+<div class="block">Rectangle constructor.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -199,7 +201,9 @@ implements android.os.Parcelable</pre>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>static <a href="../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Rectangle.html#getDefaultROI--">getDefaultROI</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Rectangle.html#getDefaultROI--">getDefaultROI</a></span>()</code>
+<div class="block">Returns the default rectangle that defines the whole image or view</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>float</code></td>
@@ -218,18 +222,24 @@ implements android.os.Parcelable</pre>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Rectangle.html#getY--">getY</a></span>()</code>&nbsp;</td>
 </tr>
 <tr id="i6" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Rectangle.html#log--">log</a></span>()</code>&nbsp;</td>
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Rectangle.html#isRelative--">isRelative</a></span>()</code>
+<div class="block">Return true if rectangle is given in relative coordinates.</div>
+</td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Rectangle.html#normalizeToUnitRectangle--">normalizeToUnitRectangle</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Rectangle.html#log--">log</a></span>()</code>&nbsp;</td>
 </tr>
 <tr id="i8" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Rectangle.html#normalizeToUnitRectangle--">normalizeToUnitRectangle</a></span>()</code>&nbsp;</td>
+</tr>
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Rectangle.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Rectangle.html#writeToParcel-android.os.Parcel-int-">writeToParcel</a></span>(android.os.Parcel&nbsp;dest,
              int&nbsp;flags)</code>&nbsp;</td>
@@ -283,6 +293,14 @@ implements android.os.Parcelable</pre>
                  float&nbsp;y,
                  float&nbsp;width,
                  float&nbsp;height)</pre>
+<div class="block">Rectangle constructor.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - top left x coordinate</dd>
+<dd><code>y</code> - top left y coordinate</dd>
+<dd><code>width</code> - rectangle width</dd>
+<dd><code>height</code> - rectangle height</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -293,6 +311,22 @@ implements android.os.Parcelable</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="isRelative--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isRelative</h4>
+<pre>public&nbsp;boolean&nbsp;isRelative()</pre>
+<div class="block">Return true if rectangle is given in relative coordinates.
+
+ Relative coordinates mean that each coordinate is given as percentage.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if rectangle is given in relative coordinates</dd>
+</dl>
+</li>
+</ul>
 <a name="getDefaultROI--">
 <!--   -->
 </a>
@@ -300,6 +334,11 @@ implements android.os.Parcelable</pre>
 <li class="blockList">
 <h4>getDefaultROI</h4>
 <pre>public static&nbsp;<a href="../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a>&nbsp;getDefaultROI()</pre>
+<div class="block">Returns the default rectangle that defines the whole image or view</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the default rectangle that defines the whole image or view</dd>
+</dl>
 </li>
 </ul>
 <a name="toString--">
