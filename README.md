@@ -885,6 +885,10 @@ The following is a list of available parsers:
 - Raw parser - represented by [RawParserSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/blinkocr/parser/generic/RawParserSettings.html)
 	- used for obtaining raw OCR result
 
+- Regex parser - represented by [RegexParserSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html)
+	- used for parsing arbitrary regular expressions
+	- please note that some features, like back references, match grouping and certain regex metacharacters are not supported. See javadoc for more info.
+
 ### Obtaining results from BlinkOCR recognizer
 
 BlinkOCR recognizer produces [BlinkOCRRecognitionResult](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html). You can use `instanceof` operator to check if element in results array is instance of `BlinkOCRRecognitionResult` class. See the following snippet for an example:
