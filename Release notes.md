@@ -5,7 +5,6 @@
 - raw resources are now packed as assets
 - fixed bug with isScanningPaused which sometimes returned bogus value and caused scanning to work even if initial scanning was set to be paused
 - support for scanning custom camera frames via DirectAPI
-	- known issue: processing Camera2 frame is currently slower than processing Camera1 frame. We will fix that in future release.
 - fixed bug on some devices causing it to never start scanning if device was not shaken
 - increased OCR engine initialisation speed
 - improved Frame Quality Estimation on low-end devices (fixed regression introduced in v1.6.0)
