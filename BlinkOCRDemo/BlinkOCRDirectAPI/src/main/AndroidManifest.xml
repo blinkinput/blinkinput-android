@@ -28,11 +28,13 @@
 
         <activity
             android:name=".customcamera.Camera1Activity"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppTheme.FullScreen" />
 
         <activity
             android:name=".customcamera.camera2.Camera2Activity"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppTheme.FullScreen" />
 
         <activity
             android:name=".imagescan.ScanImageActivity"
