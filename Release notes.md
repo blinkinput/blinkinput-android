@@ -1,5 +1,18 @@
 # Release notes
 
+## 2.5.0
+- FailedDetectionMetadata, PointsDetectionMetadata and QuadDetectionMetadata have been replaced with DetectionMetadata which now holds a DetectorResult
+    - DetectorResult is more flexible as it allows more different detection types to be added in future
+- fixed several possible crashes in camera management
+- fixed autofocus bug on LG devices when metering areas or non-default zoom level were set
+- fixed autofocus bug on LG G4 (not related to bug above)
+- added option to set the OCR document type in BlinkOCREngineOptions
+- introduced new setting options for generic AmountParser:
+    - set parser to Arabic-Indic mode (amounts with Arabic-Indic digits)
+    - allow amounts with space separated digit groups (thousands)
+    - set ideal (expected) number of digits before decimal point
+- added factory method `createFromPreset` to generic AmountParserSettings that creates the settings from one of the available presets (`GENERIC`, `LARGE_AMOUNT`) 
+
 ## 2.4.0
 - reconfigureRecognizers method now throws an error if phone does not have autofocus and at least one of new recognizers require it
 - raw resources are now packed as assets
