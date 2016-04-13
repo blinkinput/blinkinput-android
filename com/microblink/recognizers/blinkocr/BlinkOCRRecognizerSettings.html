@@ -345,7 +345,9 @@ extends <a href="../../../../com/microblink/recognizers/settings/RecognizerSetti
 <ul class="blockList">
 <li class="blockList">
 <h4>addParser</h4>
-<pre>public&nbsp;void&nbsp;addParser(java.lang.String&nbsp;parserName,
+<pre>public&nbsp;void&nbsp;addParser(@NonNull
+                      java.lang.String&nbsp;parserName,
+                      @NonNull
                       <a href="../../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser">OcrParserSettings</a>&nbsp;parserSettings)</pre>
 <div class="block">Adds parser to default parser group.</div>
 <dl>
@@ -361,8 +363,11 @@ extends <a href="../../../../com/microblink/recognizers/settings/RecognizerSetti
 <ul class="blockList">
 <li class="blockList">
 <h4>addParserToParserGroup</h4>
-<pre>public&nbsp;void&nbsp;addParserToParserGroup(java.lang.String&nbsp;parserGroupName,
+<pre>public&nbsp;void&nbsp;addParserToParserGroup(@NonNull
+                                   java.lang.String&nbsp;parserGroupName,
+                                   @NonNull
                                    java.lang.String&nbsp;parserName,
+                                   @NonNull
                                    <a href="../../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser">OcrParserSettings</a>&nbsp;parserSettings)</pre>
 <div class="block">Adds parser to given parser group.</div>
 <dl>
@@ -379,7 +384,8 @@ extends <a href="../../../../com/microblink/recognizers/settings/RecognizerSetti
 <ul class="blockList">
 <li class="blockList">
 <h4>removeParser</h4>
-<pre>public&nbsp;void&nbsp;removeParser(java.lang.String&nbsp;parserName)</pre>
+<pre>public&nbsp;void&nbsp;removeParser(@NonNull
+                         java.lang.String&nbsp;parserName)</pre>
 <div class="block">Removes parser from default parser group.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -393,7 +399,8 @@ extends <a href="../../../../com/microblink/recognizers/settings/RecognizerSetti
 <ul class="blockList">
 <li class="blockList">
 <h4>removeAllParsersFromGroup</h4>
-<pre>public&nbsp;void&nbsp;removeAllParsersFromGroup(java.lang.String&nbsp;parserGroupName)</pre>
+<pre>public&nbsp;void&nbsp;removeAllParsersFromGroup(@NonNull
+                                      java.lang.String&nbsp;parserGroupName)</pre>
 <div class="block">Removes all parsers from given parser group.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -417,7 +424,9 @@ extends <a href="../../../../com/microblink/recognizers/settings/RecognizerSetti
 <ul class="blockList">
 <li class="blockList">
 <h4>removeParserFromParserGroup</h4>
-<pre>public&nbsp;void&nbsp;removeParserFromParserGroup(java.lang.String&nbsp;parserGroupName,
+<pre>public&nbsp;void&nbsp;removeParserFromParserGroup(@NonNull
+                                        java.lang.String&nbsp;parserGroupName,
+                                        @NonNull
                                         java.lang.String&nbsp;parserName)</pre>
 <div class="block">Removes parser from given parser group.</div>
 <dl>

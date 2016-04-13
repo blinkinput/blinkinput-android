@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -219,20 +219,16 @@ implements android.os.Parcelable</pre>
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="../../../com/microblink/geometry/Point.html" title="class in com.microblink.geometry">Point</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#clone--">clone</a></span>()</code>&nbsp;</td>
-</tr>
-<tr id="i3" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#describeContents--">describeContents</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>float</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#distance-com.microblink.geometry.Point-">distance</a></span>(<a href="../../../com/microblink/geometry/Point.html" title="class in com.microblink.geometry">Point</a>&nbsp;other)</code>
 <div class="block">Calculates and returns the distance to given point.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#draw-android.graphics.Canvas-android.graphics.Paint-int-">draw</a></span>(android.graphics.Canvas&nbsp;canvas,
     android.graphics.Paint&nbsp;paint,
@@ -240,17 +236,23 @@ implements android.os.Parcelable</pre>
 <div class="block">Draws the point to given canvas with given paint.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#equals-java.lang.Object-">equals</a></span>(java.lang.Object&nbsp;o)</code>&nbsp;</td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>float</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#getX--">getX</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>float</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#getY--">getY</a></span>()</code>&nbsp;</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#isZero--">isZero</a></span>()</code>
+<div class="block">Returns true if point has coordinates (0,0).</div>
+</td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
@@ -260,88 +262,123 @@ implements android.os.Parcelable</pre>
 </tr>
 <tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="../../../com/microblink/geometry/Point.html" title="class in com.microblink.geometry">Point</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#makeCopy--">makeCopy</a></span>()</code>&nbsp;</td>
+</tr>
+<tr id="i11" class="rowColor">
+<td class="colFirst"><code><a href="../../../com/microblink/geometry/Point.html" title="class in com.microblink.geometry">Point</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#mirrorX-float-">mirrorX</a></span>(float&nbsp;maxXDimension)</code>
 <div class="block">Return point mirrored around X axis.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i12" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#mirrorXInPlace-float-">mirrorXInPlace</a></span>(float&nbsp;maxXDimension)</code>
+<div class="block">Mirrors point around X axis.</div>
+</td>
+</tr>
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code><a href="../../../com/microblink/geometry/Point.html" title="class in com.microblink.geometry">Point</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#mirrorXY-float-float-">mirrorXY</a></span>(float&nbsp;maxXDimension,
         float&nbsp;maxYDimension)</code>
 <div class="block">Return point mirrored around both X and Y axis</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i14" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#mirrorXYInPlace-float-float-">mirrorXYInPlace</a></span>(float&nbsp;maxXDimension,
+               float&nbsp;maxYDimension)</code>
+<div class="block">Mirrors point around both X and Y axis</div>
+</td>
+</tr>
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code><a href="../../../com/microblink/geometry/Point.html" title="class in com.microblink.geometry">Point</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#mirrorY-float-">mirrorY</a></span>(float&nbsp;maxYDimension)</code>
 <div class="block">Return point mirrored around Y axis.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i16" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#mirrorYInPlace-float-">mirrorYInPlace</a></span>(float&nbsp;maxYDimension)</code>
+<div class="block">Mirrors point around Y axis.</div>
+</td>
+</tr>
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code><a href="../../../com/microblink/geometry/Point.html" title="class in com.microblink.geometry">Point</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#negative--">negative</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code><a href="../../../com/microblink/geometry/Point.html" title="class in com.microblink.geometry">Point</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#negativeClone--">negativeClone</a></span>()</code>
 <div class="block">Calculate and return negative of current point.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>float</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#norm--">norm</a></span>()</code>
 <div class="block">Calculate and return norm of the point.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code><a href="../../../com/microblink/geometry/Point.html" title="class in com.microblink.geometry">Point</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#normalize--">normalize</a></span>()</code>
 <div class="block">Calculate and return point that has same direction as this point, but norm 1.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code><a href="../../../com/microblink/geometry/Point.html" title="class in com.microblink.geometry">Point</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#normalize-float-">normalize</a></span>(float&nbsp;length)</code>
 <div class="block">Calculate and return point that has same direction as this point, but norm as given.</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code><a href="../../../com/microblink/geometry/Point.html" title="class in com.microblink.geometry">Point</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#operatorMinus-com.microblink.geometry.Point-">operatorMinus</a></span>(<a href="../../../com/microblink/geometry/Point.html" title="class in com.microblink.geometry">Point</a>&nbsp;other)</code>
 <div class="block">- operator on the point.</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code><a href="../../../com/microblink/geometry/Point.html" title="class in com.microblink.geometry">Point</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#operatorMinusEquals-com.microblink.geometry.Point-">operatorMinusEquals</a></span>(<a href="../../../com/microblink/geometry/Point.html" title="class in com.microblink.geometry">Point</a>&nbsp;other)</code>&nbsp;</td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code><a href="../../../com/microblink/geometry/Point.html" title="class in com.microblink.geometry">Point</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#operatorMultiply-float-">operatorMultiply</a></span>(float&nbsp;factor)</code>
 <div class="block">Multiplication of the point with scalar.</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i25" class="rowColor">
 <td class="colFirst"><code><a href="../../../com/microblink/geometry/Point.html" title="class in com.microblink.geometry">Point</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#operatorMultiplyEquals-float-">operatorMultiplyEquals</a></span>(float&nbsp;factor)</code>&nbsp;</td>
 </tr>
-<tr id="i22" class="altColor">
+<tr id="i26" class="altColor">
 <td class="colFirst"><code><a href="../../../com/microblink/geometry/Point.html" title="class in com.microblink.geometry">Point</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#operatorPlus-com.microblink.geometry.Point-">operatorPlus</a></span>(<a href="../../../com/microblink/geometry/Point.html" title="class in com.microblink.geometry">Point</a>&nbsp;other)</code>
 <div class="block">+ operator on the point.</div>
 </td>
 </tr>
-<tr id="i23" class="rowColor">
+<tr id="i27" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#operatorPlusEquals-com.microblink.geometry.Point-">operatorPlusEquals</a></span>(<a href="../../../com/microblink/geometry/Point.html" title="class in com.microblink.geometry">Point</a>&nbsp;other)</code>
 <div class="block">+= operator on the point.</div>
 </td>
 </tr>
-<tr id="i24" class="altColor">
+<tr id="i28" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#setX-float-">setX</a></span>(float&nbsp;x)</code>
+<div class="block">Sets the x coordinate of the point.</div>
+</td>
+</tr>
+<tr id="i29" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#setY-float-">setY</a></span>(float&nbsp;y)</code>
+<div class="block">Sets the y coordinate of the point.</div>
+</td>
+</tr>
+<tr id="i30" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i25" class="rowColor">
+<tr id="i31" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/geometry/Point.html#writeToParcel-android.os.Parcel-int-">writeToParcel</a></span>(android.os.Parcel&nbsp;dest,
              int&nbsp;flags)</code>&nbsp;</td>
@@ -352,7 +389,7 @@ implements android.os.Parcelable</pre>
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait</code></li>
+<code>clone, finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait</code></li>
 </ul>
 </li>
 </ul>
@@ -438,6 +475,20 @@ implements android.os.Parcelable</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>toString</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+</dl>
+</li>
+</ul>
+<a name="isZero--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isZero</h4>
+<pre>public&nbsp;boolean&nbsp;isZero()</pre>
+<div class="block">Returns true if point has coordinates (0,0).</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if point has coordinates (0,0).</dd>
 </dl>
 </li>
 </ul>
@@ -650,6 +701,20 @@ implements android.os.Parcelable</pre>
 </dl>
 </li>
 </ul>
+<a name="mirrorXInPlace-float-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>mirrorXInPlace</h4>
+<pre>public&nbsp;void&nbsp;mirrorXInPlace(float&nbsp;maxXDimension)</pre>
+<div class="block">Mirrors point around X axis.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>maxXDimension</code> - Maximum dimension of X axis.</dd>
+</dl>
+</li>
+</ul>
 <a name="mirrorY-float-">
 <!--   -->
 </a>
@@ -663,6 +728,20 @@ implements android.os.Parcelable</pre>
 <dd><code>maxYDimension</code> - Maximum dimension of Y axis.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>Mirrored point</dd>
+</dl>
+</li>
+</ul>
+<a name="mirrorYInPlace-float-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>mirrorYInPlace</h4>
+<pre>public&nbsp;void&nbsp;mirrorYInPlace(float&nbsp;maxYDimension)</pre>
+<div class="block">Mirrors point around Y axis.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>maxYDimension</code> - Maximum dimension of Y axis.</dd>
 </dl>
 </li>
 </ul>
@@ -684,17 +763,29 @@ implements android.os.Parcelable</pre>
 </dl>
 </li>
 </ul>
-<a name="clone--">
+<a name="mirrorXYInPlace-float-float-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>clone</h4>
-<pre>public&nbsp;<a href="../../../com/microblink/geometry/Point.html" title="class in com.microblink.geometry">Point</a>&nbsp;clone()</pre>
+<h4>mirrorXYInPlace</h4>
+<pre>public&nbsp;void&nbsp;mirrorXYInPlace(float&nbsp;maxXDimension,
+                            float&nbsp;maxYDimension)</pre>
+<div class="block">Mirrors point around both X and Y axis</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code>clone</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>maxXDimension</code> - Maximum dimension of X axis.</dd>
+<dd><code>maxYDimension</code> - Maximum dimension of Y axis.</dd>
 </dl>
+</li>
+</ul>
+<a name="makeCopy--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>makeCopy</h4>
+<pre>public&nbsp;<a href="../../../com/microblink/geometry/Point.html" title="class in com.microblink.geometry">Point</a>&nbsp;makeCopy()</pre>
 </li>
 </ul>
 <a name="equals-java.lang.Object-">
@@ -767,6 +858,20 @@ implements android.os.Parcelable</pre>
 </dl>
 </li>
 </ul>
+<a name="setX-float-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setX</h4>
+<pre>public&nbsp;void&nbsp;setX(float&nbsp;x)</pre>
+<div class="block">Sets the x coordinate of the point.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - x coordinate of the point</dd>
+</dl>
+</li>
+</ul>
 <a name="getY--">
 <!--   -->
 </a>
@@ -777,6 +882,20 @@ implements android.os.Parcelable</pre>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the y coordinate of the point</dd>
+</dl>
+</li>
+</ul>
+<a name="setY-float-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setY</h4>
+<pre>public&nbsp;void&nbsp;setY(float&nbsp;y)</pre>
+<div class="block">Sets the y coordinate of the point.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>y</code> - y coordinate of the point</dd>
 </dl>
 </li>
 </ul>

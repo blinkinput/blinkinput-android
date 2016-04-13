@@ -339,7 +339,9 @@ implements android.os.Parcelable</pre>
                          int&nbsp;titleResource,
                          @StringRes
                          int&nbsp;textResource,
+                         @NonNull
                          java.lang.String&nbsp;parserName,
+                         @NonNull
                          <a href="../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser">OcrParserSettings</a>&nbsp;parserSettings)</pre>
 <div class="block">Constructor which takes string resource ID's for string that will appear in UI.</div>
 <dl>
@@ -357,9 +359,13 @@ implements android.os.Parcelable</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>ScanConfiguration</h4>
-<pre>public&nbsp;ScanConfiguration(java.lang.String&nbsp;title,
+<pre>public&nbsp;ScanConfiguration(@NonNull
+                         java.lang.String&nbsp;title,
+                         @NonNull
                          java.lang.String&nbsp;text,
+                         @NonNull
                          java.lang.String&nbsp;parserName,
+                         @NonNull
                          <a href="../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser">OcrParserSettings</a>&nbsp;parserSettings)</pre>
 <div class="block">Constructor which takes normal strings for text that appears in UI.</div>
 <dl>
@@ -385,7 +391,8 @@ implements android.os.Parcelable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setTitle</h4>
-<pre>public&nbsp;void&nbsp;setTitle(java.lang.String&nbsp;title)</pre>
+<pre>public&nbsp;void&nbsp;setTitle(@Nullable
+                     java.lang.String&nbsp;title)</pre>
 <div class="block">Sets the title that will be displayed. This overrides title that will be loaded from resources (see <a href="../../../com/microblink/ocr/ScanConfiguration.html#setTitleResource-int-"><code>setTitleResource(int)</code></a>).
  Set to null to use resource set with <a href="../../../com/microblink/ocr/ScanConfiguration.html#setTitleResource-int-"><code>setTitleResource(int)</code></a>.</div>
 <dl>
@@ -400,7 +407,9 @@ implements android.os.Parcelable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getTitle</h4>
-<pre>public&nbsp;java.lang.String&nbsp;getTitle(android.content.Context&nbsp;ctx)</pre>
+<pre>@NonNull
+public&nbsp;java.lang.String&nbsp;getTitle(@NonNull
+                                          android.content.Context&nbsp;ctx)</pre>
 <div class="block">Returns title that will be displayed. If title was set as string with <a href="../../../com/microblink/ocr/ScanConfiguration.html#setTitle-java.lang.String-"><code>setTitle(String)</code></a>, that string will be returned.
  If title was set as resource with <a href="../../../com/microblink/ocr/ScanConfiguration.html#setTitleResource-int-"><code>setTitleResource(int)</code></a>, string resource will be resolved and resolved string will be
  returned.</div>
@@ -478,7 +487,9 @@ public&nbsp;int&nbsp;getTextResource()</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getText</h4>
-<pre>public&nbsp;java.lang.String&nbsp;getText(android.content.Context&nbsp;ctx)</pre>
+<pre>@NonNull
+public&nbsp;java.lang.String&nbsp;getText(@NonNull
+                                         android.content.Context&nbsp;ctx)</pre>
 <div class="block">Returns the text that will be displayed when parser is active. If text was set with <a href="../../../com/microblink/ocr/ScanConfiguration.html#setText-java.lang.String-"><code>setText(String)</code></a>,
  the same string is returned. If text was set with <a href="../../../com/microblink/ocr/ScanConfiguration.html#setTextResource-int-"><code>setTextResource(int)</code></a>, the text resource ID will
  be resolved and resolved string will be returned.</div>
@@ -496,7 +507,8 @@ public&nbsp;int&nbsp;getTextResource()</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setText</h4>
-<pre>public&nbsp;void&nbsp;setText(java.lang.String&nbsp;text)</pre>
+<pre>public&nbsp;void&nbsp;setText(@Nullable
+                    java.lang.String&nbsp;text)</pre>
 <div class="block">Sets the text that will be displayed when parser is active. This overrides string resource set with
  <a href="../../../com/microblink/ocr/ScanConfiguration.html#setTextResource-int-"><code>setTextResource(int)</code></a>. Set the text to null to use text loaded from resource set with
  <a href="../../../com/microblink/ocr/ScanConfiguration.html#setTextResource-int-"><code>setTextResource(int)</code></a>.</div>
@@ -512,7 +524,8 @@ public&nbsp;int&nbsp;getTextResource()</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getParserName</h4>
-<pre>public&nbsp;java.lang.String&nbsp;getParserName()</pre>
+<pre>@NonNull
+public&nbsp;java.lang.String&nbsp;getParserName()</pre>
 <div class="block">Returns the name of the parser. This string identifies parse uniquely and is also used to retrieve parser result from <a href="../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html" title="class in com.microblink.recognizers.blinkocr"><code>BlinkOCRRecognitionResult</code></a>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -526,7 +539,8 @@ public&nbsp;int&nbsp;getTextResource()</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setParserName</h4>
-<pre>public&nbsp;void&nbsp;setParserName(java.lang.String&nbsp;parserName)</pre>
+<pre>public&nbsp;void&nbsp;setParserName(@NonNull
+                          java.lang.String&nbsp;parserName)</pre>
 <div class="block">Sets the name of the parser. This string identifies parse uniquely and is also used to retrieve parser result from <a href="../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html" title="class in com.microblink.recognizers.blinkocr"><code>BlinkOCRRecognitionResult</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -554,7 +568,8 @@ public&nbsp;int&nbsp;getTextResource()</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setParserSettings</h4>
-<pre>public&nbsp;void&nbsp;setParserSettings(<a href="../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser">OcrParserSettings</a>&nbsp;parserSettings)</pre>
+<pre>public&nbsp;void&nbsp;setParserSettings(@NonNull
+                              <a href="../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser">OcrParserSettings</a>&nbsp;parserSettings)</pre>
 <div class="block">Sets the parser settings that will be used to instatiate parser.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>

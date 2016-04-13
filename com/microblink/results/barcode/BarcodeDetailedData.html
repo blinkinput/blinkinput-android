@@ -317,7 +317,8 @@ implements android.os.Parcelable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getElements</h4>
-<pre>public&nbsp;<a href="../../../../com/microblink/results/barcode/BarcodeElement.html" title="class in com.microblink.results.barcode">BarcodeElement</a>[]&nbsp;getElements()</pre>
+<pre>@Nullable
+public&nbsp;<a href="../../../../com/microblink/results/barcode/BarcodeElement.html" title="class in com.microblink.results.barcode">BarcodeElement</a>[]&nbsp;getElements()</pre>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the elements of the barcode</dd>
@@ -357,7 +358,8 @@ implements android.os.Parcelable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getAllData</h4>
-<pre>public&nbsp;byte[]&nbsp;getAllData()</pre>
+<pre>@Nullable
+public&nbsp;byte[]&nbsp;getAllData()</pre>
 <div class="block">Use this method to get all barcode data in one byte array.
  This is useful if you know how to interpret barcode data
  and don't want to bother with all barcode elements.</div>

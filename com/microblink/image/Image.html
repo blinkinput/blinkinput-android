@@ -469,7 +469,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setImageOrientation</h4>
-<pre>public&nbsp;void&nbsp;setImageOrientation(<a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;orientation)</pre>
+<pre>public&nbsp;void&nbsp;setImageOrientation(@NonNull
+                                <a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;orientation)</pre>
 <div class="block">Use this method to change Image's orientation. This can be useful for different interpretations of same image in
  different recognition contexts.</div>
 <dl>
@@ -498,7 +499,8 @@ extends java.lang.Object</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>convertToBitmap</h4>
-<pre>public&nbsp;android.graphics.Bitmap&nbsp;convertToBitmap()</pre>
+<pre>@Nullable
+public&nbsp;android.graphics.Bitmap&nbsp;convertToBitmap()</pre>
 <div class="block">Converts this image into Android Bitmap. This is a very slow process that involves
  copying and converting a lot of data.
  Returned bitmap has its own pixel buffer, so it may remain valid even after this

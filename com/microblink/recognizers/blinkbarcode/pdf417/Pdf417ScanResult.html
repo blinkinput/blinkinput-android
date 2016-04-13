@@ -318,7 +318,8 @@ extends <a href="../../../../../com/microblink/recognizers/BaseRecognitionResult
 <ul class="blockList">
 <li class="blockList">
 <h4>getStringData</h4>
-<pre>public&nbsp;java.lang.String&nbsp;getStringData()</pre>
+<pre>@Nullable
+public&nbsp;java.lang.String&nbsp;getStringData()</pre>
 <div class="block">Returns the string representation of data inside barcode.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -332,7 +333,8 @@ extends <a href="../../../../../com/microblink/recognizers/BaseRecognitionResult
 <ul class="blockList">
 <li class="blockList">
 <h4>getRawData</h4>
-<pre>public&nbsp;<a href="../../../../../com/microblink/results/barcode/BarcodeDetailedData.html" title="class in com.microblink.results.barcode">BarcodeDetailedData</a>&nbsp;getRawData()</pre>
+<pre>@Nullable
+public&nbsp;<a href="../../../../../com/microblink/results/barcode/BarcodeDetailedData.html" title="class in com.microblink.results.barcode">BarcodeDetailedData</a>&nbsp;getRawData()</pre>
 <div class="block">Returns the raw barcode data.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -360,7 +362,8 @@ extends <a href="../../../../../com/microblink/recognizers/BaseRecognitionResult
 <ul class="blockList">
 <li class="blockList">
 <h4>getPositionOnImage</h4>
-<pre>public&nbsp;<a href="../../../../../com/microblink/geometry/Quadrilateral.html" title="class in com.microblink.geometry">Quadrilateral</a>&nbsp;getPositionOnImage()</pre>
+<pre>@Nullable
+public&nbsp;<a href="../../../../../com/microblink/geometry/Quadrilateral.html" title="class in com.microblink.geometry">Quadrilateral</a>&nbsp;getPositionOnImage()</pre>
 <div class="block">Returns the position of barcode on image.
  Note that returned coordinates are in image's coordinate system. This is not related to
  view coordinate system used for drawing and positioning UI elements.</div>

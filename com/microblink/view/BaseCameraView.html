@@ -809,8 +809,10 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>BaseCameraView</h4>
-<pre>public&nbsp;BaseCameraView(android.content.Context&nbsp;context,
-                      android.util.AttributeSet&nbsp;attrSet)</pre>
+<pre>@UiThread
+public&nbsp;BaseCameraView(@NonNull
+                                android.content.Context&nbsp;context,
+                                android.util.AttributeSet&nbsp;attrSet)</pre>
 </li>
 </ul>
 <a name="BaseCameraView-android.content.Context-">
@@ -819,7 +821,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>BaseCameraView</h4>
-<pre>public&nbsp;BaseCameraView(android.content.Context&nbsp;context)</pre>
+<pre>@UiThread
+public&nbsp;BaseCameraView(android.content.Context&nbsp;context)</pre>
 </li>
 </ul>
 </li>
@@ -836,7 +839,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>addView</h4>
-<pre>public&nbsp;void&nbsp;addView(android.view.View&nbsp;child)</pre>
+<pre>@UiThread
+public&nbsp;void&nbsp;addView(android.view.View&nbsp;child)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>addView</code>&nbsp;in class&nbsp;<code>android.view.ViewGroup</code></dd>
@@ -849,8 +853,9 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>addView</h4>
-<pre>public&nbsp;void&nbsp;addView(android.view.View&nbsp;child,
-                    int&nbsp;index)</pre>
+<pre>@UiThread
+public&nbsp;void&nbsp;addView(android.view.View&nbsp;child,
+                              int&nbsp;index)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>addView</code>&nbsp;in class&nbsp;<code>android.view.ViewGroup</code></dd>
@@ -863,9 +868,10 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>addView</h4>
-<pre>public&nbsp;void&nbsp;addView(android.view.View&nbsp;child,
-                    int&nbsp;index,
-                    android.view.ViewGroup.LayoutParams&nbsp;params)</pre>
+<pre>@UiThread
+public&nbsp;void&nbsp;addView(android.view.View&nbsp;child,
+                              int&nbsp;index,
+                              android.view.ViewGroup.LayoutParams&nbsp;params)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>addView</code>&nbsp;in class&nbsp;<code>android.view.ViewGroup</code></dd>
@@ -878,8 +884,9 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>addView</h4>
-<pre>public&nbsp;void&nbsp;addView(android.view.View&nbsp;child,
-                    android.view.ViewGroup.LayoutParams&nbsp;params)</pre>
+<pre>@UiThread
+public&nbsp;void&nbsp;addView(android.view.View&nbsp;child,
+                              android.view.ViewGroup.LayoutParams&nbsp;params)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>addView</code>&nbsp;in interface&nbsp;<code>android.view.ViewManager</code></dd>
@@ -894,9 +901,10 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>addView</h4>
-<pre>public&nbsp;void&nbsp;addView(android.view.View&nbsp;child,
-                    int&nbsp;width,
-                    int&nbsp;height)</pre>
+<pre>@UiThread
+public&nbsp;void&nbsp;addView(android.view.View&nbsp;child,
+                              int&nbsp;width,
+                              int&nbsp;height)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>addView</code>&nbsp;in class&nbsp;<code>android.view.ViewGroup</code></dd>
@@ -948,8 +956,9 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>addChildView</h4>
-<pre>public&nbsp;void&nbsp;addChildView(android.view.View&nbsp;child,
-                         boolean&nbsp;rotatable)</pre>
+<pre>@UiThread
+public&nbsp;void&nbsp;addChildView(android.view.View&nbsp;child,
+                                   boolean&nbsp;rotatable)</pre>
 </li>
 </ul>
 <a name="addChildView-android.view.View-boolean-int-">
@@ -958,9 +967,10 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>addChildView</h4>
-<pre>public&nbsp;void&nbsp;addChildView(android.view.View&nbsp;child,
-                         boolean&nbsp;rotatable,
-                         int&nbsp;index)</pre>
+<pre>@UiThread
+public&nbsp;void&nbsp;addChildView(android.view.View&nbsp;child,
+                                   boolean&nbsp;rotatable,
+                                   int&nbsp;index)</pre>
 </li>
 </ul>
 <a name="runOnUIThread-java.lang.Runnable-">
@@ -985,7 +995,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>changeConfiguration</h4>
-<pre>public&nbsp;void&nbsp;changeConfiguration(android.content.res.Configuration&nbsp;newConfiguration)</pre>
+<pre>@UiThread
+public&nbsp;void&nbsp;changeConfiguration(android.content.res.Configuration&nbsp;newConfiguration)</pre>
 <div class="block">This method changes the view's configuration. It is meant to be called from onConfigurationChange event.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1008,7 +1019,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>create</h4>
-<pre>public&nbsp;void&nbsp;create()</pre>
+<pre>@UiThread
+public&nbsp;void&nbsp;create()</pre>
 <div class="block">Creates the view and its subviews and initializes camera settings. This method must be called in onCreate method of host activity. If not called,
  camera will not work. Make sure you set all your settings before calling this method.</div>
 </li>
@@ -1019,7 +1031,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>destroy</h4>
-<pre>public&nbsp;void&nbsp;destroy()</pre>
+<pre>@UiThread
+public&nbsp;void&nbsp;destroy()</pre>
 </li>
 </ul>
 <a name="prepareCameraSettings-CameraSettings-">
@@ -1092,7 +1105,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>start</h4>
-<pre>public&nbsp;void&nbsp;start()</pre>
+<pre>@UiThread
+public&nbsp;void&nbsp;start()</pre>
 </li>
 </ul>
 <a name="resume--">
@@ -1101,7 +1115,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>resume</h4>
-<pre>public&nbsp;void&nbsp;resume()</pre>
+<pre>@UiThread
+public&nbsp;void&nbsp;resume()</pre>
 <div class="block">This method must be called from activity's onResume. If not called, camera will not work.</div>
 </li>
 </ul>
@@ -1111,7 +1126,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>pause</h4>
-<pre>public&nbsp;void&nbsp;pause()</pre>
+<pre>@UiThread
+public&nbsp;void&nbsp;pause()</pre>
 <div class="block">This method must be called from activity's onPause. If not called, camera will not work properly.</div>
 </li>
 </ul>
@@ -1121,7 +1137,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>stop</h4>
-<pre>public&nbsp;void&nbsp;stop()</pre>
+<pre>@UiThread
+public&nbsp;void&nbsp;stop()</pre>
 </li>
 </ul>
 <a name="onMeasure-int-int-">
@@ -1130,8 +1147,9 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>onMeasure</h4>
-<pre>protected&nbsp;void&nbsp;onMeasure(int&nbsp;widthMeasureSpec,
-                         int&nbsp;heightMeasureSpec)</pre>
+<pre>@UiThread
+protected&nbsp;void&nbsp;onMeasure(int&nbsp;widthMeasureSpec,
+                                   int&nbsp;heightMeasureSpec)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>onMeasure</code>&nbsp;in class&nbsp;<code>android.view.View</code></dd>
@@ -1144,7 +1162,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>dispatchTouchEvent</h4>
-<pre>public&nbsp;boolean&nbsp;dispatchTouchEvent(android.view.MotionEvent&nbsp;ev)</pre>
+<pre>@UiThread
+public&nbsp;boolean&nbsp;dispatchTouchEvent(android.view.MotionEvent&nbsp;ev)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>dispatchTouchEvent</code>&nbsp;in class&nbsp;<code>android.view.ViewGroup</code></dd>
@@ -1157,11 +1176,12 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>onLayout</h4>
-<pre>protected&nbsp;void&nbsp;onLayout(boolean&nbsp;changed,
-                        int&nbsp;l,
-                        int&nbsp;t,
-                        int&nbsp;r,
-                        int&nbsp;b)</pre>
+<pre>@UiThread
+protected&nbsp;void&nbsp;onLayout(boolean&nbsp;changed,
+                                  int&nbsp;l,
+                                  int&nbsp;t,
+                                  int&nbsp;r,
+                                  int&nbsp;b)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>onLayout</code>&nbsp;in class&nbsp;<code>android.view.ViewGroup</code></dd>
@@ -1174,7 +1194,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>isCameraFocused</h4>
-<pre>public final&nbsp;boolean&nbsp;isCameraFocused()</pre>
+<pre>@UiThread
+public final&nbsp;boolean&nbsp;isCameraFocused()</pre>
 <div class="block">Returns true if camera is currently in focus</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -1187,7 +1208,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getOpenedCameraType</h4>
-<pre>public final&nbsp;<a href="../../../com/microblink/hardware/camera/CameraType.html" title="enum in com.microblink.hardware.camera">CameraType</a>&nbsp;getOpenedCameraType()</pre>
+<pre>@UiThread
+public final&nbsp;<a href="../../../com/microblink/hardware/camera/CameraType.html" title="enum in com.microblink.hardware.camera">CameraType</a>&nbsp;getOpenedCameraType()</pre>
 <div class="block">Returns the type of the currently opened camera or null if currently there is no opened camera.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -1201,7 +1223,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>focusCamera</h4>
-<pre>public final&nbsp;void&nbsp;focusCamera()</pre>
+<pre>@UiThread
+public final&nbsp;void&nbsp;focusCamera()</pre>
 <div class="block">Request a new autofocus cycle from camera.</div>
 </li>
 </ul>
@@ -1211,7 +1234,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>isCameraTorchSupported</h4>
-<pre>public final&nbsp;boolean&nbsp;isCameraTorchSupported()</pre>
+<pre>@UiThread
+public final&nbsp;boolean&nbsp;isCameraTorchSupported()</pre>
 <div class="block">Returns true if camera has got torch.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -1225,7 +1249,9 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>isAutofocusSupported</h4>
-<pre>public final&nbsp;java.lang.Boolean&nbsp;isAutofocusSupported()</pre>
+<pre>@Nullable
+ @UiThread
+public final&nbsp;java.lang.Boolean&nbsp;isAutofocusSupported()</pre>
 <div class="block">Returns true if opened camera supports autofocus. Returns false if opened camera does
  not support autofocus. Returns null if camera is not opened.</div>
 <dl>
@@ -1240,8 +1266,9 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setTorchState</h4>
-<pre>public final&nbsp;void&nbsp;setTorchState(boolean&nbsp;on,
-                                <a href="../../../com/microblink/hardware/SuccessCallback.html" title="interface in com.microblink.hardware">SuccessCallback</a>&nbsp;successCallback)</pre>
+<pre>@UiThread
+public final&nbsp;void&nbsp;setTorchState(boolean&nbsp;on,
+                                          <a href="../../../com/microblink/hardware/SuccessCallback.html" title="interface in com.microblink.hardware">SuccessCallback</a>&nbsp;successCallback)</pre>
 <div class="block">Turns the torch on the camera on or off. Returns true on success, false on failure.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1274,7 +1301,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getZoomLevel</h4>
-<pre>public final&nbsp;float&nbsp;getZoomLevel()</pre>
+<pre>@UiThread
+public final&nbsp;float&nbsp;getZoomLevel()</pre>
 <div class="block">Returns the current camera zoom level.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -1288,7 +1316,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setZoomLevel</h4>
-<pre>public final&nbsp;void&nbsp;setZoomLevel(float&nbsp;zoomLevel)</pre>
+<pre>@UiThread
+public final&nbsp;void&nbsp;setZoomLevel(float&nbsp;zoomLevel)</pre>
 <div class="block">Sets the camera zoom level. Zoom level 0.f defines no applied zoom, while
  zoom level 1.f defines maximum supported camera zoom. Values beyond
  interval [0.f, 1.f] are cropped to interval [0.f, 1.f].
@@ -1306,7 +1335,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getCameraViewState</h4>
-<pre>public final&nbsp;<a href="../../../com/microblink/view/BaseCameraView.CameraViewState.html" title="enum in com.microblink.view">BaseCameraView.CameraViewState</a>&nbsp;getCameraViewState()</pre>
+<pre>@UiThread
+public final&nbsp;<a href="../../../com/microblink/view/BaseCameraView.CameraViewState.html" title="enum in com.microblink.view">BaseCameraView.CameraViewState</a>&nbsp;getCameraViewState()</pre>
 <div class="block">Returns the current lifecycle state of camera view.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -1433,7 +1463,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setAnimateRotation</h4>
-<pre>public final&nbsp;void&nbsp;setAnimateRotation(boolean&nbsp;animateRotation)</pre>
+<pre>@UiThread
+public final&nbsp;void&nbsp;setAnimateRotation(boolean&nbsp;animateRotation)</pre>
 <div class="block">Sets whether rotation of rotatable view will be animated.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1484,8 +1515,9 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setMeteringAreas</h4>
-<pre>public final&nbsp;void&nbsp;setMeteringAreas(<a href="../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a>[]&nbsp;meteringAreas,
-                                   boolean&nbsp;rotateAreasWithDevice)</pre>
+<pre>@UiThread
+public final&nbsp;void&nbsp;setMeteringAreas(<a href="../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a>[]&nbsp;meteringAreas,
+                                             boolean&nbsp;rotateAreasWithDevice)</pre>
 <div class="block">Sets the areas where camera will perform focus, exposure and white balance meterings.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1518,7 +1550,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setInitialOrientation</h4>
-<pre>public final&nbsp;void&nbsp;setInitialOrientation(<a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;initialOrientation)</pre>
+<pre>@UiThread
+public final&nbsp;void&nbsp;setInitialOrientation(<a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;initialOrientation)</pre>
 <div class="block">Sets the initial orientation of rotatable view and recognizer.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1532,7 +1565,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setOrientationAllowedListener</h4>
-<pre>public&nbsp;void&nbsp;setOrientationAllowedListener(<a href="../../../com/microblink/view/OrientationAllowedListener.html" title="interface in com.microblink.view">OrientationAllowedListener</a>&nbsp;orientationAllowedListener)</pre>
+<pre>@UiThread
+public&nbsp;void&nbsp;setOrientationAllowedListener(<a href="../../../com/microblink/view/OrientationAllowedListener.html" title="interface in com.microblink.view">OrientationAllowedListener</a>&nbsp;orientationAllowedListener)</pre>
 <div class="block">Sets the listener that will be asked if device orientation is allowed prior rotating
  rotatable view and native recognizer to that orientation. If you do not set this
  listener, recognition will be performed only in orientation defined by current activity's
@@ -1568,7 +1602,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setCameraType</h4>
-<pre>public&nbsp;void&nbsp;setCameraType(<a href="../../../com/microblink/hardware/camera/CameraType.html" title="enum in com.microblink.hardware.camera">CameraType</a>&nbsp;cameraType)</pre>
+<pre>@UiThread
+public&nbsp;void&nbsp;setCameraType(<a href="../../../com/microblink/hardware/camera/CameraType.html" title="enum in com.microblink.hardware.camera">CameraType</a>&nbsp;cameraType)</pre>
 <div class="block">Sets the camera type that will be used. You must set this before calling create method.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1582,7 +1617,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setShakeListener</h4>
-<pre>public&nbsp;void&nbsp;setShakeListener(<a href="../../../com/microblink/hardware/accelerometer/ShakeCallback.html" title="interface in com.microblink.hardware.accelerometer">ShakeCallback</a>&nbsp;shakeCallback)</pre>
+<pre>@UiThread
+public&nbsp;void&nbsp;setShakeListener(<a href="../../../com/microblink/hardware/accelerometer/ShakeCallback.html" title="interface in com.microblink.hardware.accelerometer">ShakeCallback</a>&nbsp;shakeCallback)</pre>
 <div class="block">Sets the shake callback that will be notified about device shake events.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1610,7 +1646,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setAspectMode</h4>
-<pre>public&nbsp;void&nbsp;setAspectMode(<a href="../../../com/microblink/view/CameraAspectMode.html" title="enum in com.microblink.view">CameraAspectMode</a>&nbsp;aspectMode)</pre>
+<pre>@UiThread
+public&nbsp;void&nbsp;setAspectMode(<a href="../../../com/microblink/view/CameraAspectMode.html" title="enum in com.microblink.view">CameraAspectMode</a>&nbsp;aspectMode)</pre>
 <div class="block">Defines the aspect mode of camera preview.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1624,7 +1661,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setOnSizeChangedListener</h4>
-<pre>public final&nbsp;void&nbsp;setOnSizeChangedListener(<a href="../../../com/microblink/view/OnSizeChangedListener.html" title="interface in com.microblink.view">OnSizeChangedListener</a>&nbsp;onSizeChangedListener)</pre>
+<pre>@UiThread
+public final&nbsp;void&nbsp;setOnSizeChangedListener(<a href="../../../com/microblink/view/OnSizeChangedListener.html" title="interface in com.microblink.view">OnSizeChangedListener</a>&nbsp;onSizeChangedListener)</pre>
 <div class="block">Sets the listener that will be notified when size of child views changes.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1638,7 +1676,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setOnActivityFlipListener</h4>
-<pre>public final&nbsp;void&nbsp;setOnActivityFlipListener(<a href="../../../com/microblink/view/OnActivityFlipListener.html" title="interface in com.microblink.view">OnActivityFlipListener</a>&nbsp;onActivityFlipListener)</pre>
+<pre>@UiThread
+public final&nbsp;void&nbsp;setOnActivityFlipListener(<a href="../../../com/microblink/view/OnActivityFlipListener.html" title="interface in com.microblink.view">OnActivityFlipListener</a>&nbsp;onActivityFlipListener)</pre>
 <div class="block">Sets the listener that will be notified when activity flip event occurs.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1652,7 +1691,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setVideoResolutionPreset</h4>
-<pre>public final&nbsp;void&nbsp;setVideoResolutionPreset(<a href="../../../com/microblink/hardware/camera/VideoResolutionPreset.html" title="enum in com.microblink.hardware.camera">VideoResolutionPreset</a>&nbsp;preset)</pre>
+<pre>@UiThread
+public final&nbsp;void&nbsp;setVideoResolutionPreset(<a href="../../../com/microblink/hardware/camera/VideoResolutionPreset.html" title="enum in com.microblink.hardware.camera">VideoResolutionPreset</a>&nbsp;preset)</pre>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>preset</code> - Sets the preset that will be used for choosing camera video resolution.</dd>
@@ -1665,7 +1705,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setForceUseLegacyCamera</h4>
-<pre>public final&nbsp;void&nbsp;setForceUseLegacyCamera(boolean&nbsp;useLegacyCamera)</pre>
+<pre>@UiThread
+public final&nbsp;void&nbsp;setForceUseLegacyCamera(boolean&nbsp;useLegacyCamera)</pre>
 <div class="block">With this method you can request using legacy Camera API even on devices that natively support new Camera2 API.
  Set this to true only if you have problems with camera management on Lollipop and newer devices.
  Using legacy camera API is less efficient than new Camera2 API.</div>
@@ -1681,7 +1722,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setPhotoMode</h4>
-<pre>public final&nbsp;void&nbsp;setPhotoMode(boolean&nbsp;photoMode)</pre>
+<pre>@UiThread
+public final&nbsp;void&nbsp;setPhotoMode(boolean&nbsp;photoMode)</pre>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>photoMode</code> - If set to true, Photo camera manager will be used instead of Video camera manager. Thus, user will have to
@@ -1695,7 +1737,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setOptimizeCameraForNearScan</h4>
-<pre>public final&nbsp;void&nbsp;setOptimizeCameraForNearScan(boolean&nbsp;nearScan)</pre>
+<pre>@UiThread
+public final&nbsp;void&nbsp;setOptimizeCameraForNearScan(boolean&nbsp;nearScan)</pre>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>nearScan</code> - Flag which indicates camera parameters should be optimized for near object scanning.
@@ -1713,7 +1756,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setUseTextureViewForCameraDisplay</h4>
-<pre>public final&nbsp;void&nbsp;setUseTextureViewForCameraDisplay(boolean&nbsp;forceTextureView)</pre>
+<pre>@UiThread
+public final&nbsp;void&nbsp;setUseTextureViewForCameraDisplay(boolean&nbsp;forceTextureView)</pre>
 <div class="block">In order to display camera preview, camera view must use one of two android's view's that are
  capable of displaying camera preview video stream. When using Camera2 API on Lollipop devices
  that support it, TextureView will always be used, regardless of this setting, however if legacy
@@ -1779,7 +1823,8 @@ extends android.view.ViewGroup</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setCameraEventsListener</h4>
-<pre>public&nbsp;void&nbsp;setCameraEventsListener(<a href="../../../com/microblink/view/CameraEventsListener.html" title="interface in com.microblink.view">CameraEventsListener</a>&nbsp;cameraEventsListener)</pre>
+<pre>@UiThread
+public&nbsp;void&nbsp;setCameraEventsListener(<a href="../../../com/microblink/view/CameraEventsListener.html" title="interface in com.microblink.view">CameraEventsListener</a>&nbsp;cameraEventsListener)</pre>
 <div class="block">Sets the listener that will receive various camera events, such as when camera preview has
  started or camera initialization error has occurred.</div>
 <dl>

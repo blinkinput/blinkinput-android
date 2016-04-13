@@ -304,7 +304,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setLicenseKey</h4>
-<pre>public final&nbsp;void&nbsp;setLicenseKey(android.content.Context&nbsp;context,
+<pre>public final&nbsp;void&nbsp;setLicenseKey(@NonNull
+                                android.content.Context&nbsp;context,
+                                @NonNull
                                 java.lang.String&nbsp;licenseKey)
                          throws <a href="../../../com/microblink/recognition/InvalidLicenceKeyException.html" title="class in com.microblink.recognition">InvalidLicenceKeyException</a></pre>
 <div class="block">Sets the license key required for unlocking the library.</div>
@@ -324,7 +326,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setLicenseKey</h4>
-<pre>public final&nbsp;void&nbsp;setLicenseKey(java.lang.String&nbsp;licenseKey,
+<pre>public final&nbsp;void&nbsp;setLicenseKey(@NonNull
+                                java.lang.String&nbsp;licenseKey,
+                                @NonNull
                                 java.lang.String&nbsp;licensee)
                          throws <a href="../../../com/microblink/recognition/InvalidLicenceKeyException.html" title="class in com.microblink.recognition">InvalidLicenceKeyException</a></pre>
 <div class="block">Sets the license key required for unlocking the library. Use this method when having license
@@ -346,8 +350,11 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>initialize</h4>
-<pre>public final&nbsp;void&nbsp;initialize(android.content.Context&nbsp;context,
+<pre>public final&nbsp;void&nbsp;initialize(@NonNull
+                             android.content.Context&nbsp;context,
+                             @NonNull
                              <a href="../../../com/microblink/recognizers/settings/RecognitionSettings.html" title="class in com.microblink.recognizers.settings">RecognitionSettings</a>&nbsp;recognitionSettings,
+                             @NonNull
                              <a href="../../../com/microblink/directApi/DirectApiErrorListener.html" title="interface in com.microblink.directApi">DirectApiErrorListener</a>&nbsp;errorListener)</pre>
 <div class="block">Initialize native library for recognition and returns true if initialization has been performed.
  <p/>
@@ -378,8 +385,11 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>recognizeBitmap</h4>
-<pre>public final&nbsp;void&nbsp;recognizeBitmap(android.graphics.Bitmap&nbsp;image,
+<pre>public final&nbsp;void&nbsp;recognizeBitmap(@NonNull
+                                  android.graphics.Bitmap&nbsp;image,
+                                  @NonNull
                                   <a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;imageOrientation,
+                                  @NonNull
                                   <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener)</pre>
 <div class="block">Perform recognition of image represented as Android Bitmap.</div>
 <dl>
@@ -399,9 +409,13 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>recognizeBitmap</h4>
-<pre>public final&nbsp;void&nbsp;recognizeBitmap(android.graphics.Bitmap&nbsp;image,
+<pre>public final&nbsp;void&nbsp;recognizeBitmap(@NonNull
+                                  android.graphics.Bitmap&nbsp;image,
+                                  @NonNull
                                   <a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;imageOrientation,
+                                  @NonNull
                                   <a href="../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a>&nbsp;scanRegion,
+                                  @NonNull
                                   <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener)</pre>
 <div class="block">Perform recognition of image represented as Android Bitmap.</div>
 <dl>
@@ -426,8 +440,11 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>recognizeBitmapWithSettings</h4>
-<pre>public final&nbsp;void&nbsp;recognizeBitmapWithSettings(android.graphics.Bitmap&nbsp;image,
+<pre>public final&nbsp;void&nbsp;recognizeBitmapWithSettings(@NonNull
+                                              android.graphics.Bitmap&nbsp;image,
+                                              @NonNull
                                               <a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;imageOrientation,
+                                              @NonNull
                                               <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener,
                                               <a href="../../../com/microblink/recognizers/settings/RecognitionSettings.html" title="class in com.microblink.recognizers.settings">RecognitionSettings</a>&nbsp;recognitionSettings)</pre>
 <div class="block">Perform recognition of image represented as Android Bitmap.
@@ -452,9 +469,13 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>recognizeBitmapWithSettings</h4>
-<pre>public final&nbsp;void&nbsp;recognizeBitmapWithSettings(android.graphics.Bitmap&nbsp;image,
+<pre>public final&nbsp;void&nbsp;recognizeBitmapWithSettings(@NonNull
+                                              android.graphics.Bitmap&nbsp;image,
+                                              @NonNull
                                               <a href="../../../com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a>&nbsp;imageOrientation,
+                                              @NonNull
                                               <a href="../../../com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a>&nbsp;scanRegion,
+                                              @NonNull
                                               <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener,
                                               <a href="../../../com/microblink/recognizers/settings/RecognitionSettings.html" title="class in com.microblink.recognizers.settings">RecognitionSettings</a>&nbsp;recognitionSettings)</pre>
 <div class="block">Perform recognition of image represented as Android Bitmap.
@@ -484,8 +505,11 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>recognizeImage</h4>
-<pre>public final&nbsp;void&nbsp;recognizeImage(<a href="../../../com/microblink/image/Image.html" title="class in com.microblink.image">Image</a>&nbsp;image,
-                                 <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener)</pre>
+<pre>@UiThread
+public final&nbsp;void&nbsp;recognizeImage(@NonNull
+                                           <a href="../../../com/microblink/image/Image.html" title="class in com.microblink.image">Image</a>&nbsp;image,
+                                           @NonNull
+                                           <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener)</pre>
 <div class="block">Use this method to directly recognize Image object obtained via MetadataListener while recognizer is active.
 
  Recognition will be performed with same settings that were used for initialization
@@ -506,9 +530,12 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>recognizeImageWithSettings</h4>
-<pre>public final&nbsp;void&nbsp;recognizeImageWithSettings(<a href="../../../com/microblink/image/Image.html" title="class in com.microblink.image">Image</a>&nbsp;image,
-                                             <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener,
-                                             <a href="../../../com/microblink/recognizers/settings/RecognitionSettings.html" title="class in com.microblink.recognizers.settings">RecognitionSettings</a>&nbsp;recognitionSettings)</pre>
+<pre>@UiThread
+public final&nbsp;void&nbsp;recognizeImageWithSettings(@NonNull
+                                                       <a href="../../../com/microblink/image/Image.html" title="class in com.microblink.image">Image</a>&nbsp;image,
+                                                       @NonNull
+                                                       <a href="../../../com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>&nbsp;resultListener,
+                                                       <a href="../../../com/microblink/recognizers/settings/RecognitionSettings.html" title="class in com.microblink.recognizers.settings">RecognitionSettings</a>&nbsp;recognitionSettings)</pre>
 <div class="block">Use this method to directly recognize Image object obtained via MetadataListener while recognizer is active.
  Please note that Image object will be disposed as soon as onMetadataAvailable method ends. You must clone
  the Image object by calling its clone() method to ensure Image lives long enough to be processed.
