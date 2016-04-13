@@ -9,13 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.microblink.detectors.DetectorResult;
+import com.microblink.detectors.points.PointsDetectorResult;
 import com.microblink.hardware.camera.VideoResolutionPreset;
 import com.microblink.hardware.orientation.Orientation;
+import com.microblink.metadata.DetectionMetadata;
 import com.microblink.metadata.Metadata;
 import com.microblink.metadata.MetadataListener;
 import com.microblink.metadata.MetadataSettings;
 import com.microblink.metadata.OcrMetadata;
-import com.microblink.metadata.detection.PointsDetectionMetadata;
 import com.microblink.recognition.InvalidLicenceKeyException;
 import com.microblink.recognizers.BaseRecognitionResult;
 import com.microblink.recognizers.RecognitionResults;
@@ -29,7 +31,6 @@ import com.microblink.recognizers.settings.RecognizerSettings;
 import com.microblink.results.ocr.OcrResult;
 import com.microblink.util.CameraPermissionManager;
 import com.microblink.util.Log;
-import com.microblink.view.BaseCameraView;
 import com.microblink.view.CameraAspectMode;
 import com.microblink.view.CameraEventsListener;
 import com.microblink.view.OrientationAllowedListener;
@@ -166,7 +167,7 @@ public class FullScreenOCR extends Activity implements MetadataListener, CameraE
         mRecognizerView.addChildView(mOcrResultView, false);
 
         // we do the same with PointSetView
-        mPointSetView = new PointSetView(this, null);
+        mPointSetView = new PointSetView(this, null, mRecognizerView.getHostScreenOrientation());
         mRecognizerView.addChildView(mPointSetView, false);
 
     }
@@ -237,12 +238,8 @@ public class FullScreenOCR extends Activity implements MetadataListener, CameraE
                 BarDecoderScanResult bdsr = (BarDecoderScanResult) r;
 
                 // create toast with contents: Barcode type: barcode contents
-                StringBuilder sb = new StringBuilder();
-                sb.append(bdsr.getBarcodeType().name());
-                sb.append(": ");
-                sb.append(bdsr.getStringData());
-
-                Toast.makeText(this, sb.toString(), Toast.LENGTH_SHORT).show();
+                String res = bdsr.getBarcodeType().name() + ": " + bdsr.getStringData();
+                Toast.makeText(this, res, Toast.LENGTH_SHORT).show();
             } else if (r instanceof BlinkOCRRecognitionResult) {
                 BlinkOCRRecognitionResult bocrRes = (BlinkOCRRecognitionResult) r;
 
@@ -302,12 +299,23 @@ public class FullScreenOCR extends Activity implements MetadataListener, CameraE
         // This method will be called when metadata becomes available during recognition process.
         // Here, for every metadata type that is allowed through metadata settings,
         // desired actions can be performed.
-        if (metadata instanceof OcrMetadata) {
+        if (mOcrResultView != null && metadata instanceof OcrMetadata) {
             // get the ocr result and show it inside ocr result view
             mOcrResultView.setOcrResult(((OcrMetadata) metadata).getOcrResult());
-        } else if (metadata instanceof PointsDetectionMetadata) {
-            // show the points of interest inside point set view
-            mPointSetView.setPointSet(((PointsDetectionMetadata) metadata).getPoints());
+        } else if (mPointSetView != null && metadata instanceof DetectionMetadata) {
+            // detection metadata contains detected points of interest
+            // points are written inside DetectorResult
+            DetectorResult detectorResult = ((DetectionMetadata) metadata).getDetectionResult();
+            // DetectorResult can be null - this means that detection has failed
+            if (detectorResult == null) {
+                // clear points
+                mPointSetView.setPointsDetectionResult(null);
+            } else if (detectorResult instanceof PointsDetectorResult) {
+                // show the points of interest inside point set view
+                mPointSetView.setPointsDetectionResult((PointsDetectorResult) detectorResult);
+            } // else if (detectorResult instanceof QuadDetectorResult) { ... }
+            // detection location (e.g. PDF417 barcode) will be returned as QuadDetectorResult
+            // here we expect only points of interest
         }
     }
 

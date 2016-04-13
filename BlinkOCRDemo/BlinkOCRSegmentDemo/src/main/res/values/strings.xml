@@ -4,6 +4,7 @@
     <string name="title_activity_scan">Blink OCR</string>
 
     <string name="amount_title">Total Amount</string>
+    <string name="large_amount_title">Large Amount</string>
     <string name="amount_msg">Position Total Amount in this frame</string>
 
     <string name="tax_title">Tax Amount</string>
