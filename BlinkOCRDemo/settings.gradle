@@ -1,1 +1,1 @@
-include ':BlinkOCRSegmentDemo', ':BlinkOCRFullScreen', ':BlinkOCRDirectAPI', ':BlinkOCRCombination'
+include ':BlinkOCRSegmentDemo', ':BlinkOCRFullScreen', ':BlinkOCRDirectAPI', ':BlinkOCRCombination', ':BlinkOCRDetectorDemo'

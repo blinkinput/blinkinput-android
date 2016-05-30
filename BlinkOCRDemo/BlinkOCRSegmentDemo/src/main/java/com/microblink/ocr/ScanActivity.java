@@ -37,12 +37,12 @@ import com.microblink.view.recognition.ScanResultListener;
 
 public class ScanActivity extends Activity implements CameraEventsListener, ScanResultListener {
 
-    // obtain your licence key at http://microblink.com/login or
-    // contact us at http://help.microblink.com
-    private static final String LICENSE_KEY = "CNDHGUQS-3REAUYG3-OJYH4FCG-QNW7QSOK-DEO5SIWW-MKYTEYZT-UGBW36CJ-YIELTPLQ";
-
     /** RecognizerView is the builtin view that controls camera and recognition */
     private RecognizerView mRecognizerView;
+
+    // obtain your licence key at http://microblink.com/login or
+    // contact us at http://help.microblink.com
+    private static final String LICENSE_KEY = "H5SIMEWT-YGSAO47Z-LEJJI2C6-ZOIHQI4S-HAQIOSRB-MKYTEYZT-UGBW36CI-C2LAREQJ";
     /** CameraPermissionManager is provided helper class that can be used to obtain the permission to use camera.
      * It is used on Android 6.0 (API level 23) or newer.
      */

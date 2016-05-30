@@ -46,7 +46,7 @@ public class CombinationScanActivity extends Activity implements CameraEventsLis
 
     // obtain your licence key at http://microblink.com/login or
     // contact us at http://help.microblink.com
-    private static final String LICENSE_KEY = "CNDHGUQS-3REAUYG3-OJYH4FCG-QNW7QSOK-DEO5SIWW-MKYTEYZT-UGBW36CJ-YIELTPLQ";
+    private static final String LICENSE_KEY = "H5SIMEWT-YGSAO47Z-LEJJI2C6-ZOIHQI4S-HAQIOSRB-MKYTEYZT-UGBW36CI-C2LAREQJ";
 
     /** RecognizerView is the built-in view that controls camera and recognition */
     private RecognizerView mRecognizerView;
