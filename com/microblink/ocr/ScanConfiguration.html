@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -114,8 +114,9 @@ var activeTableTab = "activeTableTab";
 <pre>public class <span class="typeNameLabel">ScanConfiguration</span>
 extends java.lang.Object
 implements android.os.Parcelable</pre>
-<div class="block">This class will hold a combination of parser settings, parser name, parser title (shown in UI),
- and parser message (shown in UI).</div>
+<div class="block">This class will hold a combination of parser settings, parser name, parser title (shown in UI) and
+ parser message (shown in UI). Additionally, it can be used to set the scan region size and control
+ whether the scan field is optional or mandatory.</div>
 </li>
 </ul>
 </div>
@@ -222,70 +223,107 @@ implements android.os.Parcelable</pre>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code>float</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#getScanRegionRelativeHeight--">getScanRegionRelativeHeight</a></span>()</code>
+<div class="block">Returns the current scan region height, represented as percentage of maximal allowed scan region height.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>float</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#getScanRegionRelativeWidth--">getScanRegionRelativeWidth</a></span>()</code>
+<div class="block">Returns the current scan region width, represented as percentage of maximal allowed scan region width.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#getText-android.content.Context-">getText</a></span>(android.content.Context&nbsp;ctx)</code>
 <div class="block">Returns the text that will be displayed when parser is active.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#getTextResource--">getTextResource</a></span>()</code>
 <div class="block">Returns the resource ID representing text that will be displayed when parser is active.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#getTitle-android.content.Context-">getTitle</a></span>(android.content.Context&nbsp;ctx)</code>
 <div class="block">Returns title that will be displayed.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#getTitleResource--">getTitleResource</a></span>()</code>
 <div class="block">Returns the resource ID representing title that will be displayed or 0 if resource ID is not available.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#isOptional--">isOptional</a></span>()</code>
+<div class="block">Returns whether scan field with this configuration is optional.</div>
+</td>
+</tr>
+<tr id="i10" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#setOptional-boolean-">setOptional</a></span>(boolean&nbsp;optional)</code>
+<div class="block">Sets the flag that indicates whether this scan configuration is optional, which means
+ that the data from the scan field with this configuration is not mandatory and can be skipped by user.</div>
+</td>
+</tr>
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#setParserName-java.lang.String-">setParserName</a></span>(java.lang.String&nbsp;parserName)</code>
 <div class="block">Sets the name of the parser.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#setParserSettings-com.microblink.recognizers.blinkocr.parser.OcrParserSettings-">setParserSettings</a></span>(<a href="../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser">OcrParserSettings</a>&nbsp;parserSettings)</code>
 <div class="block">Sets the parser settings that will be used to instatiate parser.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i13" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#setScanRegionRelativeHeight-float-">setScanRegionRelativeHeight</a></span>(float&nbsp;scanRegionRelativeHeight)</code>
+<div class="block">Sets the scan region height, represented as percentage of maximal allowed scan region height.</div>
+</td>
+</tr>
+<tr id="i14" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#setScanRegionRelativeWidth-float-">setScanRegionRelativeWidth</a></span>(float&nbsp;scanRegionRelativeWidth)</code>
+<div class="block">Sets the scan region width, represented as percentage of maximal allowed scan region width.</div>
+</td>
+</tr>
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#setText-java.lang.String-">setText</a></span>(java.lang.String&nbsp;text)</code>
 <div class="block">Sets the text that will be displayed when parser is active.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#setTextResource-int-">setTextResource</a></span>(int&nbsp;textResource)</code>
 <div class="block">Sets the resource ID representing text that will be displayed when parser is active.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#setTitle-java.lang.String-">setTitle</a></span>(java.lang.String&nbsp;title)</code>
 <div class="block">Sets the title that will be displayed.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#setTitleResource-int-">setTitleResource</a></span>(int&nbsp;titleResource)</code>
 <div class="block">Sets the resource ID representing title that will be displayed.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#writeToParcel-android.os.Parcel-int-">writeToParcel</a></span>(android.os.Parcel&nbsp;dest,
              int&nbsp;flags)</code>&nbsp;</td>
@@ -574,6 +612,93 @@ public&nbsp;java.lang.String&nbsp;getParserName()</pre>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>parserSettings</code> - parser settings that will be used to instatiate parser.</dd>
+</dl>
+</li>
+</ul>
+<a name="isOptional--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isOptional</h4>
+<pre>public&nbsp;boolean&nbsp;isOptional()</pre>
+<div class="block">Returns whether scan field with this configuration is optional. See <a href="../../../com/microblink/ocr/ScanConfiguration.html#setOptional-boolean-"><code>setOptional(boolean)</code></a> (boolean)}.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether scan field with this configuration is optional. See <a href="../../../com/microblink/ocr/ScanConfiguration.html#setOptional-boolean-"><code>setOptional(boolean)</code></a> (boolean)}.</dd>
+</dl>
+</li>
+</ul>
+<a name="setOptional-boolean-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setOptional</h4>
+<pre>public&nbsp;void&nbsp;setOptional(boolean&nbsp;optional)</pre>
+<div class="block">Sets the flag that indicates whether this scan configuration is optional, which means
+ that the data from the scan field with this configuration is not mandatory and can be skipped by user.
+ By default, this flag is set to <code>false</code> and the scan field is mandatory.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>optional</code> - If set to <code>true</code>, scan field with this configuration is optional
+                 and user can skip it, otherwise the scan field is mandatory.</dd>
+</dl>
+</li>
+</ul>
+<a name="getScanRegionRelativeWidth--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getScanRegionRelativeWidth</h4>
+<pre>public&nbsp;float&nbsp;getScanRegionRelativeWidth()</pre>
+<div class="block">Returns the current scan region width, represented as percentage of maximal allowed scan region width.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>current scan region width, represented as percentage of maximal allowed scan region width.</dd>
+</dl>
+</li>
+</ul>
+<a name="setScanRegionRelativeWidth-float-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setScanRegionRelativeWidth</h4>
+<pre>public&nbsp;void&nbsp;setScanRegionRelativeWidth(float&nbsp;scanRegionRelativeWidth)</pre>
+<div class="block">Sets the scan region width, represented as percentage of maximal allowed scan region width.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>scanRegionRelativeWidth</code> - scan region width, represented as percentage of maximal allowed scan region width.</dd>
+</dl>
+</li>
+</ul>
+<a name="getScanRegionRelativeHeight--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getScanRegionRelativeHeight</h4>
+<pre>public&nbsp;float&nbsp;getScanRegionRelativeHeight()</pre>
+<div class="block">Returns the current scan region height, represented as percentage of maximal allowed scan region height.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>current scan region height, represented as percentage of maximal allowed scan region height.</dd>
+</dl>
+</li>
+</ul>
+<a name="setScanRegionRelativeHeight-float-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setScanRegionRelativeHeight</h4>
+<pre>public&nbsp;void&nbsp;setScanRegionRelativeHeight(float&nbsp;scanRegionRelativeHeight)</pre>
+<div class="block">Sets the scan region height, represented as percentage of maximal allowed scan region height.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>scanRegionRelativeHeight</code> - scan region height, represented as percentage of maximal allowed scan region height.</dd>
 </dl>
 </li>
 </ul>

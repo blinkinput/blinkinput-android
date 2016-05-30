@@ -96,15 +96,19 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/view/BaseCameraView.html#addChildView-android.view.View-boolean-int-">addChildView(View, boolean, int)</a></span> - Method in class com.microblink.view.<a href="com/microblink/view/BaseCameraView.html" title="class in com.microblink.view">BaseCameraView</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/generic/IbanParserSettings.html#addCountryCodeToWhitelist-java.lang.String-">addCountryCodeToWhitelist(String)</a></span> - Method in class com.microblink.recognizers.blinkocr.parser.generic.<a href="com/microblink/recognizers/blinkocr/parser/generic/IbanParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.generic">IbanParserSettings</a></dt>
+<dd>
+<div class="block">Adds country code to the set of allowed country codes.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html#addLowercaseCharsToWhitelist-com.microblink.results.ocr.OcrFont-">addLowercaseCharsToWhitelist(OcrFont)</a></span> - Method in class com.microblink.recognizers.blinkocr.engine.<a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html" title="class in com.microblink.recognizers.blinkocr.engine">BlinkOCREngineOptions</a></dt>
 <dd>
 <div class="block">Adds all lowercase ascii chars with given font to whitelist.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#addParser-java.lang.String-com.microblink.recognizers.blinkocr.parser.OcrParserSettings-">addParser(String, OcrParserSettings)</a></span> - Method in class com.microblink.recognizers.blinkocr.<a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognizerSettings</a></dt>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#addParser-java.lang.String-com.microblink.recognizers.blinkocr.parser.OcrParserSettings-">addParser(String, OcrParserSettings)</a></span> - Method in class com.microblink.recognizers.templating.<a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html" title="class in com.microblink.recognizers.templating">TemplatingRecognizerSettings</a></dt>
 <dd>
 <div class="block">Adds parser to default parser group.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#addParserToParserGroup-java.lang.String-java.lang.String-com.microblink.recognizers.blinkocr.parser.OcrParserSettings-">addParserToParserGroup(String, String, OcrParserSettings)</a></span> - Method in class com.microblink.recognizers.blinkocr.<a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognizerSettings</a></dt>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#addParserToParserGroup-java.lang.String-java.lang.String-com.microblink.recognizers.blinkocr.parser.OcrParserSettings-">addParserToParserGroup(String, String, OcrParserSettings)</a></span> - Method in class com.microblink.recognizers.templating.<a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html" title="class in com.microblink.recognizers.templating">TemplatingRecognizerSettings</a></dt>
 <dd>
 <div class="block">Adds parser to given parser group.</div>
 </dd>
@@ -168,6 +172,8 @@
  getAskPermissionOverlay if user denies the permission.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/RecognitionResultConstants.html#AUTHORITY">AUTHORITY</a></span> - Static variable in interface com.microblink.recognizers.<a href="com/microblink/recognizers/RecognitionResultConstants.html" title="interface in com.microblink.recognizers">RecognitionResultConstants</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/microblink/hardware/camera/AutofocusListener.html" title="interface in com.microblink.hardware.camera"><span class="typeNameLink">AutofocusListener</span></a> - Interface in <a href="com/microblink/hardware/camera/package-summary.html">com.microblink.hardware.camera</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <a name="I:B">
@@ -308,15 +314,18 @@
 <dd>&nbsp;</dd>
 <dt><a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html" title="class in com.microblink.recognizers.blinkocr"><span class="typeNameLink">BlinkOCRRecognitionResult</span></a> - Class in <a href="com/microblink/recognizers/blinkocr/package-summary.html">com.microblink.recognizers.blinkocr</a></dt>
 <dd>
-<div class="block">Created by dodo on 02/03/15.</div>
+<div class="block">Represents recognition result produced by BlinkOCR recognizer which was configured
+ with <a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html" title="class in com.microblink.recognizers.blinkocr"><code>BlinkOCRRecognizerSettings</code></a>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html#BlinkOCRRecognitionResult-long-boolean-boolean-">BlinkOCRRecognitionResult(long, boolean, boolean)</a></span> - Constructor for class com.microblink.recognizers.blinkocr.<a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognitionResult</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html#BlinkOCRRecognitionResult-android.os.Bundle-boolean-boolean-">BlinkOCRRecognitionResult(Bundle, boolean, boolean)</a></span> - Constructor for class com.microblink.recognizers.blinkocr.<a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognitionResult</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html#BlinkOCRRecognitionResult-android.os.Parcel-">BlinkOCRRecognitionResult(Parcel)</a></span> - Constructor for class com.microblink.recognizers.blinkocr.<a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognitionResult</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html" title="class in com.microblink.recognizers.blinkocr"><span class="typeNameLink">BlinkOCRRecognizerSettings</span></a> - Class in <a href="com/microblink/recognizers/blinkocr/package-summary.html">com.microblink.recognizers.blinkocr</a></dt>
 <dd>
-<div class="block">Created by igor on 11/20/14.</div>
+<div class="block">Represents settings for generic OCR recognizer used for scanning segments.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#BlinkOCRRecognizerSettings--">BlinkOCRRecognizerSettings()</a></span> - Constructor for class com.microblink.recognizers.blinkocr.<a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognizerSettings</a></dt>
 <dd>&nbsp;</dd>
@@ -375,6 +384,11 @@
 <dd>
 <div class="block">Calculate and return point clamped to given norm (lengths).</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/DocumentClassifier.html#classifyDocument-com.microblink.recognizers.blinkocr.BlinkOCRRecognitionResult-">classifyDocument(BlinkOCRRecognitionResult)</a></span> - Method in interface com.microblink.recognizers.blinkocr.<a href="com/microblink/recognizers/blinkocr/DocumentClassifier.html" title="interface in com.microblink.recognizers.blinkocr">DocumentClassifier</a></dt>
+<dd>
+<div class="block">Based on <a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html" title="class in com.microblink.recognizers.blinkocr"><code>BlinkOCRRecognitionResult</code></a> which contains data extracted from decoding infos
+ inherent to detector, classifies the document.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/geometry/Quadrilateral.html#clone--">clone()</a></span> - Method in class com.microblink.geometry.<a href="com/microblink/geometry/Quadrilateral.html" title="class in com.microblink.geometry">Quadrilateral</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/image/Image.html#clone--">clone()</a></span> - Method in class com.microblink.image.<a href="com/microblink/image/Image.html" title="class in com.microblink.image">Image</a></dt>
@@ -393,9 +407,17 @@
 <dd>&nbsp;</dd>
 <dt><a href="com/microblink/detectors/package-summary.html">com.microblink.detectors</a> - package com.microblink.detectors</dt>
 <dd>&nbsp;</dd>
+<dt><a href="com/microblink/detectors/document/package-summary.html">com.microblink.detectors.document</a> - package com.microblink.detectors.document</dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/microblink/detectors/face/package-summary.html">com.microblink.detectors.face</a> - package com.microblink.detectors.face</dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/microblink/detectors/multi/package-summary.html">com.microblink.detectors.multi</a> - package com.microblink.detectors.multi</dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/microblink/detectors/points/package-summary.html">com.microblink.detectors.points</a> - package com.microblink.detectors.points</dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/microblink/detectors/quad/package-summary.html">com.microblink.detectors.quad</a> - package com.microblink.detectors.quad</dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/microblink/detectors/quad/mrtd/package-summary.html">com.microblink.detectors.quad.mrtd</a> - package com.microblink.detectors.quad.mrtd</dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/microblink/directApi/package-summary.html">com.microblink.directApi</a> - package com.microblink.directApi</dt>
 <dd>&nbsp;</dd>
@@ -441,7 +463,11 @@
 <dd>&nbsp;</dd>
 <dt><a href="com/microblink/recognizers/blinkocr/parser/regex/package-summary.html">com.microblink.recognizers.blinkocr.parser.regex</a> - package com.microblink.recognizers.blinkocr.parser.regex</dt>
 <dd>&nbsp;</dd>
+<dt><a href="com/microblink/recognizers/detector/package-summary.html">com.microblink.recognizers.detector</a> - package com.microblink.recognizers.detector</dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/microblink/recognizers/settings/package-summary.html">com.microblink.recognizers.settings</a> - package com.microblink.recognizers.settings</dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/microblink/recognizers/templating/package-summary.html">com.microblink.recognizers.templating</a> - package com.microblink.recognizers.templating</dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/microblink/results/barcode/package-summary.html">com.microblink.results.barcode</a> - package com.microblink.results.barcode</dt>
 <dd>&nbsp;</dd>
@@ -459,6 +485,8 @@
 <dd>
 <div class="block">Inform quadview of configuration change event.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/RecognitionResultConstants.html#CONSTANT_SYMBOL">CONSTANT_SYMBOL</a></span> - Static variable in interface com.microblink.recognizers.<a href="com/microblink/recognizers/RecognitionResultConstants.html" title="interface in com.microblink.recognizers">RecognitionResultConstants</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/RecognitionResultConstants.html#CONTRACT_ACCOUNT">CONTRACT_ACCOUNT</a></span> - Static variable in interface com.microblink.recognizers.<a href="com/microblink/recognizers/RecognitionResultConstants.html" title="interface in com.microblink.recognizers">RecognitionResultConstants</a></dt>
 <dd>
 <div class="block">Key for accessing the contract account information in Austrian payslips</div>
@@ -485,6 +513,10 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/view/BaseCameraView.html#createCameraViewEventsListener--">createCameraViewEventsListener()</a></span> - Method in class com.microblink.view.<a href="com/microblink/view/BaseCameraView.html" title="class in com.microblink.view">BaseCameraView</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentSpecification.html#createFromPreset-com.microblink.detectors.document.DocumentSpecificationPreset-">createFromPreset(DocumentSpecificationPreset)</a></span> - Static method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecification.html" title="class in com.microblink.detectors.document">DocumentSpecification</a></dt>
+<dd>
+<div class="block">Creates a new document that will be detected from preset.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/generic/AmountParserSettings.html#createFromPreset-com.microblink.recognizers.blinkocr.parser.generic.AmountParserSettings.Preset-">createFromPreset(AmountParserSettings.Preset)</a></span> - Static method in class com.microblink.recognizers.blinkocr.parser.generic.<a href="com/microblink/recognizers/blinkocr/parser/generic/AmountParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.generic">AmountParserSettings</a></dt>
 <dd>
 <div class="block">Creates amount parser settings from preset.</div>
@@ -497,7 +529,35 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/activity/ShowOcrResultMode.html#CREATOR">CREATOR</a></span> - Static variable in enum com.microblink.activity.<a href="com/microblink/activity/ShowOcrResultMode.html" title="enum in com.microblink.activity">ShowOcrResultMode</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/DecodingInfo.html#CREATOR">CREATOR</a></span> - Static variable in class com.microblink.detectors.<a href="com/microblink/detectors/DecodingInfo.html" title="class in com.microblink.detectors">DecodingInfo</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentDetectorResult.html#CREATOR">CREATOR</a></span> - Static variable in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentDetectorResult.html" title="class in com.microblink.detectors.document">DocumentDetectorResult</a></dt>
+<dd>
+<div class="block">The parcelable CREATOR</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentDetectorSettings.html#CREATOR">CREATOR</a></span> - Static variable in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentDetectorSettings.html" title="class in com.microblink.detectors.document">DocumentDetectorSettings</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentSpecification.html#CREATOR">CREATOR</a></span> - Static variable in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecification.html" title="class in com.microblink.detectors.document">DocumentSpecification</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/face/FaceDetectorResult.html#CREATOR">CREATOR</a></span> - Static variable in class com.microblink.detectors.face.<a href="com/microblink/detectors/face/FaceDetectorResult.html" title="class in com.microblink.detectors.face">FaceDetectorResult</a></dt>
+<dd>
+<div class="block">The parcelable CREATOR</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/face/FaceDetectorSettings.html#CREATOR">CREATOR</a></span> - Static variable in class com.microblink.detectors.face.<a href="com/microblink/detectors/face/FaceDetectorSettings.html" title="class in com.microblink.detectors.face">FaceDetectorSettings</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/multi/MultiDetectorResult.html#CREATOR">CREATOR</a></span> - Static variable in class com.microblink.detectors.multi.<a href="com/microblink/detectors/multi/MultiDetectorResult.html" title="class in com.microblink.detectors.multi">MultiDetectorResult</a></dt>
+<dd>
+<div class="block">The parcelable CREATOR</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/multi/MultiDetectorSettings.html#CREATOR">CREATOR</a></span> - Static variable in class com.microblink.detectors.multi.<a href="com/microblink/detectors/multi/MultiDetectorSettings.html" title="class in com.microblink.detectors.multi">MultiDetectorSettings</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/detectors/points/PointsDetectorResult.html#CREATOR">CREATOR</a></span> - Static variable in class com.microblink.detectors.points.<a href="com/microblink/detectors/points/PointsDetectorResult.html" title="class in com.microblink.detectors.points">PointsDetectorResult</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.html#CREATOR">CREATOR</a></span> - Static variable in class com.microblink.detectors.quad.mrtd.<a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.html" title="class in com.microblink.detectors.quad.mrtd">MRTDDetectorResult</a></dt>
+<dd>
+<div class="block">The parcelable CREATOR</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/mrtd/MRTDDetectorSettings.html#CREATOR">CREATOR</a></span> - Static variable in class com.microblink.detectors.quad.mrtd.<a href="com/microblink/detectors/quad/mrtd/MRTDDetectorSettings.html" title="class in com.microblink.detectors.quad.mrtd">MRTDDetectorSettings</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/QuadDetectorResult.html#CREATOR">CREATOR</a></span> - Static variable in class com.microblink.detectors.quad.<a href="com/microblink/detectors/quad/QuadDetectorResult.html" title="class in com.microblink.detectors.quad">QuadDetectorResult</a></dt>
 <dd>
@@ -557,6 +617,10 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html#CREATOR">CREATOR</a></span> - Static variable in class com.microblink.recognizers.blinkocr.parser.regex.<a href="com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.regex">RegexParserSettings</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/detector/DetectorRecognitionResult.html#CREATOR">CREATOR</a></span> - Static variable in class com.microblink.recognizers.detector.<a href="com/microblink/recognizers/detector/DetectorRecognitionResult.html" title="class in com.microblink.recognizers.detector">DetectorRecognitionResult</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/detector/DetectorRecognizerSettings.html#CREATOR">CREATOR</a></span> - Static variable in class com.microblink.recognizers.detector.<a href="com/microblink/recognizers/detector/DetectorRecognizerSettings.html" title="class in com.microblink.recognizers.detector">DetectorRecognizerSettings</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/LibraryInfoResult.html#CREATOR">CREATOR</a></span> - Static variable in class com.microblink.recognizers.<a href="com/microblink/recognizers/LibraryInfoResult.html" title="class in com.microblink.recognizers">LibraryInfoResult</a></dt>
 <dd>
 <div class="block">Parcelable creator object</div>
@@ -607,19 +671,51 @@
 <dd>&nbsp;</dd>
 <dt><a href="com/microblink/recognizers/blinkocr/parser/generic/DateParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.generic"><span class="typeNameLink">DateParserSettings</span></a> - Class in <a href="com/microblink/recognizers/blinkocr/parser/generic/package-summary.html">com.microblink.recognizers.blinkocr.parser.generic</a></dt>
 <dd>
-<div class="block">Created by Boris on 23/06/15.</div>
+<div class="block">Represents a settings for setting up Date Parser.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/generic/DateParserSettings.html#DateParserSettings--">DateParserSettings()</a></span> - Constructor for class com.microblink.recognizers.blinkocr.parser.generic.<a href="com/microblink/recognizers/blinkocr/parser/generic/DateParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.generic">DateParserSettings</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="com/microblink/recognizers/blinkocr/parser/generic/DateParserSettings.DateFormat.html" title="enum in com.microblink.recognizers.blinkocr.parser.generic"><span class="typeNameLink">DateParserSettings.DateFormat</span></a> - Enum in <a href="com/microblink/recognizers/blinkocr/parser/generic/package-summary.html">com.microblink.recognizers.blinkocr.parser.generic</a></dt>
+<dd>
+<div class="block">Available date formats for date parser.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/metadata/MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings.html#DebugImageMetadataSettings--">DebugImageMetadataSettings()</a></span> - Constructor for class com.microblink.metadata.<a href="com/microblink/metadata/MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings.html" title="class in com.microblink.metadata">MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/metadata/MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings.html#DebugImageMetadataSettings-android.os.Parcel-">DebugImageMetadataSettings(Parcel)</a></span> - Constructor for class com.microblink.metadata.<a href="com/microblink/metadata/MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings.html" title="class in com.microblink.metadata">MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="com/microblink/detectors/DecodingInfo.html" title="class in com.microblink.detectors"><span class="typeNameLink">DecodingInfo</span></a> - Class in <a href="com/microblink/detectors/package-summary.html">com.microblink.detectors</a></dt>
+<dd>
+<div class="block">Represents a part of detection that will be used later.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/DecodingInfo.html#DecodingInfo-com.microblink.geometry.Rectangle-int-java.lang.String-">DecodingInfo(Rectangle, int, String)</a></span> - Constructor for class com.microblink.detectors.<a href="com/microblink/detectors/DecodingInfo.html" title="class in com.microblink.detectors">DecodingInfo</a></dt>
+<dd>
+<div class="block">Decoding info constructor.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/DecodingInfo.html#DecodingInfo-long-">DecodingInfo(long)</a></span> - Constructor for class com.microblink.detectors.<a href="com/microblink/detectors/DecodingInfo.html" title="class in com.microblink.detectors">DecodingInfo</a></dt>
+<dd>
+<div class="block">Constructor from native.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/DecodingInfo.html#DecodingInfo-android.os.Parcel-">DecodingInfo(Parcel)</a></span> - Constructor for class com.microblink.detectors.<a href="com/microblink/detectors/DecodingInfo.html" title="class in com.microblink.detectors">DecodingInfo</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/activity/ShowOcrResultMode.html#describeContents--">describeContents()</a></span> - Method in enum com.microblink.activity.<a href="com/microblink/activity/ShowOcrResultMode.html" title="enum in com.microblink.activity">ShowOcrResultMode</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/DecodingInfo.html#describeContents--">describeContents()</a></span> - Method in class com.microblink.detectors.<a href="com/microblink/detectors/DecodingInfo.html" title="class in com.microblink.detectors">DecodingInfo</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/detectors/DetectorResult.html#describeContents--">describeContents()</a></span> - Method in class com.microblink.detectors.<a href="com/microblink/detectors/DetectorResult.html" title="class in com.microblink.detectors">DetectorResult</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/DetectorSettings.html#describeContents--">describeContents()</a></span> - Method in class com.microblink.detectors.<a href="com/microblink/detectors/DetectorSettings.html" title="class in com.microblink.detectors">DetectorSettings</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentDetectorSettings.html#describeContents--">describeContents()</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentDetectorSettings.html" title="class in com.microblink.detectors.document">DocumentDetectorSettings</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentSpecification.html#describeContents--">describeContents()</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecification.html" title="class in com.microblink.detectors.document">DocumentSpecification</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/face/FaceDetectorSettings.html#describeContents--">describeContents()</a></span> - Method in class com.microblink.detectors.face.<a href="com/microblink/detectors/face/FaceDetectorSettings.html" title="class in com.microblink.detectors.face">FaceDetectorSettings</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/multi/MultiDetectorSettings.html#describeContents--">describeContents()</a></span> - Method in class com.microblink.detectors.multi.<a href="com/microblink/detectors/multi/MultiDetectorSettings.html" title="class in com.microblink.detectors.multi">MultiDetectorSettings</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/detectors/points/PointsDetectorResult.html#describeContents--">describeContents()</a></span> - Method in class com.microblink.detectors.points.<a href="com/microblink/detectors/points/PointsDetectorResult.html" title="class in com.microblink.detectors.points">PointsDetectorResult</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/mrtd/MRTDDetectorSettings.html#describeContents--">describeContents()</a></span> - Method in class com.microblink.detectors.quad.mrtd.<a href="com/microblink/detectors/quad/mrtd/MRTDDetectorSettings.html" title="class in com.microblink.detectors.quad.mrtd">MRTDDetectorSettings</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/geometry/Point.html#describeContents--">describeContents()</a></span> - Method in class com.microblink.geometry.<a href="com/microblink/geometry/Point.html" title="class in com.microblink.geometry">Point</a></dt>
 <dd>&nbsp;</dd>
@@ -651,6 +747,8 @@
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html#describeContents--">describeContents()</a></span> - Method in class com.microblink.recognizers.blinkocr.parser.<a href="com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser">OcrParserSettings</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html#describeContents--">describeContents()</a></span> - Method in class com.microblink.recognizers.blinkocr.parser.regex.<a href="com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.regex">RegexParserSettings</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/detector/DetectorRecognizerSettings.html#describeContents--">describeContents()</a></span> - Method in class com.microblink.recognizers.detector.<a href="com/microblink/recognizers/detector/DetectorRecognizerSettings.html" title="class in com.microblink.recognizers.detector">DetectorRecognizerSettings</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/RecognitionResults.html#describeContents--">describeContents()</a></span> - Method in class com.microblink.recognizers.<a href="com/microblink/recognizers/RecognitionResults.html" title="class in com.microblink.recognizers">RecognitionResults</a></dt>
 <dd>&nbsp;</dd>
@@ -695,6 +793,20 @@
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/RecognitionResultConstants.html#DETECTIOR_RESULT">DETECTIOR_RESULT</a></span> - Static variable in interface com.microblink.recognizers.<a href="com/microblink/recognizers/RecognitionResultConstants.html" title="interface in com.microblink.recognizers">RecognitionResultConstants</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="com/microblink/recognizers/detector/DetectorRecognitionResult.html" title="class in com.microblink.recognizers.detector"><span class="typeNameLink">DetectorRecognitionResult</span></a> - Class in <a href="com/microblink/recognizers/detector/package-summary.html">com.microblink.recognizers.detector</a></dt>
+<dd>
+<div class="block">Created by dodo on 20/11/15.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/detector/DetectorRecognitionResult.html#DetectorRecognitionResult-long-boolean-boolean-">DetectorRecognitionResult(long, boolean, boolean)</a></span> - Constructor for class com.microblink.recognizers.detector.<a href="com/microblink/recognizers/detector/DetectorRecognitionResult.html" title="class in com.microblink.recognizers.detector">DetectorRecognitionResult</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/detector/DetectorRecognitionResult.html#DetectorRecognitionResult-android.os.Parcel-">DetectorRecognitionResult(Parcel)</a></span> - Constructor for class com.microblink.recognizers.detector.<a href="com/microblink/recognizers/detector/DetectorRecognitionResult.html" title="class in com.microblink.recognizers.detector">DetectorRecognitionResult</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/microblink/recognizers/detector/DetectorRecognizerSettings.html" title="class in com.microblink.recognizers.detector"><span class="typeNameLink">DetectorRecognizerSettings</span></a> - Class in <a href="com/microblink/recognizers/detector/package-summary.html">com.microblink.recognizers.detector</a></dt>
+<dd>
+<div class="block">Created by dodo on 16/10/15.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/detector/DetectorRecognizerSettings.html#DetectorRecognizerSettings-com.microblink.detectors.DetectorSettings-">DetectorRecognizerSettings(DetectorSettings)</a></span> - Constructor for class com.microblink.recognizers.detector.<a href="com/microblink/recognizers/detector/DetectorRecognizerSettings.html" title="class in com.microblink.recognizers.detector">DetectorRecognizerSettings</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/microblink/detectors/DetectorResult.html" title="class in com.microblink.detectors"><span class="typeNameLink">DetectorResult</span></a> - Class in <a href="com/microblink/detectors/package-summary.html">com.microblink.detectors</a></dt>
 <dd>
 <div class="block">Abstract detector result.</div>
@@ -709,6 +821,14 @@
 </dd>
 <dt><a href="com/microblink/detectors/DetectorResult.DetectionCode.html" title="enum in com.microblink.detectors"><span class="typeNameLink">DetectorResult.DetectionCode</span></a> - Enum in <a href="com/microblink/detectors/package-summary.html">com.microblink.detectors</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="com/microblink/detectors/DetectorSettings.html" title="class in com.microblink.detectors"><span class="typeNameLink">DetectorSettings</span></a> - Class in <a href="com/microblink/detectors/package-summary.html">com.microblink.detectors</a></dt>
+<dd>
+<div class="block">Created by dodo on 16/10/15.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/DetectorSettings.html#DetectorSettings--">DetectorSettings()</a></span> - Constructor for class com.microblink.detectors.<a href="com/microblink/detectors/DetectorSettings.html" title="class in com.microblink.detectors">DetectorSettings</a></dt>
+<dd>
+<div class="block">Default constructor.</div>
+</dd>
 <dt><a href="com/microblink/directApi/DirectApiErrorListener.html" title="interface in com.microblink.directApi"><span class="typeNameLink">DirectApiErrorListener</span></a> - Interface in <a href="com/microblink/directApi/package-summary.html">com.microblink.directApi</a></dt>
 <dd>
 <div class="block">Created by dodo on 29/06/15.</div>
@@ -727,12 +847,64 @@
 <dd>
 <div class="block">Calculates and returns the distance to given point.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/RecognitionResultConstants.html#DOCUMENT_CLASSIFICATION">DOCUMENT_CLASSIFICATION</a></span> - Static variable in interface com.microblink.recognizers.<a href="com/microblink/recognizers/RecognitionResultConstants.html" title="interface in com.microblink.recognizers">RecognitionResultConstants</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/RecognitionResultConstants.html#DOCUMENT_EXPIRY_DATE">DOCUMENT_EXPIRY_DATE</a></span> - Static variable in interface com.microblink.recognizers.<a href="com/microblink/recognizers/RecognitionResultConstants.html" title="interface in com.microblink.recognizers">RecognitionResultConstants</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/RecognitionResultConstants.html#DOCUMENT_ISSUE_DATE">DOCUMENT_ISSUE_DATE</a></span> - Static variable in interface com.microblink.recognizers.<a href="com/microblink/recognizers/RecognitionResultConstants.html" title="interface in com.microblink.recognizers">RecognitionResultConstants</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/RecognitionResultConstants.html#DOCUMENT_ISSUING_AUTHORITY">DOCUMENT_ISSUING_AUTHORITY</a></span> - Static variable in interface com.microblink.recognizers.<a href="com/microblink/recognizers/RecognitionResultConstants.html" title="interface in com.microblink.recognizers">RecognitionResultConstants</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="com/microblink/recognizers/blinkocr/DocumentClassifier.html" title="interface in com.microblink.recognizers.blinkocr"><span class="typeNameLink">DocumentClassifier</span></a> - Interface in <a href="com/microblink/recognizers/blinkocr/package-summary.html">com.microblink.recognizers.blinkocr</a></dt>
+<dd>
+<div class="block">Classifier that is used to classify documents based on data extracted from detector's
+ decoding info fields.</div>
+</dd>
+<dt><a href="com/microblink/detectors/document/DocumentDetectorResult.html" title="class in com.microblink.detectors.document"><span class="typeNameLink">DocumentDetectorResult</span></a> - Class in <a href="com/microblink/detectors/document/package-summary.html">com.microblink.detectors.document</a></dt>
+<dd>
+<div class="block">Represents a detector result created by Document detector initialised with <a href="com/microblink/detectors/document/DocumentDetectorSettings.html" title="class in com.microblink.detectors.document"><code>DocumentDetectorSettings</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentDetectorResult.html#DocumentDetectorResult-int-int-float:A-float:A-float:A-int-double-">DocumentDetectorResult(int, int, float[], float[], float[], int, double)</a></span> - Constructor for class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentDetectorResult.html" title="class in com.microblink.detectors.document">DocumentDetectorResult</a></dt>
+<dd>
+<div class="block">Constructor which uses the given parameters to initialize the object.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentDetectorResult.html#DocumentDetectorResult-android.os.Parcel-">DocumentDetectorResult(Parcel)</a></span> - Constructor for class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentDetectorResult.html" title="class in com.microblink.detectors.document">DocumentDetectorResult</a></dt>
+<dd>
+<div class="block">Initializes the object from the given <code>Parcel</code>.</div>
+</dd>
+<dt><a href="com/microblink/detectors/document/DocumentDetectorResult.ScreenOrientation.html" title="enum in com.microblink.detectors.document"><span class="typeNameLink">DocumentDetectorResult.ScreenOrientation</span></a> - Enum in <a href="com/microblink/detectors/document/package-summary.html">com.microblink.detectors.document</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/microblink/detectors/document/DocumentDetectorSettings.html" title="class in com.microblink.detectors.document"><span class="typeNameLink">DocumentDetectorSettings</span></a> - Class in <a href="com/microblink/detectors/document/package-summary.html">com.microblink.detectors.document</a></dt>
+<dd>
+<div class="block">Settings for document detector.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentDetectorSettings.html#DocumentDetectorSettings-com.microblink.detectors.document.DocumentSpecification:A-">DocumentDetectorSettings(DocumentSpecification[])</a></span> - Constructor for class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentDetectorSettings.html" title="class in com.microblink.detectors.document">DocumentDetectorSettings</a></dt>
+<dd>
+<div class="block">Constructor - requires array of document specifications that can be detected.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentDetectorSettings.html#DocumentDetectorSettings-android.os.Parcel-">DocumentDetectorSettings(Parcel)</a></span> - Constructor for class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentDetectorSettings.html" title="class in com.microblink.detectors.document">DocumentDetectorSettings</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/microblink/detectors/document/DocumentSpecification.html" title="class in com.microblink.detectors.document"><span class="typeNameLink">DocumentSpecification</span></a> - Class in <a href="com/microblink/detectors/document/package-summary.html">com.microblink.detectors.document</a></dt>
+<dd>
+<div class="block">Class representing specificatio of document that can be detected with DocumentDetector.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentSpecification.html#DocumentSpecification-double-com.microblink.detectors.DecodingInfo:A-">DocumentSpecification(double, DecodingInfo[])</a></span> - Constructor for class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecification.html" title="class in com.microblink.detectors.document">DocumentSpecification</a></dt>
+<dd>
+<div class="block">Constructor, defines aspect ratio of document that needs to be detected and array of decoding infos
+ that control how detection will be dewarped.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentSpecification.html#DocumentSpecification-double-int-">DocumentSpecification(double, int)</a></span> - Constructor for class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecification.html" title="class in com.microblink.detectors.document">DocumentSpecification</a></dt>
+<dd>
+<div class="block">Constructor, defines aspect ratio of document that needs to be detected and requested height of
+ image containing full dewarped document (same as creating <a href="com/microblink/detectors/DecodingInfo.html" title="class in com.microblink.detectors"><code>DecodingInfo</code></a> array with single
+ element containing <a href="com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry"><code>Rectangle</code></a> initialized with (0.f, 0.f, 1.f, 1.f) and given dewarp height).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentSpecification.html#DocumentSpecification-android.os.Parcel-">DocumentSpecification(Parcel)</a></span> - Constructor for class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecification.html" title="class in com.microblink.detectors.document">DocumentSpecification</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/microblink/detectors/document/DocumentSpecificationPreset.html" title="enum in com.microblink.detectors.document"><span class="typeNameLink">DocumentSpecificationPreset</span></a> - Enum in <a href="com/microblink/detectors/document/package-summary.html">com.microblink.detectors.document</a></dt>
+<dd>
+<div class="block">Created by dodo on 20/10/15.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/geometry/Point.html#draw-android.graphics.Canvas-android.graphics.Paint-int-">draw(Canvas, Paint, int)</a></span> - Method in class com.microblink.geometry.<a href="com/microblink/geometry/Point.html" title="class in com.microblink.geometry">Point</a></dt>
 <dd>
 <div class="block">Draws the point to given canvas with given paint.</div>
@@ -824,11 +996,52 @@
 </a>
 <h2 class="title">F</h2>
 <dl>
+<dt><a href="com/microblink/detectors/face/FaceDetectorResult.html" title="class in com.microblink.detectors.face"><span class="typeNameLink">FaceDetectorResult</span></a> - Class in <a href="com/microblink/detectors/face/package-summary.html">com.microblink.detectors.face</a></dt>
+<dd>
+<div class="block">Created by igor on 07/03/16.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/face/FaceDetectorResult.html#FaceDetectorResult-int-int-float:A-float:A-">FaceDetectorResult(int, int, float[], float[])</a></span> - Constructor for class com.microblink.detectors.face.<a href="com/microblink/detectors/face/FaceDetectorResult.html" title="class in com.microblink.detectors.face">FaceDetectorResult</a></dt>
+<dd>
+<div class="block">Constructor which uses the given parameters to initialize the object.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/face/FaceDetectorResult.html#FaceDetectorResult-android.os.Parcel-">FaceDetectorResult(Parcel)</a></span> - Constructor for class com.microblink.detectors.face.<a href="com/microblink/detectors/face/FaceDetectorResult.html" title="class in com.microblink.detectors.face">FaceDetectorResult</a></dt>
+<dd>
+<div class="block">Initializes the object from the given <code>Parcel</code>.</div>
+</dd>
+<dt><a href="com/microblink/detectors/face/FaceDetectorSettings.html" title="class in com.microblink.detectors.face"><span class="typeNameLink">FaceDetectorSettings</span></a> - Class in <a href="com/microblink/detectors/face/package-summary.html">com.microblink.detectors.face</a></dt>
+<dd>
+<div class="block">Settings for face detector.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/face/FaceDetectorSettings.html#FaceDetectorSettings-com.microblink.detectors.DecodingInfo-">FaceDetectorSettings(DecodingInfo)</a></span> - Constructor for class com.microblink.detectors.face.<a href="com/microblink/detectors/face/FaceDetectorSettings.html" title="class in com.microblink.detectors.face">FaceDetectorSettings</a></dt>
+<dd>
+<div class="block">Constructor, defines decoding info that controls how detection will be dewarped.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/face/FaceDetectorSettings.html#FaceDetectorSettings-int-">FaceDetectorSettings(int)</a></span> - Constructor for class com.microblink.detectors.face.<a href="com/microblink/detectors/face/FaceDetectorSettings.html" title="class in com.microblink.detectors.face">FaceDetectorSettings</a></dt>
+<dd>
+<div class="block">Constructor, defines requested height of image that contains dewarped detection (same as creating <a href="com/microblink/detectors/DecodingInfo.html" title="class in com.microblink.detectors"><code>DecodingInfo</code></a>
+ which contains <a href="com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry"><code>Rectangle</code></a> initialized with (0.f, 0.f, 1.f, 1.f) and given dewarp height).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/face/FaceDetectorSettings.html#FaceDetectorSettings-android.os.Parcel-">FaceDetectorSettings(Parcel)</a></span> - Constructor for class com.microblink.detectors.face.<a href="com/microblink/detectors/face/FaceDetectorSettings.html" title="class in com.microblink.detectors.face">FaceDetectorSettings</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/settings/RecognizerSettingsUtils.html#filterOutRecognizersThatRequireAutofocus-com.microblink.recognizers.settings.RecognizerSettings:A-">filterOutRecognizersThatRequireAutofocus(RecognizerSettings[])</a></span> - Static method in class com.microblink.recognizers.settings.<a href="com/microblink/recognizers/settings/RecognizerSettingsUtils.html" title="class in com.microblink.recognizers.settings">RecognizerSettingsUtils</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/DecodingInfo.html#finalize--">finalize()</a></span> - Method in class com.microblink.detectors.<a href="com/microblink/detectors/DecodingInfo.html" title="class in com.microblink.detectors">DecodingInfo</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/DetectorSettings.html#finalize--">finalize()</a></span> - Method in class com.microblink.detectors.<a href="com/microblink/detectors/DetectorSettings.html" title="class in com.microblink.detectors">DetectorSettings</a></dt>
+<dd>
+<div class="block">Invoked when the garbage collector has detected that this instance is no longer reachable.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentSpecification.html#finalize--">finalize()</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecification.html" title="class in com.microblink.detectors.document">DocumentSpecification</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/multi/MultiDetectorResult.html#finalize--">finalize()</a></span> - Method in class com.microblink.detectors.multi.<a href="com/microblink/detectors/multi/MultiDetectorResult.html" title="class in com.microblink.detectors.multi">MultiDetectorResult</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.html#finalize--">finalize()</a></span> - Method in class com.microblink.detectors.quad.mrtd.<a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.html" title="class in com.microblink.detectors.quad.mrtd">MRTDDetectorResult</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/image/Image.html#finalize--">finalize()</a></span> - Method in class com.microblink.image.<a href="com/microblink/image/Image.html" title="class in com.microblink.image">Image</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognition/ResourceManager.html#finalize--">finalize()</a></span> - Method in class com.microblink.recognition.<a href="com/microblink/recognition/ResourceManager.html" title="class in com.microblink.recognition">ResourceManager</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#finalize--">finalize()</a></span> - Method in class com.microblink.recognizers.blinkocr.<a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognizerSettings</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html#finalize--">finalize()</a></span> - Method in class com.microblink.recognizers.blinkocr.engine.<a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html" title="class in com.microblink.recognizers.blinkocr.engine">BlinkOCREngineOptions</a></dt>
 <dd>&nbsp;</dd>
@@ -880,7 +1093,7 @@
 <dd>
 <div class="block">Use this method to get all barcode data in one byte array.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#getAllowUnparsedResults--">getAllowUnparsedResults()</a></span> - Method in class com.microblink.recognizers.blinkocr.<a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognizerSettings</a></dt>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#getAllowUnparsedResults--">getAllowUnparsedResults()</a></span> - Method in class com.microblink.recognizers.templating.<a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html" title="class in com.microblink.recognizers.templating">TemplatingRecognizerSettings</a></dt>
 <dd>
 <div class="block">Checks whether unparsed results are allowed.</div>
 </dd>
@@ -891,6 +1104,14 @@
 <dt><span class="memberNameLink"><a href="com/microblink/view/BaseCameraView.html#getAspectMode--">getAspectMode()</a></span> - Method in class com.microblink.view.<a href="com/microblink/view/BaseCameraView.html" title="class in com.microblink.view">BaseCameraView</a></dt>
 <dd>
 <div class="block">Returns the aspect mode of camera preview.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentDetectorResult.html#getAspectRatio--">getAspectRatio()</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentDetectorResult.html" title="class in com.microblink.detectors.document">DocumentDetectorResult</a></dt>
+<dd>
+<div class="block">Returns the aspect ratio of detected document.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentSpecification.html#getAspectRatio--">getAspectRatio()</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecification.html" title="class in com.microblink.detectors.document">DocumentSpecification</a></dt>
+<dd>
+<div class="block">Returns the aspect ratio of document that will be detected.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkbarcode/bardecoder/BarDecoderScanResult.html#getBarcodeType--">getBarcodeType()</a></span> - Method in class com.microblink.recognizers.blinkbarcode.bardecoder.<a href="com/microblink/recognizers/blinkbarcode/bardecoder/BarDecoderScanResult.html" title="class in com.microblink.recognizers.blinkbarcode.bardecoder">BarDecoderScanResult</a></dt>
 <dd>
@@ -938,15 +1159,31 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/locale/Language.html#getCountry--">getCountry()</a></span> - Method in enum com.microblink.locale.<a href="com/microblink/locale/Language.html" title="enum in com.microblink.locale">Language</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/generic/IbanParserSettings.html#getCountryCodeWhitelist--">getCountryCodeWhitelist()</a></span> - Method in class com.microblink.recognizers.blinkocr.parser.generic.<a href="com/microblink/recognizers/blinkocr/parser/generic/IbanParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.generic">IbanParserSettings</a></dt>
+<dd>
+<div class="block">Returns the set of all allowed IBAN country codes.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/view/BaseCameraView.html#getCurrentOrientation--">getCurrentOrientation()</a></span> - Method in class com.microblink.view.<a href="com/microblink/view/BaseCameraView.html" title="class in com.microblink.view">BaseCameraView</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/directApi/Recognizer.html#getCurrentState--">getCurrentState()</a></span> - Method in class com.microblink.directApi.<a href="com/microblink/directApi/Recognizer.html" title="class in com.microblink.directApi">Recognizer</a></dt>
 <dd>
 <div class="block">Returns the current state of the recognizer.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/generic/DateParserSettings.html#getDateFormats--">getDateFormats()</a></span> - Method in class com.microblink.recognizers.blinkocr.parser.generic.<a href="com/microblink/recognizers/blinkocr/parser/generic/DateParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.generic">DateParserSettings</a></dt>
+<dd>
+<div class="block">Returns current date formats.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/generic/DateParserSettings.html#getDateSeparatorChars--">getDateSeparatorChars()</a></span> - Method in class com.microblink.recognizers.blinkocr.parser.generic.<a href="com/microblink/recognizers/blinkocr/parser/generic/DateParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.generic">DateParserSettings</a></dt>
+<dd>
+<div class="block">Returns current date separator characters.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html#getDebugImageMetadataSettings--">getDebugImageMetadataSettings()</a></span> - Method in class com.microblink.metadata.<a href="com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html" title="class in com.microblink.metadata">MetadataSettings.ImageMetadataSettings</a></dt>
 <dd>
 <div class="block">Returns the object containing settings defining which debug images should be available in MetadataListener.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/face/FaceDetectorSettings.html#getDecodingInfo--">getDecodingInfo()</a></span> - Method in class com.microblink.detectors.face.<a href="com/microblink/detectors/face/FaceDetectorSettings.html" title="class in com.microblink.detectors.face">FaceDetectorSettings</a></dt>
+<dd>
+<div class="block">Returns the decoding info that controls how detection will be dewarped.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/geometry/Rectangle.html#getDefaultROI--">getDefaultROI()</a></span> - Static method in class com.microblink.geometry.<a href="com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a></dt>
 <dd>
@@ -962,25 +1199,50 @@
 <dd>
 <div class="block">Returns the detection code name.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.html#getDetectionCodeName--">getDetectionCodeName()</a></span> - Method in class com.microblink.detectors.quad.mrtd.<a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.html" title="class in com.microblink.detectors.quad.mrtd">MRTDDetectorResult</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/detectors/DetectorResult.html#getDetectionCodeOrdinal--">getDetectionCodeOrdinal()</a></span> - Method in class com.microblink.detectors.<a href="com/microblink/detectors/DetectorResult.html" title="class in com.microblink.detectors">DetectorResult</a></dt>
 <dd>
 <div class="block">Returns the detection code as it is in the native library.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.html#getDetectionCodeOrdinal--">getDetectionCodeOrdinal()</a></span> - Method in class com.microblink.detectors.quad.mrtd.<a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.html" title="class in com.microblink.detectors.quad.mrtd">MRTDDetectorResult</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/QuadDetectorResult.html#getDetectionLocation--">getDetectionLocation()</a></span> - Method in class com.microblink.detectors.quad.<a href="com/microblink/detectors/quad/QuadDetectorResult.html" title="class in com.microblink.detectors.quad">QuadDetectorResult</a></dt>
 <dd>
 <div class="block">Returns the location of detection in coordinate system of image on which detection was performed.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/face/FaceDetectorResult.html#getDetectionLocations--">getDetectionLocations()</a></span> - Method in class com.microblink.detectors.face.<a href="com/microblink/detectors/face/FaceDetectorResult.html" title="class in com.microblink.detectors.face">FaceDetectorResult</a></dt>
+<dd>
+<div class="block">Returns the location of detections in coordinate system of image on which detection was performed.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/metadata/DetectionMetadata.html#getDetectionResult--">getDetectionResult()</a></span> - Method in class com.microblink.metadata.<a href="com/microblink/metadata/DetectionMetadata.html" title="class in com.microblink.metadata">DetectionMetadata</a></dt>
 <dd>
 <div class="block">Returns the result of detection or null if detection has failed.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/multi/MultiDetectorResult.html#getDetectionResults--">getDetectionResults()</a></span> - Method in class com.microblink.detectors.multi.<a href="com/microblink/detectors/multi/MultiDetectorResult.html" title="class in com.microblink.detectors.multi">MultiDetectorResult</a></dt>
+<dd>
+<div class="block">Getter for detection results.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/detectors/DetectorResult.html#getDetectionStatus--">getDetectionStatus()</a></span> - Method in class com.microblink.detectors.<a href="com/microblink/detectors/DetectorResult.html" title="class in com.microblink.detectors">DetectorResult</a></dt>
 <dd>
 <div class="block">Returns the detection status of the detector result.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/detector/DetectorRecognitionResult.html#getDetectorResult--">getDetectorResult()</a></span> - Method in class com.microblink.recognizers.detector.<a href="com/microblink/recognizers/detector/DetectorRecognitionResult.html" title="class in com.microblink.recognizers.detector">DetectorRecognitionResult</a></dt>
+<dd>
+<div class="block">Returns detector result.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/QuadDetectorResult.html#getDisplayLocation--">getDisplayLocation()</a></span> - Method in class com.microblink.detectors.quad.<a href="com/microblink/detectors/quad/QuadDetectorResult.html" title="class in com.microblink.detectors.quad">QuadDetectorResult</a></dt>
 <dd>
 <div class="block">Returns the display location in coordinate system of image on which detection was performed.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html#getDocumentClassificationResult--">getDocumentClassificationResult()</a></span> - Method in class com.microblink.recognizers.blinkocr.<a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognitionResult</a></dt>
+<dd>
+<div class="block">Returns result of document classification, as calculated by <a href="com/microblink/recognizers/blinkocr/DocumentClassifier.html" title="interface in com.microblink.recognizers.blinkocr"><code>DocumentClassifier</code></a> set
+ with <a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setDocumentClassifier-com.microblink.recognizers.blinkocr.DocumentClassifier-"><code>BlinkOCRRecognizerSettings.setDocumentClassifier(DocumentClassifier)</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/templating/TemplatingRecognitionResult.html#getDocumentClassificationResult--">getDocumentClassificationResult()</a></span> - Method in class com.microblink.recognizers.templating.<a href="com/microblink/recognizers/templating/TemplatingRecognitionResult.html" title="class in com.microblink.recognizers.templating">TemplatingRecognitionResult</a></dt>
+<dd>
+<div class="block">Returns result of document classification, if any.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html#getDocumentType--">getDocumentType()</a></span> - Method in class com.microblink.recognizers.blinkocr.engine.<a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html" title="class in com.microblink.recognizers.blinkocr.engine">BlinkOCREngineOptions</a></dt>
 <dd>
@@ -990,6 +1252,10 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/results/barcode/BarcodeDetailedData.html#getElements--">getElements()</a></span> - Method in class com.microblink.results.barcode.<a href="com/microblink/results/barcode/BarcodeDetailedData.html" title="class in com.microblink.results.barcode">BarcodeDetailedData</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.html#getElementsCountPerLine--">getElementsCountPerLine()</a></span> - Method in class com.microblink.detectors.quad.mrtd.<a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.html" title="class in com.microblink.detectors.quad.mrtd">MRTDDetectorResult</a></dt>
+<dd>
+<div class="block">Returns the number of elements detected per OCR line.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/results/barcode/BarcodeElement.html#getElementType--">getElementType()</a></span> - Method in class com.microblink.results.barcode.<a href="com/microblink/results/barcode/BarcodeElement.html" title="class in com.microblink.results.barcode">BarcodeElement</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkbarcode/bardecoder/BarDecoderScanResult.html#getExtendedRawData--">getExtendedRawData()</a></span> - Method in class com.microblink.recognizers.blinkbarcode.bardecoder.<a href="com/microblink/recognizers/blinkbarcode/bardecoder/BarDecoderScanResult.html" title="class in com.microblink.recognizers.blinkbarcode.bardecoder">BarDecoderScanResult</a></dt>
@@ -1100,6 +1366,10 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/engine/BlinkOCRCharKey.html#getKey--">getKey()</a></span> - Method in class com.microblink.recognizers.blinkocr.engine.<a href="com/microblink/recognizers/blinkocr/engine/BlinkOCRCharKey.html" title="class in com.microblink.recognizers.blinkocr.engine">BlinkOCRCharKey</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentSpecification.html#getLandscapeScale--">getLandscapeScale()</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecification.html" title="class in com.microblink.detectors.document">DocumentSpecification</a></dt>
+<dd>
+<div class="block">Returns the scale and tolerance that will be used when detecting document in landscape orientation.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/locale/Language.html#getLanguage--">getLanguage()</a></span> - Method in enum com.microblink.locale.<a href="com/microblink/locale/Language.html" title="enum in com.microblink.locale">Language</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/LibraryInfoResult.html#getLibraryInformationString--">getLibraryInformationString()</a></span> - Method in class com.microblink.recognizers.<a href="com/microblink/recognizers/LibraryInfoResult.html" title="class in com.microblink.recognizers">LibraryInfoResult</a></dt>
@@ -1114,6 +1384,10 @@
 <dd>
 <div class="block">Returns the point nearest to (width, height) coordinate</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentSpecification.html#getMaxAngle--">getMaxAngle()</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecification.html" title="class in com.microblink.detectors.document">DocumentSpecification</a></dt>
+<dd>
+<div class="block">Retrieves maximum angle for document detection</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html#getMaximumAllowedCharRecognitionVariants--">getMaximumAllowedCharRecognitionVariants()</a></span> - Method in class com.microblink.recognizers.blinkocr.engine.<a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html" title="class in com.microblink.recognizers.blinkocr.engine">BlinkOCREngineOptions</a></dt>
 <dd>
 <div class="block">Returns the maximum allowed number of char recognition variants OCR engine will produce
@@ -1127,9 +1401,18 @@
 <dd>
 <div class="block">Returns the maximum height of the line of text given in pixels.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html#getMinimumCharHeight--">getMinimumCharHeight()</a></span> - Method in class com.microblink.recognizers.blinkocr.engine.<a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html" title="class in com.microblink.recognizers.blinkocr.engine">BlinkOCREngineOptions</a></dt>
+<dd>
+<div class="block">Returns the minimum height of char that can be classified.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html#getMinimumLineHeight--">getMinimumLineHeight()</a></span> - Method in class com.microblink.recognizers.blinkocr.engine.<a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html" title="class in com.microblink.recognizers.blinkocr.engine">BlinkOCREngineOptions</a></dt>
 <dd>
 <div class="block">Returns the minimum height of the line of text given in pixels.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.html#getMRTDDetectionCode--">getMRTDDetectionCode()</a></span> - Method in class com.microblink.detectors.quad.mrtd.<a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.html" title="class in com.microblink.detectors.quad.mrtd">MRTDDetectorResult</a></dt>
+<dd>
+<div class="block">Getter for detection code that is specific for results from MRTD detector and holds
+ information about detection type.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/directApi/frame/BitmapCameraFrame.html#getNativeCameraFrame--">getNativeCameraFrame()</a></span> - Method in class com.microblink.directApi.frame.<a href="com/microblink/directApi/frame/BitmapCameraFrame.html" title="class in com.microblink.directApi.frame">BitmapCameraFrame</a></dt>
 <dd>
@@ -1138,6 +1421,12 @@
 <dt><span class="memberNameLink"><a href="com/microblink/image/ImageFrame.html#getNativeCameraFrame--">getNativeCameraFrame()</a></span> - Method in class com.microblink.image.<a href="com/microblink/image/ImageFrame.html" title="class in com.microblink.image">ImageFrame</a></dt>
 <dd>
 <div class="block">Accessed from native code to obtain pointer to implementation of native camera frame</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/DecodingInfo.html#getNativeContext--">getNativeContext()</a></span> - Method in class com.microblink.detectors.<a href="com/microblink/detectors/DecodingInfo.html" title="class in com.microblink.detectors">DecodingInfo</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/DetectorSettings.html#getNativeContext--">getNativeContext()</a></span> - Method in class com.microblink.detectors.<a href="com/microblink/detectors/DetectorSettings.html" title="class in com.microblink.detectors">DetectorSettings</a></dt>
+<dd>
+<div class="block">Returns the pointer containing native part of the implementation.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html#getNativeContext--">getNativeContext()</a></span> - Method in class com.microblink.recognizers.blinkocr.engine.<a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html" title="class in com.microblink.recognizers.blinkocr.engine">BlinkOCREngineOptions</a></dt>
 <dd>&nbsp;</dd>
@@ -1156,7 +1445,11 @@
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/settings/RecognitionSettings.html#getNumMsBeforeTimeout--">getNumMsBeforeTimeout()</a></span> - Method in class com.microblink.recognizers.settings.<a href="com/microblink/recognizers/settings/RecognitionSettings.html" title="class in com.microblink.recognizers.settings">RecognitionSettings</a></dt>
 <dd>
-<div class="block">Returns the duration in miliseconds that needs to pass since scanning has begun in order to define timeout.</div>
+<div class="block">Returns the duration in milliseconds that needs to pass since scanning has begun in order to define timeout.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentDetectorSettings.html#getNumStableDetectionsThreshold--">getNumStableDetectionsThreshold()</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentDetectorSettings.html" title="class in com.microblink.detectors.document">DocumentDetectorSettings</a></dt>
+<dd>
+<div class="block">Retrieves the minimum number of stable detections</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/IResultHolder.html#getObject-java.lang.String-">getObject(String)</a></span> - Method in interface com.microblink.recognizers.<a href="com/microblink/recognizers/IResultHolder.html" title="interface in com.microblink.recognizers">IResultHolder</a></dt>
 <dd>&nbsp;</dd>
@@ -1172,11 +1465,11 @@
 <dd>
 <div class="block">Returns the OCR result obtained during recognition process</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html#getOcrResult--">getOcrResult()</a></span> - Method in class com.microblink.recognizers.blinkocr.<a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognitionResult</a></dt>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/templating/TemplatingRecognitionResult.html#getOcrResult--">getOcrResult()</a></span> - Method in class com.microblink.recognizers.templating.<a href="com/microblink/recognizers/templating/TemplatingRecognitionResult.html" title="class in com.microblink.recognizers.templating">TemplatingRecognitionResult</a></dt>
 <dd>
 <div class="block">Gets the OCR result for default parser group.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html#getOcrResult-java.lang.String-">getOcrResult(String)</a></span> - Method in class com.microblink.recognizers.blinkocr.<a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognitionResult</a></dt>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/templating/TemplatingRecognitionResult.html#getOcrResult-java.lang.String-">getOcrResult(String)</a></span> - Method in class com.microblink.recognizers.templating.<a href="com/microblink/recognizers/templating/TemplatingRecognitionResult.html" title="class in com.microblink.recognizers.templating">TemplatingRecognitionResult</a></dt>
 <dd>
 <div class="block">Gets the OCR result for given parser group.</div>
 </dd>
@@ -1198,11 +1491,11 @@
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/IResultHolder.html#getParcelable-java.lang.String-">getParcelable(String)</a></span> - Method in interface com.microblink.recognizers.<a href="com/microblink/recognizers/IResultHolder.html" title="interface in com.microblink.recognizers">IResultHolder</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html#getParsedResult-java.lang.String-">getParsedResult(String)</a></span> - Method in class com.microblink.recognizers.blinkocr.<a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognitionResult</a></dt>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/templating/TemplatingRecognitionResult.html#getParsedResult-java.lang.String-">getParsedResult(String)</a></span> - Method in class com.microblink.recognizers.templating.<a href="com/microblink/recognizers/templating/TemplatingRecognitionResult.html" title="class in com.microblink.recognizers.templating">TemplatingRecognitionResult</a></dt>
 <dd>
 <div class="block">Get the result of parser from default parsing group.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html#getParsedResult-java.lang.String-java.lang.String-">getParsedResult(String, String)</a></span> - Method in class com.microblink.recognizers.blinkocr.<a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognitionResult</a></dt>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/templating/TemplatingRecognitionResult.html#getParsedResult-java.lang.String-java.lang.String-">getParsedResult(String, String)</a></span> - Method in class com.microblink.recognizers.templating.<a href="com/microblink/recognizers/templating/TemplatingRecognitionResult.html" title="class in com.microblink.recognizers.templating">TemplatingRecognitionResult</a></dt>
 <dd>
 <div class="block">Get the result of parser in given parser group.</div>
 </dd>
@@ -1221,6 +1514,10 @@
 <dt><span class="memberNameLink"><a href="com/microblink/detectors/points/PointsDetectorResult.html#getPointSet--">getPointSet()</a></span> - Method in class com.microblink.detectors.points.<a href="com/microblink/detectors/points/PointsDetectorResult.html" title="class in com.microblink.detectors.points">PointsDetectorResult</a></dt>
 <dd>
 <div class="block">Returns set of points of interest that represent the detection.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentSpecification.html#getPortraitScale--">getPortraitScale()</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecification.html" title="class in com.microblink.detectors.document">DocumentSpecification</a></dt>
+<dd>
+<div class="block">Returns the scale and tolerance that will be used when detecting document in portrait orientation.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/results/ocr/OcrBlock.html#getPosition--">getPosition()</a></span> - Method in class com.microblink.results.ocr.<a href="com/microblink/results/ocr/OcrBlock.html" title="class in com.microblink.results.ocr">OcrBlock</a></dt>
 <dd>&nbsp;</dd>
@@ -1294,13 +1591,29 @@
 <dd>
 <div class="block">Returns the row stride for image buffer.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentSpecification.html#getScanningMode--">getScanningMode()</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecification.html" title="class in com.microblink.detectors.document">DocumentSpecification</a></dt>
+<dd>
+<div class="block">Returns the scanning mode that defines in which orientations can this document be detected.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/view/recognition/RecognizerView.html#getScanningRegion--">getScanningRegion()</a></span> - Method in class com.microblink.view.recognition.<a href="com/microblink/view/recognition/RecognizerView.html" title="class in com.microblink.view.recognition">RecognizerView</a></dt>
 <dd>
 <div class="block">Returns the current scanning region or null if entire image is scanned.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/ocr/ScanConfiguration.html#getScanRegionRelativeHeight--">getScanRegionRelativeHeight()</a></span> - Method in class com.microblink.ocr.<a href="com/microblink/ocr/ScanConfiguration.html" title="class in com.microblink.ocr">ScanConfiguration</a></dt>
+<dd>
+<div class="block">Returns the current scan region height, represented as percentage of maximal allowed scan region height.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/ocr/ScanConfiguration.html#getScanRegionRelativeWidth--">getScanRegionRelativeWidth()</a></span> - Method in class com.microblink.ocr.<a href="com/microblink/ocr/ScanConfiguration.html" title="class in com.microblink.ocr">ScanConfiguration</a></dt>
+<dd>
+<div class="block">Returns the current scan region width, represented as percentage of maximal allowed scan region width.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/view/recognition/RecognizerView.html#getScanResultListener--">getScanResultListener()</a></span> - Method in class com.microblink.view.recognition.<a href="com/microblink/view/recognition/RecognizerView.html" title="class in com.microblink.view.recognition">RecognizerView</a></dt>
 <dd>
 <div class="block">Returns the listener that will obtain the results of the scanning.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentDetectorResult.html#getScreenOrientation--">getScreenOrientation()</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentDetectorResult.html" title="class in com.microblink.detectors.document">DocumentDetectorResult</a></dt>
+<dd>
+<div class="block">Returns the screen orientation in which document detection was performed.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/directApi/Recognizer.html#getSingletonInstance--">getSingletonInstance()</a></span> - Static method in class com.microblink.directApi.<a href="com/microblink/directApi/Recognizer.html" title="class in com.microblink.directApi">Recognizer</a></dt>
 <dd>
@@ -1361,6 +1674,10 @@
 <dd>
 <div class="block">Returns the location of detection in normalized coordinate system of visible camera frame.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/face/FaceDetectorResult.html#getTransformedDetectionLocations--">getTransformedDetectionLocations()</a></span> - Method in class com.microblink.detectors.face.<a href="com/microblink/detectors/face/FaceDetectorResult.html" title="class in com.microblink.detectors.face">FaceDetectorResult</a></dt>
+<dd>
+<div class="block">Returns the location of detections in normalized coordinate system of visible camera frame.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/QuadDetectorResult.html#getTransformedDisplayLocation--">getTransformedDisplayLocation()</a></span> - Method in class com.microblink.detectors.quad.<a href="com/microblink/detectors/quad/QuadDetectorResult.html" title="class in com.microblink.detectors.quad">QuadDetectorResult</a></dt>
 <dd>
 <div class="block">Returns the display location in normalized coordinate system of visible camera frame.</div>
@@ -1411,10 +1728,18 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/geometry/Rectangle.html#getX--">getX()</a></span> - Method in class com.microblink.geometry.<a href="com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentSpecification.html#getXRange--">getXRange()</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecification.html" title="class in com.microblink.detectors.document">DocumentSpecification</a></dt>
+<dd>
+<div class="block">Gets the percentage of possible document offset on x axis.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/geometry/Point.html#getY--">getY()</a></span> - Method in class com.microblink.geometry.<a href="com/microblink/geometry/Point.html" title="class in com.microblink.geometry">Point</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/geometry/Rectangle.html#getY--">getY()</a></span> - Method in class com.microblink.geometry.<a href="com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentSpecification.html#getYRange--">getYRange()</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecification.html" title="class in com.microblink.detectors.document">DocumentSpecification</a></dt>
+<dd>
+<div class="block">Gets the percentage of possible document offset on y axis.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/view/BaseCameraView.html#getZoomLevel--">getZoomLevel()</a></span> - Method in class com.microblink.view.<a href="com/microblink/view/BaseCameraView.html" title="class in com.microblink.view">BaseCameraView</a></dt>
 <dd>
 <div class="block">Returns the current camera zoom level.</div>
@@ -1485,6 +1810,8 @@
 <dd>
 <div class="block">Created by dodo on 16/12/14.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#initFromParcel-android.os.Parcel-">initFromParcel(Parcel)</a></span> - Method in class com.microblink.recognizers.templating.<a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html" title="class in com.microblink.recognizers.templating">TemplatingRecognizerSettings</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/directApi/Recognizer.html#initialize-android.content.Context-com.microblink.recognizers.settings.RecognitionSettings-com.microblink.directApi.DirectApiErrorListener-">initialize(Context, RecognitionSettings, DirectApiErrorListener)</a></span> - Method in class com.microblink.directApi.<a href="com/microblink/directApi/Recognizer.html" title="class in com.microblink.directApi">Recognizer</a></dt>
 <dd>
 <div class="block">Initialize native library for recognition and returns true if initialization has been performed.</div>
@@ -1503,6 +1830,14 @@
 <dd>
 <div class="block">Initialization method.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/QuadDetectorSettings.html#initNativeFromParcel-android.os.Parcel-">initNativeFromParcel(Parcel)</a></span> - Method in class com.microblink.detectors.quad.<a href="com/microblink/detectors/quad/QuadDetectorSettings.html" title="class in com.microblink.detectors.quad">QuadDetectorSettings</a></dt>
+<dd>
+<div class="block">Call this method from derived class after initializing native context.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html#initNativeFromParcel-android.os.Parcel-">initNativeFromParcel(Parcel)</a></span> - Method in class com.microblink.recognizers.blinkocr.parser.<a href="com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser">OcrParserSettings</a></dt>
+<dd>
+<div class="block">Call this method from derived class after initializing native context.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognition/ResourceManager.html#INSTANCE">INSTANCE</a></span> - Static variable in class com.microblink.recognition.<a href="com/microblink/recognition/ResourceManager.html" title="class in com.microblink.recognition">ResourceManager</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/hardware/orientation/Orientation.html#intValue--">intValue()</a></span> - Method in enum com.microblink.hardware.orientation.<a href="com/microblink/hardware/orientation/Orientation.html" title="enum in com.microblink.hardware.orientation">Orientation</a></dt>
@@ -1515,9 +1850,15 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognition/InvalidLicenceKeyException.html#InvalidLicenceKeyException-java.lang.String-java.lang.Throwable-">InvalidLicenceKeyException(String, Throwable)</a></span> - Constructor for exception com.microblink.recognition.<a href="com/microblink/recognition/InvalidLicenceKeyException.html" title="class in com.microblink.recognition">InvalidLicenceKeyException</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/RecognitionResultConstants.html#INVOICE_ID">INVOICE_ID</a></span> - Static variable in interface com.microblink.recognizers.<a href="com/microblink/recognizers/RecognitionResultConstants.html" title="interface in com.microblink.recognizers">RecognitionResultConstants</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/microblink/recognizers/IResultHolder.html" title="interface in com.microblink.recognizers"><span class="typeNameLink">IResultHolder</span></a> - Interface in <a href="com/microblink/recognizers/package-summary.html">com.microblink.recognizers</a></dt>
 <dd>
 <div class="block">Created by dodo on 13/11/15.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#isAllowFlippedRecognition--">isAllowFlippedRecognition()</a></span> - Method in class com.microblink.recognizers.blinkocr.<a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognizerSettings</a></dt>
+<dd>
+<div class="block">Returns whether or not flipped recognition feature is enabled.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/view/viewfinder/quadview/QuadViewManager.html#isAnimationInProgress--">isAnimationInProgress()</a></span> - Method in class com.microblink.view.viewfinder.quadview.<a href="com/microblink/view/viewfinder/quadview/QuadViewManager.html" title="class in com.microblink.view.viewfinder.quadview">QuadViewManager</a></dt>
 <dd>
@@ -1659,6 +2000,14 @@
 <dd>
 <div class="block">Returns true if marked dewarped debug image should be available in MetadataListener.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html#isMustEndWithWhitespace--">isMustEndWithWhitespace()</a></span> - Method in class com.microblink.recognizers.blinkocr.parser.regex.<a href="com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.regex">RegexParserSettings</a></dt>
+<dd>
+<div class="block">Returns whether matched string must end with whitespace.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html#isMustStartWithWhitespace--">isMustStartWithWhitespace()</a></span> - Method in class com.microblink.recognizers.blinkocr.parser.regex.<a href="com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.regex">RegexParserSettings</a></dt>
+<dd>
+<div class="block">Returns whether matched string must start with whitespace.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html#isNoisePostprocessingEnabled--">isNoisePostprocessingEnabled()</a></span> - Method in class com.microblink.recognizers.blinkocr.engine.<a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html" title="class in com.microblink.recognizers.blinkocr.engine">BlinkOCREngineOptions</a></dt>
 <dd>
 <div class="block">Returns whether noise postprocessing is enabled.</div>
@@ -1672,6 +2021,10 @@
 <dt><span class="memberNameLink"><a href="com/microblink/metadata/MetadataSettings.html#isOcrMetadataAllowed--">isOcrMetadataAllowed()</a></span> - Method in class com.microblink.metadata.<a href="com/microblink/metadata/MetadataSettings.html" title="class in com.microblink.metadata">MetadataSettings</a></dt>
 <dd>
 <div class="block">Returns true if OCR metadata will be available in MetadataListener.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/ocr/ScanConfiguration.html#isOptional--">isOptional()</a></span> - Method in class com.microblink.ocr.<a href="com/microblink/ocr/ScanConfiguration.html" title="class in com.microblink.ocr">ScanConfiguration</a></dt>
+<dd>
+<div class="block">Returns whether scan field with this configuration is optional.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/view/BaseCameraView.html#isOrientationAllowed-com.microblink.hardware.orientation.Orientation-">isOrientationAllowed(Orientation)</a></span> - Method in class com.microblink.view.<a href="com/microblink/view/BaseCameraView.html" title="class in com.microblink.view">BaseCameraView</a></dt>
 <dd>&nbsp;</dd>
@@ -1698,6 +2051,10 @@
 <dt><span class="memberNameLink"><a href="com/microblink/geometry/Rectangle.html#isRelative--">isRelative()</a></span> - Method in class com.microblink.geometry.<a href="com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry">Rectangle</a></dt>
 <dd>
 <div class="block">Return true if rectangle is given in relative coordinates.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html#isRequired--">isRequired()</a></span> - Method in class com.microblink.recognizers.blinkocr.parser.<a href="com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser">OcrParserSettings</a></dt>
+<dd>
+<div class="block">Returns whether parser configured with this parser settings object will be required</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/view/BaseCameraView.LayoutParams.html#isRotatable--">isRotatable()</a></span> - Method in class com.microblink.view.<a href="com/microblink/view/BaseCameraView.LayoutParams.html" title="class in com.microblink.view">BaseCameraView.LayoutParams</a></dt>
 <dd>&nbsp;</dd>
@@ -1762,7 +2119,7 @@
 </a>
 <h2 class="title">K</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#kDefaultParserGroup">kDefaultParserGroup</a></span> - Static variable in class com.microblink.recognizers.blinkocr.<a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognizerSettings</a></dt>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#kDefaultParserGroup">kDefaultParserGroup</a></span> - Static variable in class com.microblink.recognizers.templating.<a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html" title="class in com.microblink.recognizers.templating">TemplatingRecognizerSettings</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/IResultHolder.html#keySet--">keySet()</a></span> - Method in interface com.microblink.recognizers.<a href="com/microblink/recognizers/IResultHolder.html" title="interface in com.microblink.recognizers">IResultHolder</a></dt>
 <dd>&nbsp;</dd>
@@ -1904,6 +2261,10 @@
 <dd>
 <div class="block">Mirrors point around Y axis.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/DetectorSettings.html#mNativeContext">mNativeContext</a></span> - Variable in class com.microblink.detectors.<a href="com/microblink/detectors/DetectorSettings.html" title="class in com.microblink.detectors">DetectorSettings</a></dt>
+<dd>
+<div class="block">used for storing native DetectorSettings class</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html#mNativeContext">mNativeContext</a></span> - Variable in class com.microblink.recognizers.blinkocr.parser.<a href="com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser">OcrParserSettings</a></dt>
 <dd>
 <div class="block">used for storing native OcrParserSettings class</div>
@@ -1944,11 +2305,66 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/RecognitionResultConstants.html#MRTD_SEX">MRTD_SEX</a></span> - Static variable in interface com.microblink.recognizers.<a href="com/microblink/recognizers/RecognitionResultConstants.html" title="interface in com.microblink.recognizers">RecognitionResultConstants</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.html" title="class in com.microblink.detectors.quad.mrtd"><span class="typeNameLink">MRTDDetectorResult</span></a> - Class in <a href="com/microblink/detectors/quad/mrtd/package-summary.html">com.microblink.detectors.quad.mrtd</a></dt>
+<dd>
+<div class="block">Represents a detector result created by MRTD detector initialised with <a href="com/microblink/detectors/quad/mrtd/MRTDDetectorSettings.html" title="class in com.microblink.detectors.quad.mrtd"><code>MRTDDetectorSettings</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.html#MRTDDetectorResult-int-int-float:A-float:A-float:A-float-long-">MRTDDetectorResult(int, int, float[], float[], float[], float, long)</a></span> - Constructor for class com.microblink.detectors.quad.mrtd.<a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.html" title="class in com.microblink.detectors.quad.mrtd">MRTDDetectorResult</a></dt>
+<dd>
+<div class="block">Constructor which uses the given parameters to initialize the object.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.html#MRTDDetectorResult-android.os.Parcel-">MRTDDetectorResult(Parcel)</a></span> - Constructor for class com.microblink.detectors.quad.mrtd.<a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.html" title="class in com.microblink.detectors.quad.mrtd">MRTDDetectorResult</a></dt>
+<dd>
+<div class="block">Initializes the object from the given <code>Parcel</code>.</div>
+</dd>
+<dt><a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.MRTDDetectionCode.html" title="enum in com.microblink.detectors.quad.mrtd"><span class="typeNameLink">MRTDDetectorResult.MRTDDetectionCode</span></a> - Enum in <a href="com/microblink/detectors/quad/mrtd/package-summary.html">com.microblink.detectors.quad.mrtd</a></dt>
+<dd>
+<div class="block">MRZ - Machine Readable Zone <br>
+ MRTD - Machine Readable Travel Document (Full Card) <br>
+ <br>
+ TD1 - Three Machine Readable Lines with 30 characters each <br>
+ TD2 - Two Machine Readable Lines with 36 characters each <br>
+ TD3 - Two Machine Readable Lines with 44 characters each <br></div>
+</dd>
+<dt><a href="com/microblink/detectors/quad/mrtd/MRTDDetectorSettings.html" title="class in com.microblink.detectors.quad.mrtd"><span class="typeNameLink">MRTDDetectorSettings</span></a> - Class in <a href="com/microblink/detectors/quad/mrtd/package-summary.html">com.microblink.detectors.quad.mrtd</a></dt>
+<dd>
+<div class="block">Created by dodo on 16/10/15.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/mrtd/MRTDDetectorSettings.html#MRTDDetectorSettings-com.microblink.detectors.DecodingInfo:A-">MRTDDetectorSettings(DecodingInfo[])</a></span> - Constructor for class com.microblink.detectors.quad.mrtd.<a href="com/microblink/detectors/quad/mrtd/MRTDDetectorSettings.html" title="class in com.microblink.detectors.quad.mrtd">MRTDDetectorSettings</a></dt>
+<dd>
+<div class="block">Constructor for MRTD detector settings.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/mrtd/MRTDDetectorSettings.html#MRTDDetectorSettings-int-">MRTDDetectorSettings(int)</a></span> - Constructor for class com.microblink.detectors.quad.mrtd.<a href="com/microblink/detectors/quad/mrtd/MRTDDetectorSettings.html" title="class in com.microblink.detectors.quad.mrtd">MRTDDetectorSettings</a></dt>
+<dd>
+<div class="block">Constructor for MRTD detector settings.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/mrtd/MRTDDetectorSettings.html#MRTDDetectorSettings-android.os.Parcel-">MRTDDetectorSettings(Parcel)</a></span> - Constructor for class com.microblink.detectors.quad.mrtd.<a href="com/microblink/detectors/quad/mrtd/MRTDDetectorSettings.html" title="class in com.microblink.detectors.quad.mrtd">MRTDDetectorSettings</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/activity/BlinkOCRActivity.html#mShowOcrResult">mShowOcrResult</a></span> - Variable in class com.microblink.activity.<a href="com/microblink/activity/BlinkOCRActivity.html" title="class in com.microblink.activity">BlinkOCRActivity</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/activity/BlinkOCRActivity.html#mShowOcrResultMode">mShowOcrResultMode</a></span> - Variable in class com.microblink.activity.<a href="com/microblink/activity/BlinkOCRActivity.html" title="class in com.microblink.activity">BlinkOCRActivity</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/detectors/DetectorResult.html#mTransformMatrix">mTransformMatrix</a></span> - Variable in class com.microblink.detectors.<a href="com/microblink/detectors/DetectorResult.html" title="class in com.microblink.detectors">DetectorResult</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/microblink/detectors/multi/MultiDetectorResult.html" title="class in com.microblink.detectors.multi"><span class="typeNameLink">MultiDetectorResult</span></a> - Class in <a href="com/microblink/detectors/multi/package-summary.html">com.microblink.detectors.multi</a></dt>
+<dd>
+<div class="block">Represents a detector result which contains multiple different detector results.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/multi/MultiDetectorResult.html#MultiDetectorResult-int-int-float:A-long-">MultiDetectorResult(int, int, float[], long)</a></span> - Constructor for class com.microblink.detectors.multi.<a href="com/microblink/detectors/multi/MultiDetectorResult.html" title="class in com.microblink.detectors.multi">MultiDetectorResult</a></dt>
+<dd>
+<div class="block">Constructor which uses the given parameters to initialize the object.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/multi/MultiDetectorResult.html#MultiDetectorResult-android.os.Parcel-">MultiDetectorResult(Parcel)</a></span> - Constructor for class com.microblink.detectors.multi.<a href="com/microblink/detectors/multi/MultiDetectorResult.html" title="class in com.microblink.detectors.multi">MultiDetectorResult</a></dt>
+<dd>
+<div class="block">Initializes the object from the given <code>Parcel</code>.</div>
+</dd>
+<dt><a href="com/microblink/detectors/multi/MultiDetectorSettings.html" title="class in com.microblink.detectors.multi"><span class="typeNameLink">MultiDetectorSettings</span></a> - Class in <a href="com/microblink/detectors/multi/package-summary.html">com.microblink.detectors.multi</a></dt>
+<dd>
+<div class="block">Created by dodo on 28/10/15.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/multi/MultiDetectorSettings.html#MultiDetectorSettings-com.microblink.detectors.DetectorSettings:A-">MultiDetectorSettings(DetectorSettings[])</a></span> - Constructor for class com.microblink.detectors.multi.<a href="com/microblink/detectors/multi/MultiDetectorSettings.html" title="class in com.microblink.detectors.multi">MultiDetectorSettings</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/multi/MultiDetectorSettings.html#MultiDetectorSettings-android.os.Parcel-">MultiDetectorSettings(Parcel)</a></span> - Constructor for class com.microblink.detectors.multi.<a href="com/microblink/detectors/multi/MultiDetectorSettings.html" title="class in com.microblink.detectors.multi">MultiDetectorSettings</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <a name="I:N">
@@ -2019,7 +2435,7 @@
 <dd>&nbsp;</dd>
 <dt><a href="com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser"><span class="typeNameLink">OcrParserSettings</span></a> - Class in <a href="com/microblink/recognizers/blinkocr/parser/package-summary.html">com.microblink.recognizers.blinkocr.parser</a></dt>
 <dd>
-<div class="block">Created by dodo on 02/03/15.</div>
+<div class="block">Abstract class that represents settings for OCR parser.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html#OcrParserSettings--">OcrParserSettings()</a></span> - Constructor for class com.microblink.recognizers.blinkocr.parser.<a href="com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser">OcrParserSettings</a></dt>
 <dd>
@@ -2058,14 +2474,26 @@
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/activity/BlinkOCRActivity.html#onAutofocusFailed--">onAutofocusFailed()</a></span> - Method in class com.microblink.activity.<a href="com/microblink/activity/BlinkOCRActivity.html" title="class in com.microblink.activity">BlinkOCRActivity</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/hardware/camera/AutofocusListener.html#onAutofocusFailed--">onAutofocusFailed()</a></span> - Method in interface com.microblink.hardware.camera.<a href="com/microblink/hardware/camera/AutofocusListener.html" title="interface in com.microblink.hardware.camera">AutofocusListener</a></dt>
+<dd>
+<div class="block">This method will be called when camera focusing has failed.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/view/BaseCameraView.BaseCameraListener.html#onAutofocusFailed--">onAutofocusFailed()</a></span> - Method in class com.microblink.view.<a href="com/microblink/view/BaseCameraView.BaseCameraListener.html" title="class in com.microblink.view">BaseCameraView.BaseCameraListener</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/activity/BlinkOCRActivity.html#onAutofocusStarted-android.graphics.Rect:A-">onAutofocusStarted(Rect[])</a></span> - Method in class com.microblink.activity.<a href="com/microblink/activity/BlinkOCRActivity.html" title="class in com.microblink.activity">BlinkOCRActivity</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/hardware/camera/AutofocusListener.html#onAutofocusStarted-android.graphics.Rect:A-">onAutofocusStarted(Rect[])</a></span> - Method in interface com.microblink.hardware.camera.<a href="com/microblink/hardware/camera/AutofocusListener.html" title="interface in com.microblink.hardware.camera">AutofocusListener</a></dt>
+<dd>
+<div class="block">This method will be called when camera focusing has started.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/view/BaseCameraView.BaseCameraListener.html#onAutofocusStarted-android.graphics.Rect:A-">onAutofocusStarted(Rect[])</a></span> - Method in class com.microblink.view.<a href="com/microblink/view/BaseCameraView.BaseCameraListener.html" title="class in com.microblink.view">BaseCameraView.BaseCameraListener</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/activity/BlinkOCRActivity.html#onAutofocusStopped-android.graphics.Rect:A-">onAutofocusStopped(Rect[])</a></span> - Method in class com.microblink.activity.<a href="com/microblink/activity/BlinkOCRActivity.html" title="class in com.microblink.activity">BlinkOCRActivity</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/hardware/camera/AutofocusListener.html#onAutofocusStopped-android.graphics.Rect:A-">onAutofocusStopped(Rect[])</a></span> - Method in interface com.microblink.hardware.camera.<a href="com/microblink/hardware/camera/AutofocusListener.html" title="interface in com.microblink.hardware.camera">AutofocusListener</a></dt>
+<dd>
+<div class="block">This method will be called when camera focusing has stopped.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/view/BaseCameraView.BaseCameraListener.html#onAutofocusStopped-android.graphics.Rect:A-">onAutofocusStopped(Rect[])</a></span> - Method in class com.microblink.view.<a href="com/microblink/view/BaseCameraView.BaseCameraListener.html" title="class in com.microblink.view">BaseCameraView.BaseCameraListener</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/activity/BlinkOCRActivity.html#onBtnAcceptClicked-android.view.View-">onBtnAcceptClicked(View)</a></span> - Method in class com.microblink.activity.<a href="com/microblink/activity/BlinkOCRActivity.html" title="class in com.microblink.activity">BlinkOCRActivity</a></dt>
@@ -2076,6 +2504,10 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/activity/BlinkOCRActivity.html#onBtnHelpClicked-android.view.View-">onBtnHelpClicked(View)</a></span> - Method in class com.microblink.activity.<a href="com/microblink/activity/BlinkOCRActivity.html" title="class in com.microblink.activity">BlinkOCRActivity</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/activity/BlinkOCRActivity.html#onBtnSkipClicked-android.view.View-">onBtnSkipClicked(View)</a></span> - Method in class com.microblink.activity.<a href="com/microblink/activity/BlinkOCRActivity.html" title="class in com.microblink.activity">BlinkOCRActivity</a></dt>
+<dd>
+<div class="block">Handler for skip button.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/activity/BlinkOCRActivity.html#onCameraPermissionDenied--">onCameraPermissionDenied()</a></span> - Method in class com.microblink.activity.<a href="com/microblink/activity/BlinkOCRActivity.html" title="class in com.microblink.activity">BlinkOCRActivity</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/view/CameraEventsListener.html#onCameraPermissionDenied--">onCameraPermissionDenied()</a></span> - Method in interface com.microblink.view.<a href="com/microblink/view/CameraEventsListener.html" title="interface in com.microblink.view">CameraEventsListener</a></dt>
@@ -2289,6 +2721,8 @@
 <dd>
 <div class="block">Key for accessing Payment Description code element.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/RecognitionResultConstants.html#PAYMENT_TYPE">PAYMENT_TYPE</a></span> - Static variable in interface com.microblink.recognizers.<a href="com/microblink/recognizers/RecognitionResultConstants.html" title="interface in com.microblink.recognizers">RecognitionResultConstants</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/RecognitionResultConstants.html#PDF417_RESULT">PDF417_RESULT</a></span> - Static variable in interface com.microblink.recognizers.<a href="com/microblink/recognizers/RecognitionResultConstants.html" title="interface in com.microblink.recognizers">RecognitionResultConstants</a></dt>
 <dd>
 <div class="block">Key for accessing the pdf417 2D barcode result in USDL</div>
@@ -2375,6 +2809,12 @@
 <dd>
 <div class="block">Initializes the object from the given <code>Parcel</code>.</div>
 </dd>
+<dt><a href="com/microblink/detectors/quad/QuadDetectorSettings.html" title="class in com.microblink.detectors.quad"><span class="typeNameLink">QuadDetectorSettings</span></a> - Class in <a href="com/microblink/detectors/quad/package-summary.html">com.microblink.detectors.quad</a></dt>
+<dd>
+<div class="block">Represents base detector settings for all detectors that can detect quad-like objects.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/QuadDetectorSettings.html#QuadDetectorSettings--">QuadDetectorSettings()</a></span> - Constructor for class com.microblink.detectors.quad.<a href="com/microblink/detectors/quad/QuadDetectorSettings.html" title="class in com.microblink.detectors.quad">QuadDetectorSettings</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/microblink/geometry/Quadrilateral.html" title="class in com.microblink.geometry"><span class="typeNameLink">Quadrilateral</span></a> - Class in <a href="com/microblink/geometry/package-summary.html">com.microblink.geometry</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/geometry/Quadrilateral.html#Quadrilateral-int-int-int-int-int-">Quadrilateral(int, int, int, int, int)</a></span> - Constructor for class com.microblink.geometry.<a href="com/microblink/geometry/Quadrilateral.html" title="class in com.microblink.geometry">Quadrilateral</a></dt>
@@ -2572,19 +3012,27 @@
 <dd>
 <div class="block">Constructor using provided OCR engine options and provided regular expression.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#removeAllParsers--">removeAllParsers()</a></span> - Method in class com.microblink.recognizers.blinkocr.<a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognizerSettings</a></dt>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#removeAllParserDecodingInfoSets--">removeAllParserDecodingInfoSets()</a></span> - Method in class com.microblink.recognizers.templating.<a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html" title="class in com.microblink.recognizers.templating">TemplatingRecognizerSettings</a></dt>
+<dd>
+<div class="block">Removes all decoding info sets.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#removeAllParsers--">removeAllParsers()</a></span> - Method in class com.microblink.recognizers.templating.<a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html" title="class in com.microblink.recognizers.templating">TemplatingRecognizerSettings</a></dt>
 <dd>
 <div class="block">Removes all parsers from all parser groups.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#removeAllParsersFromGroup-java.lang.String-">removeAllParsersFromGroup(String)</a></span> - Method in class com.microblink.recognizers.blinkocr.<a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognizerSettings</a></dt>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#removeAllParsersFromGroup-java.lang.String-">removeAllParsersFromGroup(String)</a></span> - Method in class com.microblink.recognizers.templating.<a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html" title="class in com.microblink.recognizers.templating">TemplatingRecognizerSettings</a></dt>
 <dd>
 <div class="block">Removes all parsers from given parser group.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#removeParser-java.lang.String-">removeParser(String)</a></span> - Method in class com.microblink.recognizers.blinkocr.<a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognizerSettings</a></dt>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#removeParser-java.lang.String-">removeParser(String)</a></span> - Method in class com.microblink.recognizers.templating.<a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html" title="class in com.microblink.recognizers.templating">TemplatingRecognizerSettings</a></dt>
 <dd>
 <div class="block">Removes parser from default parser group.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#removeParserFromParserGroup-java.lang.String-java.lang.String-">removeParserFromParserGroup(String, String)</a></span> - Method in class com.microblink.recognizers.blinkocr.<a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognizerSettings</a></dt>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#removeParserDecodingInfoSet-java.lang.String-">removeParserDecodingInfoSet(String)</a></span> - Method in class com.microblink.recognizers.templating.<a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html" title="class in com.microblink.recognizers.templating">TemplatingRecognizerSettings</a></dt>
+<dd>
+<div class="block">Removes the decoding info set with the given name.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#removeParserFromParserGroup-java.lang.String-java.lang.String-">removeParserFromParserGroup(String, String)</a></span> - Method in class com.microblink.recognizers.templating.<a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html" title="class in com.microblink.recognizers.templating">TemplatingRecognizerSettings</a></dt>
 <dd>
 <div class="block">Removes parser from given parser group.</div>
 </dd>
@@ -2648,8 +3096,8 @@
 <dl>
 <dt><a href="com/microblink/ocr/ScanConfiguration.html" title="class in com.microblink.ocr"><span class="typeNameLink">ScanConfiguration</span></a> - Class in <a href="com/microblink/ocr/package-summary.html">com.microblink.ocr</a></dt>
 <dd>
-<div class="block">This class will hold a combination of parser settings, parser name, parser title (shown in UI),
- and parser message (shown in UI).</div>
+<div class="block">This class will hold a combination of parser settings, parser name, parser title (shown in UI) and
+ parser message (shown in UI).</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/ocr/ScanConfiguration.html#ScanConfiguration-int-int-java.lang.String-com.microblink.recognizers.blinkocr.parser.OcrParserSettings-">ScanConfiguration(int, int, String, OcrParserSettings)</a></span> - Constructor for class com.microblink.ocr.<a href="com/microblink/ocr/ScanConfiguration.html" title="class in com.microblink.ocr">ScanConfiguration</a></dt>
 <dd>
@@ -2659,6 +3107,10 @@
 <dd>
 <div class="block">Constructor which takes normal strings for text that appears in UI.</div>
 </dd>
+<dt><a href="com/microblink/detectors/document/ScanningMode.html" title="enum in com.microblink.detectors.document"><span class="typeNameLink">ScanningMode</span></a> - Enum in <a href="com/microblink/detectors/document/package-summary.html">com.microblink.detectors.document</a></dt>
+<dd>
+<div class="block">Represents a mode in which detector scanning will be performed.</div>
+</dd>
 <dt><a href="com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition"><span class="typeNameLink">ScanResultListener</span></a> - Interface in <a href="com/microblink/view/recognition/package-summary.html">com.microblink.view.recognition</a></dt>
 <dd>
 <div class="block">Created by dodo on 07/10/14.</div>
@@ -2666,6 +3118,10 @@
 <dt><span class="memberNameLink"><a href="com/microblink/metadata/MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings.html#setAll-boolean-">setAll(boolean)</a></span> - Method in class com.microblink.metadata.<a href="com/microblink/metadata/MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings.html" title="class in com.microblink.metadata">MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings</a></dt>
 <dd>
 <div class="block">Sets all settings to same value.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setAllowFlippedRecognition-boolean-">setAllowFlippedRecognition(boolean)</a></span> - Method in class com.microblink.recognizers.blinkocr.<a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognizerSettings</a></dt>
+<dd>
+<div class="block">Set this to true to enable recognition of document also in upside down direction.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/generic/AmountParserSettings.html#setAllowMissingDecimals-boolean-">setAllowMissingDecimals(boolean)</a></span> - Method in class com.microblink.recognizers.blinkocr.parser.generic.<a href="com/microblink/recognizers/blinkocr/parser/generic/AmountParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.generic">AmountParserSettings</a></dt>
 <dd>
@@ -2686,7 +3142,7 @@
 <dd>
 <div class="block">Sets whether amounts with space separators between groups of digits(thousands) are allowed.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setAllowUnparsedResults-boolean-">setAllowUnparsedResults(boolean)</a></span> - Method in class com.microblink.recognizers.blinkocr.<a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognizerSettings</a></dt>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#setAllowUnparsedResults-boolean-">setAllowUnparsedResults(boolean)</a></span> - Method in class com.microblink.recognizers.templating.<a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html" title="class in com.microblink.recognizers.templating">TemplatingRecognizerSettings</a></dt>
 <dd>
 <div class="block">Sets whether unparsed results will be allowed.</div>
 </dd>
@@ -2709,6 +3165,10 @@
 <dt><span class="memberNameLink"><a href="com/microblink/view/BaseCameraView.html#setAspectMode-com.microblink.view.CameraAspectMode-">setAspectMode(CameraAspectMode)</a></span> - Method in class com.microblink.view.<a href="com/microblink/view/BaseCameraView.html" title="class in com.microblink.view">BaseCameraView</a></dt>
 <dd>
 <div class="block">Defines the aspect mode of camera preview.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentSpecification.html#setAspectRatio-double-">setAspectRatio(double)</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecification.html" title="class in com.microblink.detectors.document">DocumentSpecification</a></dt>
+<dd>
+<div class="block">Sets the aspect ratio of document that will be detected.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkbarcode/bardecoder/BarDecoderRecognizerSettings.html#setAutoScaleDetection-boolean-">setAutoScaleDetection(boolean)</a></span> - Method in class com.microblink.recognizers.blinkbarcode.bardecoder.<a href="com/microblink/recognizers/blinkbarcode/bardecoder/BarDecoderRecognizerSettings.html" title="class in com.microblink.recognizers.blinkbarcode.bardecoder">BarDecoderRecognizerSettings</a></dt>
 <dd>
@@ -2742,6 +3202,15 @@
 <div class="block">If enabled, all chars that are classified as cutoff, in other words chars
  that exceed image bounds, will be removed from the result.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/generic/DateParserSettings.html#setDateFormats-com.microblink.recognizers.blinkocr.parser.generic.DateParserSettings.DateFormat:A-">setDateFormats(DateParserSettings.DateFormat[])</a></span> - Method in class com.microblink.recognizers.blinkocr.parser.generic.<a href="com/microblink/recognizers/blinkocr/parser/generic/DateParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.generic">DateParserSettings</a></dt>
+<dd>
+<div class="block">Specifies the date formats that will be accepted by date parser.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/generic/DateParserSettings.html#setDateSeparatorChars-char:A-">setDateSeparatorChars(char[])</a></span> - Method in class com.microblink.recognizers.blinkocr.parser.generic.<a href="com/microblink/recognizers/blinkocr/parser/generic/DateParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.generic">DateParserSettings</a></dt>
+<dd>
+<div class="block">Specifies the date separator characters between date parts (day, month, year) that will be
+ accepted by date parser.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html#setDebugImageMetadataSettings-com.microblink.metadata.MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings-">setDebugImageMetadataSettings(MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings)</a></span> - Method in class com.microblink.metadata.<a href="com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html" title="class in com.microblink.metadata">MetadataSettings.ImageMetadataSettings</a></dt>
 <dd>
 <div class="block">Sets object containing settings defining which debug images should be available in MetadataListener.</div>
@@ -2750,15 +3219,31 @@
 <dd>
 <div class="block">Sets whether debug metadata should be available in MetadataListener.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/face/FaceDetectorSettings.html#setDecodingInfo-com.microblink.detectors.DecodingInfo-">setDecodingInfo(DecodingInfo)</a></span> - Method in class com.microblink.detectors.face.<a href="com/microblink/detectors/face/FaceDetectorSettings.html" title="class in com.microblink.detectors.face">FaceDetectorSettings</a></dt>
+<dd>
+<div class="block">Sets the decoding info that controls how detection will be dewarped.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentSpecification.html#setDecodingInfos-com.microblink.detectors.DecodingInfo:A-">setDecodingInfos(DecodingInfo[])</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecification.html" title="class in com.microblink.detectors.document">DocumentSpecification</a></dt>
+<dd>
+<div class="block">Sets the array of decoding infos that control how detection will be dewarped.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/QuadDetectorSettings.html#setDecodingInfos-com.microblink.detectors.DecodingInfo:A-">setDecodingInfos(DecodingInfo[])</a></span> - Method in class com.microblink.detectors.quad.<a href="com/microblink/detectors/quad/QuadDetectorSettings.html" title="class in com.microblink.detectors.quad">QuadDetectorSettings</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html#setDetectFlippedTextEnabled-boolean-">setDetectFlippedTextEnabled(boolean)</a></span> - Method in class com.microblink.recognizers.blinkocr.engine.<a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html" title="class in com.microblink.recognizers.blinkocr.engine">BlinkOCREngineOptions</a></dt>
 <dd>
 <div class="block">If enabled, OCR will produce result for the input image and for
  input image rotated by 180 degrees.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/mrtd/MRTDDetectorSettings.html#setDetectFullDocument-boolean-">setDetectFullDocument(boolean)</a></span> - Method in class com.microblink.detectors.quad.mrtd.<a href="com/microblink/detectors/quad/mrtd/MRTDDetectorSettings.html" title="class in com.microblink.detectors.quad.mrtd">MRTDDetectorSettings</a></dt>
+<dd>
+<div class="block">Defines whether full document should be detected.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/detectors/DetectorResult.html#setDetectionCode-int-">setDetectionCode(int)</a></span> - Method in class com.microblink.detectors.<a href="com/microblink/detectors/DetectorResult.html" title="class in com.microblink.detectors">DetectorResult</a></dt>
 <dd>
 <div class="block">Sets the detection code member variable(s) based on detection code from native library.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.html#setDetectionCode-int-">setDetectionCode(int)</a></span> - Method in class com.microblink.detectors.quad.mrtd.<a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.html" title="class in com.microblink.detectors.quad.mrtd">MRTDDetectorResult</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/metadata/MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings.html#setDetectionImageEnabled-boolean-">setDetectionImageEnabled(boolean)</a></span> - Method in class com.microblink.metadata.<a href="com/microblink/metadata/MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings.html" title="class in com.microblink.metadata">MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings</a></dt>
 <dd>
 <div class="block">Sets whether detection image will be available in MetadataListener.</div>
@@ -2767,6 +3252,14 @@
 <dd>
 <div class="block">Sets whether detection metadata should be available in MetadataListener.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setDetectorSettings-com.microblink.detectors.DetectorSettings-">setDetectorSettings(DetectorSettings)</a></span> - Method in class com.microblink.recognizers.blinkocr.<a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognizerSettings</a></dt>
+<dd>
+<div class="block">Sets detector settings that will define which detector will be used.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/detector/DetectorRecognizerSettings.html#setDetectorSettings-com.microblink.detectors.DetectorSettings-">setDetectorSettings(DetectorSettings)</a></span> - Method in class com.microblink.recognizers.detector.<a href="com/microblink/recognizers/detector/DetectorRecognizerSettings.html" title="class in com.microblink.recognizers.detector">DetectorRecognizerSettings</a></dt>
+<dd>
+<div class="block">Sets detector settings that will define which detector will be used.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/metadata/MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings.html#setDewarpedImageEnabled-boolean-">setDewarpedImageEnabled(boolean)</a></span> - Method in class com.microblink.metadata.<a href="com/microblink/metadata/MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings.html" title="class in com.microblink.metadata">MetadataSettings.ImageMetadataSettings.DebugImageMetadataSettings</a></dt>
 <dd>
 <div class="block">Sets whether dewarped debug image should be available in MetadataListener.</div>
@@ -2774,6 +3267,16 @@
 <dt><span class="memberNameLink"><a href="com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html#setDewarpedImageEnabled-boolean-">setDewarpedImageEnabled(boolean)</a></span> - Method in class com.microblink.metadata.<a href="com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html" title="class in com.microblink.metadata">MetadataSettings.ImageMetadataSettings</a></dt>
 <dd>
 <div class="block">Sets whether dewarped image should be available in MetadataListener.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setDocumentClassifier-com.microblink.recognizers.blinkocr.DocumentClassifier-">setDocumentClassifier(DocumentClassifier)</a></span> - Method in class com.microblink.recognizers.blinkocr.<a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognizerSettings</a></dt>
+<dd>
+<div class="block">Sets the <a href="com/microblink/recognizers/blinkocr/DocumentClassifier.html" title="interface in com.microblink.recognizers.blinkocr"><code>DocumentClassifier</code></a> that can be used for classification of the documents based
+ on the extraction result of parser groups associated with decoding infos of detector set
+ with <a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setDetectorSettings-com.microblink.detectors.DetectorSettings-"><code>BlinkOCRRecognizerSettings.setDetectorSettings(DetectorSettings)</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentDetectorSettings.html#setDocumentSpecifications-com.microblink.detectors.document.DocumentSpecification:A-">setDocumentSpecifications(DocumentSpecification[])</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentDetectorSettings.html" title="class in com.microblink.detectors.document">DocumentDetectorSettings</a></dt>
+<dd>
+<div class="block">Sets array of document specifications that can be detected.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html#setDocumentType-com.microblink.recognizers.blinkocr.engine.OcrDocumentType-">setDocumentType(OcrDocumentType)</a></span> - Method in class com.microblink.recognizers.blinkocr.engine.<a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html" title="class in com.microblink.recognizers.blinkocr.engine">BlinkOCREngineOptions</a></dt>
 <dd>
@@ -2833,6 +3336,10 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/geometry/Quadrilateral.html#setIsDefaultQuad-boolean-">setIsDefaultQuad(boolean)</a></span> - Method in class com.microblink.geometry.<a href="com/microblink/geometry/Quadrilateral.html" title="class in com.microblink.geometry">Quadrilateral</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentSpecification.html#setLandscapeScale-double-double-">setLandscapeScale(double, double)</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecification.html" title="class in com.microblink.detectors.document">DocumentSpecification</a></dt>
+<dd>
+<div class="block">Sets the scale and scale tolerance that will be used when detecting document in landscape orientation.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/locale/LanguageUtils.html#setLanguage-com.microblink.locale.Language-android.content.Context-">setLanguage(Language, Context)</a></span> - Static method in class com.microblink.locale.<a href="com/microblink/locale/LanguageUtils.html" title="class in com.microblink.locale">LanguageUtils</a></dt>
 <dd>
 <div class="block">Sets the application language.</div>
@@ -2872,6 +3379,10 @@
 <dd>
 <div class="block">Sets whether marked dewarped debug image should be available in MetadataListener.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentSpecification.html#setMaxAngle-double-">setMaxAngle(double)</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecification.html" title="class in com.microblink.detectors.document">DocumentSpecification</a></dt>
+<dd>
+<div class="block">Sets maximum angle for document detection.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html#setMaximumAllowedCharRecognitionVariants-int-">setMaximumAllowedCharRecognitionVariants(int)</a></span> - Method in class com.microblink.recognizers.blinkocr.engine.<a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html" title="class in com.microblink.recognizers.blinkocr.engine">BlinkOCREngineOptions</a></dt>
 <dd>
 <div class="block">Sets the maximum allowed number of char recognition variants OCR engine will produce
@@ -2897,9 +3408,21 @@
 <dd>
 <div class="block">Sets the areas where camera will perform focus, exposure and white balance meterings.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html#setMinimumCharHeight-int-">setMinimumCharHeight(int)</a></span> - Method in class com.microblink.recognizers.blinkocr.engine.<a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html" title="class in com.microblink.recognizers.blinkocr.engine">BlinkOCREngineOptions</a></dt>
+<dd>
+<div class="block">Sets the minimum height of the char that can be classified.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html#setMinimumLineHeight-int-">setMinimumLineHeight(int)</a></span> - Method in class com.microblink.recognizers.blinkocr.engine.<a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html" title="class in com.microblink.recognizers.blinkocr.engine">BlinkOCREngineOptions</a></dt>
 <dd>
 <div class="block">Sets the minimum height of the line of thxt given in pixels.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html#setMustEndWithWhitespace-boolean-">setMustEndWithWhitespace(boolean)</a></span> - Method in class com.microblink.recognizers.blinkocr.parser.regex.<a href="com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.regex">RegexParserSettings</a></dt>
+<dd>
+<div class="block">If set to true, regex will not be matched if there is no whitespace after matched string.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html#setMustStartWithWhitespace-boolean-">setMustStartWithWhitespace(boolean)</a></span> - Method in class com.microblink.recognizers.blinkocr.parser.regex.<a href="com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.regex">RegexParserSettings</a></dt>
+<dd>
+<div class="block">If set to true, regex will not be matched if there is no whitespace before matched string.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html#setNoisePostprocessingEnabled-boolean-">setNoisePostprocessingEnabled(boolean)</a></span> - Method in class com.microblink.recognizers.blinkocr.engine.<a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html" title="class in com.microblink.recognizers.blinkocr.engine">BlinkOCREngineOptions</a></dt>
 <dd>
@@ -2909,7 +3432,11 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/settings/RecognitionSettings.html#setNumMsBeforeTimeout-int-">setNumMsBeforeTimeout(int)</a></span> - Method in class com.microblink.recognizers.settings.<a href="com/microblink/recognizers/settings/RecognitionSettings.html" title="class in com.microblink.recognizers.settings">RecognitionSettings</a></dt>
 <dd>
-<div class="block">Set the duration in miliseconds that needs to pass since scanning has begun in order to define timeout.</div>
+<div class="block">Set the duration in milliseconds that needs to pass since scanning has begun in order to define timeout.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentDetectorSettings.html#setNumStableDetectionsThreshold-int-">setNumStableDetectionsThreshold(int)</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentDetectorSettings.html" title="class in com.microblink.detectors.document">DocumentDetectorSettings</a></dt>
+<dd>
+<div class="block">Sets minimum number of stable detections to return detector result</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/generic/RawParserSettings.html#setOcrEngineOptions-com.microblink.recognizers.blinkocr.engine.BlinkOCREngineOptions-">setOcrEngineOptions(BlinkOCREngineOptions)</a></span> - Method in class com.microblink.recognizers.blinkocr.parser.generic.<a href="com/microblink/recognizers/blinkocr/parser/generic/RawParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.generic">RawParserSettings</a></dt>
 <dd>
@@ -2937,6 +3464,11 @@
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/view/BaseCameraView.html#setOptimizeCameraForNearScan-boolean-">setOptimizeCameraForNearScan(boolean)</a></span> - Method in class com.microblink.view.<a href="com/microblink/view/BaseCameraView.html" title="class in com.microblink.view">BaseCameraView</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/ocr/ScanConfiguration.html#setOptional-boolean-">setOptional(boolean)</a></span> - Method in class com.microblink.ocr.<a href="com/microblink/ocr/ScanConfiguration.html" title="class in com.microblink.ocr">ScanConfiguration</a></dt>
+<dd>
+<div class="block">Sets the flag that indicates whether this scan configuration is optional, which means
+ that the data from the scan field with this configuration is not mandatory and can be skipped by user.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/directApi/frame/BitmapCameraFrame.html#setOrientation-com.microblink.hardware.orientation.Orientation-">setOrientation(Orientation)</a></span> - Method in class com.microblink.directApi.frame.<a href="com/microblink/directApi/frame/BitmapCameraFrame.html" title="class in com.microblink.directApi.frame">BitmapCameraFrame</a></dt>
 <dd>
 <div class="block">Sets the orientation of the current frame.</div>
@@ -2955,6 +3487,18 @@
 <div class="block">Sets the orientation listener that will receive orientation change events that are already reported
  to BaseCameraView.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setParserDecodingInfos-com.microblink.detectors.DecodingInfo:A-java.lang.String-">setParserDecodingInfos(DecodingInfo[], String)</a></span> - Method in class com.microblink.recognizers.blinkocr.<a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognizerSettings</a></dt>
+<dd>
+<div class="block">Sets the named decoding info set, for specific document type, whose elements contain location
+ information about additional document elements that should be recognized together with
+ elements defined within <a href="com/microblink/detectors/DetectorSettings.html" title="class in com.microblink.detectors"><code>DetectorSettings</code></a> given with <a href="com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setDetectorSettings-com.microblink.detectors.DetectorSettings-"><code>BlinkOCRRecognizerSettings.setDetectorSettings(DetectorSettings)</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#setParserDecodingInfos-com.microblink.detectors.DecodingInfo:A-java.lang.String-">setParserDecodingInfos(DecodingInfo[], String)</a></span> - Method in class com.microblink.recognizers.templating.<a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html" title="class in com.microblink.recognizers.templating">TemplatingRecognizerSettings</a></dt>
+<dd>
+<div class="block">Sets the named decoding info set, for specific document type, whose elements contain location
+ information about additional document elements that should be recognized together with
+ specific field type of concrete recognizer.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/ocr/ScanConfiguration.html#setParserName-java.lang.String-">setParserName(String)</a></span> - Method in class com.microblink.ocr.<a href="com/microblink/ocr/ScanConfiguration.html" title="class in com.microblink.ocr">ScanConfiguration</a></dt>
 <dd>
 <div class="block">Sets the name of the parser.</div>
@@ -2971,6 +3515,10 @@
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/geometry/Quadrilateral.html#setPoints-com.microblink.geometry.Point-com.microblink.geometry.Point-com.microblink.geometry.Point-com.microblink.geometry.Point-">setPoints(Point, Point, Point, Point)</a></span> - Method in class com.microblink.geometry.<a href="com/microblink/geometry/Quadrilateral.html" title="class in com.microblink.geometry">Quadrilateral</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentSpecification.html#setPortraitScale-double-double-">setPortraitScale(double, double)</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecification.html" title="class in com.microblink.detectors.document">DocumentSpecification</a></dt>
+<dd>
+<div class="block">Sets the scale and scale tolerance that will be used when detecting document in portrait orientation.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html#setRatioPostprocessorEnabled-boolean-">setRatioPostprocessorEnabled(boolean)</a></span> - Method in class com.microblink.recognizers.blinkocr.engine.<a href="com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html" title="class in com.microblink.recognizers.blinkocr.engine">BlinkOCREngineOptions</a></dt>
 <dd>
 <div class="block">If enabled, char quality will be influenced by character ratio difference
@@ -2992,6 +3540,11 @@
 <dd>
 <div class="block">Defines regex that will be used to parse OCR data.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html#setRequired-boolean-">setRequired(boolean)</a></span> - Method in class com.microblink.recognizers.blinkocr.parser.<a href="com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser">OcrParserSettings</a></dt>
+<dd>
+<div class="block">Defines whether the parser configured with this parser settings object will be required
+ or optional.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/image/Image.html#setROI-android.graphics.Rect-">setROI(Rect)</a></span> - Method in class com.microblink.image.<a href="com/microblink/image/Image.html" title="class in com.microblink.image">Image</a></dt>
 <dd>
 <div class="block">Sets the region of interest in image.</div>
@@ -3001,6 +3554,10 @@
 <dt><span class="memberNameLink"><a href="com/microblink/view/BaseCameraView.html#setRotationAnimationDuration-int-">setRotationAnimationDuration(int)</a></span> - Method in class com.microblink.view.<a href="com/microblink/view/BaseCameraView.html" title="class in com.microblink.view">BaseCameraView</a></dt>
 <dd>
 <div class="block">Sets the duration of rotatable view rotation animation (valid only if setAnimateRotation(true) was called).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentSpecification.html#setScale-double-double-">setScale(double, double)</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecification.html" title="class in com.microblink.detectors.document">DocumentSpecification</a></dt>
+<dd>
+<div class="block">Sets the scale and scale tolerance that will be used when detecting document in both orientations.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkbarcode/zxing/ZXingRecognizerSettings.html#setScanAztecCode-boolean-">setScanAztecCode(boolean)</a></span> - Method in class com.microblink.recognizers.blinkbarcode.zxing.<a href="com/microblink/recognizers/blinkbarcode/zxing/ZXingRecognizerSettings.html" title="class in com.microblink.recognizers.blinkbarcode.zxing">ZXingRecognizerSettings</a></dt>
 <dd>&nbsp;</dd>
@@ -3020,12 +3577,24 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkbarcode/zxing/ZXingRecognizerSettings.html#setScanITFCode-boolean-">setScanITFCode(boolean)</a></span> - Method in class com.microblink.recognizers.blinkbarcode.zxing.<a href="com/microblink/recognizers/blinkbarcode/zxing/ZXingRecognizerSettings.html" title="class in com.microblink.recognizers.blinkbarcode.zxing">ZXingRecognizerSettings</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentSpecification.html#setScanningMode-com.microblink.detectors.document.ScanningMode-">setScanningMode(ScanningMode)</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecification.html" title="class in com.microblink.detectors.document">DocumentSpecification</a></dt>
+<dd>
+<div class="block">Sets the scanning mode that defines in which orientations can this document be detected.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/view/recognition/RecognizerView.html#setScanningRegion-com.microblink.geometry.Rectangle-boolean-">setScanningRegion(Rectangle, boolean)</a></span> - Method in class com.microblink.view.recognition.<a href="com/microblink/view/recognition/RecognizerView.html" title="class in com.microblink.view.recognition">RecognizerView</a></dt>
 <dd>
 <div class="block">Define scanning region as a rectangle.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkbarcode/zxing/ZXingRecognizerSettings.html#setScanQRCode-boolean-">setScanQRCode(boolean)</a></span> - Method in class com.microblink.recognizers.blinkbarcode.zxing.<a href="com/microblink/recognizers/blinkbarcode/zxing/ZXingRecognizerSettings.html" title="class in com.microblink.recognizers.blinkbarcode.zxing">ZXingRecognizerSettings</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/ocr/ScanConfiguration.html#setScanRegionRelativeHeight-float-">setScanRegionRelativeHeight(float)</a></span> - Method in class com.microblink.ocr.<a href="com/microblink/ocr/ScanConfiguration.html" title="class in com.microblink.ocr">ScanConfiguration</a></dt>
+<dd>
+<div class="block">Sets the scan region height, represented as percentage of maximal allowed scan region height.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/ocr/ScanConfiguration.html#setScanRegionRelativeWidth-float-">setScanRegionRelativeWidth(float)</a></span> - Method in class com.microblink.ocr.<a href="com/microblink/ocr/ScanConfiguration.html" title="class in com.microblink.ocr">ScanConfiguration</a></dt>
+<dd>
+<div class="block">Sets the scan region width, represented as percentage of maximal allowed scan region width.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/view/recognition/RecognizerView.html#setScanResultListener-com.microblink.view.recognition.ScanResultListener-">setScanResultListener(ScanResultListener)</a></span> - Method in class com.microblink.view.recognition.<a href="com/microblink/view/recognition/RecognizerView.html" title="class in com.microblink.view.recognition">RecognizerView</a></dt>
 <dd>
 <div class="block">Sets the listener that will obtain the results of the scanning.</div>
@@ -3034,6 +3603,11 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkbarcode/zxing/ZXingRecognizerSettings.html#setScanUPCECode-boolean-">setScanUPCECode(boolean)</a></span> - Method in class com.microblink.recognizers.blinkbarcode.zxing.<a href="com/microblink/recognizers/blinkbarcode/zxing/ZXingRecognizerSettings.html" title="class in com.microblink.recognizers.blinkbarcode.zxing">ZXingRecognizerSettings</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/multi/MultiDetectorSettings.html#setSettingsArray-com.microblink.detectors.DetectorSettings:A-">setSettingsArray(DetectorSettings[])</a></span> - Method in class com.microblink.detectors.multi.<a href="com/microblink/detectors/multi/MultiDetectorSettings.html" title="class in com.microblink.detectors.multi">MultiDetectorSettings</a></dt>
+<dd>
+<div class="block">Sets the array of detectors settings that will be used in this
+ composite detector.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/view/BaseCameraView.html#setShakeListener-com.microblink.hardware.accelerometer.ShakeCallback-">setShakeListener(ShakeCallback)</a></span> - Method in class com.microblink.view.<a href="com/microblink/view/BaseCameraView.html" title="class in com.microblink.view">BaseCameraView</a></dt>
 <dd>
 <div class="block">Sets the shake callback that will be notified about device shake events.</div>
@@ -3111,9 +3685,17 @@
 <dd>
 <div class="block">Sets the x coordinate of the point.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentSpecification.html#setXRange-double-double-">setXRange(double, double)</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecification.html" title="class in com.microblink.detectors.document">DocumentSpecification</a></dt>
+<dd>
+<div class="block">Sets percentage of possible document offset on x axis.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/geometry/Point.html#setY-float-">setY(float)</a></span> - Method in class com.microblink.geometry.<a href="com/microblink/geometry/Point.html" title="class in com.microblink.geometry">Point</a></dt>
 <dd>
 <div class="block">Sets the y coordinate of the point.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentSpecification.html#setYRange-double-double-">setYRange(double, double)</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecification.html" title="class in com.microblink.detectors.document">DocumentSpecification</a></dt>
+<dd>
+<div class="block">Sets percentage of possible document offset on y axis.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/view/BaseCameraView.html#setZoomLevel-float-">setZoomLevel(float)</a></span> - Method in class com.microblink.view.<a href="com/microblink/view/BaseCameraView.html" title="class in com.microblink.view">BaseCameraView</a></dt>
 <dd>
@@ -3128,6 +3710,10 @@
 <dt><span class="memberNameLink"><a href="com/microblink/view/BaseCameraView.html#shouldAnimateRotation--">shouldAnimateRotation()</a></span> - Method in class com.microblink.view.<a href="com/microblink/view/BaseCameraView.html" title="class in com.microblink.view">BaseCameraView</a></dt>
 <dd>
 <div class="block">Returns true if rotatable view's rotation should be animated.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/mrtd/MRTDDetectorSettings.html#shouldDetectFullDocument--">shouldDetectFullDocument()</a></span> - Method in class com.microblink.detectors.quad.mrtd.<a href="com/microblink/detectors/quad/mrtd/MRTDDetectorSettings.html" title="class in com.microblink.detectors.quad.mrtd">MRTDDetectorSettings</a></dt>
+<dd>
+<div class="block">Returns true if full document will be detected (detection is based on MRZ location).</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/view/recognition/RecognizerView.html#shouldRotateScanningRegion--">shouldRotateScanningRegion()</a></span> - Method in class com.microblink.view.recognition.<a href="com/microblink/view/recognition/RecognizerView.html" title="class in com.microblink.view.recognition">RecognizerView</a></dt>
 <dd>
@@ -3173,6 +3759,8 @@
 <dd>
 <div class="block">Key for accessing sorting code result</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/RecognitionResultConstants.html#SPECIFIC_SYMBOL">SPECIFIC_SYMBOL</a></span> - Static variable in interface com.microblink.recognizers.<a href="com/microblink/recognizers/RecognitionResultConstants.html" title="interface in com.microblink.recognizers">RecognitionResultConstants</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/view/BaseCameraView.html#start--">start()</a></span> - Method in class com.microblink.view.<a href="com/microblink/view/BaseCameraView.html" title="class in com.microblink.view">BaseCameraView</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/view/recognition/RecognizerView.html#start--">start()</a></span> - Method in class com.microblink.view.recognition.<a href="com/microblink/view/recognition/RecognizerView.html" title="class in com.microblink.view.recognition">RecognizerView</a></dt>
@@ -3201,6 +3789,24 @@
 <dd>
 <div class="block">Key for accessing Tax number element.</div>
 </dd>
+<dt><a href="com/microblink/recognizers/templating/TemplatingRecognitionResult.html" title="class in com.microblink.recognizers.templating"><span class="typeNameLink">TemplatingRecognitionResult</span></a> - Class in <a href="com/microblink/recognizers/templating/package-summary.html">com.microblink.recognizers.templating</a></dt>
+<dd>
+<div class="block">Represents base class for all recognition results that are produced by recognizers
+ which were configured with settings that derive <a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html" title="class in com.microblink.recognizers.templating"><code>TemplatingRecognizerSettings</code></a></div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/templating/TemplatingRecognitionResult.html#TemplatingRecognitionResult-long-boolean-boolean-">TemplatingRecognitionResult(long, boolean, boolean)</a></span> - Constructor for class com.microblink.recognizers.templating.<a href="com/microblink/recognizers/templating/TemplatingRecognitionResult.html" title="class in com.microblink.recognizers.templating">TemplatingRecognitionResult</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/templating/TemplatingRecognitionResult.html#TemplatingRecognitionResult-android.os.Bundle-boolean-boolean-">TemplatingRecognitionResult(Bundle, boolean, boolean)</a></span> - Constructor for class com.microblink.recognizers.templating.<a href="com/microblink/recognizers/templating/TemplatingRecognitionResult.html" title="class in com.microblink.recognizers.templating">TemplatingRecognitionResult</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/templating/TemplatingRecognitionResult.html#TemplatingRecognitionResult-android.os.Parcel-">TemplatingRecognitionResult(Parcel)</a></span> - Constructor for class com.microblink.recognizers.templating.<a href="com/microblink/recognizers/templating/TemplatingRecognitionResult.html" title="class in com.microblink.recognizers.templating">TemplatingRecognitionResult</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html" title="class in com.microblink.recognizers.templating"><span class="typeNameLink">TemplatingRecognizerSettings</span></a> - Class in <a href="com/microblink/recognizers/templating/package-summary.html">com.microblink.recognizers.templating</a></dt>
+<dd>
+<div class="block">Represents base of all recognizer settings which support specifying decoding
+ infos and parser groups required for scanning generic documents.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#TemplatingRecognizerSettings--">TemplatingRecognizerSettings()</a></span> - Constructor for class com.microblink.recognizers.templating.<a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html" title="class in com.microblink.recognizers.templating">TemplatingRecognizerSettings</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/directApi/Recognizer.html#terminate--">terminate()</a></span> - Method in class com.microblink.directApi.<a href="com/microblink/directApi/Recognizer.html" title="class in com.microblink.directApi">Recognizer</a></dt>
 <dd>
 <div class="block">Terminates the native library.</div>
@@ -3216,6 +3822,14 @@
 <div class="block">Converts this quadrilateral to array of float points.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/detectors/DetectorResult.html#toString--">toString()</a></span> - Method in class com.microblink.detectors.<a href="com/microblink/detectors/DetectorResult.html" title="class in com.microblink.detectors">DetectorResult</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentDetectorResult.html#toString--">toString()</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentDetectorResult.html" title="class in com.microblink.detectors.document">DocumentDetectorResult</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/face/FaceDetectorResult.html#toString--">toString()</a></span> - Method in class com.microblink.detectors.face.<a href="com/microblink/detectors/face/FaceDetectorResult.html" title="class in com.microblink.detectors.face">FaceDetectorResult</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/multi/MultiDetectorResult.html#toString--">toString()</a></span> - Method in class com.microblink.detectors.multi.<a href="com/microblink/detectors/multi/MultiDetectorResult.html" title="class in com.microblink.detectors.multi">MultiDetectorResult</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.html#toString--">toString()</a></span> - Method in class com.microblink.detectors.quad.mrtd.<a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.html" title="class in com.microblink.detectors.quad.mrtd">MRTDDetectorResult</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/QuadDetectorResult.html#toString--">toString()</a></span> - Method in class com.microblink.detectors.quad.<a href="com/microblink/detectors/quad/QuadDetectorResult.html" title="class in com.microblink.detectors.quad">QuadDetectorResult</a></dt>
 <dd>&nbsp;</dd>
@@ -3283,6 +3897,22 @@
 <dd>
 <div class="block">Returns the enum constant of this type with the specified name.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentDetectorResult.ScreenOrientation.html#valueOf-java.lang.String-">valueOf(String)</a></span> - Static method in enum com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentDetectorResult.ScreenOrientation.html" title="enum in com.microblink.detectors.document">DocumentDetectorResult.ScreenOrientation</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this type with the specified name.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentSpecificationPreset.html#valueOf-java.lang.String-">valueOf(String)</a></span> - Static method in enum com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecificationPreset.html" title="enum in com.microblink.detectors.document">DocumentSpecificationPreset</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this type with the specified name.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/ScanningMode.html#valueOf-java.lang.String-">valueOf(String)</a></span> - Static method in enum com.microblink.detectors.document.<a href="com/microblink/detectors/document/ScanningMode.html" title="enum in com.microblink.detectors.document">ScanningMode</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this type with the specified name.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.MRTDDetectionCode.html#valueOf-java.lang.String-">valueOf(String)</a></span> - Static method in enum com.microblink.detectors.quad.mrtd.<a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.MRTDDetectionCode.html" title="enum in com.microblink.detectors.quad.mrtd">MRTDDetectorResult.MRTDDetectionCode</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this type with the specified name.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/directApi/Recognizer.State.html#valueOf-java.lang.String-">valueOf(String)</a></span> - Static method in enum com.microblink.directApi.<a href="com/microblink/directApi/Recognizer.State.html" title="enum in com.microblink.directApi">Recognizer.State</a></dt>
 <dd>
 <div class="block">Returns the enum constant of this type with the specified name.</div>
@@ -3320,6 +3950,10 @@
 <div class="block">Returns the enum constant of this type with the specified name.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/generic/AmountParserSettings.Preset.html#valueOf-java.lang.String-">valueOf(String)</a></span> - Static method in enum com.microblink.recognizers.blinkocr.parser.generic.<a href="com/microblink/recognizers/blinkocr/parser/generic/AmountParserSettings.Preset.html" title="enum in com.microblink.recognizers.blinkocr.parser.generic">AmountParserSettings.Preset</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this type with the specified name.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/generic/DateParserSettings.DateFormat.html#valueOf-java.lang.String-">valueOf(String)</a></span> - Static method in enum com.microblink.recognizers.blinkocr.parser.generic.<a href="com/microblink/recognizers/blinkocr/parser/generic/DateParserSettings.DateFormat.html" title="enum in com.microblink.recognizers.blinkocr.parser.generic">DateParserSettings.DateFormat</a></dt>
 <dd>
 <div class="block">Returns the enum constant of this type with the specified name.</div>
 </dd>
@@ -3365,6 +3999,26 @@
 the order they are declared.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/microblink/detectors/DetectorResult.DetectionCode.html#values--">values()</a></span> - Static method in enum com.microblink.detectors.<a href="com/microblink/detectors/DetectorResult.DetectionCode.html" title="enum in com.microblink.detectors">DetectorResult.DetectionCode</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum type, in
+the order they are declared.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentDetectorResult.ScreenOrientation.html#values--">values()</a></span> - Static method in enum com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentDetectorResult.ScreenOrientation.html" title="enum in com.microblink.detectors.document">DocumentDetectorResult.ScreenOrientation</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum type, in
+the order they are declared.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentSpecificationPreset.html#values--">values()</a></span> - Static method in enum com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecificationPreset.html" title="enum in com.microblink.detectors.document">DocumentSpecificationPreset</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum type, in
+the order they are declared.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/ScanningMode.html#values--">values()</a></span> - Static method in enum com.microblink.detectors.document.<a href="com/microblink/detectors/document/ScanningMode.html" title="enum in com.microblink.detectors.document">ScanningMode</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum type, in
+the order they are declared.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.MRTDDetectionCode.html#values--">values()</a></span> - Static method in enum com.microblink.detectors.quad.mrtd.<a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.MRTDDetectionCode.html" title="enum in com.microblink.detectors.quad.mrtd">MRTDDetectorResult.MRTDDetectionCode</a></dt>
 <dd>
 <div class="block">Returns an array containing the constants of this enum type, in
 the order they are declared.</div>
@@ -3419,6 +4073,11 @@ the order they are declared.</div>
 <div class="block">Returns an array containing the constants of this enum type, in
 the order they are declared.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/generic/DateParserSettings.DateFormat.html#values--">values()</a></span> - Static method in enum com.microblink.recognizers.blinkocr.parser.generic.<a href="com/microblink/recognizers/blinkocr/parser/generic/DateParserSettings.DateFormat.html" title="enum in com.microblink.recognizers.blinkocr.parser.generic">DateParserSettings.DateFormat</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum type, in
+the order they are declared.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/settings/RecognitionSettings.FrameQualityEstimationMode.html#values--">values()</a></span> - Static method in enum com.microblink.recognizers.settings.<a href="com/microblink/recognizers/settings/RecognitionSettings.FrameQualityEstimationMode.html" title="enum in com.microblink.recognizers.settings">RecognitionSettings.FrameQualityEstimationMode</a></dt>
 <dd>
 <div class="block">Returns an array containing the constants of this enum type, in
@@ -3464,6 +4123,8 @@ the order they are declared.</div>
 <div class="block">Returns an array containing the constants of this enum type, in
 the order they are declared.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/RecognitionResultConstants.html#VARIABLE_SYMBOL">VARIABLE_SYMBOL</a></span> - Static variable in interface com.microblink.recognizers.<a href="com/microblink/recognizers/RecognitionResultConstants.html" title="interface in com.microblink.recognizers">RecognitionResultConstants</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/microblink/hardware/camera/VideoResolutionPreset.html" title="enum in com.microblink.hardware.camera"><span class="typeNameLink">VideoResolutionPreset</span></a> - Enum in <a href="com/microblink/hardware/camera/package-summary.html">com.microblink.hardware.camera</a></dt>
 <dd>
 <div class="block">Created by dodo on 26/10/15.</div>
@@ -3476,11 +4137,35 @@ the order they are declared.</div>
 <dl>
 <dt><span class="memberNameLink"><a href="com/microblink/activity/ShowOcrResultMode.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in enum com.microblink.activity.<a href="com/microblink/activity/ShowOcrResultMode.html" title="enum in com.microblink.activity">ShowOcrResultMode</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/DecodingInfo.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.detectors.<a href="com/microblink/detectors/DecodingInfo.html" title="class in com.microblink.detectors">DecodingInfo</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/detectors/DetectorResult.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.detectors.<a href="com/microblink/detectors/DetectorResult.html" title="class in com.microblink.detectors">DetectorResult</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/DetectorSettings.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.detectors.<a href="com/microblink/detectors/DetectorSettings.html" title="class in com.microblink.detectors">DetectorSettings</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentDetectorResult.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentDetectorResult.html" title="class in com.microblink.detectors.document">DocumentDetectorResult</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentDetectorSettings.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentDetectorSettings.html" title="class in com.microblink.detectors.document">DocumentDetectorSettings</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/document/DocumentSpecification.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecification.html" title="class in com.microblink.detectors.document">DocumentSpecification</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/face/FaceDetectorResult.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.detectors.face.<a href="com/microblink/detectors/face/FaceDetectorResult.html" title="class in com.microblink.detectors.face">FaceDetectorResult</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/face/FaceDetectorSettings.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.detectors.face.<a href="com/microblink/detectors/face/FaceDetectorSettings.html" title="class in com.microblink.detectors.face">FaceDetectorSettings</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/multi/MultiDetectorResult.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.detectors.multi.<a href="com/microblink/detectors/multi/MultiDetectorResult.html" title="class in com.microblink.detectors.multi">MultiDetectorResult</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/multi/MultiDetectorSettings.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.detectors.multi.<a href="com/microblink/detectors/multi/MultiDetectorSettings.html" title="class in com.microblink.detectors.multi">MultiDetectorSettings</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/detectors/points/PointsDetectorResult.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.detectors.points.<a href="com/microblink/detectors/points/PointsDetectorResult.html" title="class in com.microblink.detectors.points">PointsDetectorResult</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.detectors.quad.mrtd.<a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.html" title="class in com.microblink.detectors.quad.mrtd">MRTDDetectorResult</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/mrtd/MRTDDetectorSettings.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.detectors.quad.mrtd.<a href="com/microblink/detectors/quad/mrtd/MRTDDetectorSettings.html" title="class in com.microblink.detectors.quad.mrtd">MRTDDetectorSettings</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/QuadDetectorResult.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.detectors.quad.<a href="com/microblink/detectors/quad/QuadDetectorResult.html" title="class in com.microblink.detectors.quad">QuadDetectorResult</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/detectors/quad/QuadDetectorSettings.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.detectors.quad.<a href="com/microblink/detectors/quad/QuadDetectorSettings.html" title="class in com.microblink.detectors.quad">QuadDetectorSettings</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/geometry/Point.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.geometry.<a href="com/microblink/geometry/Point.html" title="class in com.microblink.geometry">Point</a></dt>
 <dd>&nbsp;</dd>
@@ -3520,19 +4205,23 @@ the order they are declared.</div>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/generic/DateParserSettings.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.recognizers.blinkocr.parser.generic.<a href="com/microblink/recognizers/blinkocr/parser/generic/DateParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.generic">DateParserSettings</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/generic/EMailParserSettings.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.recognizers.blinkocr.parser.generic.<a href="com/microblink/recognizers/blinkocr/parser/generic/EMailParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.generic">EMailParserSettings</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/generic/IbanParserSettings.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.recognizers.blinkocr.parser.generic.<a href="com/microblink/recognizers/blinkocr/parser/generic/IbanParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.generic">IbanParserSettings</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/generic/RawParserSettings.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.recognizers.blinkocr.parser.generic.<a href="com/microblink/recognizers/blinkocr/parser/generic/RawParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.generic">RawParserSettings</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.recognizers.blinkocr.parser.<a href="com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser">OcrParserSettings</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.recognizers.blinkocr.parser.regex.<a href="com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.regex">RegexParserSettings</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/detector/DetectorRecognizerSettings.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.recognizers.detector.<a href="com/microblink/recognizers/detector/DetectorRecognizerSettings.html" title="class in com.microblink.recognizers.detector">DetectorRecognizerSettings</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/IResultHolder.html#writeToParcel-android.os.Parcel-">writeToParcel(Parcel)</a></span> - Method in interface com.microblink.recognizers.<a href="com/microblink/recognizers/IResultHolder.html" title="interface in com.microblink.recognizers">IResultHolder</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/RecognitionResults.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.recognizers.<a href="com/microblink/recognizers/RecognitionResults.html" title="class in com.microblink.recognizers">RecognitionResults</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/recognizers/settings/RecognitionSettings.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.recognizers.settings.<a href="com/microblink/recognizers/settings/RecognitionSettings.html" title="class in com.microblink.recognizers.settings">RecognitionSettings</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.recognizers.templating.<a href="com/microblink/recognizers/templating/TemplatingRecognizerSettings.html" title="class in com.microblink.recognizers.templating">TemplatingRecognizerSettings</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/microblink/results/barcode/BarcodeDetailedData.html#writeToParcel-android.os.Parcel-int-">writeToParcel(Parcel, int)</a></span> - Method in class com.microblink.results.barcode.<a href="com/microblink/results/barcode/BarcodeDetailedData.html" title="class in com.microblink.results.barcode">BarcodeDetailedData</a></dt>
 <dd>&nbsp;</dd>

@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
+var methods = {"i0":10,"i1":10,"i2":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -101,7 +101,12 @@ var activeTableTab = "activeTableTab";
 <li><a href="../../../../com/microblink/recognizers/BaseRecognitionResult.html" title="class in com.microblink.recognizers">com.microblink.recognizers.BaseRecognitionResult</a></li>
 <li>
 <ul class="inheritance">
+<li><a href="../../../../com/microblink/recognizers/templating/TemplatingRecognitionResult.html" title="class in com.microblink.recognizers.templating">com.microblink.recognizers.templating.TemplatingRecognitionResult</a></li>
+<li>
+<ul class="inheritance">
 <li>com.microblink.recognizers.blinkocr.BlinkOCRRecognitionResult</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -117,9 +122,10 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">BlinkOCRRecognitionResult</span>
-extends <a href="../../../../com/microblink/recognizers/BaseRecognitionResult.html" title="class in com.microblink.recognizers">BaseRecognitionResult</a>
+extends <a href="../../../../com/microblink/recognizers/templating/TemplatingRecognitionResult.html" title="class in com.microblink.recognizers.templating">TemplatingRecognitionResult</a>
 implements android.os.Parcelable</pre>
-<div class="block">Created by dodo on 02/03/15.</div>
+<div class="block">Represents recognition result produced by BlinkOCR recognizer which was configured
+ with <a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html" title="class in com.microblink.recognizers.blinkocr"><code>BlinkOCRRecognizerSettings</code></a>.</div>
 </li>
 </ul>
 </div>
@@ -176,17 +182,24 @@ implements android.os.Parcelable</pre>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Constructor Summary table, listing constructors, and an explanation">
 <caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
-<th class="colOne" scope="col">Constructor and Description</th>
+<th class="colFirst" scope="col">Modifier</th>
+<th class="colLast" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html#BlinkOCRRecognitionResult-android.os.Bundle-boolean-boolean-">BlinkOCRRecognitionResult</a></span>(android.os.Bundle&nbsp;data,
+<td class="colFirst"><code>&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html#BlinkOCRRecognitionResult-android.os.Bundle-boolean-boolean-">BlinkOCRRecognitionResult</a></span>(android.os.Bundle&nbsp;data,
                          boolean&nbsp;empty,
                          boolean&nbsp;valid)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html#BlinkOCRRecognitionResult-long-boolean-boolean-">BlinkOCRRecognitionResult</a></span>(long&nbsp;data,
+<td class="colFirst"><code>&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html#BlinkOCRRecognitionResult-long-boolean-boolean-">BlinkOCRRecognitionResult</a></span>(long&nbsp;data,
                          boolean&nbsp;empty,
                          boolean&nbsp;valid)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected </code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html#BlinkOCRRecognitionResult-android.os.Parcel-">BlinkOCRRecognitionResult</a></span>(android.os.Parcel&nbsp;in)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -211,31 +224,13 @@ implements android.os.Parcelable</pre>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="../../../../com/microblink/results/ocr/OcrResult.html" title="class in com.microblink.results.ocr">OcrResult</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html#getOcrResult--">getOcrResult</a></span>()</code>
-<div class="block">Gets the OCR result for default parser group.</div>
+<td class="colFirst"><code>java.lang.String</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html#getDocumentClassificationResult--">getDocumentClassificationResult</a></span>()</code>
+<div class="block">Returns result of document classification, as calculated by <a href="../../../../com/microblink/recognizers/blinkocr/DocumentClassifier.html" title="interface in com.microblink.recognizers.blinkocr"><code>DocumentClassifier</code></a> set
+ with <a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setDocumentClassifier-com.microblink.recognizers.blinkocr.DocumentClassifier-"><code>BlinkOCRRecognizerSettings.setDocumentClassifier(DocumentClassifier)</code></a>.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="../../../../com/microblink/results/ocr/OcrResult.html" title="class in com.microblink.results.ocr">OcrResult</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html#getOcrResult-java.lang.String-">getOcrResult</a></span>(java.lang.String&nbsp;parserGroupName)</code>
-<div class="block">Gets the OCR result for given parser group.</div>
-</td>
-</tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html#getParsedResult-java.lang.String-">getParsedResult</a></span>(java.lang.String&nbsp;parserName)</code>
-<div class="block">Get the result of parser from default parsing group.</div>
-</td>
-</tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html#getParsedResult-java.lang.String-java.lang.String-">getParsedResult</a></span>(java.lang.String&nbsp;parserGroupName,
-               java.lang.String&nbsp;parserName)</code>
-<div class="block">Get the result of parser in given parser group.</div>
-</td>
-</tr>
-<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html#writeToParcel-android.os.Parcel-int-">writeToParcel</a></span>(android.os.Parcel&nbsp;dest,
              int&nbsp;flags)</code>
@@ -243,6 +238,13 @@ implements android.os.Parcelable</pre>
 </td>
 </tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.com.microblink.recognizers.templating.TemplatingRecognitionResult">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;com.microblink.recognizers.templating.<a href="../../../../com/microblink/recognizers/templating/TemplatingRecognitionResult.html" title="class in com.microblink.recognizers.templating">TemplatingRecognitionResult</a></h3>
+<code><a href="../../../../com/microblink/recognizers/templating/TemplatingRecognitionResult.html#getOcrResult--">getOcrResult</a>, <a href="../../../../com/microblink/recognizers/templating/TemplatingRecognitionResult.html#getOcrResult-java.lang.String-">getOcrResult</a>, <a href="../../../../com/microblink/recognizers/templating/TemplatingRecognitionResult.html#getParsedResult-java.lang.String-">getParsedResult</a>, <a href="../../../../com/microblink/recognizers/templating/TemplatingRecognitionResult.html#getParsedResult-java.lang.String-java.lang.String-">getParsedResult</a></code></li>
+</ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.com.microblink.recognizers.BaseRecognitionResult">
 <!--   -->
@@ -302,12 +304,21 @@ implements android.os.Parcelable</pre>
 <a name="BlinkOCRRecognitionResult-android.os.Bundle-boolean-boolean-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>BlinkOCRRecognitionResult</h4>
 <pre>public&nbsp;BlinkOCRRecognitionResult(android.os.Bundle&nbsp;data,
                                  boolean&nbsp;empty,
                                  boolean&nbsp;valid)</pre>
+</li>
+</ul>
+<a name="BlinkOCRRecognitionResult-android.os.Parcel-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>BlinkOCRRecognitionResult</h4>
+<pre>protected&nbsp;BlinkOCRRecognitionResult(android.os.Parcel&nbsp;in)</pre>
 </li>
 </ul>
 </li>
@@ -318,71 +329,22 @@ implements android.os.Parcelable</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="getParsedResult-java.lang.String-">
+<a name="getDocumentClassificationResult--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getParsedResult</h4>
+<h4>getDocumentClassificationResult</h4>
 <pre>@Nullable
-public&nbsp;java.lang.String&nbsp;getParsedResult(java.lang.String&nbsp;parserName)</pre>
-<div class="block">Get the result of parser from default parsing group.</div>
+public&nbsp;java.lang.String&nbsp;getDocumentClassificationResult()</pre>
+<div class="block">Returns result of document classification, as calculated by <a href="../../../../com/microblink/recognizers/blinkocr/DocumentClassifier.html" title="interface in com.microblink.recognizers.blinkocr"><code>DocumentClassifier</code></a> set
+ with <a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setDocumentClassifier-com.microblink.recognizers.blinkocr.DocumentClassifier-"><code>BlinkOCRRecognizerSettings.setDocumentClassifier(DocumentClassifier)</code></a>. If no document
+ classifier was used, returns null.</div>
 <dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>parserName</code> - Name of the parser.</dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../com/microblink/recognizers/templating/TemplatingRecognitionResult.html#getDocumentClassificationResult--">getDocumentClassificationResult</a></code>&nbsp;in class&nbsp;<code><a href="../../../../com/microblink/recognizers/templating/TemplatingRecognitionResult.html" title="class in com.microblink.recognizers.templating">TemplatingRecognitionResult</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>Parsed string if parsing was successful, null or empty string if parsing has failed.</dd>
-</dl>
-</li>
-</ul>
-<a name="getParsedResult-java.lang.String-java.lang.String-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getParsedResult</h4>
-<pre>@Nullable
-public&nbsp;java.lang.String&nbsp;getParsedResult(java.lang.String&nbsp;parserGroupName,
-                                                  java.lang.String&nbsp;parserName)</pre>
-<div class="block">Get the result of parser in given parser group.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>parserGroupName</code> - Name of the parser group where parser was added.</dd>
-<dd><code>parserName</code> - Name of the parser.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>Parsed string if parsing was successful, null or empty string if parsing has failed.</dd>
-</dl>
-</li>
-</ul>
-<a name="getOcrResult--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getOcrResult</h4>
-<pre>@Nullable
-public&nbsp;<a href="../../../../com/microblink/results/ocr/OcrResult.html" title="class in com.microblink.results.ocr">OcrResult</a>&nbsp;getOcrResult()</pre>
-<div class="block">Gets the OCR result for default parser group.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>OCR result structure or null if there is no OCR result for default parser group.</dd>
-</dl>
-</li>
-</ul>
-<a name="getOcrResult-java.lang.String-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getOcrResult</h4>
-<pre>@Nullable
-public&nbsp;<a href="../../../../com/microblink/results/ocr/OcrResult.html" title="class in com.microblink.results.ocr">OcrResult</a>&nbsp;getOcrResult(java.lang.String&nbsp;parserGroupName)</pre>
-<div class="block">Gets the OCR result for given parser group.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>parserGroupName</code> - Name of the parser group for which OCR result should be returned.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>OCR result structure or null if there is no OCR result for requested parser group.</dd>
+<dd>result of document classification, or null</dd>
 </dl>
 </li>
 </ul>

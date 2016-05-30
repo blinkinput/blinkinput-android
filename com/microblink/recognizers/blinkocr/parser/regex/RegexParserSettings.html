@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -234,31 +234,55 @@ implements android.os.Parcelable</pre>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html#isMustEndWithWhitespace--">isMustEndWithWhitespace</a></span>()</code>
+<div class="block">Returns whether matched string must end with whitespace.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html#isMustStartWithWhitespace--">isMustStartWithWhitespace</a></span>()</code>
+<div class="block">Returns whether matched string must start with whitespace.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html#isUsingSieve--">isUsingSieve</a></span>()</code>
 <div class="block">Returns true if algorithm for combining consecutive OCR results between video frames
  for improving OCR quality is used.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html#setMustEndWithWhitespace-boolean-">setMustEndWithWhitespace</a></span>(boolean&nbsp;mustEndWithWhitespace)</code>
+<div class="block">If set to true, regex will not be matched if there is no whitespace after matched string.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html#setMustStartWithWhitespace-boolean-">setMustStartWithWhitespace</a></span>(boolean&nbsp;mustStartWithWhitespace)</code>
+<div class="block">If set to true, regex will not be matched if there is no whitespace before matched string.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html#setOcrEngineOptions-com.microblink.recognizers.blinkocr.engine.BlinkOCREngineOptions-">setOcrEngineOptions</a></span>(<a href="../../../../../../com/microblink/recognizers/blinkocr/engine/BlinkOCREngineOptions.html" title="class in com.microblink.recognizers.blinkocr.engine">BlinkOCREngineOptions</a>&nbsp;ocrEngineOptions)</code>
 <div class="block">Sets the OCR engine options used in Regex OCR parser.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html#setRegex-java.lang.String-">setRegex</a></span>(java.lang.String&nbsp;regex)</code>
 <div class="block">Defines regex that will be used to parse OCR data.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html#setUseSieve-boolean-">setUseSieve</a></span>(boolean&nbsp;useSieve)</code>
 <div class="block">Enable the usage of algorithm for combining consecutive OCR results between video frames
  for improving OCR quality.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html#writeToParcel-android.os.Parcel-int-">writeToParcel</a></span>(android.os.Parcel&nbsp;dest,
              int&nbsp;flags)</code>&nbsp;</td>
@@ -269,7 +293,7 @@ implements android.os.Parcelable</pre>
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;com.microblink.recognizers.blinkocr.parser.<a href="../../../../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser">OcrParserSettings</a></h3>
-<code><a href="../../../../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html#finalize--">finalize</a>, <a href="../../../../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html#getNativeContext--">getNativeContext</a></code></li>
+<code><a href="../../../../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html#finalize--">finalize</a>, <a href="../../../../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html#getNativeContext--">getNativeContext</a>, <a href="../../../../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html#initNativeFromParcel-android.os.Parcel-">initNativeFromParcel</a>, <a href="../../../../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html#isRequired--">isRequired</a>, <a href="../../../../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html#setRequired-boolean-">setRequired</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -443,6 +467,64 @@ implements android.os.Parcelable</pre>
 </dl>
 </li>
 </ul>
+<a name="setMustStartWithWhitespace-boolean-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setMustStartWithWhitespace</h4>
+<pre>public&nbsp;void&nbsp;setMustStartWithWhitespace(boolean&nbsp;mustStartWithWhitespace)</pre>
+<div class="block">If set to true, regex will not be matched if there is no whitespace before matched string.
+ Whitespace is not returned in parsed result.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>mustStartWithWhitespace</code> - whether or not whitespace is required before matched string</dd>
+</dl>
+</li>
+</ul>
+<a name="isMustStartWithWhitespace--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isMustStartWithWhitespace</h4>
+<pre>public&nbsp;boolean&nbsp;isMustStartWithWhitespace()</pre>
+<div class="block">Returns whether matched string must start with whitespace.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether matched string must start with whitespace.</dd>
+</dl>
+</li>
+</ul>
+<a name="setMustEndWithWhitespace-boolean-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setMustEndWithWhitespace</h4>
+<pre>public&nbsp;void&nbsp;setMustEndWithWhitespace(boolean&nbsp;mustEndWithWhitespace)</pre>
+<div class="block">If set to true, regex will not be matched if there is no whitespace after matched string.
+ Whitespace is not returned in parsed result.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>mustEndWithWhitespace</code> - whether or not whitespace is required after matched string</dd>
+</dl>
+</li>
+</ul>
+<a name="isMustEndWithWhitespace--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isMustEndWithWhitespace</h4>
+<pre>public&nbsp;boolean&nbsp;isMustEndWithWhitespace()</pre>
+<div class="block">Returns whether matched string must end with whitespace.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether matched string must end with whitespace.</dd>
+</dl>
+</li>
+</ul>
 <a name="getOcrEngineOptions--">
 <!--   -->
 </a>
@@ -484,6 +566,8 @@ public&nbsp;<a href="../../../../../../com/microblink/recognizers/blinkocr/engin
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>writeToParcel</code>&nbsp;in interface&nbsp;<code>android.os.Parcelable</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html#writeToParcel-android.os.Parcel-int-">writeToParcel</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser">OcrParserSettings</a></code></dd>
 </dl>
 </li>
 </ul>

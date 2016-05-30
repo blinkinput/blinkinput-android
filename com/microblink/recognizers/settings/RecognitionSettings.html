@@ -236,7 +236,7 @@ implements android.os.Parcelable</pre>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/settings/RecognitionSettings.html#getNumMsBeforeTimeout--">getNumMsBeforeTimeout</a></span>()</code>
-<div class="block">Returns the duration in miliseconds that needs to pass since scanning has begun in order to define timeout.</div>
+<div class="block">Returns the duration in milliseconds that needs to pass since scanning has begun in order to define timeout.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
@@ -265,7 +265,7 @@ implements android.os.Parcelable</pre>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/settings/RecognitionSettings.html#setNumMsBeforeTimeout-int-">setNumMsBeforeTimeout</a></span>(int&nbsp;numMsBeforeTimeout)</code>
-<div class="block">Set the duration in miliseconds that needs to pass since scanning has begun in order to define timeout.</div>
+<div class="block">Set the duration in milliseconds that needs to pass since scanning has begun in order to define timeout.</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
@@ -440,7 +440,7 @@ implements android.os.Parcelable</pre>
 <pre>public&nbsp;void&nbsp;setAllowMultipleScanResultsOnSingleImage(boolean&nbsp;multiScan)</pre>
 <div class="block">Sets whether or not outputting of multiple scan results from same image
  is allowed. If that is true, it is possible to return multiple
- recognition results from same image. By default, this option is false, i.e. the array
+ recognition results from same image. If this option is false, the array
  of BaseRecognitionResults will contain at most 1 element. The upside of setting that option
  to false is the speed - if you enable lots of recognizers, as soon as the first recognizer
  succeeds in scanning, recognition chain will be terminated and other
@@ -455,10 +455,20 @@ implements android.os.Parcelable</pre>
 <li class="blockList">
 <h4>setNumMsBeforeTimeout</h4>
 <pre>public&nbsp;void&nbsp;setNumMsBeforeTimeout(int&nbsp;numMsBeforeTimeout)</pre>
-<div class="block">Set the duration in miliseconds that needs to pass since scanning has begun in order to define timeout.</div>
+<div class="block">Set the duration in milliseconds that needs to pass since scanning has begun in order to define timeout.
+ Please be aware that time counting does not start from the moment when scanning starts. Instead
+ it starts from the moment when at least one <a href="../../../../com/microblink/recognizers/BaseRecognitionResult.html" title="class in com.microblink.recognizers"><code>BaseRecognitionResult</code></a>
+ becomes available which is neither empty (<a href="../../../../com/microblink/recognizers/BaseRecognitionResult.html#isEmpty--"><code>BaseRecognitionResult.isEmpty()</code></a>) nor valid
+ (<a href="../../../../com/microblink/recognizers/BaseRecognitionResult.html#isValid--"><code>BaseRecognitionResult.isValid()</code></a>).
+ <p/>
+ The reason for this is the better user experience in cases when for example timeout is set to 10
+ seconds and user starts scanning and leaves device lying on table for 9 seconds and then
+ points the device towards the object it wants to scan: in such case it is better to let that
+ user scan the object it wants instead of completing scan with empty scan result as soon as
+ 10 seconds timeout ticks out.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>numMsBeforeTimeout</code> - duration in miliseconds</dd>
+<dd><code>numMsBeforeTimeout</code> - duration in milliseconds</dd>
 </dl>
 </li>
 </ul>
@@ -469,10 +479,12 @@ implements android.os.Parcelable</pre>
 <li class="blockList">
 <h4>getNumMsBeforeTimeout</h4>
 <pre>public&nbsp;int&nbsp;getNumMsBeforeTimeout()</pre>
-<div class="block">Returns the duration in miliseconds that needs to pass since scanning has begun in order to define timeout.</div>
+<div class="block">Returns the duration in milliseconds that needs to pass since scanning has begun in order to define timeout.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the duration in miliseconds that needs to pass since scanning has begun in order to define timeout.</dd>
+<dd>the duration in milliseconds that needs to pass since scanning has begun in order to define timeout.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../com/microblink/recognizers/settings/RecognitionSettings.html#setNumMsBeforeTimeout-int-"><code>setNumMsBeforeTimeout(int)</code></a></dd>
 </dl>
 </li>
 </ul>

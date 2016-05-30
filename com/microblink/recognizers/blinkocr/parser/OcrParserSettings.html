@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -118,7 +118,7 @@ var activeTableTab = "activeTableTab";
 <pre>public abstract class <span class="typeNameLabel">OcrParserSettings</span>
 extends java.lang.Object
 implements android.os.Parcelable</pre>
-<div class="block">Created by dodo on 02/03/15.</div>
+<div class="block">Abstract class that represents settings for OCR parser.</div>
 </li>
 </ul>
 </div>
@@ -215,6 +215,30 @@ implements android.os.Parcelable</pre>
 <div class="block">Returns the pointer containing native part of the implementation.</div>
 </td>
 </tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html#initNativeFromParcel-android.os.Parcel-">initNativeFromParcel</a></span>(android.os.Parcel&nbsp;in)</code>
+<div class="block">Call this method from derived class after initializing native context.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html#isRequired--">isRequired</a></span>()</code>
+<div class="block">Returns whether parser configured with this parser settings object will be required</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html#setRequired-boolean-">setRequired</a></span>(boolean&nbsp;required)</code>
+<div class="block">Defines whether the parser configured with this parser settings object will be required
+ or optional.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html#writeToParcel-android.os.Parcel-int-">writeToParcel</a></span>(android.os.Parcel&nbsp;dest,
+             int&nbsp;flags)</code>&nbsp;</td>
+</tr>
 </table>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -222,13 +246,6 @@ implements android.os.Parcelable</pre>
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
 <code>clone, equals, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
-</ul>
-<ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.android.os.Parcelable">
-<!--   -->
-</a>
-<h3>Methods inherited from interface&nbsp;android.os.Parcelable</h3>
-<code>writeToParcel</code></li>
 </ul>
 </li>
 </ul>
@@ -313,13 +330,76 @@ implements android.os.Parcelable</pre>
 <a name="describeContents--">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>describeContents</h4>
 <pre>public&nbsp;int&nbsp;describeContents()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>describeContents</code>&nbsp;in interface&nbsp;<code>android.os.Parcelable</code></dd>
+</dl>
+</li>
+</ul>
+<a name="writeToParcel-android.os.Parcel-int-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>writeToParcel</h4>
+<pre>@CallSuper
+public&nbsp;void&nbsp;writeToParcel(android.os.Parcel&nbsp;dest,
+                                     int&nbsp;flags)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code>writeToParcel</code>&nbsp;in interface&nbsp;<code>android.os.Parcelable</code></dd>
+</dl>
+</li>
+</ul>
+<a name="initNativeFromParcel-android.os.Parcel-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>initNativeFromParcel</h4>
+<pre>@CallSuper
+protected&nbsp;void&nbsp;initNativeFromParcel(android.os.Parcel&nbsp;in)</pre>
+<div class="block">Call this method from derived class after initializing native context.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>in</code> - Parcel from which data is read.</dd>
+</dl>
+</li>
+</ul>
+<a name="setRequired-boolean-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setRequired</h4>
+<pre>public&nbsp;void&nbsp;setRequired(boolean&nbsp;required)</pre>
+<div class="block">Defines whether the parser configured with this parser settings object will be required
+ or optional. Data will not be returned via <a href="../../../../../com/microblink/view/recognition/ScanResultListener.html#onScanningDone-com.microblink.recognizers.RecognitionResults-"><code>ScanResultListener.onScanningDone(RecognitionResults)</code></a>
+ until all parsers that are required have produced result.
+
+ By default, every parser is required. Set this to false in cases when you will manually
+ manage which parser has produced result, and which did not (for example in random scan use case).</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>required</code> - whether this parser is required or not</dd>
+</dl>
+</li>
+</ul>
+<a name="isRequired--">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>isRequired</h4>
+<pre>public&nbsp;boolean&nbsp;isRequired()</pre>
+<div class="block">Returns whether parser configured with this parser settings object will be required</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether parser configured with this parser settings object will be required</dd>
 </dl>
 </li>
 </ul>

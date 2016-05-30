@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -48,7 +48,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html" title="class in com.microblink.recognizers.blinkocr"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li>Next&nbsp;Class</li>
+<li><a href="../../../../com/microblink/recognizers/blinkocr/DocumentClassifier.html" title="interface in com.microblink.recognizers.blinkocr"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html" target="_top">Frames</a></li>
@@ -101,7 +101,12 @@ var activeTableTab = "activeTableTab";
 <li><a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html" title="class in com.microblink.recognizers.settings">com.microblink.recognizers.settings.RecognizerSettings</a></li>
 <li>
 <ul class="inheritance">
+<li><a href="../../../../com/microblink/recognizers/templating/TemplatingRecognizerSettings.html" title="class in com.microblink.recognizers.templating">com.microblink.recognizers.templating.TemplatingRecognizerSettings</a></li>
+<li>
+<ul class="inheritance">
 <li>com.microblink.recognizers.blinkocr.BlinkOCRRecognizerSettings</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -117,8 +122,8 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">BlinkOCRRecognizerSettings</span>
-extends <a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html" title="class in com.microblink.recognizers.settings">RecognizerSettings</a></pre>
-<div class="block">Created by igor on 11/20/14.</div>
+extends <a href="../../../../com/microblink/recognizers/templating/TemplatingRecognizerSettings.html" title="class in com.microblink.recognizers.templating">TemplatingRecognizerSettings</a></pre>
+<div class="block">Represents settings for generic OCR recognizer used for scanning segments.</div>
 </li>
 </ul>
 </div>
@@ -156,11 +161,14 @@ extends <a href="../../../../com/microblink/recognizers/settings/RecognizerSetti
 <td class="colFirst"><code>static android.os.Parcelable.Creator&lt;<a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html" title="class in com.microblink.recognizers.blinkocr">BlinkOCRRecognizerSettings</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#CREATOR">CREATOR</a></span></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#kDefaultParserGroup">kDefaultParserGroup</a></span></code>&nbsp;</td>
-</tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a name="fields.inherited.from.class.com.microblink.recognizers.templating.TemplatingRecognizerSettings">
+<!--   -->
+</a>
+<h3>Fields inherited from class&nbsp;com.microblink.recognizers.templating.<a href="../../../../com/microblink/recognizers/templating/TemplatingRecognizerSettings.html" title="class in com.microblink.recognizers.templating">TemplatingRecognizerSettings</a></h3>
+<code><a href="../../../../com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#kDefaultParserGroup">kDefaultParserGroup</a></code></li>
+</ul>
 <ul class="blockList">
 <li class="blockList"><a name="fields.inherited.from.class.com.microblink.recognizers.settings.RecognizerSettings">
 <!--   -->
@@ -207,69 +215,63 @@ extends <a href="../../../../com/microblink/recognizers/settings/RecognizerSetti
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#addParser-java.lang.String-com.microblink.recognizers.blinkocr.parser.OcrParserSettings-">addParser</a></span>(java.lang.String&nbsp;parserName,
-         <a href="../../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser">OcrParserSettings</a>&nbsp;parserSettings)</code>
-<div class="block">Adds parser to default parser group.</div>
-</td>
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#finalize--">finalize</a></span>()</code>&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#addParserToParserGroup-java.lang.String-java.lang.String-com.microblink.recognizers.blinkocr.parser.OcrParserSettings-">addParserToParserGroup</a></span>(java.lang.String&nbsp;parserGroupName,
-                      java.lang.String&nbsp;parserName,
-                      <a href="../../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser">OcrParserSettings</a>&nbsp;parserSettings)</code>
-<div class="block">Adds parser to given parser group.</div>
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#isAllowFlippedRecognition--">isAllowFlippedRecognition</a></span>()</code>
+<div class="block">Returns whether or not flipped recognition feature is enabled.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#getAllowUnparsedResults--">getAllowUnparsedResults</a></span>()</code>
-<div class="block">Checks whether unparsed results are allowed.</div>
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setAllowFlippedRecognition-boolean-">setAllowFlippedRecognition</a></span>(boolean&nbsp;allowFlippedRecognition)</code>
+<div class="block">Set this to true to enable recognition of document also in upside down direction.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#removeAllParsers--">removeAllParsers</a></span>()</code>
-<div class="block">Removes all parsers from all parser groups.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setDetectorSettings-com.microblink.detectors.DetectorSettings-">setDetectorSettings</a></span>(<a href="../../../../com/microblink/detectors/DetectorSettings.html" title="class in com.microblink.detectors">DetectorSettings</a>&nbsp;settings)</code>
+<div class="block">Sets detector settings that will define which detector will be used.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#removeAllParsersFromGroup-java.lang.String-">removeAllParsersFromGroup</a></span>(java.lang.String&nbsp;parserGroupName)</code>
-<div class="block">Removes all parsers from given parser group.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setDocumentClassifier-com.microblink.recognizers.blinkocr.DocumentClassifier-">setDocumentClassifier</a></span>(<a href="../../../../com/microblink/recognizers/blinkocr/DocumentClassifier.html" title="interface in com.microblink.recognizers.blinkocr">DocumentClassifier</a>&nbsp;documentClassifier)</code>
+<div class="block">Sets the <a href="../../../../com/microblink/recognizers/blinkocr/DocumentClassifier.html" title="interface in com.microblink.recognizers.blinkocr"><code>DocumentClassifier</code></a> that can be used for classification of the documents based
+ on the extraction result of parser groups associated with decoding infos of detector set
+ with <a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setDetectorSettings-com.microblink.detectors.DetectorSettings-"><code>setDetectorSettings(DetectorSettings)</code></a>.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#removeParser-java.lang.String-">removeParser</a></span>(java.lang.String&nbsp;parserName)</code>
-<div class="block">Removes parser from default parser group.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setParserDecodingInfos-com.microblink.detectors.DecodingInfo:A-java.lang.String-">setParserDecodingInfos</a></span>(<a href="../../../../com/microblink/detectors/DecodingInfo.html" title="class in com.microblink.detectors">DecodingInfo</a>[]&nbsp;decodingInfos,
+                      java.lang.String&nbsp;decodingInfoSet)</code>
+<div class="block">Sets the named decoding info set, for specific document type, whose elements contain location
+ information about additional document elements that should be recognized together with
+ elements defined within <a href="../../../../com/microblink/detectors/DetectorSettings.html" title="class in com.microblink.detectors"><code>DetectorSettings</code></a> given with <a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setDetectorSettings-com.microblink.detectors.DetectorSettings-"><code>setDetectorSettings(DetectorSettings)</code></a>.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#removeParserFromParserGroup-java.lang.String-java.lang.String-">removeParserFromParserGroup</a></span>(java.lang.String&nbsp;parserGroupName,
-                           java.lang.String&nbsp;parserName)</code>
-<div class="block">Removes parser from given parser group.</div>
-</td>
-</tr>
-<tr id="i7" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setAllowUnparsedResults-boolean-">setAllowUnparsedResults</a></span>(boolean&nbsp;unparsedResultsAllowed)</code>
-<div class="block">Sets whether unparsed results will be allowed.</div>
-</td>
-</tr>
-<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#writeToParcel-android.os.Parcel-int-">writeToParcel</a></span>(android.os.Parcel&nbsp;dest,
              int&nbsp;flags)</code>&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.com.microblink.recognizers.templating.TemplatingRecognizerSettings">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;com.microblink.recognizers.templating.<a href="../../../../com/microblink/recognizers/templating/TemplatingRecognizerSettings.html" title="class in com.microblink.recognizers.templating">TemplatingRecognizerSettings</a></h3>
+<code><a href="../../../../com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#addParser-java.lang.String-com.microblink.recognizers.blinkocr.parser.OcrParserSettings-">addParser</a>, <a href="../../../../com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#addParserToParserGroup-java.lang.String-java.lang.String-com.microblink.recognizers.blinkocr.parser.OcrParserSettings-">addParserToParserGroup</a>, <a href="../../../../com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#getAllowUnparsedResults--">getAllowUnparsedResults</a>, <a href="../../../../com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#initFromParcel-android.os.Parcel-">initFromParcel</a>, <a href="../../../../com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#removeAllParserDecodingInfoSets--">removeAllParserDecodingInfoSets</a>, <a href="../../../../com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#removeAllParsers--">removeAllParsers</a>, <a href="../../../../com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#removeAllParsersFromGroup-java.lang.String-">removeAllParsersFromGroup</a>, <a href="../../../../com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#removeParser-java.lang.String-">removeParser</a>, <a href="../../../../com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#removeParserDecodingInfoSet-java.lang.String-">removeParserDecodingInfoSet</a>, <a href="../../../../com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#removeParserFromParserGroup-java.lang.String-java.lang.String-">removeParserFromParserGroup</a>, <a href="../../../../com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#setAllowUnparsedResults-boolean-">setAllowUnparsedResults</a></code></li>
+</ul>
+<ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.com.microblink.recognizers.settings.RecognizerSettings">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;com.microblink.recognizers.settings.<a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html" title="class in com.microblink.recognizers.settings">RecognizerSettings</a></h3>
-<code><a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#describeContents--">describeContents</a>, <a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#finalize--">finalize</a>, <a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#getNativeContext--">getNativeContext</a>, <a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#isEnabled--">isEnabled</a>, <a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#requiresAutofocus--">requiresAutofocus</a>, <a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#requiresLandscapeMode--">requiresLandscapeMode</a>, <a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#setEnabled-boolean-">setEnabled</a></code></li>
+<code><a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#describeContents--">describeContents</a>, <a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#getNativeContext--">getNativeContext</a>, <a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#isEnabled--">isEnabled</a>, <a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#requiresAutofocus--">requiresAutofocus</a>, <a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#requiresLandscapeMode--">requiresLandscapeMode</a>, <a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#setEnabled-boolean-">setEnabled</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -292,19 +294,6 @@ extends <a href="../../../../com/microblink/recognizers/settings/RecognizerSetti
 <!--   -->
 </a>
 <h3>Field Detail</h3>
-<a name="kDefaultParserGroup">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>kDefaultParserGroup</h4>
-<pre>public static final&nbsp;java.lang.String kDefaultParserGroup</pre>
-<dl>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../constant-values.html#com.microblink.recognizers.blinkocr.BlinkOCRRecognizerSettings.kDefaultParserGroup">Constant Field Values</a></dd>
-</dl>
-</li>
-</ul>
 <a name="CREATOR">
 <!--   -->
 </a>
@@ -339,130 +328,130 @@ extends <a href="../../../../com/microblink/recognizers/settings/RecognizerSetti
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="addParser-java.lang.String-com.microblink.recognizers.blinkocr.parser.OcrParserSettings-">
+<a name="setDetectorSettings-com.microblink.detectors.DetectorSettings-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>addParser</h4>
-<pre>public&nbsp;void&nbsp;addParser(@NonNull
-                      java.lang.String&nbsp;parserName,
-                      @NonNull
-                      <a href="../../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser">OcrParserSettings</a>&nbsp;parserSettings)</pre>
-<div class="block">Adds parser to default parser group.</div>
+<h4>setDetectorSettings</h4>
+<pre>public&nbsp;void&nbsp;setDetectorSettings(@Nullable
+                                <a href="../../../../com/microblink/detectors/DetectorSettings.html" title="class in com.microblink.detectors">DetectorSettings</a>&nbsp;settings)</pre>
+<div class="block">Sets detector settings that will define which detector will be used.
+ If set to null, no detector will be used and OCR will be performed on entire
+ scanning region.
+ If set to valid detector, first this detector will be used to detect an object and
+ then its <a href="../../../../com/microblink/detectors/DecodingInfo.html" title="class in com.microblink.detectors"><code>DecodingInfo</code></a> objects will be consulted
+ to perform dewarping of defined locations and parsers from parser group having the same
+ name as dewarped location will be used to extract OCR data.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>parserName</code> - Name of the parser (also the name where parser result will be stored in BlinkOCRRecognitionResult)</dd>
-<dd><code>parserSettings</code> - Settings for the parser that will be added.</dd>
+<dd><code>settings</code> - detector settings that will define which detector will be used or null.</dd>
 </dl>
 </li>
 </ul>
-<a name="addParserToParserGroup-java.lang.String-java.lang.String-com.microblink.recognizers.blinkocr.parser.OcrParserSettings-">
+<a name="setAllowFlippedRecognition-boolean-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>addParserToParserGroup</h4>
-<pre>public&nbsp;void&nbsp;addParserToParserGroup(@NonNull
-                                   java.lang.String&nbsp;parserGroupName,
-                                   @NonNull
-                                   java.lang.String&nbsp;parserName,
-                                   @NonNull
-                                   <a href="../../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser">OcrParserSettings</a>&nbsp;parserSettings)</pre>
-<div class="block">Adds parser to given parser group.</div>
+<h4>setAllowFlippedRecognition</h4>
+<pre>public&nbsp;void&nbsp;setAllowFlippedRecognition(boolean&nbsp;allowFlippedRecognition)</pre>
+<div class="block">Set this to true to enable recognition of document also in upside down direction.
+ This is useful if detector being used cannot determine correct orientation of detected
+ document (for example <a href="../../../../com/microblink/detectors/document/DocumentDetectorSettings.html" title="class in com.microblink.detectors.document"><code>DocumentDetectorSettings</code></a>).
+ Keep in mind that enabling this feature will make recognition two times slower
+ and possibly less accurate. By default, this is turned off.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>parserGroupName</code> - Name of the parser group where parser will be added.</dd>
-<dd><code>parserName</code> - Name of the parser (also the name where parser result will be stored in BlinkOCRRecognitionResult in given parser group)</dd>
-<dd><code>parserSettings</code> - Settings for the parser that will be added.</dd>
+<dd><code>allowFlippedRecognition</code> - whether or not flipped recognition is allowed</dd>
 </dl>
 </li>
 </ul>
-<a name="removeParser-java.lang.String-">
+<a name="isAllowFlippedRecognition--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>removeParser</h4>
-<pre>public&nbsp;void&nbsp;removeParser(@NonNull
-                         java.lang.String&nbsp;parserName)</pre>
-<div class="block">Removes parser from default parser group.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>parserName</code> - Name of the parser to be removed.</dd>
-</dl>
-</li>
-</ul>
-<a name="removeAllParsersFromGroup-java.lang.String-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>removeAllParsersFromGroup</h4>
-<pre>public&nbsp;void&nbsp;removeAllParsersFromGroup(@NonNull
-                                      java.lang.String&nbsp;parserGroupName)</pre>
-<div class="block">Removes all parsers from given parser group.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>parserGroupName</code> - Name of the parser group to be cleared.</dd>
-</dl>
-</li>
-</ul>
-<a name="removeAllParsers--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>removeAllParsers</h4>
-<pre>public&nbsp;void&nbsp;removeAllParsers()</pre>
-<div class="block">Removes all parsers from all parser groups.</div>
-</li>
-</ul>
-<a name="removeParserFromParserGroup-java.lang.String-java.lang.String-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>removeParserFromParserGroup</h4>
-<pre>public&nbsp;void&nbsp;removeParserFromParserGroup(@NonNull
-                                        java.lang.String&nbsp;parserGroupName,
-                                        @NonNull
-                                        java.lang.String&nbsp;parserName)</pre>
-<div class="block">Removes parser from given parser group.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>parserGroupName</code> - Name of the parser group from which parser should be removed.</dd>
-<dd><code>parserName</code> - Name of the parser to be removed.</dd>
-</dl>
-</li>
-</ul>
-<a name="setAllowUnparsedResults-boolean-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setAllowUnparsedResults</h4>
-<pre>public&nbsp;void&nbsp;setAllowUnparsedResults(boolean&nbsp;unparsedResultsAllowed)</pre>
-<div class="block">Sets whether unparsed results will be allowed. By default only parsed results are allowed.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>unparsedResultsAllowed</code> - If <code>true</code> then unparsed results will be allowed, otherwise they
-                               will not be allowed.</dd>
-</dl>
-</li>
-</ul>
-<a name="getAllowUnparsedResults--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getAllowUnparsedResults</h4>
-<pre>public&nbsp;boolean&nbsp;getAllowUnparsedResults()</pre>
-<div class="block">Checks whether unparsed results are allowed. By default only parsed results are allowed.</div>
+<h4>isAllowFlippedRecognition</h4>
+<pre>public&nbsp;boolean&nbsp;isAllowFlippedRecognition()</pre>
+<div class="block">Returns whether or not flipped recognition feature is enabled.
+ For more information, see <a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setAllowFlippedRecognition-boolean-"><code>setAllowFlippedRecognition(boolean)</code></a>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>If <code>true</code> then unparsed results are allowed, otherwise they
-         are not allowed.</dd>
+<dd>whether or not flipped recognition feature is enabled</dd>
+</dl>
+</li>
+</ul>
+<a name="setParserDecodingInfos-com.microblink.detectors.DecodingInfo:A-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setParserDecodingInfos</h4>
+<pre>public&nbsp;void&nbsp;setParserDecodingInfos(@NonNull
+                                   <a href="../../../../com/microblink/detectors/DecodingInfo.html" title="class in com.microblink.detectors">DecodingInfo</a>[]&nbsp;decodingInfos,
+                                   @NonNull
+                                   java.lang.String&nbsp;decodingInfoSet)</pre>
+<div class="block">Sets the named decoding info set, for specific document type, whose elements contain location
+ information about additional document elements that should be recognized together with
+ elements defined within <a href="../../../../com/microblink/detectors/DetectorSettings.html" title="class in com.microblink.detectors"><code>DetectorSettings</code></a> given with <a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setDetectorSettings-com.microblink.detectors.DetectorSettings-"><code>setDetectorSettings(DetectorSettings)</code></a>.
+
+ Use this method if document contains additional information (elements) of interest that should
+ be recognized and there are multiple document types that can be
+ distinguished using the extraction result from locations defined within given detector. <br>
+ The position of each additional element is represented as <a href="../../../../com/microblink/detectors/DecodingInfo.html" title="class in com.microblink.detectors"><code>DecodingInfo</code></a> object which
+ holds the location for that element of interest (relative to full document detection) and the
+ desired dewarp height (in number of pixels), for that location. <b>Name of the decoding info
+ must be equal to the name of the parser group</b> that will be used for parsing that element. <br>
+ Additionally, for document classification, set the document classifier using the method
+ <a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setDocumentClassifier-com.microblink.recognizers.blinkocr.DocumentClassifier-"><code>setDocumentClassifier(DocumentClassifier)</code></a>.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#setParserDecodingInfos-com.microblink.detectors.DecodingInfo:A-java.lang.String-">setParserDecodingInfos</a></code>&nbsp;in class&nbsp;<code><a href="../../../../com/microblink/recognizers/templating/TemplatingRecognizerSettings.html" title="class in com.microblink.recognizers.templating">TemplatingRecognizerSettings</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>decodingInfos</code> - Array that contains the decoding infos for additional document elements of
+                      interest that should be recognized together with the MRZ zone.</dd>
+<dd><code>decodingInfoSet</code> - Name of the decoding info set, must be equal to the classifier result
+                        for corresponding document type.</dd>
+</dl>
+</li>
+</ul>
+<a name="setDocumentClassifier-com.microblink.recognizers.blinkocr.DocumentClassifier-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setDocumentClassifier</h4>
+<pre>public&nbsp;void&nbsp;setDocumentClassifier(@Nullable
+                                  <a href="../../../../com/microblink/recognizers/blinkocr/DocumentClassifier.html" title="interface in com.microblink.recognizers.blinkocr">DocumentClassifier</a>&nbsp;documentClassifier)</pre>
+<div class="block">Sets the <a href="../../../../com/microblink/recognizers/blinkocr/DocumentClassifier.html" title="interface in com.microblink.recognizers.blinkocr"><code>DocumentClassifier</code></a> that can be used for classification of the documents based
+ on the extraction result of parser groups associated with decoding infos of detector set
+ with <a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setDetectorSettings-com.microblink.detectors.DetectorSettings-"><code>setDetectorSettings(DetectorSettings)</code></a>.
+ This method should be used if multiple document types having same physical size are expected
+ and additional information (elements) of interest should be recognized. In addition, decoding
+ infos for each document type should be set with method <a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setParserDecodingInfos-com.microblink.detectors.DecodingInfo:A-java.lang.String-"><code>setParserDecodingInfos(DecodingInfo[], String)</code></a>
+ method. <b>For each document type, name of the decoding info set must be equal to corresponding classifier result.</b></div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>documentClassifier</code> - Document classifier that will be used for document classification based on the extraction results.
+                           Classifier result, for each document type, must be equal to the name of the corresponding
+                           decoding info set for that document type.</dd>
+</dl>
+</li>
+</ul>
+<a name="finalize--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>finalize</h4>
+<pre>protected&nbsp;void&nbsp;finalize()
+                 throws java.lang.Throwable</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html#finalize--">finalize</a></code>&nbsp;in class&nbsp;<code><a href="../../../../com/microblink/recognizers/settings/RecognizerSettings.html" title="class in com.microblink.recognizers.settings">RecognizerSettings</a></code></dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.Throwable</code></dd>
 </dl>
 </li>
 </ul>
@@ -474,6 +463,12 @@ extends <a href="../../../../com/microblink/recognizers/settings/RecognizerSetti
 <h4>writeToParcel</h4>
 <pre>public&nbsp;void&nbsp;writeToParcel(android.os.Parcel&nbsp;dest,
                           int&nbsp;flags)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code>writeToParcel</code>&nbsp;in interface&nbsp;<code>android.os.Parcelable</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../com/microblink/recognizers/templating/TemplatingRecognizerSettings.html#writeToParcel-android.os.Parcel-int-">writeToParcel</a></code>&nbsp;in class&nbsp;<code><a href="../../../../com/microblink/recognizers/templating/TemplatingRecognizerSettings.html" title="class in com.microblink.recognizers.templating">TemplatingRecognizerSettings</a></code></dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -504,7 +499,7 @@ extends <a href="../../../../com/microblink/recognizers/settings/RecognizerSetti
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html" title="class in com.microblink.recognizers.blinkocr"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li>Next&nbsp;Class</li>
+<li><a href="../../../../com/microblink/recognizers/blinkocr/DocumentClassifier.html" title="interface in com.microblink.recognizers.blinkocr"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html" target="_top">Frames</a></li>
