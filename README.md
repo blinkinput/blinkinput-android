@@ -32,9 +32,16 @@ See below for more information about how to integrate _BlinkOCR_ SDK into your a
 * [Recognition settings and results](#recognitionSettingsAndResults)
   * [[Recognition settings](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/settings/RecognitionSettings.html)](#recognitionSettings)
   * [Scanning segments with BlinkOCR recognizer](#blinkOCR)
+  * [Scanning templated documents with BlinkOCR recognizer](#blinkOCR_templating)
   * [Scanning PDF417 barcodes](#pdf417Recognizer)
   * [Scanning one dimensional barcodes with _BlinkOCR_'s implementation](#custom1DBarDecoder)
   * [Scanning barcodes with ZXing implementation](#zxing)
+  * [Performing detection of various documents](#detectorRecognizer)
+* [Detection settings and results](#detectionSettingsAndResults)
+  * [Detection of documents with Machine Readable Zone](#mrtdDetector)
+  * [Detection of documents with Document Detector](#documentDetector)
+  * [Detection of faces with Face Detector](#faceDetector)
+  * [Combining detectors with MultiDetector](#multiDetector)
 * [Processor architecture considerations](#archConsider)
   * [Reducing the final size of your app](#reduceSize)
   * [Combining _BlinkOCR_ with other native libraries](#combineNativeLibraries)
@@ -89,7 +96,7 @@ After that, you just need to add _BlinkOCR_ as a dependency to your application 
 
 ```
 dependencies {
-    compile('com.microblink:blinkocr:2.5.0@aar') {
+    compile('com.microblink:blinkocr:2.6.0@aar') {
     	transitive = true
     }
 }
@@ -103,6 +110,19 @@ If you plan to use ProGuard, add following lines to your `proguard-rules.pro`:
 -dontwarn android.hardware.**
 -dontwarn android.support.v4.**
 ```
+
+#### Import Javadoc to Android Studio
+
+Current version of Android Studio will not automatically import javadoc from maven dependency, so you have you do that manually. To do that, follow these steps:
+
+1. In Android Studio project sidebar, ensure [project view is enabled](https://developer.android.com/sdk/installing/studio-androidview.html)
+2. Expand `External Libraries` entry (usually this is the last entry in project view)
+3. Locate `blinkocr-2.6.0` entry, right click on it and select `Library Properties...`
+4. A `Library Properties` pop-up window will appear
+5. Click the second `+` button in bottom left corner of the window (the one that contains `+` with little globe)
+6. Window for definining documentation URL will appear
+7. Enter following address: `https://blinkocr.github.io/blinkocr-android/`
+8. Click `OK`
 
 ### Using android-maven-plugin
 
@@ -122,7 +142,7 @@ Open your `pom.xml` file and add these directives as appropriate:
 	<dependency>
 		  <groupId>com.microblink</groupId>
 		  <artifactId>blinkocr</artifactId>
-		  <version>2.5.0</version>
+		  <version>2.6.0</version>
 		  <type>aar</type>
   	</dependency>
 </dependencies>
@@ -138,7 +158,7 @@ Open your `pom.xml` file and add these directives as appropriate:
 	```
 	dependencies {
    		compile project(':LibRecognizer')
- 		compile "com.android.support:appcompat-v7:23.2.1"
+ 		compile "com.android.support:appcompat-v7:23.4.0"
 	}
 	```
 5. If you plan to use ProGuard, add following lines to your `proguard-rules.pro`:
@@ -149,6 +169,17 @@ Open your `pom.xml` file and add these directives as appropriate:
 	-dontwarn android.hardware.**
 	-dontwarn android.support.v4.**
 	```
+	
+### <a name="androidStudio_importAAR_javadoc"></a> Import Javadoc to Android Studio
+
+1. In Android Studio project sidebar, ensure [project view is enabled](https://developer.android.com/sdk/installing/studio-androidview.html)
+2. Expand `External Libraries` entry (usually this is the last entry in project view)
+3. Locate `LibRecognizer-unspecified` entry, right click on it and select `Library Properties...`
+4. A `Library Properties` pop-up window will appear
+5. Click the `+` button in bottom left corner of the window
+6. Window for choosing JAR file will appear
+7. Find and select `LibRecognizer-javadoc.jar` file which is located in root folder of the SDK distribution
+8. Click `OK`
 	
 ## <a name="eclipseIntegration"></a> Eclipse integration instructions
 
@@ -235,7 +266,7 @@ This section will cover more advanced details in _BlinkOCR_ integration. First p
 ### _BlinkOCR_ requirements
 Even before starting the scan activity, you should check if _BlinkOCR_ is supported on current device. In order to be supported, device needs to have camera. 
 
-Android 2.3 is the minimum android version on which _BlinkOCR_ is supported.
+Android 2.3 is the minimum android version on which _BlinkOCR_ is supported. For best performance and compatibility, we recommend Android 5.0 or newer.
 
 Camera video preview resolution also matters. In order to perform successful scans, camera preview resolution cannot be too low. _BlinkOCR_ requires minimum 480p camera preview resolution in order to perform scan. It must be noted that camera preview resolution is not the same as the video record resolution, although on most devices those are the same. However, there are some devices that allow recording of HD video (720p resolution), but do not allow high enough camera preview resolution (for example, [Sony Xperia Go](http://www.gsmarena.com/sony_xperia_go-4782.php) supports video record resolution at 720p, but camera preview resolution is only 320p - _BlinkOCR_ does not work on that device).
 
@@ -260,19 +291,19 @@ if(status == RecognizerCompatibilityStatus.RECOGNIZER_SUPPORTED) {
 
 This section will discuss possible parameters that can be sent over `Intent` for `BlinkOCRActivity` activity that can customize default behaviour. There are several intent extras that can be sent to `BlinkOCRActivity` actitivy:
 	
-* **`BlinkOCRActivity.EXTRAS_SCAN_CONFIGURATION`** - with this extra you must set the array of [ScanConfiguration](https://blinkocr.github.io/blinkocr-android/com/microblink/ocr/ScanConfiguration.html) objects. Each `ScanConfiguration` object will define specific scan configuration that will be performed. `ScanConfiguration` defines two string resource ID's - title of the scanned item and text that will be displayed above field where scan is performed. Besides that it defines the name of scanned item and object defining the OCR parser settings. More information about parser settings can be found in chapter [Scanning segments with BlinkOCR recognizer](#blinkOCR). Here is only important that each scan configuration represents a single parser group and BlinkOCRActivity ensures that only one parser group is active at a time. After defining scan configuration array, you need to put it into intent extra with following code snippet:
+* <a name="intent_EXTRAS_SCAN_CONFIGURATION" href="#intent_EXTRAS_SCAN_CONFIGURATION">#</a> **`BlinkOCRActivity.EXTRAS_SCAN_CONFIGURATION`** - with this extra you must set the array of [ScanConfiguration](https://blinkocr.github.io/blinkocr-android/com/microblink/ocr/ScanConfiguration.html) objects. Each `ScanConfiguration` object will define specific scan configuration that will be performed. `ScanConfiguration` defines two string resource ID's - title of the scanned item and text that will be displayed above field where scan is performed. Besides that it defines the name of scanned item and object defining the OCR parser settings. More information about parser settings can be found in chapter [Scanning segments with BlinkOCR recognizer](#blinkOCR). Here is only important that each scan configuration represents a single parser group and BlinkOCRActivity ensures that only one parser group is active at a time. After defining scan configuration array, you need to put it into intent extra with following code snippet:
 	
 	```java
 	intent.putExtra(BlinkOCRActivity.EXTRAS_SCAN_CONFIGURATION, confArray);
 	```
 	
-* **`BlinkOCRActivity.EXTRAS_SCAN_RESULTS`** - you can use this extra in `onActivityResult` method of calling activity to obtain bundle with recognition results. Bundle will contain only strings representing scanned data under keys defined with each scan configuration. If you also need to obtain OCR result structure, then you need to perform [advanced integration](#recognizerView). You can use the following snippet to obtain scan results:
+* <a name="intent_EXTRAS_SCAN_RESULTS" href="#intent_EXTRAS_SCAN_RESULTS">#</a> **`BlinkOCRActivity.EXTRAS_SCAN_RESULTS`** - you can use this extra in `onActivityResult` method of calling activity to obtain bundle with recognition results. Bundle will contain only strings representing scanned data under keys defined with each scan configuration. If you also need to obtain OCR result structure, then you need to perform [advanced integration](#recognizerView). You can use the following snippet to obtain scan results:
 
 	```java
 	Bundle results = data.getBundle(BlinkOCRActivity.EXTRAS_SCAN_RESULTS);
 	```
 	
-* **`BlinkOCRActivity.EXTRAS_HELP_INTENT`** - with this extra you can set fully initialized intent that will be sent when user clicks the help button. You can put any extras you want to your intent - all will be delivered to your activity when user clicks the help button. If you do not set help intent, help button will not be shown in camera interface. To set the intent for help activity, use the following code snippet:
+* <a name="intent_BOCR_EXTRAS_HELP_INTENT" href="#intent_BOCR_EXTRAS_HELP_INTENT">#</a> **`BlinkOCRActivity.EXTRAS_HELP_INTENT`** - with this extra you can set fully initialized intent that will be sent when user clicks the help button. You can put any extras you want to your intent - all will be delivered to your activity when user clicks the help button. If you do not set help intent, help button will not be shown in camera interface. To set the intent for help activity, use the following code snippet:
 	
 	```java
 	/** Set the intent which will be sent when user taps help button. 
@@ -281,13 +312,13 @@ This section will discuss possible parameters that can be sent over `Intent` for
 	 * */
 	intent.putExtra(BlinkOCRActivity.EXTRAS_HELP_INTENT, new Intent(this, HelpActivity.class));
 	```
-* **`BlinkOCRActivity.EXTRAS_CAMERA_VIDEO_PRESET`** - with this extra you can set the video resolution preset that will be used when choosing camera resolution for scanning. For more information, see [javadoc](https://blinkocr.github.io/blinkocr-android/com/microblink/hardware/camera/VideoResolutionPreset.html). For example, to use 720p video resolution preset, use the following code snippet:
+* <a name="intent_BOCR_EXTRAS_CAMERA_VIDEO_PRESET" href="#intent_BOCR_EXTRAS_CAMERA_VIDEO_PRESET">#</a> **`BlinkOCRActivity.EXTRAS_CAMERA_VIDEO_PRESET`** - with this extra you can set the video resolution preset that will be used when choosing camera resolution for scanning. For more information, see [javadoc](https://blinkocr.github.io/blinkocr-android/com/microblink/hardware/camera/VideoResolutionPreset.html). For example, to use 720p video resolution preset, use the following code snippet:
 
 	```java
 	intent.putExtra(BlinkOCRActivity.EXTRAS_CAMERA_VIDEO_PRESET, (Parcelable)VideoResolutionPreset.VIDEO_RESOLUTION_720p);
 	```
 
-* **`BlinkOCRActivity.EXTRAS_LICENSE_KEY`** - with this extra you can set the license key for _BlinkOCR_. You can obtain your licence key from [Microblink website](http://microblink.com/login) or you can contact us at [http://help.microblink.com](http://help.microblink.com). Once you obtain a license key, you can set it with following snippet:
+* <a name="intent_EXTRAS_LICENSE_KEY" href="#intent_EXTRAS_LICENSE_KEY">#</a> **`BlinkOCRActivity.EXTRAS_LICENSE_KEY`** - with this extra you can set the license key for _BlinkOCR_. You can obtain your licence key from [Microblink website](http://microblink.com/login) or you can contact us at [http://help.microblink.com](http://help.microblink.com). Once you obtain a license key, you can set it with following snippet:
 
 	```java
 	// set the license key
@@ -302,23 +333,23 @@ This section will discuss possible parameters that can be sent over `Intent` for
 	intent.putExtra(BlinkOCRActivity.EXTRAS_LICENSEE, "Enter_Licensee_Here");
 	```
 
-* **`BlinkOCRActivity.EXTRAS_SHOW_OCR_RESULT`** - with this extra you can define whether OCR result should be drawn on camera preview as it arrives. This is enabled by default, to disable it, use the following snippet:
+* <a name="intent_EXTRAS_SHOW_OCR_RESULT" href="#intent_EXTRAS_SHOW_OCR_RESULT">#</a> **`BlinkOCRActivity.EXTRAS_SHOW_OCR_RESULT`** - with this extra you can define whether OCR result should be drawn on camera preview as it arrives. This is enabled by default, to disable it, use the following snippet:
 
 	```java
 	// enable showing of OCR result
 	intent.putExtra(BlinkOCRActivity.EXTRAS_SHOW_OCR_RESULT, false);
 	```
 
-* **`BlinkOCRActivity.EXTRAS_SHOW_OCR_RESULT_MODE`** - if OCR result should be drawn on camera preview, this extra defines how it will be drawn. Here you need to pass instance of [ShowOcrResultMode](https://blinkocr.github.io/blinkocr-android/com/microblink/activity/ShowOcrResultMode.html). By default, `ShowOcrResultMode.ANIMATED_DOTS` is used. You can also enable `ShowOcrResultMode.STATIC_CHARS` to draw recognized chars instead of dots. To set this extra, use the following snippet:
+* <a name="intent_EXTRAS_SHOW_OCR_RESULT_MODE" href="#intent_EXTRAS_SHOW_OCR_RESULT_MODE">#</a> **`BlinkOCRActivity.EXTRAS_SHOW_OCR_RESULT_MODE`** - if OCR result should be drawn on camera preview, this extra defines how it will be drawn. Here you need to pass instance of [ShowOcrResultMode](https://blinkocr.github.io/blinkocr-android/com/microblink/activity/ShowOcrResultMode.html). By default, `ShowOcrResultMode.ANIMATED_DOTS` is used. You can also enable `ShowOcrResultMode.STATIC_CHARS` to draw recognized chars instead of dots. To set this extra, use the following snippet:
 
 	```java
 	// display colored static chars instead of animated dots
 	intent.putExtra(BlinkOCRActivity.EXTRAS_SHOW_OCR_RESULT_MODE, (Parcelable) ShowOcrResultMode.STATIC_CHARS);
 	```
 
-* **`BlinkOCRActivity.EXTRAS_IMAGE_LISTENER`** - with this extra you can set your implementation of [ImageListener interface](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageListener.html) that will obtain images that are being processed. Make sure that your [ImageListener](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageListener.html) implementation correctly implements [Parcelable](https://developer.android.com/reference/android/os/Parcelable.html) interface with static [CREATOR](https://developer.android.com/reference/android/os/Parcelable.Creator.html) field. Without this, you might encounter a runtime error. For more information and example, see [Using ImageListener to obtain images that are being processed](#imageListener). By default, _ImageListener_ will receive all possible images that become available during recognition process. This will introduce performance penalty because most of those images will probably not be used so sending them will just waste time. To control which images should become available to _ImageListener_, you can also set [ImageMetadata settings](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html) with `BlinkOCRActivity.EXTRAS_IMAGE_METADATA_SETTINGS`
+* <a name="intent_EXTRAS_IMAGE_LISTENER" href="#intent_EXTRAS_IMAGE_LISTENER">#</a> **`BlinkOCRActivity.EXTRAS_IMAGE_LISTENER`** - with this extra you can set your implementation of [ImageListener interface](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageListener.html) that will obtain images that are being processed. Make sure that your [ImageListener](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageListener.html) implementation correctly implements [Parcelable](https://developer.android.com/reference/android/os/Parcelable.html) interface with static [CREATOR](https://developer.android.com/reference/android/os/Parcelable.Creator.html) field. Without this, you might encounter a runtime error. For more information and example, see [Using ImageListener to obtain images that are being processed](#imageListener). By default, _ImageListener_ will receive all possible images that become available during recognition process. This will introduce performance penalty because most of those images will probably not be used so sending them will just waste time. To control which images should become available to _ImageListener_, you can also set [ImageMetadata settings](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html) with `BlinkOCRActivity.EXTRAS_IMAGE_METADATA_SETTINGS`
 
-* **`BlinkOCRActivity.EXTRAS_IMAGE_METADATA_SETTINGS`** - with this extra you can set [ImageMetadata settings](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html) which will define which images will be sent to [ImageListener interface](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageListener.html) given via `BlinkOCRActivity.EXTRAS_IMAGE_LISTENER` extra. If _ImageListener_ is not given via Intent, then this extra has no effect. You can see example usage of _ImageMetadata Settings_ in chapter [Obtaining various metadata with _MetadataListener_](#metadataListener) and in provided demo apps.
+* <a name="intent_EXTRAS_IMAGE_METADATA_SETTINGS" href="#intent_EXTRAS_IMAGE_METADATA_SETTINGS">#</a> **`BlinkOCRActivity.EXTRAS_IMAGE_METADATA_SETTINGS`** - with this extra you can set [ImageMetadata settings](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html) which will define which images will be sent to [ImageListener interface](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageListener.html) given via `BlinkOCRActivity.EXTRAS_IMAGE_LISTENER` extra. If _ImageListener_ is not given via Intent, then this extra has no effect. You can see example usage of _ImageMetadata Settings_ in chapter [Obtaining various metadata with _MetadataListener_](#metadataListener) and in provided demo apps.
 
 ## <a name="recognizerView"></a> Embedding `RecognizerView` into custom scan activity
 This section will discuss how to embed [RecognizerView](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html) into your scan activity and perform scan.
@@ -804,7 +835,7 @@ Here are javadoc links to all classes that appeared in previous code snippet:
 
 There are two ways of obtaining images that are being processed:
 
-- if _BlinkOCRActivity_ is being used to perform scanning, then you need to implement [ImageListener interface](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageListener.html) and send your implementation via Intent to _BlinkOCRActivity_. Note that while this seems easier, this actually introduces a large performance penalty because _ImageListener_ will receive all images, including ones you do not actually need, except in cases when you also provide [ImageMetadata settings](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html) with `BlinkOCRActivity.EXTRAS_IMAGE_METADATA_SETTINGS` extra.
+- if _BlinkOCRActivity_ is being used to perform scanning, then you need to implement [ImageListener interface](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageListener.html) and send your implementation via Intent to _BlinkOCRActivity_. Note that while this seems easier, this actually introduces a large performance penalty because _ImageListener_ will receive all images, including ones you do not actually need, except in cases when you also provide [ImageMetadata settings](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html) with [`BlinkOCRActivity.EXTRAS_IMAGE_METADATA_SETTINGS`](#intent_EXTRAS_IMAGE_METADATA_SETTINGS) extra.
 - if [RecognizerView](#recognizerView) is directly embedded into your scanning activity, then you should initialise it with [Metadata settings](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataSettings.html) and your implementation of [Metadata listener interface](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataListener.html). The _MetadataSettings_ will define which metadata will be reported to _MetadataListener_. The metadata can contain various data, such as images, object detection location etc. To see documentation and example how to use _MetadataListener_ to obtain images and other metadata, see section [Obtaining various metadata with _MetadataListener_](#metadataListener).
 
 This section will give an example how to implement [ImageListener interface](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageListener.html) that will obtain images that are being processed. `ImageListener` has only one method that needs to be implemented: `onImageAvailable(Image)`. This method is called whenever library has available image for current processing step. [Image](https://blinkocr.github.io/blinkocr-android/com/microblink/image/Image.html) is class that contains all information about available image, including buffer with image pixels. Image can be in several format and of several types. [ImageFormat](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageFormat.html) defines the pixel format of the image, while [ImageType](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageType.html) defines the type of the image. `ImageListener` interface extends android's [Parcelable interface](https://developer.android.com/reference/android/os/Parcelable.html) so it is possible to send implementations via [intents](https://developer.android.com/reference/android/content/Intent.html).
@@ -913,10 +944,14 @@ This chapter will discuss various recognition settings used to configure differe
 Recognition settings define what will be scanned and how will the recognition process be performed. Here is the list of methods that are most relevant:
 
 ##### [`setAllowMultipleScanResultsOnSingleImage(boolean)`](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/settings/RecognitionSettings.html#setAllowMultipleScanResultsOnSingleImage-boolean-)
-Sets whether or not outputting of multiple scan results from same image is allowed. If that is `true`, it is possible to return multiple recognition results produced by different recognizers from same image. However, single recognizer can still produce only a single result from single image. By default, this option is `false`, i.e. the array of `BaseRecognitionResults` will contain at most 1 element. The upside of setting that option to `false` is the speed - if you enable lots of recognizers, as soon as the first recognizer succeeds in scanning, recognition chain will be terminated and other recognizers will not get a chance to analyze the image. The downside is that you are then unable to obtain multiple results from different recognizers from single image.
+Sets whether or not outputting of multiple scan results from same image is allowed. If that is `true`, it is possible to return multiple recognition results produced by different recognizers from same image. However, single recognizer can still produce only a single result from single image. If this option is `false`, the array of `BaseRecognitionResults` will contain at most 1 element. The upside of setting that option to `false` is the speed - if you enable lots of recognizers, as soon as the first recognizer succeeds in scanning, recognition chain will be terminated and other recognizers will not get a chance to analyze the image. The downside is that you are then unable to obtain multiple results from different recognizers from single image. By default, this option is `false`.
 
 ##### [`setNumMsBeforeTimeout(int)`](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/settings/RecognitionSettings.html#setNumMsBeforeTimeout-int-)
 Sets the number of miliseconds _BlinkOCR_ will attempt to perform the scan it exits with timeout error. On timeout returned array of `BaseRecognitionResults` inside [RecognitionResults](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/RecognitionResults.html) might be null, empty or may contain only elements that are not valid ([`isValid`](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/BaseRecognitionResult.html#isValid--) returns `false`) or are empty ([`isEmpty`](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/BaseRecognitionResult.html#isEmpty--) returns `true`).
+
+**NOTE**: Please be aware that time counting does not start from the moment when scanning starts. Instead it starts from the moment when at least one `BaseRecognitionResult` becomes available which is neither [empty](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/BaseRecognitionResult.html#isEmpty--) nor [valid](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/BaseRecognitionResult.html#isValid--).
+
+The reason for this is the better user experience in cases when for example timeout is set to 10 seconds and user starts scanning and leaves device lying on table for 9 seconds and then points the device towards the object it wants to scan: in such case it is better to let that user scan the object it wants instead of completing scan with empty scan result as soon as 10 seconds timeout ticks out.
 
 ##### [`setFrameQualityEstimationMode(FrameQualityEstimationMode)`](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/settings/RecognitionSettings.html#setFrameQualityEstimationMode-com.microblink.recognizers.settings.RecognitionSettings.FrameQualityEstimationMode-)
 Sets the mode of the frame quality estimation. Frame quality estimation is the process of estimating the quality of video frame so only best quality frames can be chosen for processing so no time is wasted on processing frames that are of too poor quality to contain any meaningful information. It is **not** used when performing recognition of [Android bitmaps](https://developer.android.com/reference/android/graphics/Bitmap.html) using [Direct API](#directAPI). You can choose 3 different frame quality estimation modes: automatic, always on and always off.
@@ -979,7 +1014,7 @@ The following is a list of available parsers:
 	- used for parsing arbitrary regular expressions
 	- please note that some features, like back references, match grouping and certain regex metacharacters are not supported. See javadoc for more info.
 
-### Obtaining results from BlinkOCR recognizer
+### <a name="blinkOCR_results"></a> Obtaining results from BlinkOCR recognizer
 
 BlinkOCR recognizer produces [BlinkOCRRecognitionResult](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html). You can use `instanceof` operator to check if element in results array is instance of `BlinkOCRRecognitionResult` class. See the following snippet for an example:
 
@@ -1034,6 +1069,50 @@ Returns the [OCR result](https://blinkocr.github.io/blinkocr-android/com/microbl
 
 ##### `OcrResult getOcrResult(String parserGroupName)`
 Returns the [OCR result](https://blinkocr.github.io/blinkocr-android/com/microblink/results/ocr/OcrResult.html) structure for parser group named `parserGroupName`.
+
+## <a name="blinkOCR_templating"></a> Scanning templated documents with BlinkOCR recognizer
+
+This section discusses the setting up of BlinkOCR recognizer for scanning templated documents. Please check demo app for examples.
+
+Templated document is any document which is defined by its template. Template contains the information about how the document should be detected, i.e. found on the camera scene and information about which part of document contains which useful information.
+
+### Defining how document should be detected
+
+Before performing OCR of the document, _BlinkOCR_ first needs to find its location on camera scene. In order to perform detection, you need to define [DetectorSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/DetectorSettings.html) which will be used to instantiate detector which perform document detection. You can set detector settings with method [`setDetectorSettings(DetectorSettings)`](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setDetectorSettings-com.microblink.detectors.DetectorSettings-). If you do not set detector settings, BlinkOCR recognizer will work in [Segment scan mode](#blinkOCR).
+
+You can find out more information about about detectors that can be used in section [Detection settings and results](#detectionSettingsAndResults).
+
+### Defining how document should be recognized
+
+After document has been detected, it will be recognized. This is done in following way:
+
+1. the detector produces a [DetectorResult](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/DetectorResult.html) which contains one or more detection locations.
+2. based on array of [DecodingInfos](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/DecodingInfo.html) that were defined as part of concrete [DetectorSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/DetectorSettings.html) (see [`setDecodingInfos(DecodingInfo[])`](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/quad/QuadDetectorSettings.html#setDecodingInfos-com.microblink.detectors.DecodingInfo:A-) method of `QuadDetectorSettings`), for each element of array following is performed:
+	- location defined in [DecodingInfo](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/DecodingInfo.html) is dewarped to image of height defined within `DecodingInfo`
+	- a parser group that has same name as current `DecodingInfo` is searched and if it is found, optimal OCR settings for all parsers from that parser group is calculated
+	- using optimal OCR settings OCR of the dewarped image is performed
+	- finally, OCR result is parsed with each parser from that parser group
+	- if parser group with the same name as current `DecodingInfo` cannot be found, no OCR will be performed, however image will be reported via [MetadataListener](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataListener.html) if receiving of [DEWARPED images](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageType.html#DEWARPED) has [been enabled](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html#setDewarpedImageEnabled-boolean-)
+3. if no [DocumentClassifier](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/blinkocr/DocumentClassifier.html) has been given with [`setDocumentClassifier(DocumentClassifier)`](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setDocumentClassifier-com.microblink.recognizers.blinkocr.DocumentClassifier-), recognition is done. If `DocumentClassifier` exists, its method [`classify(BlinkOCRRecognitionResult)`](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/blinkocr/DocumentClassifier.html#classifyDocument-com.microblink.recognizers.blinkocr.BlinkOCRRecognitionResult-) is called to determine which type document has been detected
+4. If classifier returned string which is same as one used previously to [setup parser decoding infos](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setParserDecodingInfos-com.microblink.detectors.DecodingInfo:A-java.lang.String-), then this array of `DecodingInfos` is obtained and step 2. is performed again with obtained array of `DecodingInfos`.
+
+### When to use [DocumentClassifier](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/blinkocr/DocumentClassifier.html)?
+
+If you plan scanning several different documents of same size, for example different ID cards, which are all 85x54 mm (credit card) size, then you need to use `DocumentClassifer` to classify the type of document so correct [DecodingInfo](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/DecodingInfo.html) array can be used for obtaining relevant information. An example would be the case where you need to scan both front sides of croatian and german ID cards - the location of first and last names are not same on both documents. Therefore, you first need to classify the document based on some discriminative features.
+
+If you plan supporting only single document type, then you do not need to use `DocumentClassifier`.
+
+### How to implement [DocumentClassifier](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/blinkocr/DocumentClassifier.html)?
+
+[DocumentClassifier](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/blinkocr/DocumentClassifier.html) is interface that should be implemented to support classification of documents that cannot be differentiated by detector. Classification result is used to determine which set of decoding infos will be used to extract classification-specific data. This interface extends the [Parcelable](http://developer.android.com/reference/android/os/Parcelable.html) interface and the parcelization should be implemented. Besides that, following method has to be implemented:
+
+##### [`String classifyDocument(BlinkOCRRecognitionResult extractionResult)`](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/blinkocr/DocumentClassifier.html#classifyDocument-com.microblink.recognizers.blinkocr.BlinkOCRRecognitionResult-)
+
+Based on [BlinkOCRRecognitionResult](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html) which contains data extracted from decoding infos inherent to detector, classifies the document. For each document type that you want to support, returned result string has to be equal to the name of the corresponding set of [DecodingInfo](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/DecodingInfo.html) objects which are defined for that document type. Named decoding info sets should be defined using [`setParserDecodingInfos(DecodingInfo[], String)`](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setParserDecodingInfos-com.microblink.detectors.DecodingInfo:A-java.lang.String-) method.
+
+### How to obtain recognition results?
+
+Just like when using BlinkOCR recognizer in [segment scan mode](#blinkOCR), same principles apply here. You use the same approach as discussed in [Obtaining results from BlinkOCR recognizer](#blinkOCR_results). Just keep in mind to use parser group names that are equal to decoding info names. Check demo app that is delivered with SDK for detailed example.
 
 ## <a name="pdf417Recognizer"></a> Scanning PDF417 barcodes
 
@@ -1284,6 +1363,293 @@ This method will return the string representation of barcode contents.
 ##### `getBarcodeType()`
 This method will return a [BarcodeType](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/blinkbarcode/BarcodeType.html) enum that defines the type of barcode scanned.
 
+## <a name="detectorRecognizer"></a> Performing detection of various documents
+
+This section will discuss how to set up a special kind of recognizer called `DetectorRecognizer` whose only purpose is to perform a detection of a document and return position of the detected document on the image or video frame.
+
+### Setting up Detector Recognizer
+
+To activate Detector Recognizer, you need to create [DetectorRecognizerSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/detector/DetectorRecognizerSettings.html) and add it to `RecognizerSettings` array. When creating `DetectorRecognizerSettings`, you need to initialize it with already prepared [DetectorSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/DetectorSettings.html). Check [this chapter](#detectionSettingsAndResults) for more information about available detectors and how to configure them.
+
+You can use the following code snippet to create `DetectorRecognizerSettings` and add it to `RecognizerSettings` array:
+
+```java
+private RecognizerSettings[] setupSettingsArray() {
+	DetectorRecognizerSettings sett = new DetectorRecognizerSettings(setupDetector());
+	
+	// now add sett to recognizer settings array that is used to configure
+	// recognition
+	return new RecognizerSettings[] { sett };
+}
+```
+
+Please note that snippet above assumes existance of method `setupDetector()` which returns a fully configured `DetectorSettings` as explained in chapter [Detection settings and results](#detectionSettingsAndResults).
+
+### Obtaining results from Detector Recognizer
+
+Detector Recognizer produces [DetectorRecognitionResult](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/detector/DetectorRecognitionResult.html). You can use `instanceof` operator to check if element in results array is instance of `DetectorRecognitionResult` class. See the following snippet for an example:
+
+```java
+@Override
+public void onScanningDone(RecognitionResults results) {
+	BaseRecognitionResult[] dataArray = results.getRecognitionResults();
+	for(BaseRecognitionResult baseResult : dataArray) {
+		if(baseResult instanceof DetectorRecognitionResult) {
+			DetectorRecognitionResult result = (DetectorRecognitionResult) baseResult;
+			
+	        // you can use getters of DetectorRecognitionResult class to 
+	        // obtain detection result
+	        if(result.isValid() && !result.isEmpty()) {
+				DetectorResult detection = result.getDetectorResult();
+				// the type of DetectorResults depends on type of configured
+				// detector when setting up the DetectorRecognizer
+	        } else {
+	        	// not all relevant data was scanned, ask user
+	        	// to try again
+	        }
+		}
+	}
+}
+```
+
+Available getters are:
+
+##### `boolean isValid()`
+Returns `true` if detection result is valid, i.e. if all required elements were detected with good confidence and can be used. If `false` is returned that indicates that some crucial data is missing. You should ask user to try scanning again. If you keep getting `false` (i.e. invalid data) for certain document, please report that as a bug to [help.microblink.com](http://help.microblink.com). Please include high resolution photographs of problematic documents.
+
+##### `boolean isEmpty()`
+Returns `true` if scan result is empty, i.e. nothing was scanned. All getters should return `null` for empty result.
+
+##### `DetectorResult getDetectorResult()`
+Returns the [DetectorResult](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/DetectorResult.html) generated by detector that was used to configure Detector Recognizer.
+
+# <a name="detectionSettingsAndResults"></a> Detection settings and results
+
+This chapter will discuss various detection settings used to configure different detectors that some recognizers can use to perform object detection prior performing further recognition of detected object's contents.
+
+Each detector has its own version of `DetectorSettings` which derives [DetectorSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/DetectorSettings.html) class. Besides that, each detector also produces its own version of `DetectorResult` which derives [DetectorResult](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/DetectorResult.html) class. Appropriate recognizers, such as [Detector Recognizer](#detectorRecognizer), require `DetectorSettings` for their initialization and provide `DetectorResult` in their recognition result.
+
+#### [DetectorSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/DetectorSettings.html)
+
+Abstract `DetectorSettings` contains following setters that are inherited by all derived settings objects:
+
+##### `setDisplayDetectedLocation(boolean)`
+
+Defines whether detection location will be delivered as detection metadata to [MetadataListener](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataListener.html). In order for this to work, you need to set `MetadataListener` to [RecognizerView](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html}) and you need to allow receiving of detection metadata in [MetadataSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataSettings.html#setDetectionMetadataAllowed(boolean)).
+
+#### [DetectorResult](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/DetectorResult.html)
+
+Abstract `DetectorResult` contains following getters that are inherited by all derived result objects:
+
+##### `DetectionCode getDetectionCode()`
+
+Returns the [Detection code](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/DetectorResult.DetectionCode.html) which indicates the status of detection (failed, fallback or success).
+
+## <a name="mrtdDetector"></a> Detection of documents with Machine Readable Zone
+
+This section discusses how to use MRTD detector to perform detection of Machine Readable Zones used in various Machine Readable Travel Documents (MRTDs - ID cards and passports). This detector is used internally in [Machine Readable Travel Documents recognizer](#mrtd) to perform detection of Machine Readable Zone (MRZ) prior performing OCR and data extraction.
+
+### Setting up MRTD detector
+
+To use MRTD detector, you need to create [MRTDDetectorSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/quad/mrtd/MRTDDetectorSettings.html) and give it to appropriate recognizer. You can use following snippet to perform that:
+
+```java
+private DetectorSettings setupDetector() {
+	MRTDDetectorSettings settings = new MRTDDetectorSettings();
+
+	// with following setter you can control whether you want to detect
+	// machine readable zone only or full travel document
+	settings.setDetectFullDocument(false);
+	
+	return settings;
+}
+```
+
+As you can see from the snippet, `MRTDDetectorSettings` can be tweaked with following methods:
+
+##### `setDetectFullDocument(boolean)`
+
+This method allows you to enable detection of full Machine Readable Travel Documents. The position of the document is calculated from location of detected Machine Readable Zone. If this is set to `false` (default), then only location of Machine Readable Zone will be returned.
+
+### Obtaining MRTD detection result
+
+MRTD detector produces [MRTDDetectorResult](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/quad/mrtd/MRTDDetectorResult.html). You can use `instanceof` operator to check if obtained `DetectorResult` is instance of `MRTDDetectorResult` class. See the following snippet for an example:
+
+```java
+public void handleDetectorResult(DetectorResult detResult) {
+	if (detResult instanceof MRTDDetectorResult) {
+		MRTDDetectorResult result = (MRTDDetectorResult) detResult;
+		Quadrilateral pos = result.getDetectionLocation();
+	}
+}
+```
+
+The available getters of `MRTDDetectorResults` are as follows:
+
+##### `Quadrilateral getDetectionLocation()`
+
+Returns the [Quadrilateral](https://blinkocr.github.io/blinkocr-android/com/microblink/geometry/Quadrilateral.html) containing the position of detection. If position is empty, all four Quadrilateral points will have coordinates `(0,0)`.
+
+##### `int[] getElementsCountPerLine()`
+
+Returns the array of integers defining the number of char-like elements per each line of detected machine readable zone.
+
+##### `MRTDDetectionCode getMRTDDetectionCode()`
+
+Returns the [MRTDDetectionCode enum](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/quad/mrtd/MRTDDetectorResult.MRTDDetectionCode.html) defining the type of detection or `null` if nothing was detected.
+
+## <a name="documentDetector"></a> Detection of documents with Document Detector
+
+This section discusses how to use Document detector to perform detection of documents of certain aspect ratios. This detector can be used to detect cards, cheques, A4-sized documents, receipts and much more.
+
+### Setting up of Document Detector
+
+To use Document Detector, you need to create [DocumentDetectorSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/document/DocumentDetectorSettings.html). When creating `DocumentDetectorSettings` you need to specify at least one [DocumentSpecification](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/document/DocumentSpecification.html) which defines how specific document should be detected. `DocumentSpecification` can be created directly or from [preset](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/document/DocumentSpecification.html#createFromPreset(com.microblink.detectors.document.DocumentSpecificationPreset)) (recommended). Please refer to [javadoc](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/document/DocumentSpecification.html) for more information on document specification.
+
+In the following snippet, we will show how to setup `DocumentDetectorSettings` to perform detection of credit cards:
+
+```java
+private DetectorSettings setupDetector() {
+	DocumentSpecification cardDoc = DocumentSpecification.createFromPreset(DocumentSpecificationPreset.DOCUMENT_SPECIFICATION_PRESET_ID1_CARD);
+
+	DocumentDetectorSettings settings = new DocumentDetectorSettings(new DocumentSpecification[] {cardDoc});
+
+	// require at least 3 subsequent close detections (in 3 subsequent 
+	// video frames) to treat detection as 'stable'
+	settings.setNumStableDetectionsThreshold(3)
+	
+	return settings;
+}
+```
+
+As you can see from the snippet, `DocumentDetectorSettings` can be tweaked with following methods:
+
+##### `setNumStableDetectionsThreshold(int)`
+
+Sets the number of subsequent close detections must occur before treating document detection as stable. Default is 1. Larger number guarantees more robust document detection at price of slower performance.
+
+##### `setDocumentSpecifications(DocumentSpecification[])`
+
+Sets the array of document specifications that define documents that can be detected. See javadoc for [DocumentSpecification](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/document/DocumentSpecification.html) for more information about document specifications.
+
+### Obtaining document detection result
+
+Document detector produces [DocumentDetectorResult](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/document/DocumentDetectorResult.html). You can use `instanceof` operator to check if obtained `DetectorResult` is instance of `DocumentDetectorResult` class. See the following snippet for an example:
+
+```java
+public void handleDetectorResult(DetectorResult detResult) {
+	if (detResult instanceof DocumentDetectorResult) {
+		DocumentDetectorResult result = (DocumentDetectorResult) detResult;
+		Quadrilateral pos = result.getDetectionLocation();
+	}
+}
+```
+
+Available getters of `DocumentDetectorResult` are as follows:
+
+##### `Quadrilateral getDetectionLocation()`
+
+Returns the [Quadrilateral](https://blinkocr.github.io/blinkocr-android/com/microblink/geometry/Quadrilateral.html) containing the position of detection. If position is empty, all four Quadrilateral points will have coordinates `(0,0)`.
+
+##### `double getAspectRatio()`
+
+Returns the aspect ratio of detected document. This will be equal to aspect ratio of one of `DocumentSpecification` objects given to `DocumentDetectorSettings`.
+
+##### `ScreenOrientation getScreenOrientation()`
+
+Returns the orientation of the screen that was active at the moment document was detected.
+
+## <a name="faceDetector"></a> Detection of faces with Face Detector
+
+This section discusses how to use face detector to perform detection of faces on  various documents.
+
+### Setting up Face Detector
+
+To use Face Detector, you need to create [FaceDetectorSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/face/FaceDetectorSettings.html) and give it to appropriate recognizer. You can use following snippet to perform that:
+
+```java
+private DetectorSettings setupDetector() {
+	// following constructor initializes FaceDetector settings
+	// and requests height of dewarped image to be 300 pixels
+	FaceDetectorSettings settings = new FaceDetectorSettings(300);
+	return settings;
+}
+```
+
+`FaceDetectorSettings` can be tweaked with following methods:
+
+##### `setDecodingInfo(DecodingInfo)`
+
+This method allows you to control how detection will be dewarped. `DecodingInfo ` constains `Rectangle` which defines position in detected location that is interesting, expressed as relative rectangle with respect to detected rectangle and height to which detection will be dewarped. Fore more info check out [DecodingInfo](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/DecodingInfo.html).
+
+
+##### `setDecodingInfo(int)`
+
+This method allows you to control how detection will be dewarped (same as creating `DecodingInfo` containing `Rectangle` initialized with (0.f, 0.f, 1.f, 1.f) and given dewarp height.
+
+### Obtaining face detection result
+
+Face Detector produces [FaceDetectorResult](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/face/FaceDetectorResult.html). You can use `instanceof` operator to check if obtained `DetectorResult` is instance of `FaceDetectorResult ` class. See the following snippet for an example:
+
+```java
+public void handleDetectorResult(DetectorResult detResult) {
+	if (detResult instanceof FaceDetectorResult) {
+		FaceDetectorResult result = (FaceDetectorResult) detResult;
+		Quadrilateral[] locations = result.getDetectionLocations();
+	}
+}
+```
+
+The available getters of `FaceDetectorResults` are as follows:
+
+##### `Quadrilateral[] getDetectionLocations()`
+
+Returns the locations of detections in coordinate system of image on which detection was performed or `null` if detection was not successful.
+
+##### `Quadrilateral[] getTransformedDetectionLocations()`
+
+Returns the locations of detections in normalized coordinate system of visible camera frame or `null` if detection was not successful.
+
+## <a name="multiDetector"></a> Combining detectors with MultiDetector
+
+This section discusses how to use Multi detector to combine multiple different detectors.
+
+### Setting up Multi Detector
+
+To use Multi Detector, you need to create [MultiDetectorSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/multi/MultiDetectorSettings.html). When creating `MultiDetectorSettings` you need to specify at least one other `DetectorSettings` that will be wrapped with Multi Detector. In the following snippet, we demonstrate how to create a Multi detector that wraps both [MRTDDetector](#mrtdDetector) and [Document Detector](#documentDetector) and has ability to detect either Machine Readable Zone or card document:
+
+```java
+private DetectorSettings setupDetector() {
+	DocumentSpecification cardDoc = DocumentSpecification.createFromPreset(DocumentSpecificationPreset.DOCUMENT_SPECIFICATION_PRESET_ID1_CARD);
+	DocumentDetectorSettings dds = new DocumentDetectorSettings(new DocumentSpecification[] {cardDoc});
+
+	MRTDDetectorSettings mrtds = new MRTDDetectorSettings(100);
+
+    MultiDetectorSettings mds = new MultiDetectorSettings(new DetectorSettings[] {dds, mrtds});
+	
+	return mds;
+}
+```
+
+### Obtaining results from Multi Detector
+
+Multi detector produces [MultiDetectorResult](https://blinkocr.github.io/blinkocr-android/com/microblink/detectors/multi/MultiDetectorResult.html). You can use `instanceof` operator to check if obtained `DetectorResult` is instance of `MultiDetectorResult` class. See the following snippet for an example:
+
+```java
+public void handleDetectorResult(DetectorResult detResult) {
+	if (detResult instanceof MultiDetectorResult) {
+		MultiDetectorResult result = (MultiDetectorResult) detResult;
+		DetectorResults[] results = result.getDetectionResults();
+	}
+}
+```
+
+As you can see from the snippet, `MultiDetectorResult` contains one getter:
+
+##### `getDetectionResults()`
+
+Returns the array of detection results contained within. You can iterate over the array to inspect each detection result's contents.
+
 # <a name="archConsider"></a> Processor architecture considerations
 
 _BlinkOCR_ is distributed with both ARMv7, ARM64, x86 and x86_64 native library binaries.
@@ -1359,7 +1725,9 @@ To remove certain CPU arhitecture, add following statement to your `android` blo
 ```
 android {
 	...
-	exclude 'lib/<ABI>/libBlinkOCR.so'
+	packagingOptions {
+		exclude 'lib/<ABI>/libBlinkOCR.so'
+	}
 }
 ```
 
