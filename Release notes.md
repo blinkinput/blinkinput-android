@@ -1,5 +1,11 @@
 # Release notes
 
+## 2.6.0
+- added support for using detectors to perform detection of various documents
+- added support for combination of detectors with BlinkOCR recognizer to perform OCR of only parts of detected documents
+    - refer to documentation and demo apps for example
+- updated BlinkOCRActivity, through ScanConfiguration it is now possible to make some scan field optional (user can skip it) and set the field size
+
 ## 2.5.0
 - FailedDetectionMetadata, PointsDetectionMetadata and QuadDetectionMetadata have been replaced with DetectionMetadata which now holds a DetectorResult
     - DetectorResult is more flexible as it allows more different detection types to be added in future
