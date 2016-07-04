@@ -1,5 +1,12 @@
 # Release notes
 
+## 2.7.0
+- support for parsing Vehicle Identification Numbers (VINs)
+- renamed BlinkOCRActivity to SegmentScanActivity
+- added RandomScanActivity which is similar to SegmentScanActivity but it does not force the user to scan text segments in the predefined order
+- improved autofocus support on SGS6 and SGS7
+- fixed memory leak in RecognitionProcessCallback, leak was caused by Recognizer singleton holding reference to both Context and MetadataListener even after termination
+
 ## 2.6.0
 - added support for using detectors to perform detection of various documents
 - added support for combination of detectors with BlinkOCR recognizer to perform OCR of only parts of detected documents
