@@ -19,9 +19,11 @@ See below for more information about how to integrate _BlinkOCR_ SDK into your a
   * [Android studio integration instructions](#quickIntegration)
   * [Eclipse integration instructions](#eclipseIntegration)
   * [Performing your first segment scan](#quickScan)
+  * [Performing your first random scan](#randomScan)
 * [Advanced _BlinkOCR_ integration instructions](#advancedIntegration)
   * [Checking if _BlinkOCR_ is supported](#supportCheck)
-  * [Customization of `BlinkOCRActivity` activity](#segmentScanActivityCustomization)
+  * [Customization of `SegmentScanActivity` activity](#segmentScanActivityCustomization)
+  * [Customization of `RandomScanActivity` activity](#randomScanActivityCustomization)
   * [Embedding `RecognizerView` into custom scan activity](#recognizerView)
   * [`RecognizerView` reference](#recognizerViewReference)
 * [Using direct API for recognition of Android Bitmaps](#directAPI)
@@ -58,14 +60,19 @@ Besides AAR, package also contains a demo project that contains following module
 
 - _BlinkOCRSegmentDemo_ shows how to use simple Intent-based API to scan little text segments. It also shows you how to create a custom scan activity for scanning little text segments.
 - _BlinkOCRFullScreen_ shows how to perform full camera frame generic OCR, how to draw OCR results on screen and how to obtain [OcrResult](https://blinkocr.github.io/blinkocr-android/com/microblink/results/ocr/OcrResult.html) object for further processing. This app also shows how to scan Code128 or Code39 barcode on same screen that is used for OCR.
+- _BlinkOCRDetectorDemo_ demonstrates how to perform document detection and obtain dewarped image of the detected document.
 - _BlinkOCRDirectAPI_ shows how to perform OCR of [Android Bitmaps](https://developer.android.com/reference/android/graphics/Bitmap.html)
 - _BlinkOCRCombination_ shows how to perform OCR of camera frame, obtain that same camera frame and process it again with DirectAPi. You can test this app with [PDF within demo app folder](BlinkOCRDemo/BlinkOCRCombination/combinationScan.pdf).
+- _BlinkOCRRandomScanDemo_ demonstrates the usage of the provided `RandomScanActivity` and random scan feature, which is similar to segment scan, but does not force the user to scan text segments in the predefined order.
  
 Source code of all demo apps is given to you to show you how to perform integration of _BlinkOCR_ SDK into your app. You can use this source code and all resources as you wish. You can use demo apps as basis for creating your own app, or you can copy/paste code and/or resources from demo apps into your app and use them as you wish without even asking us for permission.
 
 _BlinkOCR_ is supported on Android SDK version 10 (Android 2.3.3) or later.
 
-The library contains one activity: `BlinkOCRActivity`. It is responsible for camera control and recognition of small segments. It is ideal if you need to quickly scan small text segments, like date, amount or e-mail. 
+The library contains two activities:
+
+- `SegmentScanActivity` is responsible for camera control and recognition of small segments. It is ideal if you need to quickly scan small text segments, like date, amount or e-mail. 
+- `RandomScanActivity` is similar to _SegmentScanActivity_ but it does not force the user to scan text segments in the predefined order.  
 
 For advanced use cases, you will need to embed `RecognizerView` into your activity and pass activity's lifecycle events to it and it will control the camera and recognition process. For more information, see [Embedding `RecognizerView` into custom scan activity](#recognizerView).
 
@@ -96,7 +103,7 @@ After that, you just need to add _BlinkOCR_ as a dependency to your application 
 
 ```
 dependencies {
-    compile('com.microblink:blinkocr:2.6.0@aar') {
+    compile('com.microblink:blinkocr:2.7.0@aar') {
     	transitive = true
     }
 }
@@ -117,7 +124,7 @@ Current version of Android Studio will not automatically import javadoc from mav
 
 1. In Android Studio project sidebar, ensure [project view is enabled](https://developer.android.com/sdk/installing/studio-androidview.html)
 2. Expand `External Libraries` entry (usually this is the last entry in project view)
-3. Locate `blinkocr-2.6.0` entry, right click on it and select `Library Properties...`
+3. Locate `blinkocr-2.7.0` entry, right click on it and select `Library Properties...`
 4. A `Library Properties` pop-up window will appear
 5. Click the second `+` button in bottom left corner of the window (the one that contains `+` with little globe)
 6. Window for definining documentation URL will appear
@@ -142,7 +149,7 @@ Open your `pom.xml` file and add these directives as appropriate:
 	<dependency>
 		  <groupId>com.microblink</groupId>
 		  <artifactId>blinkocr</artifactId>
-		  <version>2.6.0</version>
+		  <version>2.7.0</version>
 		  <type>aar</type>
   	</dependency>
 </dependencies>
@@ -158,7 +165,7 @@ Open your `pom.xml` file and add these directives as appropriate:
 	```
 	dependencies {
    		compile project(':LibRecognizer')
- 		compile "com.android.support:appcompat-v7:23.4.0"
+ 		compile "com.android.support:appcompat-v7:24.0.0"
 	}
 	```
 5. If you plan to use ProGuard, add following lines to your `proguard-rules.pro`:
@@ -204,36 +211,36 @@ You’ve already created the project that contains almost everything you need. N
 6. Add appcompat-v7 library to your workspace and reference it by target project (modern ADT plugin for Eclipse does this automatically for all new android projects).
 
 ## <a name="quickScan"></a> Performing your first segment scan
-1. You can start recognition process by starting `BlinkOCRActivity` activity with Intent initialized in the following way:
+1. You can start recognition process by starting `SegmentScanActivity` activity with Intent initialized in the following way:
 	
 	```java
-	// Intent for BlinkOCRActivity Activity
-	Intent intent = new Intent(this, BlinkOCRActivity.class);
+	// Intent for SegmentScanActivity Activity
+	Intent intent = new Intent(this, SegmentScanActivity.class);
 	
 	// set your licence key
 	// obtain your licence key at http://microblink.com/login or
 	// contact us at http://help.microblink.com
-	intent.putExtra(BlinkOCRActivity.EXTRAS_LICENSE_KEY, "Add your licence key here");
+	intent.putExtra(SegmentScanActivity.EXTRAS_LICENSE_KEY, "Add your licence key here");
 
 	// setup array of scan configurations. Each scan configuration
 	// contains 4 elements: resource ID for title displayed
-	// in BlinkOCRActivity activity, resource ID for text
+	// in SegmentScanActivity activity, resource ID for text
 	// displayed in activity, name of the scan element (used
 	// for obtaining results) and parser setting defining
 	// how the data will be extracted.
 	// For more information about parser setting, check the
 	// chapter "Scanning segments with BlinkOCR recognizer"
 	ScanConfiguration[] confArray = new ScanConfiguration[] {
-                new ScanConfiguration(R.string.amount_title, R.string.amount_msg, "Amount", new AmountParserSettings()),
-                new ScanConfiguration(R.string.email_title, R.string.email_msg, "EMail", new EMailParserSettings()),
-                new ScanConfiguration(R.string.raw_title, R.string.raw_msg, "Raw", new RawParserSettings())
-        };
-	intent.putExtra(BlinkOCRActivity.EXTRAS_SCAN_CONFIGURATION, confArray);
+		new ScanConfiguration(R.string.amount_title, R.string.amount_msg, "Amount", new AmountParserSettings()),
+		new ScanConfiguration(R.string.email_title, R.string.email_msg, "EMail", new EMailParserSettings()),
+		new ScanConfiguration(R.string.raw_title, R.string.raw_msg, "Raw", new RawParserSettings())
+	};
+	intent.putExtra(SegmentScanActivity.EXTRAS_SCAN_CONFIGURATION, confArray);
 
 	// Starting Activity
 	startActivityForResult(intent, MY_REQUEST_CODE);
 	```
-2. After `BlinkOCRActivity` activity finishes the scan, it will return to the calling activity and will call method `onActivityResult`. You can obtain the scanning results in that method.
+2. After `SegmentScanActivity` activity finishes the scan, it will return to the calling activity and will call method `onActivityResult`. You can obtain the scanning results in that method.
 
 	```java
 	@Override
@@ -241,12 +248,12 @@ You’ve already created the project that contains almost everything you need. N
 		super.onActivityResult(requestCode, resultCode, data);
 		
 		if (requestCode == MY_REQUEST_CODE) {
-			if (resultCode == BlinkOCRActivity.RESULT_OK && data != null) {
+			if (resultCode == SegmentScanActivity.RESULT_OK && data != null) {
 				// perform processing of the data here
 				
 				// for example, obtain parcelable recognition result
 				Bundle extras = data.getExtras();
-				Bundle results = extras.getBundle(BlinkOCRActivity.EXTRAS_SCAN_RESULTS);
+				Bundle results = extras.getBundle(SegmentScanActivity.EXTRAS_SCAN_RESULTS);
 				
 				// results bundle contains result strings in keys defined
 				// by scan configuration name
@@ -257,9 +264,69 @@ You’ve already created the project that contains almost everything you need. N
 		}
 	}
 	```
+	
+## <a name="randomScan"></a> Performing your first random scan
+1. For random scan, use provided `RandomScanActivity` activity with Intent initialized in the following way:
+
+	```java
+	// Intent for RandomScanActivity Activity
+	Intent intent = new Intent(this, RandomScanActivity.class);
+	
+	// set your licence key
+	// obtain your licence key at http://microblink.com/login or
+	// contact us at http://help.microblink.com
+	intent.putExtra(RandomScanActivity.EXTRAS_LICENSE_KEY, "Add your licence key here");
+
+	// setup array of random scan elements. Each scan element
+	// holds following scan settings: resource ID (or string) for title displayed
+	// in RandomScanActivity activity, name of the scan element (used
+	// for obtaining results, must be unique) and parser setting defining
+	// how the data will be extracted. In random scan, all scan elements should have
+	// distinct parser types.
+	// For more information about parser setting, check the
+	// chapter "Scanning segments with BlinkOCR recognizer"
+	
+	RandomScanElement date = new RandomScanElement(R.string.date_title, "Date", new DateParserSettings());
+	// element can be optional, which means that result can be returned without scannig that element
+	date.setOptional(true);
+	RandomScanElement[] elemsArray = new RandomScanElement[] {
+		new RandomScanElement(R.string.iban_title, "IBAN", new IbanParserSettings()),
+		new RandomScanElement(R.string.amount_title, "Amount", new AmountParserSettings()),
+		date};
+	intent.putExtra(RandomScanActivity.EXTRAS_SCAN_CONFIGURATION, elemsArray);
+
+	// Starting Activity
+	startActivityForResult(intent, MY_REQUEST_CODE);
+	```
+	
+2. You can obtain the scanning results in the `onActivityResult` of the calling activity.
+
+	```java
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		if (requestCode == MY_REQUEST_CODE) {
+			if (resultCode == Activity.RESULT_OK && data != null) {
+				// perform processing of the data here
+				
+				// for example, obtain parcelable recognition result
+				Bundle extras = data.getExtras();
+				Bundle results = extras.getBundle(RandomScanActivity.EXTRAS_SCAN_RESULTS);
+				
+				// results bundle contains result strings in keys defined
+				// by scan element names
+				// for example, if set up as in step 1, then you can obtain
+				// IBAN with following line
+				String iban = results.getString("IBAN");
+			}
+		}
+	}
+	```
+
 
 # <a name="advancedIntegration"></a> Advanced _BlinkOCR_ integration instructions
-This section will cover more advanced details in _BlinkOCR_ integration. First part will discuss the methods for checking whether _BlinkOCR_ is supported on current device. Second part will cover the possible customization of builtin `BlinkOCRActivity` activity, third part will describe how to embed `RecognizerView` into your activity and fourth part will describe how to use direct API to recognize directly android bitmaps without the need of camera.
+This section will cover more advanced details in _BlinkOCR_ integration. First part will discuss the methods for checking whether _BlinkOCR_ is supported on current device. Second part will cover the possible customization of builtin `SegmentScanActivity` activity, third part will describe how to embed `RecognizerView` into your activity and fourth part will describe how to use direct API to recognize directly android bitmaps without the need of camera.
 
 ## <a name="supportCheck"></a> Checking if _BlinkOCR_ is supported
 
@@ -285,71 +352,92 @@ if(status == RecognizerCompatibilityStatus.RECOGNIZER_SUPPORTED) {
 }
 ```
 
-## <a name="segmentScanActivityCustomization"></a> Customization of `BlinkOCRActivity` activity
+## <a name="segmentScanActivityCustomization"></a> Customization of `SegmentScanActivity` activity
 
-### `BlinkOCRActivity` intent extras
+### `SegmentScanActivity` intent extras
 
-This section will discuss possible parameters that can be sent over `Intent` for `BlinkOCRActivity` activity that can customize default behaviour. There are several intent extras that can be sent to `BlinkOCRActivity` actitivy:
+This section will discuss possible parameters that can be sent over `Intent` for `SegmentScanActivity` activity that can customize default behaviour. There are several intent extras that can be sent to `SegmentScanActivity` actitivy:
 	
-* <a name="intent_EXTRAS_SCAN_CONFIGURATION" href="#intent_EXTRAS_SCAN_CONFIGURATION">#</a> **`BlinkOCRActivity.EXTRAS_SCAN_CONFIGURATION`** - with this extra you must set the array of [ScanConfiguration](https://blinkocr.github.io/blinkocr-android/com/microblink/ocr/ScanConfiguration.html) objects. Each `ScanConfiguration` object will define specific scan configuration that will be performed. `ScanConfiguration` defines two string resource ID's - title of the scanned item and text that will be displayed above field where scan is performed. Besides that it defines the name of scanned item and object defining the OCR parser settings. More information about parser settings can be found in chapter [Scanning segments with BlinkOCR recognizer](#blinkOCR). Here is only important that each scan configuration represents a single parser group and BlinkOCRActivity ensures that only one parser group is active at a time. After defining scan configuration array, you need to put it into intent extra with following code snippet:
+* <a name="intent_EXTRAS_SCAN_CONFIGURATION" href="#intent_EXTRAS_SCAN_CONFIGURATION">#</a> **`SegmentScanActivity.EXTRAS_SCAN_CONFIGURATION`** - with this extra you must set the array of [ScanConfiguration](https://blinkocr.github.io/blinkocr-android/com/microblink/ocr/ScanConfiguration.html) objects. Each `ScanConfiguration` object will define specific scan configuration that will be performed. `ScanConfiguration` defines two string resource ID's - title of the scanned item and text that will be displayed above field where scan is performed. Besides that it defines the name of scanned item and object defining the OCR parser settings. More information about parser settings can be found in chapter [Scanning segments with BlinkOCR recognizer](#blinkOCR). Here is only important that each scan configuration represents a single parser group and SegmentScanActivity ensures that only one parser group is active at a time. After defining scan configuration array, you need to put it into intent extra with following code snippet:
 	
 	```java
-	intent.putExtra(BlinkOCRActivity.EXTRAS_SCAN_CONFIGURATION, confArray);
+	intent.putExtra(SegmentScanActivity.EXTRAS_SCAN_CONFIGURATION, confArray);
 	```
 	
-* <a name="intent_EXTRAS_SCAN_RESULTS" href="#intent_EXTRAS_SCAN_RESULTS">#</a> **`BlinkOCRActivity.EXTRAS_SCAN_RESULTS`** - you can use this extra in `onActivityResult` method of calling activity to obtain bundle with recognition results. Bundle will contain only strings representing scanned data under keys defined with each scan configuration. If you also need to obtain OCR result structure, then you need to perform [advanced integration](#recognizerView). You can use the following snippet to obtain scan results:
+* <a name="intent_EXTRAS_SCAN_RESULTS" href="#intent_EXTRAS_SCAN_RESULTS">#</a> **`SegmentScanActivity.EXTRAS_SCAN_RESULTS`** - you can use this extra in `onActivityResult` method of calling activity to obtain bundle with recognition results. Bundle will contain only strings representing scanned data under keys defined with each scan configuration. If you also need to obtain OCR result structure, then you need to perform [advanced integration](#recognizerView). You can use the following snippet to obtain scan results:
 
 	```java
-	Bundle results = data.getBundle(BlinkOCRActivity.EXTRAS_SCAN_RESULTS);
+	Bundle results = data.getBundle(SegmentScanActivity.EXTRAS_SCAN_RESULTS);
 	```
 	
-* <a name="intent_BOCR_EXTRAS_HELP_INTENT" href="#intent_BOCR_EXTRAS_HELP_INTENT">#</a> **`BlinkOCRActivity.EXTRAS_HELP_INTENT`** - with this extra you can set fully initialized intent that will be sent when user clicks the help button. You can put any extras you want to your intent - all will be delivered to your activity when user clicks the help button. If you do not set help intent, help button will not be shown in camera interface. To set the intent for help activity, use the following code snippet:
+* <a name="intent_BOCR_EXTRAS_HELP_INTENT" href="#intent_BOCR_EXTRAS_HELP_INTENT">#</a> **`SegmentScanActivity.EXTRAS_HELP_INTENT`** - with this extra you can set fully initialized intent that will be sent when user clicks the help button. You can put any extras you want to your intent - all will be delivered to your activity when user clicks the help button. If you do not set help intent, help button will not be shown in camera interface. To set the intent for help activity, use the following code snippet:
 	
 	```java
 	/** Set the intent which will be sent when user taps help button. 
 	 *  If you don't set the intent, help button will not be shown.
 	 *  Note that this applies only to default PhotoPay camera UI.
 	 * */
-	intent.putExtra(BlinkOCRActivity.EXTRAS_HELP_INTENT, new Intent(this, HelpActivity.class));
+	intent.putExtra(SegmentScanActivity.EXTRAS_HELP_INTENT, new Intent(this, HelpActivity.class));
 	```
-* <a name="intent_BOCR_EXTRAS_CAMERA_VIDEO_PRESET" href="#intent_BOCR_EXTRAS_CAMERA_VIDEO_PRESET">#</a> **`BlinkOCRActivity.EXTRAS_CAMERA_VIDEO_PRESET`** - with this extra you can set the video resolution preset that will be used when choosing camera resolution for scanning. For more information, see [javadoc](https://blinkocr.github.io/blinkocr-android/com/microblink/hardware/camera/VideoResolutionPreset.html). For example, to use 720p video resolution preset, use the following code snippet:
+* <a name="intent_BOCR_EXTRAS_CAMERA_VIDEO_PRESET" href="#intent_BOCR_EXTRAS_CAMERA_VIDEO_PRESET">#</a> **`SegmentScanActivity.EXTRAS_CAMERA_VIDEO_PRESET`** - with this extra you can set the video resolution preset that will be used when choosing camera resolution for scanning. For more information, see [javadoc](https://blinkocr.github.io/blinkocr-android/com/microblink/hardware/camera/VideoResolutionPreset.html). For example, to use 720p video resolution preset, use the following code snippet:
 
 	```java
-	intent.putExtra(BlinkOCRActivity.EXTRAS_CAMERA_VIDEO_PRESET, (Parcelable)VideoResolutionPreset.VIDEO_RESOLUTION_720p);
+	intent.putExtra(SegmentScanActivity.EXTRAS_CAMERA_VIDEO_PRESET, (Parcelable)VideoResolutionPreset.VIDEO_RESOLUTION_720p);
 	```
 
-* <a name="intent_EXTRAS_LICENSE_KEY" href="#intent_EXTRAS_LICENSE_KEY">#</a> **`BlinkOCRActivity.EXTRAS_LICENSE_KEY`** - with this extra you can set the license key for _BlinkOCR_. You can obtain your licence key from [Microblink website](http://microblink.com/login) or you can contact us at [http://help.microblink.com](http://help.microblink.com). Once you obtain a license key, you can set it with following snippet:
+* <a name="intent_EXTRAS_LICENSE_KEY" href="#intent_EXTRAS_LICENSE_KEY">#</a> **`SegmentScanActivity.EXTRAS_LICENSE_KEY`** - with this extra you can set the license key for _BlinkOCR_. You can obtain your licence key from [Microblink website](http://microblink.com/login) or you can contact us at [http://help.microblink.com](http://help.microblink.com). Once you obtain a license key, you can set it with following snippet:
 
 	```java
 	// set the license key
-	intent.putExtra(BlinkOCRActivity.EXTRAS_LICENSE_KEY, "Enter_License_Key_Here");
+	intent.putExtra(SegmentScanActivity.EXTRAS_LICENSE_KEY, "Enter_License_Key_Here");
 	```
 	
 	Licence key is bound to package name of your application. For example, if you have licence key that is bound to `com.microblink.ocr` app package, you cannot use the same key in other applications. However, if you purchase Premium licence, you will get licence key that can be used in multiple applications. This licence key will then not be bound to package name of the app. Instead, it will be bound to the licencee string that needs to be provided to the library together with the licence key. To provide licencee string, use the `EXTRAS_LICENSEE` intent extra like this:
 
 	```java
 	// set the license key
-	intent.putExtra(BlinkOCRActivity.EXTRAS_LICENSE_KEY, "Enter_License_Key_Here");
-	intent.putExtra(BlinkOCRActivity.EXTRAS_LICENSEE, "Enter_Licensee_Here");
+	intent.putExtra(SegmentScanActivity.EXTRAS_LICENSE_KEY, "Enter_License_Key_Here");
+	intent.putExtra(SegmentScanActivity.EXTRAS_LICENSEE, "Enter_Licensee_Here");
 	```
 
-* <a name="intent_EXTRAS_SHOW_OCR_RESULT" href="#intent_EXTRAS_SHOW_OCR_RESULT">#</a> **`BlinkOCRActivity.EXTRAS_SHOW_OCR_RESULT`** - with this extra you can define whether OCR result should be drawn on camera preview as it arrives. This is enabled by default, to disable it, use the following snippet:
+* <a name="intent_EXTRAS_SHOW_OCR_RESULT" href="#intent_EXTRAS_SHOW_OCR_RESULT">#</a> **`SegmentScanActivity.EXTRAS_SHOW_OCR_RESULT`** - with this extra you can define whether OCR result should be drawn on camera preview as it arrives. This is enabled by default, to disable it, use the following snippet:
 
 	```java
 	// enable showing of OCR result
-	intent.putExtra(BlinkOCRActivity.EXTRAS_SHOW_OCR_RESULT, false);
+	intent.putExtra(SegmentScanActivity.EXTRAS_SHOW_OCR_RESULT, false);
 	```
 
-* <a name="intent_EXTRAS_SHOW_OCR_RESULT_MODE" href="#intent_EXTRAS_SHOW_OCR_RESULT_MODE">#</a> **`BlinkOCRActivity.EXTRAS_SHOW_OCR_RESULT_MODE`** - if OCR result should be drawn on camera preview, this extra defines how it will be drawn. Here you need to pass instance of [ShowOcrResultMode](https://blinkocr.github.io/blinkocr-android/com/microblink/activity/ShowOcrResultMode.html). By default, `ShowOcrResultMode.ANIMATED_DOTS` is used. You can also enable `ShowOcrResultMode.STATIC_CHARS` to draw recognized chars instead of dots. To set this extra, use the following snippet:
+* <a name="intent_EXTRAS_SHOW_OCR_RESULT_MODE" href="#intent_EXTRAS_SHOW_OCR_RESULT_MODE">#</a> **`SegmentScanActivity.EXTRAS_SHOW_OCR_RESULT_MODE`** - if OCR result should be drawn on camera preview, this extra defines how it will be drawn. Here you need to pass instance of [ShowOcrResultMode](https://blinkocr.github.io/blinkocr-android/com/microblink/activity/ShowOcrResultMode.html). By default, `ShowOcrResultMode.ANIMATED_DOTS` is used. You can also enable `ShowOcrResultMode.STATIC_CHARS` to draw recognized chars instead of dots. To set this extra, use the following snippet:
 
 	```java
 	// display colored static chars instead of animated dots
-	intent.putExtra(BlinkOCRActivity.EXTRAS_SHOW_OCR_RESULT_MODE, (Parcelable) ShowOcrResultMode.STATIC_CHARS);
+	intent.putExtra(SegmentScanActivity.EXTRAS_SHOW_OCR_RESULT_MODE, (Parcelable) ShowOcrResultMode.STATIC_CHARS);
 	```
 
-* <a name="intent_EXTRAS_IMAGE_LISTENER" href="#intent_EXTRAS_IMAGE_LISTENER">#</a> **`BlinkOCRActivity.EXTRAS_IMAGE_LISTENER`** - with this extra you can set your implementation of [ImageListener interface](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageListener.html) that will obtain images that are being processed. Make sure that your [ImageListener](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageListener.html) implementation correctly implements [Parcelable](https://developer.android.com/reference/android/os/Parcelable.html) interface with static [CREATOR](https://developer.android.com/reference/android/os/Parcelable.Creator.html) field. Without this, you might encounter a runtime error. For more information and example, see [Using ImageListener to obtain images that are being processed](#imageListener). By default, _ImageListener_ will receive all possible images that become available during recognition process. This will introduce performance penalty because most of those images will probably not be used so sending them will just waste time. To control which images should become available to _ImageListener_, you can also set [ImageMetadata settings](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html) with `BlinkOCRActivity.EXTRAS_IMAGE_METADATA_SETTINGS`
+* <a name="intent_EXTRAS_IMAGE_LISTENER" href="#intent_EXTRAS_IMAGE_LISTENER">#</a> **`SegmentScanActivity.EXTRAS_IMAGE_LISTENER`** - with this extra you can set your implementation of [ImageListener interface](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageListener.html) that will obtain images that are being processed. Make sure that your [ImageListener](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageListener.html) implementation correctly implements [Parcelable](https://developer.android.com/reference/android/os/Parcelable.html) interface with static [CREATOR](https://developer.android.com/reference/android/os/Parcelable.Creator.html) field. Without this, you might encounter a runtime error. For more information and example, see [Using ImageListener to obtain images that are being processed](#imageListener). By default, _ImageListener_ will receive all possible images that become available during recognition process. This will introduce performance penalty because most of those images will probably not be used so sending them will just waste time. To control which images should become available to _ImageListener_, you can also set [ImageMetadata settings](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html) with `SegmentScanActivity.EXTRAS_IMAGE_METADATA_SETTINGS`
 
-* <a name="intent_EXTRAS_IMAGE_METADATA_SETTINGS" href="#intent_EXTRAS_IMAGE_METADATA_SETTINGS">#</a> **`BlinkOCRActivity.EXTRAS_IMAGE_METADATA_SETTINGS`** - with this extra you can set [ImageMetadata settings](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html) which will define which images will be sent to [ImageListener interface](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageListener.html) given via `BlinkOCRActivity.EXTRAS_IMAGE_LISTENER` extra. If _ImageListener_ is not given via Intent, then this extra has no effect. You can see example usage of _ImageMetadata Settings_ in chapter [Obtaining various metadata with _MetadataListener_](#metadataListener) and in provided demo apps.
+* <a name="intent_EXTRAS_IMAGE_METADATA_SETTINGS" href="#intent_EXTRAS_IMAGE_METADATA_SETTINGS">#</a> **`SegmentScanActivity.EXTRAS_IMAGE_METADATA_SETTINGS`** - with this extra you can set [ImageMetadata settings](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html) which will define which images will be sent to [ImageListener interface](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageListener.html) given via `SegmentScanActivity.EXTRAS_IMAGE_LISTENER` extra. If _ImageListener_ is not given via Intent, then this extra has no effect. You can see example usage of _ImageMetadata Settings_ in chapter [Obtaining various metadata with _MetadataListener_](#metadataListener) and in provided demo apps.
+
+## <a name="randomScanActivityCustomization"></a> Customization of `RandomScanActivity` activity
+
+`RandomScanActivity` accepts similar intent extras as `SegmentScanActivity` with few differences listed below.
+	
+* <a name="intent_EXTRAS_SCAN_CONFIGURATION_random" href="#intent_EXTRAS_SCAN_CONFIGURATION_random">#</a> **`RandomScanActivity.EXTRAS_SCAN_CONFIGURATION`** 
+With this extra you must set the array of [RandomScanElement](https://blinkocr.github.io/blinkocr-android/com/microblink/ocr/RandomScanElement.html) objects. Each `RandomScanElement` holds following information about scan element: title of the scanned item, name of scanned item and object defining the OCR parser settings. Additionally, it is possible to set parser group for a parser that is responsible for extracting the element data by using the `setParserGroup(String groupName)` method on `RandomScanElement` object. If all parsers are in the same parser group, recognition will be faster, but sometimes merged OCR engine options may cause that some parsers are unable to extract valid data from the scanned text. Putting each parser into its own group will give better accuracy, but will perform OCR of image for each parser which can consume a lot of processing time. By default, if parser groups are not defined, all parsers will be placed in the same parser group. More information about parser settings can be found in chapter [Scanning segments with BlinkOCR recognizer](#blinkOCR). 
+
+*  <a name="intent_EXTRAS_SCAN_MESSAGE" href="#intent_EXTRAS_SCAN_MESSAGE">#</a> **`RandomScanActivity.EXTRAS_SCAN_MESSAGE`** 
+With this extra, it is possible to change default scan message that is displayed above the scanning
+window. You can use the following code snippet to set scan message string:
+	
+	```java
+	intent.putExtra(RandomScanActivity.EXTRAS_SCAN_MESSAGE, message);
+	```
+*  <a name="intent_EXTRAS_BEEP_RESOURCE_random" href="#intent_EXTRAS_BEEP_RESOURCE_random">#</a> **`RandomScanActivity.EXTRAS_BEEP_RESOURCE`** 
+With this extra you can set the resource ID of the sound to be played when the scan element is recognized. You can use following snippet to set this extra
+	
+	```java
+	intent.putExtra(RandomScanActivity.EXTRAS_BEEP_RESOURCE, R.raw.beep);
+	```
 
 ## <a name="recognizerView"></a> Embedding `RecognizerView` into custom scan activity
 This section will discuss how to embed [RecognizerView](https://blinkocr.github.io/blinkocr-android/com/microblink/view/recognition/RecognizerView.html) into your scan activity and perform scan.
@@ -835,7 +923,7 @@ Here are javadoc links to all classes that appeared in previous code snippet:
 
 There are two ways of obtaining images that are being processed:
 
-- if _BlinkOCRActivity_ is being used to perform scanning, then you need to implement [ImageListener interface](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageListener.html) and send your implementation via Intent to _BlinkOCRActivity_. Note that while this seems easier, this actually introduces a large performance penalty because _ImageListener_ will receive all images, including ones you do not actually need, except in cases when you also provide [ImageMetadata settings](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html) with [`BlinkOCRActivity.EXTRAS_IMAGE_METADATA_SETTINGS`](#intent_EXTRAS_IMAGE_METADATA_SETTINGS) extra.
+- if _SegmentScanActivity_ is being used to perform scanning, then you need to implement [ImageListener interface](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageListener.html) and send your implementation via Intent to _SegmentScanActivity_. Note that while this seems easier, this actually introduces a large performance penalty because _ImageListener_ will receive all images, including ones you do not actually need, except in cases when you also provide [ImageMetadata settings](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html) with [`SegmentScanActivity.EXTRAS_IMAGE_METADATA_SETTINGS`](#intent_EXTRAS_IMAGE_METADATA_SETTINGS) extra.
 - if [RecognizerView](#recognizerView) is directly embedded into your scanning activity, then you should initialise it with [Metadata settings](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataSettings.html) and your implementation of [Metadata listener interface](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataListener.html). The _MetadataSettings_ will define which metadata will be reported to _MetadataListener_. The metadata can contain various data, such as images, object detection location etc. To see documentation and example how to use _MetadataListener_ to obtain images and other metadata, see section [Obtaining various metadata with _MetadataListener_](#metadataListener).
 
 This section will give an example how to implement [ImageListener interface](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageListener.html) that will obtain images that are being processed. `ImageListener` has only one method that needs to be implemented: `onImageAvailable(Image)`. This method is called whenever library has available image for current processing step. [Image](https://blinkocr.github.io/blinkocr-android/com/microblink/image/Image.html) is class that contains all information about available image, including buffer with image pixels. Image can be in several format and of several types. [ImageFormat](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageFormat.html) defines the pixel format of the image, while [ImageType](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageType.html) defines the type of the image. `ImageListener` interface extends android's [Parcelable interface](https://developer.android.com/reference/android/os/Parcelable.html) so it is possible to send implementations via [intents](https://developer.android.com/reference/android/content/Intent.html).
@@ -933,7 +1021,7 @@ public class MyImageListener implements ImageListener {
 }
 ```
 
-Note that [ImageListener](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageListener.html) can only be given to _BlinkOCRActivity_ via Intent, while to [RecognizerView](#recognizerView), you need to give [Metadata listener](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataListener.html) and [Metadata settings](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataSettings.html) that defines which metadata should be obtained. When you give _ImageListener_ to _BlinkOCRActivity_ via Intent, it internally registers a _MetadataListener_ that enables obtaining of all available image types and invokes _ImageListener_ given via Intent with the result. For more information and examples how to use _MetadataListener_ for obtaining images, refer to demo applications.
+Note that [ImageListener](https://blinkocr.github.io/blinkocr-android/com/microblink/image/ImageListener.html) can only be given to _SegmentScanActivity_ via Intent, while to [RecognizerView](#recognizerView), you need to give [Metadata listener](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataListener.html) and [Metadata settings](https://blinkocr.github.io/blinkocr-android/com/microblink/metadata/MetadataSettings.html) that defines which metadata should be obtained. When you give _ImageListener_ to _SegmentScanActivity_ via Intent, it internally registers a _MetadataListener_ that enables obtaining of all available image types and invokes _ImageListener_ given via Intent with the result. For more information and examples how to use _MetadataListener_ for obtaining images, refer to demo applications.
 
 # <a name="recognitionSettingsAndResults"></a> Recognition settings and results
 
@@ -1009,6 +1097,11 @@ The following is a list of available parsers:
 	- used for parsing dates in various formats
 - Raw parser - represented by [RawParserSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/blinkocr/parser/generic/RawParserSettings.html)
 	- used for obtaining raw OCR result
+
+- Vehicle Identification Number (VIN) parser - represented by [VinParserSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/blinkocr/parser/vin/VinParserSettings.html)
+	- used for parsing vehicle identification number
+- License Plates parser - represented by [LicensePlatesParserSettings]({https://blinkocr.github.io/blinkocr-android}/com/microblink/recognizers/blinkocr/parser/licenseplates/LicensePlatesParserSettings.html)
+	- used for parsing license plates numbers
 
 - Regex parser - represented by [RegexParserSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html)
 	- used for parsing arbitrary regular expressions
