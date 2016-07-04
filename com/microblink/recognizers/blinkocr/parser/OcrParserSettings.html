@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -111,7 +111,7 @@ var activeTableTab = "activeTableTab";
 </dl>
 <dl>
 <dt>Direct Known Subclasses:</dt>
-<dd><a href="../../../../../com/microblink/recognizers/blinkocr/parser/generic/AmountParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.generic">AmountParserSettings</a>, <a href="../../../../../com/microblink/recognizers/blinkocr/parser/generic/DateParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.generic">DateParserSettings</a>, <a href="../../../../../com/microblink/recognizers/blinkocr/parser/generic/EMailParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.generic">EMailParserSettings</a>, <a href="../../../../../com/microblink/recognizers/blinkocr/parser/generic/IbanParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.generic">IbanParserSettings</a>, <a href="../../../../../com/microblink/recognizers/blinkocr/parser/generic/RawParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.generic">RawParserSettings</a>, <a href="../../../../../com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.regex">RegexParserSettings</a></dd>
+<dd><a href="../../../../../com/microblink/recognizers/blinkocr/parser/generic/AmountParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.generic">AmountParserSettings</a>, <a href="../../../../../com/microblink/recognizers/blinkocr/parser/generic/DateParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.generic">DateParserSettings</a>, <a href="../../../../../com/microblink/recognizers/blinkocr/parser/generic/EMailParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.generic">EMailParserSettings</a>, <a href="../../../../../com/microblink/recognizers/blinkocr/parser/generic/IbanParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.generic">IbanParserSettings</a>, <a href="../../../../../com/microblink/recognizers/blinkocr/parser/licenseplates/LicensePlatesParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.licenseplates">LicensePlatesParserSettings</a>, <a href="../../../../../com/microblink/recognizers/blinkocr/parser/generic/RawParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.generic">RawParserSettings</a>, <a href="../../../../../com/microblink/recognizers/blinkocr/parser/regex/RegexParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.regex">RegexParserSettings</a>, <a href="../../../../../com/microblink/recognizers/blinkocr/parser/vin/VinParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser.vin">VinParserSettings</a></dd>
 </dl>
 <hr>
 <br>
@@ -216,25 +216,29 @@ implements android.os.Parcelable</pre>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html#getPriority--">getPriority</a></span>()</code>&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html#initNativeFromParcel-android.os.Parcel-">initNativeFromParcel</a></span>(android.os.Parcel&nbsp;in)</code>
 <div class="block">Call this method from derived class after initializing native context.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html#isRequired--">isRequired</a></span>()</code>
 <div class="block">Returns whether parser configured with this parser settings object will be required</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html#setRequired-boolean-">setRequired</a></span>(boolean&nbsp;required)</code>
 <div class="block">Defines whether the parser configured with this parser settings object will be required
  or optional.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html#writeToParcel-android.os.Parcel-int-">writeToParcel</a></span>(android.os.Parcel&nbsp;dest,
              int&nbsp;flags)</code>&nbsp;</td>
@@ -392,7 +396,7 @@ protected&nbsp;void&nbsp;initNativeFromParcel(android.os.Parcel&nbsp;in)</pre>
 <a name="isRequired--">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>isRequired</h4>
 <pre>public&nbsp;boolean&nbsp;isRequired()</pre>
@@ -401,6 +405,15 @@ protected&nbsp;void&nbsp;initNativeFromParcel(android.os.Parcel&nbsp;in)</pre>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>whether parser configured with this parser settings object will be required</dd>
 </dl>
+</li>
+</ul>
+<a name="getPriority--">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getPriority</h4>
+<pre>public&nbsp;int&nbsp;getPriority()</pre>
 </li>
 </ul>
 </li>
