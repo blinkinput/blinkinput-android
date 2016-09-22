@@ -1,5 +1,11 @@
 # Release notes
 
+## 2.8.0
+- added `MobileCouponsParser` for reading prepaid codes from mobile phone coupons
+- `DateParser` returns result as java `Date` object and as original date `String`
+- added method `getSpecificParsedResult` to `TemplatingRecognitionResult` (`BlinkOCRRecognitionResult`) which returns specific parser results, e.g. java `Date` for `DateParser`
+- enabled reading of longer ITF barcodes
+
 ## 2.7.0
 - support for parsing Vehicle Identification Numbers (VINs)
 - renamed BlinkOCRActivity to SegmentScanActivity
