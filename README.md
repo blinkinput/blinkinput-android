@@ -103,7 +103,7 @@ After that, you just need to add _BlinkOCR_ as a dependency to your application 
 
 ```
 dependencies {
-    compile('com.microblink:blinkocr:2.7.0@aar') {
+    compile('com.microblink:blinkocr:2.8.0@aar') {
     	transitive = true
     }
 }
@@ -124,7 +124,7 @@ Current version of Android Studio will not automatically import javadoc from mav
 
 1. In Android Studio project sidebar, ensure [project view is enabled](https://developer.android.com/sdk/installing/studio-androidview.html)
 2. Expand `External Libraries` entry (usually this is the last entry in project view)
-3. Locate `blinkocr-2.7.0` entry, right click on it and select `Library Properties...`
+3. Locate `blinkocr-2.8.0` entry, right click on it and select `Library Properties...`
 4. A `Library Properties` pop-up window will appear
 5. Click the second `+` button in bottom left corner of the window (the one that contains `+` with little globe)
 6. Window for definining documentation URL will appear
@@ -149,7 +149,7 @@ Open your `pom.xml` file and add these directives as appropriate:
 	<dependency>
 		  <groupId>com.microblink</groupId>
 		  <artifactId>blinkocr</artifactId>
-		  <version>2.7.0</version>
+		  <version>2.8.0</version>
 		  <type>aar</type>
   	</dependency>
 </dependencies>
@@ -165,7 +165,7 @@ Open your `pom.xml` file and add these directives as appropriate:
 	```
 	dependencies {
    		compile project(':LibRecognizer')
- 		compile "com.android.support:appcompat-v7:24.0.0"
+ 		compile "com.android.support:appcompat-v7:24.2.0"
 	}
 	```
 5. If you plan to use ProGuard, add following lines to your `proguard-rules.pro`:
@@ -1107,6 +1107,9 @@ The following is a list of available parsers:
 	- used for parsing arbitrary regular expressions
 	- please note that some features, like back references, match grouping and certain regex metacharacters are not supported. See javadoc for more info.
 
+- Mobile coupons parser - represented by [MobileCouponsParserSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/blinkocr/parser/mobilecoupons/MobileCouponsParserSettings.html)
+	- used for parsing prepaid codes from mobile phone coupons (Croatia)
+
 ### <a name="blinkOCR_results"></a> Obtaining results from BlinkOCR recognizer
 
 BlinkOCR recognizer produces [BlinkOCRRecognitionResult](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/blinkocr/BlinkOCRRecognitionResult.html). You can use `instanceof` operator to check if element in results array is instance of `BlinkOCRRecognitionResult` class. See the following snippet for an example:
@@ -1156,6 +1159,12 @@ Returns the parsed result provided by parser with name `parserName` added to def
 
 ##### `String getParsedResult(String parserGroupName, String parserName)`
 Returns the parsed result provided by parser with name `parserName` added to parser group named `parserGroupName`. If parser with name `parserName` does not exists in parser group with name `parserGroupName` or if parser group does not exists, returns `null`. If parser exists, but has failed to parse any data, returns empty string.
+
+##### `Object getSpecificParsedResult(String parserName)`
+Returns specific parser result for concrete parser with the given parser name in default parser group. For example, date parser which is represented with `DateParserSettings` can return parsed date as `Date` object. It is always possible to obtain parsed result as raw string by using *getParsedResult(String)* or *getParsedResult(String, String)* method. If parser with name `parserName` does not exists in default parser group, returns `null`. If parser exists, but has failed to parse any data, returns null or empty string.
+
+##### `Object getSpecificParsedResult(String parserGroupName, String parserName)`
+Returns specific parser result for concrete parser with the given parser name in the given parser group. For example, date parser which is represented with `DateParserSettings` can return parsed date as `Date` object. It is always possible to obtain parsed result as raw string by using *getParsedResult(String)* or *getParsedResult(String, String)* method. If parser with name `parserName` does not exists in parser group with name `parserGroupName` or if parser group does not exists, returns `null`. If parser exists, but has failed to parse any data, returns null or empty string.
 
 ##### `OcrResult getOcrResult()`
 Returns the [OCR result](https://blinkocr.github.io/blinkocr-android/com/microblink/results/ocr/OcrResult.html) structure for default parser group.

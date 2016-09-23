@@ -4,7 +4,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.2'
+        classpath 'com.android.tools.build:gradle:2.2.0'
     }
 }
 
@@ -19,8 +19,8 @@ allprojects {
 // versions of libraries that all modules require
 
 project.ext {
-    blinkOcrVersion = '2.7.0'
-    compileSdkVersion = 23
+    blinkOcrVersion = '2.8.0'
+    compileSdkVersion = 24
     targetSdkVersion = 23
-    buildToolsVersion = '23.0.3'
+    buildToolsVersion = '24.0.2'
 }
