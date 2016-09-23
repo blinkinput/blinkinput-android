@@ -28,12 +28,14 @@ com.microblink.recognizers.blinkocr.engine
 com.microblink.recognizers.blinkocr.parser
 com.microblink.recognizers.blinkocr.parser.generic
 com.microblink.recognizers.blinkocr.parser.licenseplates
+com.microblink.recognizers.blinkocr.parser.mobilecoupons
 com.microblink.recognizers.blinkocr.parser.regex
 com.microblink.recognizers.blinkocr.parser.vin
 com.microblink.recognizers.detector
 com.microblink.recognizers.settings
 com.microblink.recognizers.templating
 com.microblink.results.barcode
+com.microblink.results.date
 com.microblink.results.ocr
 com.microblink.util
 com.microblink.view

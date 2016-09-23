@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -235,95 +235,123 @@ implements android.os.Parcelable</pre>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
+<td class="colFirst"><code>float</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#getShownScanRegionRelativeHeight--">getShownScanRegionRelativeHeight</a></span>()</code>
+<div class="block">Returns the current height of the scan region that will be shown to the user, represented as percentage
+ of maximal allowed scan region height.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>float</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#getShownScanRegionRelativeWidth--">getShownScanRegionRelativeWidth</a></span>()</code>
+<div class="block">Returns the current width of the scan region that will be shown to the user, represented as percentage
+ of maximal allowed scan region width.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#getText-android.content.Context-">getText</a></span>(android.content.Context&nbsp;ctx)</code>
 <div class="block">Returns the text that will be displayed when parser is active.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#getTextResource--">getTextResource</a></span>()</code>
 <div class="block">Returns the resource ID representing text that will be displayed when parser is active.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#getTitle-android.content.Context-">getTitle</a></span>(android.content.Context&nbsp;ctx)</code>
 <div class="block">Returns title that will be displayed.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#getTitleResource--">getTitleResource</a></span>()</code>
 <div class="block">Returns the resource ID representing title that will be displayed or 0 if resource ID is not available.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#isOptional--">isOptional</a></span>()</code>
 <div class="block">Returns whether scan field with this configuration is optional.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#setOptional-boolean-">setOptional</a></span>(boolean&nbsp;optional)</code>
 <div class="block">Sets the flag that indicates whether this scan configuration is optional, which means
  that the data from the scan field with this configuration is not mandatory and can be skipped by user.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#setParserName-java.lang.String-">setParserName</a></span>(java.lang.String&nbsp;parserName)</code>
 <div class="block">Sets the name of the parser.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#setParserSettings-com.microblink.recognizers.blinkocr.parser.OcrParserSettings-">setParserSettings</a></span>(<a href="../../../com/microblink/recognizers/blinkocr/parser/OcrParserSettings.html" title="class in com.microblink.recognizers.blinkocr.parser">OcrParserSettings</a>&nbsp;parserSettings)</code>
 <div class="block">Sets the parser settings that will be used to instatiate parser.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#setScanRegionRelativeHeight-float-">setScanRegionRelativeHeight</a></span>(float&nbsp;scanRegionRelativeHeight)</code>
 <div class="block">Sets the scan region height, represented as percentage of maximal allowed scan region height.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#setScanRegionRelativeWidth-float-">setScanRegionRelativeWidth</a></span>(float&nbsp;scanRegionRelativeWidth)</code>
 <div class="block">Sets the scan region width, represented as percentage of maximal allowed scan region width.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i17" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#setShownScanRegionRelativeHeight-float-">setShownScanRegionRelativeHeight</a></span>(float&nbsp;shownScanRegionRelativeHeight)</code>
+<div class="block">Sets the height of the scan region that will be shown to the user, represented as percentage
+ of maximal allowed scan region height.</div>
+</td>
+</tr>
+<tr id="i18" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#setShownScanRegionRelativeWidth-float-">setShownScanRegionRelativeWidth</a></span>(float&nbsp;shownScanRegionRelativeWidth)</code>
+<div class="block">Sets the width of the scan region that will be shown to the user, represented as percentage
+ of maximal allowed scan region width.</div>
+</td>
+</tr>
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#setText-java.lang.String-">setText</a></span>(java.lang.String&nbsp;text)</code>
 <div class="block">Sets the text that will be displayed when parser is active.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#setTextResource-int-">setTextResource</a></span>(int&nbsp;textResource)</code>
 <div class="block">Sets the resource ID representing text that will be displayed when parser is active.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#setTitle-java.lang.String-">setTitle</a></span>(java.lang.String&nbsp;title)</code>
 <div class="block">Sets the title that will be displayed.</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#setTitleResource-int-">setTitleResource</a></span>(int&nbsp;titleResource)</code>
 <div class="block">Sets the resource ID representing title that will be displayed.</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/ocr/ScanConfiguration.html#writeToParcel-android.os.Parcel-int-">writeToParcel</a></span>(android.os.Parcel&nbsp;dest,
              int&nbsp;flags)</code>&nbsp;</td>
@@ -699,6 +727,78 @@ public&nbsp;java.lang.String&nbsp;getParserName()</pre>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>scanRegionRelativeHeight</code> - scan region height, represented as percentage of maximal allowed scan region height.</dd>
+</dl>
+</li>
+</ul>
+<a name="getShownScanRegionRelativeWidth--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getShownScanRegionRelativeWidth</h4>
+<pre>public&nbsp;float&nbsp;getShownScanRegionRelativeWidth()</pre>
+<div class="block">Returns the current width of the scan region that will be shown to the user, represented as percentage
+ of maximal allowed scan region width. It can be different from the scan region width that is used for
+ scanning (OCR).</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>current width of the scan region that will be shown to the user, represented as percentage of
+ maximal allowed scan region width.</dd>
+</dl>
+</li>
+</ul>
+<a name="setShownScanRegionRelativeWidth-float-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setShownScanRegionRelativeWidth</h4>
+<pre>public&nbsp;void&nbsp;setShownScanRegionRelativeWidth(float&nbsp;shownScanRegionRelativeWidth)</pre>
+<div class="block">Sets the width of the scan region that will be shown to the user, represented as percentage
+ of maximal allowed scan region width. It can be different from scan region width that is used for
+ scanning (OCR). This option can be used to ensure that all characters that are important for current
+ parser will be scanned and available for parsing. If the width of the shown scan region is not set,
+ it will be equal to the width of the scan region that is used for scanning (OCR).</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>shownScanRegionRelativeWidth</code> - width of the scan region that will be shown to the user, represented as
+                                     percentage of maximal allowed scan region width.</dd>
+</dl>
+</li>
+</ul>
+<a name="getShownScanRegionRelativeHeight--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getShownScanRegionRelativeHeight</h4>
+<pre>public&nbsp;float&nbsp;getShownScanRegionRelativeHeight()</pre>
+<div class="block">Returns the current height of the scan region that will be shown to the user, represented as percentage
+ of maximal allowed scan region height. It can be different from the height of the scan region that is used for
+ scanning (OCR).</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>height of the current scan region that will be shown to the user, represented as percentage of
+ maximal allowed scan region height.</dd>
+</dl>
+</li>
+</ul>
+<a name="setShownScanRegionRelativeHeight-float-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setShownScanRegionRelativeHeight</h4>
+<pre>public&nbsp;void&nbsp;setShownScanRegionRelativeHeight(float&nbsp;shownScanRegionRelativeHeight)</pre>
+<div class="block">Sets the height of the scan region that will be shown to the user, represented as percentage
+ of maximal allowed scan region height. It can be different from the height of the scan region that is used for
+ scanning (OCR). This option can be used to ensure that all characters that are important for current
+ parser will be scanned and available for parsing. If the height of the shown scan region is not set, it will be equal
+ to the height of the scan region that is used for scanning (OCR).</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>shownScanRegionRelativeHeight</code> - scan region height that will be shown to the user, represented as
+                                     percentage of maximal allowed scan region height.</dd>
 </dl>
 </li>
 </ul>
