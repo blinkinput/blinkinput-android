@@ -1108,7 +1108,7 @@ The following is a list of available parsers:
 	- please note that some features, like back references, match grouping and certain regex metacharacters are not supported. See javadoc for more info.
 
 - Mobile coupons parser - represented by [MobileCouponsParserSettings](https://blinkocr.github.io/blinkocr-android/com/microblink/recognizers/blinkocr/parser/mobilecoupons/MobileCouponsParserSettings.html)
-	- used for parsing prepaid codes from mobile phone coupons (Croatia)
+	- used for parsing prepaid codes from mobile phone coupons
 
 ### <a name="blinkOCR_results"></a> Obtaining results from BlinkOCR recognizer
 
