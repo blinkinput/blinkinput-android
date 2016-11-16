@@ -1,0 +1,1 @@
+include ':BlinkInputSegmentDemo', ':BlinkInputFullScreen', ':BlinkInputDirectAPI', ':BlinkInputCombination', ':BlinkInputDetectorDemo', 'BlinkInputRandomScanDemo'

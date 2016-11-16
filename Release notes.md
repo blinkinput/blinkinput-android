@@ -1,5 +1,19 @@
 # Release notes
 
+## 3.0.0
+
+- _LibRecognizer.aar_ renamed to _LibBlinkInput.aar_
+- _libBlinkOCR.so_ renamed to _libBlinkInput.so_
+- workaround for camera bug on some samsung devices
+- fixed camera bug on LG X Cam
+- fixed camera bug on OnePlus 3
+- fixed rare NPE in SegmentScanActivity
+- improved IBAN parser
+- improved amount parser
+	- amount parser settings now does not have _expectAsterixOrEqualsPrefix_ and _expectCurrencySymbol_ anymore - this is now handled automatically
+- migrated to libc++ native runtime and used clang from NDKr13b for building the native code
+    - this enabled c++14 features which will help us yield much better performance in the future
+
 ## 2.8.0
 - added `MobileCouponsParser` for reading prepaid codes from mobile phone coupons
 - `DateParser` returns result as java `Date` object and as original date `String`
