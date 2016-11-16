@@ -1,27 +1,27 @@
-# _BlinkOCR_ SDK for Android
+# _BlinkInput_ SDK for Android
 
 [![Build Status](https://travis-ci.org/blinkinput/blinkinput-android.svg?branch=master)](https://travis-ci.org/blinkinput/blinkinput-android)
 
-_BlinkOCR_ SDK for Android is SDK that enables you to easily add near real time OCR functionality to your app. With provided camera management you can easily create an app that scans receipts, e-mails and much more. As of version `1.8.0` you can also scan barcodes when using [custom UI integration](#recognizerView). You can also scan images stored as [Android Bitmaps](http://developer.android.com/reference/android/graphics/Bitmap.html) that are loaded either from gallery, network or SD card.
+_BlinkInput_ SDK for Android is SDK that enables you to easily add near real time OCR functionality to your app with purpose to replace manual data input. With provided camera management you can easily create an app that scans receipts, e-mails and much more. As of version `1.8.0` you can also scan barcodes when using [custom UI integration](#recognizerView). You can also scan images stored as [Android Bitmaps](http://developer.android.com/reference/android/graphics/Bitmap.html) that are loaded either from gallery, network or SD card.
 
-With _BlinkOCR_ you can scan free-form text or specialized formats like dates, amounts, e-mails and much more. Using specialized formats yields much better scanning quality than using free-form text mode.
+With _BlinkInput_ you can scan free-form text or specialized formats like dates, amounts, e-mails and much more. Using specialized formats yields much better scanning quality than using free-form text mode.
 
-Using _BlinkOCR_ in your app requires a valid license key. You can obtain a trial license key by registering to [Microblink dashboard](https://microblink.com/login). After registering, you will be able to generate a license key for your app. License key is bound to [package name](http://tools.android.com/tech-docs/new-build-system/applicationid-vs-packagename) of your app, so please make sure you enter the correct package name when asked.
+Using _BlinkInput_ in your app requires a valid license key. You can obtain a trial license key by registering to [Microblink dashboard](https://microblink.com/login). After registering, you will be able to generate a license key for your app. License key is bound to [package name](http://tools.android.com/tech-docs/new-build-system/applicationid-vs-packagename) of your app, so please make sure you enter the correct package name when asked.
 
-See below for more information about how to integrate _BlinkOCR_ SDK into your app and also check latest [Release notes](Release notes.md).
+See below for more information about how to integrate _BlinkInput_ SDK into your app and also check latest [Release notes](Release notes.md).
 
 # Table of contents
 
-* [Android _BlinkOCR_ integration instructions](#intro)
+* [Android _BlinkInput_ integration instructions](#intro)
 * [Quick Start](#quickStart)
   * [Quick start with demo app](#quickDemo)
-  * [Integrating _BlinkOCR_ into your project using Maven](#mavenIntegration)
+  * [Integrating _BlinkInput_ into your project using Maven](#mavenIntegration)
   * [Android studio integration instructions](#quickIntegration)
   * [Eclipse integration instructions](#eclipseIntegration)
   * [Performing your first segment scan](#quickScan)
   * [Performing your first random scan](#randomScan)
-* [Advanced _BlinkOCR_ integration instructions](#advancedIntegration)
-  * [Checking if _BlinkOCR_ is supported](#supportCheck)
+* [Advanced _BlinkInput_ integration instructions](#advancedIntegration)
+  * [Checking if _BlinkInput_ is supported](#supportCheck)
   * [Customization of `SegmentScanActivity` activity](#segmentScanActivityCustomization)
   * [Customization of `RandomScanActivity` activity](#randomScanActivityCustomization)
   * [Embedding `RecognizerView` into custom scan activity](#recognizerView)
@@ -36,7 +36,7 @@ See below for more information about how to integrate _BlinkOCR_ SDK into your a
   * [Scanning segments with BlinkOCR recognizer](#blinkOCR)
   * [Scanning templated documents with BlinkOCR recognizer](#blinkOCR_templating)
   * [Scanning PDF417 barcodes](#pdf417Recognizer)
-  * [Scanning one dimensional barcodes with _BlinkOCR_'s implementation](#custom1DBarDecoder)
+  * [Scanning one dimensional barcodes with _BlinkInput_'s implementation](#custom1DBarDecoder)
   * [Scanning barcodes with ZXing implementation](#zxing)
   * [Performing detection of various documents](#detectorRecognizer)
 * [Detection settings and results](#detectionSettingsAndResults)
@@ -46,15 +46,15 @@ See below for more information about how to integrate _BlinkOCR_ SDK into your a
   * [Combining detectors with MultiDetector](#multiDetector)
 * [Processor architecture considerations](#archConsider)
   * [Reducing the final size of your app](#reduceSize)
-  * [Combining _BlinkOCR_ with other native libraries](#combineNativeLibraries)
+  * [Combining _BlinkInput_ with other native libraries](#combineNativeLibraries)
 * [Troubleshooting](#troubleshoot)
   * [Integration problems](#integrationTroubleshoot)
   * [SDK problems](#sdkTroubleshoot)
 * [Additional info](#info)
 
-# <a name="intro"></a> Android _BlinkOCR_ integration instructions
+# <a name="intro"></a> Android _BlinkInput_ integration instructions
 
-The package contains Android Archive (AAR) that contains everything you need to use _BlinkOCR_ library. This AAR is also available in maven repository for easier integration into your app. For more information about maven integration procedure, check [maven integration section](#mavenIntegration).
+The package contains Android Archive (AAR) that contains everything you need to use _BlinkInput_ library. This AAR is also available in maven repository for easier integration into your app. For more information about maven integration procedure, check [maven integration section](#mavenIntegration).
 
 Besides AAR, package also contains a demo project that contains following modules:
 
@@ -65,9 +65,9 @@ Besides AAR, package also contains a demo project that contains following module
 - _BlinkOCRCombination_ shows how to perform OCR of camera frame, obtain that same camera frame and process it again with DirectAPi. You can test this app with [PDF within demo app folder](BlinkOCRDemo/BlinkOCRCombination/combinationScan.pdf).
 - _BlinkOCRRandomScanDemo_ demonstrates the usage of the provided `RandomScanActivity` and random scan feature, which is similar to segment scan, but does not force the user to scan text segments in the predefined order.
  
-Source code of all demo apps is given to you to show you how to perform integration of _BlinkOCR_ SDK into your app. You can use this source code and all resources as you wish. You can use demo apps as basis for creating your own app, or you can copy/paste code and/or resources from demo apps into your app and use them as you wish without even asking us for permission.
+Source code of all demo apps is given to you to show you how to perform integration of _BlinkInput_ SDK into your app. You can use this source code and all resources as you wish. You can use demo apps as basis for creating your own app, or you can copy/paste code and/or resources from demo apps into your app and use them as you wish without even asking us for permission.
 
-_BlinkOCR_ is supported on Android SDK version 10 (Android 2.3.3) or later.
+_BlinkInput_ is supported on Android SDK version 10 (Android 2.3.3) or later.
 
 The library contains two activities:
 
@@ -82,16 +82,16 @@ For advanced use cases, you will need to embed `RecognizerView` into your activi
 
 1. Open Android Studio.
 2. In Quick Start dialog choose _Import project (Eclipse ADT, Gradle, etc.)_.
-3. In File dialog select _BlinkOCRDemo_ folder.
+3. In File dialog select _BlinkInputDemo_ folder.
 4. Wait for project to load. If Android studio asks you to reload project on startup, select `Yes`.
 
-## <a name="mavenIntegration"></a> Integrating _BlinkOCR_ into your project using Maven
+## <a name="mavenIntegration"></a> Integrating _BlinkInput_ into your project using Maven
 
-Maven repository for _BlinkOCR_ SDK is: [http://maven.microblink.com](http://maven.microblink.com). If you do not want to perform integration via Maven, simply skip to [Android Studio integration instructions](#quickIntegration) or [Eclipse integration instructions](#eclipseIntegration).
+Maven repository for _BlinkInput_ SDK is: [http://maven.microblink.com](http://maven.microblink.com). If you do not want to perform integration via Maven, simply skip to [Android Studio integration instructions](#quickIntegration) or [Eclipse integration instructions](#eclipseIntegration).
 
 ### Using gradle or Android Studio
 
-In your `build.gradle` you first need to add _BlinkOCR_ maven repository to repositories list:
+In your `build.gradle` you first need to add _BlinkInput_ maven repository to repositories list:
 
 ```
 repositories {
@@ -99,11 +99,11 @@ repositories {
 }
 ```
 
-After that, you just need to add _BlinkOCR_ as a dependency to your application (make sure, `transitive` is set to true):
+After that, you just need to add _BlinkInput_ as a dependency to your application (make sure, `transitive` is set to true):
 
 ```
 dependencies {
-    compile('com.microblink:blinkocr:2.8.0@aar') {
+    compile('com.microblink:blinkinput:3.0.0@aar') {
     	transitive = true
     }
 }
@@ -124,7 +124,7 @@ Current version of Android Studio will not automatically import javadoc from mav
 
 1. In Android Studio project sidebar, ensure [project view is enabled](https://developer.android.com/sdk/installing/studio-androidview.html)
 2. Expand `External Libraries` entry (usually this is the last entry in project view)
-3. Locate `blinkocr-2.8.0` entry, right click on it and select `Library Properties...`
+3. Locate `blinkinput-3.0.0` entry, right click on it and select `Library Properties...`
 4. A `Library Properties` pop-up window will appear
 5. Click the second `+` button in bottom left corner of the window (the one that contains `+` with little globe)
 6. Window for definining documentation URL will appear
@@ -148,8 +148,8 @@ Open your `pom.xml` file and add these directives as appropriate:
 <dependencies>
 	<dependency>
 		  <groupId>com.microblink</groupId>
-		  <artifactId>blinkocr</artifactId>
-		  <version>2.8.0</version>
+		  <artifactId>blinkinput</artifactId>
+		  <version>3.0.0</version>
 		  <type>aar</type>
   	</dependency>
 </dependencies>
@@ -159,13 +159,13 @@ Open your `pom.xml` file and add these directives as appropriate:
 
 1. In Android Studio menu, click _File_, select _New_ and then select _Module_.
 2. In new window, select _Import .JAR or .AAR Package_, and click _Next_.
-3. In _File name_ field, enter the path to _LibRecognizer.aar_ and click _Finish_.
+3. In _File name_ field, enter the path to _LibBlinkInput.aar_ and click _Finish_.
 4. In your app's `build.gradle`, add dependency to `LibRecognizer` and appcompat-v7:
 
 	```
 	dependencies {
    		compile project(':LibRecognizer')
- 		compile "com.android.support:appcompat-v7:24.2.0"
+ 		compile "com.android.support:appcompat-v7:25.0.1"
 	}
 	```
 5. If you plan to use ProGuard, add following lines to your `proguard-rules.pro`:
@@ -190,22 +190,22 @@ Open your `pom.xml` file and add these directives as appropriate:
 	
 ## <a name="eclipseIntegration"></a> Eclipse integration instructions
 
-We do not provide Eclipse integration demo apps. We encourage you to use Android Studio. We also do not test integrating _BlinkOCR_ with Eclipse. If you are having problems with _BlinkOCR_, make sure you have tried integrating it with Android Studio prior contacting us.
+We do not provide Eclipse integration demo apps. We encourage you to use Android Studio. We also do not test integrating _BlinkInput_ with Eclipse. If you are having problems with _BlinkInput_, make sure you have tried integrating it with Android Studio prior contacting us.
 
 However, if you still want to use Eclipse, you will need to convert AAR archive to Eclipse library project format. You can do this by doing the following:
 
 1. In Eclipse, create a new _Android library project_ in your workspace.
 2. Clear the `src` and `res` folders.
-3. Unzip the `LibRecognizer.aar` file. You can rename it to zip and then unzip it using any tool.
+3. Unzip the `LibBlinkInput.aar` file. You can rename it to zip and then unzip it using any tool.
 4. Copy the `classes.jar` to `libs` folder of your Eclipse library project. If `libs` folder does not exist, create it.
 5. Copy the contents of `jni` folder to `libs` folder of your Eclipse library project.
-6. Replace the `res` folder on library project with the `res` folder of the `LibRecognizer.aar` file.
+6. Replace the `res` folder on library project with the `res` folder of the `LibBlinkInput.aar` file.
 
 You’ve already created the project that contains almost everything you need. Now let’s see how to configure your project to reference this library project.
 
 1. In the project you want to use the library (henceforth, "target project") add the library project as a dependency
-2. Open the `AndroidManifest.xml` file inside `LibRecognizer.aar` file and make sure to copy all permissions, features and activities to the `AndroidManifest.xml` file of the target project.
-3. Copy the contents of `assets` folder from `LibRecognizer.aar` into `assets` folder of target project. If `assets` folder in target project does not exist, create it.
+2. Open the `AndroidManifest.xml` file inside `LibBlinkInput.aar` file and make sure to copy all permissions, features and activities to the `AndroidManifest.xml` file of the target project.
+3. Copy the contents of `assets` folder from `LibBlinkInput.aar` into `assets` folder of target project. If `assets` folder in target project does not exist, create it.
 4. Clean and Rebuild your target project
 5. If you plan to use ProGuard, add same statements as in [Android studio guide](#quickIntegration) to your ProGuard configuration file.
 6. Add appcompat-v7 library to your workspace and reference it by target project (modern ADT plugin for Eclipse does this automatically for all new android projects).
@@ -325,30 +325,30 @@ You’ve already created the project that contains almost everything you need. N
 	```
 
 
-# <a name="advancedIntegration"></a> Advanced _BlinkOCR_ integration instructions
-This section will cover more advanced details in _BlinkOCR_ integration. First part will discuss the methods for checking whether _BlinkOCR_ is supported on current device. Second part will cover the possible customization of builtin `SegmentScanActivity` activity, third part will describe how to embed `RecognizerView` into your activity and fourth part will describe how to use direct API to recognize directly android bitmaps without the need of camera.
+# <a name="advancedIntegration"></a> Advanced _BlinkInput_ integration instructions
+This section will cover more advanced details in _BlinkInput_ integration. First part will discuss the methods for checking whether _BlinkInput_ is supported on current device. Second part will cover the possible customization of builtin `SegmentScanActivity` activity, third part will describe how to embed `RecognizerView` into your activity and fourth part will describe how to use direct API to recognize directly android bitmaps without the need of camera.
 
-## <a name="supportCheck"></a> Checking if _BlinkOCR_ is supported
+## <a name="supportCheck"></a> Checking if _BlinkInput_ is supported
 
-### _BlinkOCR_ requirements
-Even before starting the scan activity, you should check if _BlinkOCR_ is supported on current device. In order to be supported, device needs to have camera. 
+### _BlinkInput_ requirements
+Even before starting the scan activity, you should check if _BlinkInput_ is supported on current device. In order to be supported, device needs to have camera. 
 
-Android 2.3 is the minimum android version on which _BlinkOCR_ is supported. For best performance and compatibility, we recommend Android 5.0 or newer.
+Android 2.3 is the minimum android version on which _BlinkInput_ is supported. For best performance and compatibility, we recommend Android 5.0 or newer.
 
-Camera video preview resolution also matters. In order to perform successful scans, camera preview resolution cannot be too low. _BlinkOCR_ requires minimum 480p camera preview resolution in order to perform scan. It must be noted that camera preview resolution is not the same as the video record resolution, although on most devices those are the same. However, there are some devices that allow recording of HD video (720p resolution), but do not allow high enough camera preview resolution (for example, [Sony Xperia Go](http://www.gsmarena.com/sony_xperia_go-4782.php) supports video record resolution at 720p, but camera preview resolution is only 320p - _BlinkOCR_ does not work on that device).
+Camera video preview resolution also matters. In order to perform successful scans, camera preview resolution cannot be too low. _BlinkInput_ requires minimum 480p camera preview resolution in order to perform scan. It must be noted that camera preview resolution is not the same as the video record resolution, although on most devices those are the same. However, there are some devices that allow recording of HD video (720p resolution), but do not allow high enough camera preview resolution (for example, [Sony Xperia Go](http://www.gsmarena.com/sony_xperia_go-4782.php) supports video record resolution at 720p, but camera preview resolution is only 320p - _BlinkInput_ does not work on that device).
 
-_BlinkOCR_ is native application, written in C++ and available for multiple platforms. Because of this, _BlinkOCR_ cannot work on devices that have obscure hardware architectures. We have compiled _BlinkOCR_ native code only for most popular Android [ABIs](https://en.wikipedia.org/wiki/Application_binary_interface). See [Processor architecture considerations](#archConsider) for more information about native libraries in _BlinkOCR_ and instructions how to disable certain architectures in order to reduce the size of final app.
+_BlinkInput_ is native application, written in C++ and available for multiple platforms. Because of this, _BlinkInput_ cannot work on devices that have obscure hardware architectures. We have compiled _BlinkInput_ native code only for most popular Android [ABIs](https://en.wikipedia.org/wiki/Application_binary_interface). See [Processor architecture considerations](#archConsider) for more information about native libraries in _BlinkInput_ and instructions how to disable certain architectures in order to reduce the size of final app.
 
-### Checking for _BlinkOCR_ support in your app
-To check whether the _BlinkOCR_ is supported on the device, you can do it in the following way:
+### Checking for _BlinkInput_ support in your app
+To check whether the _BlinkInput_ is supported on the device, you can do it in the following way:
 	
 ```java
-// check if BlinkOCR is supported on the device
+// check if BlinkInput is supported on the device
 RecognizerCompatibilityStatus status = RecognizerCompatibility.getRecognizerCompatibilityStatus(this);
 if(status == RecognizerCompatibilityStatus.RECOGNIZER_SUPPORTED) {
-	Toast.makeText(this, "BlinkOCR is supported!", Toast.LENGTH_LONG).show();
+	Toast.makeText(this, "BlinkInput is supported!", Toast.LENGTH_LONG).show();
 } else {
-	Toast.makeText(this, "BlinkOCR is not supported! Reason: " + status.name(), Toast.LENGTH_LONG).show();
+	Toast.makeText(this, "BlinkInput is not supported! Reason: " + status.name(), Toast.LENGTH_LONG).show();
 }
 ```
 
@@ -384,15 +384,21 @@ This section will discuss possible parameters that can be sent over `Intent` for
 	```java
 	intent.putExtra(SegmentScanActivity.EXTRAS_CAMERA_VIDEO_PRESET, (Parcelable)VideoResolutionPreset.VIDEO_RESOLUTION_720p);
 	```
+	
+* <a name="intent_EXTRAS_SET_FLAG_SECURE" href="#intent_EXTRAS_SET_FLAG_SECURE">#</a> **`SegmentScanActivity.EXTRAS_SET_FLAG_SECURE`** - with this extra you can request setting of `FLAG_SECURE` on activity window which indicates that the display has a secure video output and supports compositing secure surfaces. Use this to prevent taking screenshots of the activity window content and to prevent content from being viewed on non-secure displays. To set `FLAG_SECURE` on camera activity, use the following code snippet:
 
-* <a name="intent_EXTRAS_LICENSE_KEY" href="#intent_EXTRAS_LICENSE_KEY">#</a> **`SegmentScanActivity.EXTRAS_LICENSE_KEY`** - with this extra you can set the license key for _BlinkOCR_. You can obtain your licence key from [Microblink website](http://microblink.com/login) or you can contact us at [http://help.microblink.com](http://help.microblink.com). Once you obtain a license key, you can set it with following snippet:
+	```java
+	intent.putExtra(SegmentScanActivity.EXTRAS_SET_FLAG_SECURE, true);
+	
+
+* <a name="intent_EXTRAS_LICENSE_KEY" href="#intent_EXTRAS_LICENSE_KEY">#</a> **`SegmentScanActivity.EXTRAS_LICENSE_KEY`** - with this extra you can set the license key for _BlinkInput_. You can obtain your licence key from [Microblink website](http://microblink.com/login) or you can contact us at [http://help.microblink.com](http://help.microblink.com). Once you obtain a license key, you can set it with following snippet:
 
 	```java
 	// set the license key
 	intent.putExtra(SegmentScanActivity.EXTRAS_LICENSE_KEY, "Enter_License_Key_Here");
 	```
 	
-	Licence key is bound to package name of your application. For example, if you have licence key that is bound to `com.microblink.ocr` app package, you cannot use the same key in other applications. However, if you purchase Premium licence, you will get licence key that can be used in multiple applications. This licence key will then not be bound to package name of the app. Instead, it will be bound to the licencee string that needs to be provided to the library together with the licence key. To provide licencee string, use the `EXTRAS_LICENSEE` intent extra like this:
+	Licence key is bound to package name of your application. For example, if you have licence key that is bound to `com.microblink.input` app package, you cannot use the same key in other applications. However, if you purchase Premium licence, you will get licence key that can be used in multiple applications. This licence key will then not be bound to package name of the app. Instead, it will be bound to the licencee string that needs to be provided to the library together with the licence key. To provide licencee string, use the `EXTRAS_LICENSEE` intent extra like this:
 
 	```java
 	// set the license key
@@ -443,7 +449,7 @@ With this extra you can set the resource ID of the sound to be played when the s
 This section will discuss how to embed [RecognizerView](https://blinkinput.github.io/blinkinput-android/com/microblink/view/recognition/RecognizerView.html) into your scan activity and perform scan.
 
 1. First make sure that `RecognizerView` is a member field in your activity. This is required because you will need to pass all activity's lifecycle events to `RecognizerView`.
-2. It is recommended to keep your scan activity in one orientation, such as `portrait` or `landscape`. Setting `sensor` as scan activity's orientation will trigger full restart of activity whenever device orientation changes. This will provide very poor user experience because both camera and _BlinkOCR_ native library will have to be restarted every time. There are measures for this behaviour and will be discussed [later](#scanOrientation).
+2. It is recommended to keep your scan activity in one orientation, such as `portrait` or `landscape`. Setting `sensor` as scan activity's orientation will trigger full restart of activity whenever device orientation changes. This will provide very poor user experience because both camera and _BlinkInput_ native library will have to be restarted every time. There are measures for this behaviour and will be discussed [later](#scanOrientation).
 3. In your activity's `onCreate` method, create a new `RecognizerView`, define its [settings and listeners](#recognizerViewReference) and then call its `create` method. After that, add your views that should be layouted on top of camera view.
 4. Override your activity's `onStart`, `onResume`, `onPause`, `onStop` and `onDestroy` methods and call `RecognizerView's` lifecycle methods `start`, `resume`, `pause`, `stop` and `destroy`. This will ensure correct camera and native resource management. If you plan to manage `RecognizerView's` lifecycle independently of host activity's lifecycle, make sure the order of calls to lifecycle methods is the same as is with activities (i.e. you should not call `resume` method if `create` and `start` were not called first).
 
@@ -637,7 +643,7 @@ For that matter, we recommend setting your scan activity to either `portrait` or
 However, if you really want to set `screenOrientation` property to `sensor` or similar and want Android to handle orientation changes of your scan activity, then we recommend to set `configChanges` property of your activity to `orientation|screenSize`. This will tell Android not to restart your activity when device orientation changes. Instead, activity's `onConfigurationChanged` method will be called so that activity can be notified of the configuration change. In your implementation of this method, you should call `changeConfiguration` method of `RecognizerView` so it can adapt its camera surface and child views to new configuration. Note that on Android versions older than 4.0 changing of configuration will require restart of camera, which can be slow.
 
 ## <a name="recognizerViewReference"></a> `RecognizerView` reference
-The complete reference of `RecognizerView` is available in [Javadoc](https://blinkinput.github.io/blinkinput-android/com/microblink/view/recognition/RecognizerView.html). The usage example is provided in `BlinkOCRFullScreen` demo app provided with SDK. This section just gives a quick overview of `RecognizerView's` most important methods.
+The complete reference of `RecognizerView` is available in [Javadoc](https://blinkinput.github.io/blinkinput-android/com/microblink/view/recognition/RecognizerView.html). The usage example is provided in `BlinkInputFullScreen` demo app provided with SDK. This section just gives a quick overview of `RecognizerView's` most important methods.
 
 ##### <a name="recognizerView_create"></a> [`create()`](https://blinkinput.github.io/blinkinput-android/com/microblink/view/recognition/RecognizerView.html#create--)
 This method should be called in activity's `onCreate` method. It will initialize `RecognizerView's` internal fields and will initialize camera control thread. This method must be called after all other settings are already defined, such as listeners and recognition settings. After calling this method, you can add child views to `RecognizerView` with method `addChildView(View, boolean)`.
@@ -738,7 +744,7 @@ from the current recognition process. Which metadata will be available depends o
 This method sets the license key that will unlock all features of the native library. You can obtain your license key from [Microblink website](http://microblink.com/login).
 
 ##### <a name="recognizerView_setLicenseKey2"></a> [`setLicenseKey(String licenseKey, String licensee)`](https://blinkinput.github.io/blinkinput-android/com/microblink/view/recognition/RecognizerView.html#setLicenseKey-java.lang.String-java.lang.String-)
-Use this method to set a license key that is bound to a licensee, not the application package name. You will use this method when you obtain a license key that allows you to use _BlinkOCR_ SDK in multiple applications. You can obtain your license key from [Microblink website](http://microblink.com/login).
+Use this method to set a license key that is bound to a licensee, not the application package name. You will use this method when you obtain a license key that allows you to use _BlinkInput_ SDK in multiple applications. You can obtain your license key from [Microblink website](http://microblink.com/login).
 
 # <a name="directAPI"></a> Using direct API for recognition of Android Bitmaps
 
@@ -1035,7 +1041,7 @@ Recognition settings define what will be scanned and how will the recognition pr
 Sets whether or not outputting of multiple scan results from same image is allowed. If that is `true`, it is possible to return multiple recognition results produced by different recognizers from same image. However, single recognizer can still produce only a single result from single image. If this option is `false`, the array of `BaseRecognitionResults` will contain at most 1 element. The upside of setting that option to `false` is the speed - if you enable lots of recognizers, as soon as the first recognizer succeeds in scanning, recognition chain will be terminated and other recognizers will not get a chance to analyze the image. The downside is that you are then unable to obtain multiple results from different recognizers from single image. By default, this option is `false`.
 
 ##### [`setNumMsBeforeTimeout(int)`](https://blinkinput.github.io/blinkinput-android/com/microblink/recognizers/settings/RecognitionSettings.html#setNumMsBeforeTimeout-int-)
-Sets the number of miliseconds _BlinkOCR_ will attempt to perform the scan it exits with timeout error. On timeout returned array of `BaseRecognitionResults` inside [RecognitionResults](https://blinkinput.github.io/blinkinput-android/com/microblink/recognizers/RecognitionResults.html) might be null, empty or may contain only elements that are not valid ([`isValid`](https://blinkinput.github.io/blinkinput-android/com/microblink/recognizers/BaseRecognitionResult.html#isValid--) returns `false`) or are empty ([`isEmpty`](https://blinkinput.github.io/blinkinput-android/com/microblink/recognizers/BaseRecognitionResult.html#isEmpty--) returns `true`).
+Sets the number of miliseconds _BlinkInput_ will attempt to perform the scan it exits with timeout error. On timeout returned array of `BaseRecognitionResults` inside [RecognitionResults](https://blinkinput.github.io/blinkinput-android/com/microblink/recognizers/RecognitionResults.html) might be null, empty or may contain only elements that are not valid ([`isValid`](https://blinkinput.github.io/blinkinput-android/com/microblink/recognizers/BaseRecognitionResult.html#isValid--) returns `false`) or are empty ([`isEmpty`](https://blinkinput.github.io/blinkinput-android/com/microblink/recognizers/BaseRecognitionResult.html#isEmpty--) returns `true`).
 
 **NOTE**: Please be aware that time counting does not start from the moment when scanning starts. Instead it starts from the moment when at least one `BaseRecognitionResult` becomes available which is neither [empty](https://blinkinput.github.io/blinkinput-android/com/microblink/recognizers/BaseRecognitionResult.html#isEmpty--) nor [valid](https://blinkinput.github.io/blinkinput-android/com/microblink/recognizers/BaseRecognitionResult.html#isValid--).
 
@@ -1180,7 +1186,7 @@ Templated document is any document which is defined by its template. Template co
 
 ### Defining how document should be detected
 
-Before performing OCR of the document, _BlinkOCR_ first needs to find its location on camera scene. In order to perform detection, you need to define [DetectorSettings](https://blinkinput.github.io/blinkinput-android/com/microblink/detectors/DetectorSettings.html) which will be used to instantiate detector which perform document detection. You can set detector settings with method [`setDetectorSettings(DetectorSettings)`](https://blinkinput.github.io/blinkinput-android/com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setDetectorSettings-com.microblink.detectors.DetectorSettings-). If you do not set detector settings, BlinkOCR recognizer will work in [Segment scan mode](#blinkOCR).
+Before performing OCR of the document, _BlinkInput_ first needs to find its location on camera scene. In order to perform detection, you need to define [DetectorSettings](https://blinkinput.github.io/blinkinput-android/com/microblink/detectors/DetectorSettings.html) which will be used to instantiate detector which perform document detection. You can set detector settings with method [`setDetectorSettings(DetectorSettings)`](https://blinkinput.github.io/blinkinput-android/com/microblink/recognizers/blinkocr/BlinkOCRRecognizerSettings.html#setDetectorSettings-com.microblink.detectors.DetectorSettings-). If you do not set detector settings, BlinkOCR recognizer will work in [Segment scan mode](#blinkOCR).
 
 You can find out more information about about detectors that can be used in section [Detection settings and results](#detectionSettingsAndResults).
 
@@ -1291,9 +1297,9 @@ This method will return the object that contains information about barcode's bin
 ##### `Quadrilateral getPositionOnImage()`
 Returns the position of barcode on image. Note that returned coordinates are in image's coordinate system which is not related to view coordinate system used for UI.
 
-## <a name="custom1DBarDecoder"></a> Scanning one dimensional barcodes with _BlinkOCR_'s implementation
+## <a name="custom1DBarDecoder"></a> Scanning one dimensional barcodes with _BlinkInput_'s implementation
 
-This section discusses the settings for setting up 1D barcode recognizer that uses _BlinkOCR_'s implementation of scanning algorithms and explains how to obtain results from that recognizer. Henceforth, the 1D barcode recognizer that uses _BlinkOCR_'s implementation of scanning algorithms will be refered as "Bardecoder recognizer".
+This section discusses the settings for setting up 1D barcode recognizer that uses _BlinkInput_'s implementation of scanning algorithms and explains how to obtain results from that recognizer. Henceforth, the 1D barcode recognizer that uses _BlinkInput_'s implementation of scanning algorithms will be refered as "Bardecoder recognizer".
 
 ### Setting up Bardecoder recognizer
 
@@ -1377,7 +1383,7 @@ This method will return a [BarcodeType](https://blinkinput.github.io/blinkinput-
 
 ## <a name="zxing"></a> Scanning barcodes with ZXing implementation
 
-This section discusses the settings for setting up barcode recognizer that use ZXing's implementation of scanning algorithms and explains how to obtain results from it. _BlinkOCR_ uses ZXing's [c++ port](https://github.com/zxing/zxing/tree/00f634024ceeee591f54e6984ea7dd666fab22ae/cpp) to support barcodes for which we still do not have our own scanning algorithms. Also, since ZXing's c++ port is not maintained anymore, we also provide updates and bugfixes to it inside our codebase.
+This section discusses the settings for setting up barcode recognizer that use ZXing's implementation of scanning algorithms and explains how to obtain results from it. _BlinkInput_ uses ZXing's [c++ port](https://github.com/zxing/zxing/tree/00f634024ceeee591f54e6984ea7dd666fab22ae/cpp) to support barcodes for which we still do not have our own scanning algorithms. Also, since ZXing's c++ port is not maintained anymore, we also provide updates and bugfixes to it inside our codebase.
 
 ### Setting up ZXing recognizer
 
@@ -1397,7 +1403,7 @@ private RecognizerSettings[] setupSettingsArray() {
 }
 ```
 
-As can be seen from example, you can tweak ZXing recognition parameters with methods of `ZXingRecognizerSettings`. Note that some barcodes, such as Code 39 are available for scanning with [_BlinkOCR_'s implementation](#custom1DBarDecoder). You can choose to use only one implementation or both (just put both settings objects into `RecognizerSettings` array). Using both implementations increases the chance of correct barcode recognition, but requires more processing time. Of course, we recommend using the _BlinkOCR_'s implementation for supported barcodes.
+As can be seen from example, you can tweak ZXing recognition parameters with methods of `ZXingRecognizerSettings`. Note that some barcodes, such as Code 39 are available for scanning with [_BlinkInput_'s implementation](#custom1DBarDecoder). You can choose to use only one implementation or both (just put both settings objects into `RecognizerSettings` array). Using both implementations increases the chance of correct barcode recognition, but requires more processing time. Of course, we recommend using the _BlinkInput_'s implementation for supported barcodes.
 
 ##### `setScanAztecCode(boolean)`
 Method activates or deactivates the scanning of Aztec 2D barcodes. Default (initial) value is `false`.
@@ -1754,13 +1760,13 @@ Returns the array of detection results contained within. You can iterate over th
 
 # <a name="archConsider"></a> Processor architecture considerations
 
-_BlinkOCR_ is distributed with both ARMv7, ARM64, x86 and x86_64 native library binaries.
+_BlinkInput_ is distributed with both ARMv7, ARM64, x86 and x86_64 native library binaries.
 
-ARMv7 architecture gives the ability to take advantage of hardware accelerated floating point operations and SIMD processing with [NEON](http://www.arm.com/products/processors/technologies/neon.php). This gives _BlinkOCR_ a huge performance boost on devices that have ARMv7 processors. Most new devices (all since 2012.) have ARMv7 processor so it makes little sense not to take advantage of performance boosts that those processors can give. Also note that some devices with ARMv7 processors do not support NEON instruction sets. Most popular are those based on [NVIDIA Tegra 2](https://en.wikipedia.org/wiki/Tegra#Tegra_2) fall into this category. Since these devices are old by today's standard, _BlinkOCR_ does not support them.
+ARMv7 architecture gives the ability to take advantage of hardware accelerated floating point operations and SIMD processing with [NEON](http://www.arm.com/products/processors/technologies/neon.php). This gives _BlinkInput_ a huge performance boost on devices that have ARMv7 processors. Most new devices (all since 2012.) have ARMv7 processor so it makes little sense not to take advantage of performance boosts that those processors can give. Also note that some devices with ARMv7 processors do not support NEON instruction sets. Most popular are those based on [NVIDIA Tegra 2](https://en.wikipedia.org/wiki/Tegra#Tegra_2) fall into this category. Since these devices are old by today's standard, _BlinkInput_ does not support them.
 
 ARM64 is the new processor architecture that some new high end devices use. ARM64 processors are very powerful and also have the possibility to take advantage of new NEON64 SIMD instruction set to quickly process multiple pixels with single instruction.
 
-x86 architecture gives the ability to obtain native speed on x86 android devices, like [Prestigio 5430](http://www.gsmarena.com/prestigio_multiphone_5430_duo-5721.php). Without that, _BlinkOCR_ will not work on such devices, or it will be run on top of ARM emulator that is shipped with device - this will give a huge performance penalty.
+x86 architecture gives the ability to obtain native speed on x86 android devices, like [Prestigio 5430](http://www.gsmarena.com/prestigio_multiphone_5430_duo-5721.php). Without that, _BlinkInput_ will not work on such devices, or it will be run on top of ARM emulator that is shipped with device - this will give a huge performance penalty.
 
 x86_64 architecture gives better performance than x86 on devices that use 64-bit Intel Atom processor.
 
@@ -1775,11 +1781,11 @@ However, there are some issues to be considered:
 - x86_64 processors understand x86 instruction set, but x86 processors do not understand x86_64 instruction set
 - if x86_64 processor executes x86 code, it does not take advantage of 64-bit registers and use two instructions instead of one for 64-bit operations
 
-`LibRecognizer.aar` archive contains ARMv7, ARM64, x86 and x86_64 builds of native library. By default, when you integrate _BlinkOCR_ into your app, your app will contain native builds for all processor architectures. Thus, _BlinkOCR_ will work on ARMv7, ARM64, x86 and x86_64 devices and will use ARMv7 features on ARMv7 devices and ARM64 features on ARM64 devices. However, the size of your application will be rather large.
+`LibBlinkInput.aar` archive contains ARMv7, ARM64, x86 and x86_64 builds of native library. By default, when you integrate _BlinkInput_ into your app, your app will contain native builds for all processor architectures. Thus, _BlinkInput_ will work on ARMv7, ARM64, x86 and x86_64 devices and will use ARMv7 features on ARMv7 devices and ARM64 features on ARM64 devices. However, the size of your application will be rather large.
 
 ## <a name="reduceSize"></a> Reducing the final size of your app
 
-If your final app is too large because of _BlinkOCR_, you can decide to create multiple flavors of your app - one flavor for each architecture. With gradle and Android studio this is very easy - just add the following code to `build.gradle` file of your app:
+If your final app is too large because of _BlinkInput_, you can decide to create multiple flavors of your app - one flavor for each architecture. With gradle and Android studio this is very easy - just add the following code to `build.gradle` file of your app:
 
 ```
 android {
@@ -1828,25 +1834,25 @@ To remove certain CPU arhitecture, add following statement to your `android` blo
 android {
 	...
 	packagingOptions {
-		exclude 'lib/<ABI>/libBlinkOCR.so'
+		exclude 'lib/<ABI>/libBlinkInput.so'
 	}
 }
 ```
 
 where `<ABI>` represents the CPU architecture you want to remove:
 
-- to remove ARMv7 support, use `exclude 'lib/armeabi-v7a/libBlinkOCR.so'`
-- to remove x86 support, use `exclude 'lib/x86/libBlinkOCR.so'`
-- to remove ARM64 support, use `exclude 'lib/arm64-v8a/libBlinkOCR.so'`
-- to remove x86_64 support, use `exclude 'lib/x86_64/libBlinkOCR.so'`
+- to remove ARMv7 support, use `exclude 'lib/armeabi-v7a/libBlinkInput.so'`
+- to remove x86 support, use `exclude 'lib/x86/libBlinkInput.so'`
+- to remove ARM64 support, use `exclude 'lib/arm64-v8a/libBlinkInput.so'`
+- to remove x86_64 support, use `exclude 'lib/x86_64/libBlinkInput.so'`
 
 You can also remove multiple processor architectures by specifying `exclude` directive multiple times. Just bear in mind that removing processor architecture will have sideeffects on performance and stability of your app. Please read [this](#archConsequences) for more information.
 
 ### Removing processor architecture support in Eclipse
 
-This section assumes that you have set up and prepared your Eclipse project from `LibRecognizer.aar` as described in chapter [Eclipse integration instructions](#eclipseIntegration).
+This section assumes that you have set up and prepared your Eclipse project from `LibBlinkInput.aar` as described in chapter [Eclipse integration instructions](#eclipseIntegration).
 
-If you are using Eclipse, removing processor architecture support gets really complicated. Eclipse does not support build flavors and you will either need to remove support for some processors or create several different library projects from `LibRecognizer.aar` - each one for specific processor architecture. 
+If you are using Eclipse, removing processor architecture support gets really complicated. Eclipse does not support build flavors and you will either need to remove support for some processors or create several different library projects from `LibBlinkInput.aar` - each one for specific processor architecture. 
 
 Native libraryies in eclipse library project are located in subfolder `libs`:
 
@@ -1866,16 +1872,16 @@ To remove a support for processor architecture, you should simply delete appropr
 
 However, removing a processor architecture has some consequences:
 
-- by removing ARMv7 support _BlinkOCR_ will not work on devices that have ARMv7 processors. 
-- by removing ARM64 support, _BlinkOCR_ will not use ARM64 features on ARM64 device
-- by removing x86 support, _BlinkOCR_ will not work on devices that have x86 processor, except in situations when devices have ARM emulator - in that case, _BlinkOCR_ will work, but will be slow
-- by removing x86_64 support, _BlinkOCR_ will not use 64-bit optimizations on x86_64 processor, but if x86 support is not removed, _BlinkOCR_ should work
+- by removing ARMv7 support _BlinkInput_ will not work on devices that have ARMv7 processors. 
+- by removing ARM64 support, _BlinkInput_ will not use ARM64 features on ARM64 device
+- by removing x86 support, _BlinkInput_ will not work on devices that have x86 processor, except in situations when devices have ARM emulator - in that case, _BlinkInput_ will work, but will be slow
+- by removing x86_64 support, _BlinkInput_ will not use 64-bit optimizations on x86_64 processor, but if x86 support is not removed, _BlinkInput_ should work
 
 Our recommendation is to include all architectures into your app - it will work on all devices and will provide best user experience. However, if you really need to reduce the size of your app, we recommend releasing separate version of your app for each processor architecture. It is easiest to do that with [APK splits](#reduceSize).
 
-## <a name="combineNativeLibraries"></a> Combining _BlinkOCR_ with other native libraries
+## <a name="combineNativeLibraries"></a> Combining _BlinkInput_ with other native libraries
 
-If you are combining _BlinkOCR_ library with some other libraries that contain native code into your application, make sure you match the architectures of all native libraries. For example, if third party library has got only ARMv7 and x86 versions, you must use exactly ARMv7 and x86 versions of _BlinkOCR_ with that library, but not ARM64. Using these architectures will crash your app in initialization step because JVM will try to load all its native dependencies in same preferred architecture and will fail with `UnsatisfiedLinkError`.
+If you are combining _BlinkInput_ library with some other libraries that contain native code into your application, make sure you match the architectures of all native libraries. For example, if third party library has got only ARMv7 and x86 versions, you must use exactly ARMv7 and x86 versions of _BlinkInput_ with that library, but not ARM64. Using these architectures will crash your app in initialization step because JVM will try to load all its native dependencies in same preferred architecture and will fail with `UnsatisfiedLinkError`.
 
 # <a name="troubleshoot"></a> Troubleshooting
 
@@ -1897,12 +1903,12 @@ When you have determine what is the licence-relate problem or you simply do not 
 
 * exact package name of your app (from your `AndroidManifest.xml` and/or your `build.gradle` file)
 * licence key that is causing problems
-* please stress out that you are reporting problem related to Android version of _BlinkOCR_ SDK
+* please stress out that you are reporting problem related to Android version of _BlinkInput_ SDK
 * if unsure about the problem, you should also provide excerpt from ADB logcat containing licence error
 
 ### Other problems
 
-If you are having problems with scanning certain items, undesired behaviour on specific device(s), crashes inside _BlinkOCR_ or anything unmentioned, please do as follows:
+If you are having problems with scanning certain items, undesired behaviour on specific device(s), crashes inside _BlinkInput_ or anything unmentioned, please do as follows:
 
 * enable logging to get the ability to see what is library doing. To enable logging, put this line in your application:
 
@@ -1916,7 +1922,7 @@ If you are having problems with scanning certain items, undesired behaviour on s
 	* log file obtained in previous step
 	* high resolution scan/photo of the item that you are trying to scan
 	* information about device that you are using - we need exact model name of the device. You can obtain that information with [this app](https://play.google.com/store/apps/details?id=com.jphilli85.deviceinfo&hl=en)
-	* please stress out that you are reporting problem related to Android version of _BlinkOCR_ SDK
+	* please stress out that you are reporting problem related to Android version of _BlinkInput_ SDK
 
 
 # <a name="info"></a> Additional info
