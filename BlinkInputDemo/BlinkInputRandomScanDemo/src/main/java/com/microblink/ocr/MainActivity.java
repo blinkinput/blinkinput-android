@@ -16,7 +16,7 @@ public class MainActivity extends Activity {
 
     // obtain your licence key at http://microblink.com/login or
     // contact us at http://help.microblink.com
-    private static final String LICENSE_KEY = "TZMOTPX3-T2PISTLU-SNNFECKO-2ZRLCMTD-GOQYG3PY-JHFBSHOZ-ELLGEMIQ-JJOWNBAP";
+    private static final String LICENSE_KEY = "OEWESRMK-OENGL3VK-IVWYB4DY-OTNT457T-5PGLUYNA-IVQ2ARLB-UBCWCAAC-IYXKU56C";
 
     private static final int SINGLE_GROUP_REQ_CODE = 123;
     private static final int MULTIPLE_GROUPS_REQ_CODE = 234;
@@ -42,7 +42,7 @@ public class MainActivity extends Activity {
      */
     public void onScanSingleGroup(View view) {
         /**
-         * In this simple example we will use BlinkOCR SDK to create a simple app
+         * In this simple example we will use BlinkInput SDK to create a simple app
          * that scans an amount, IBAN and date from invoice. We will use provided RandomScanActivity
          * to perform scan. In this case all parsers can be placed in the same parser group, so we will use
          * default settings (if parser groups are not defined, all parsers will be placed in the same

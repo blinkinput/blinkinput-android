@@ -28,7 +28,7 @@ public class MenuActivity extends Activity {
 
     // obtain your licence key at http://microblink.com/login or
     // contact us at http://help.microblink.com
-    static final String LICENSE_KEY = "H5SIMEWT-YGSAO47Z-LEJJI2C6-ZOIHQI4S-HAQIOSRB-MKYTEYZT-UGBW36CI-C2LAREQJ";
+    static final String LICENSE_KEY = "OEWESRMK-OENGL3VK-IVWYB4DY-OTNT457T-5PGLUYNA-IVQ2ARLB-UBCWCAAC-IYXKU56C";
 
     /** List view elements. */
     private ListElement[] mElements;
@@ -38,10 +38,10 @@ public class MenuActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        // check if BlinkOCR is supported on the device
+        // check if BlinkInput is supported on the device
         RecognizerCompatibilityStatus supportStatus = RecognizerCompatibility.getRecognizerCompatibilityStatus(this);
         if (supportStatus != RecognizerCompatibilityStatus.RECOGNIZER_SUPPORTED) {
-            Toast.makeText(this, "BlinkOCR is not supported! Reason: " + supportStatus.name(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "BlinkInput is not supported! Reason: " + supportStatus.name(), Toast.LENGTH_LONG).show();
         }
 
         // build list elements

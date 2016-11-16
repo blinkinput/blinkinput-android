@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Blink OCR Segment Demo</string>
-    <string name="title_activity_scan">Blink OCR</string>
+    <string name="app_name">BlinkInput Segment Demo</string>
+    <string name="title_activity_scan">BlinkInput</string>
 
     <string name="amount_title">Total Amount</string>
     <string name="large_amount_title">Large Amount</string>

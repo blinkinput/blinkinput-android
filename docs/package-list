@@ -2,6 +2,7 @@ com.microblink.activity
 com.microblink.detectors
 com.microblink.detectors.document
 com.microblink.detectors.face
+com.microblink.detectors.mrz
 com.microblink.detectors.multi
 com.microblink.detectors.points
 com.microblink.detectors.quad
@@ -34,6 +35,7 @@ com.microblink.recognizers.blinkocr.parser.vin
 com.microblink.recognizers.detector
 com.microblink.recognizers.settings
 com.microblink.recognizers.templating
+com.microblink.results
 com.microblink.results.barcode
 com.microblink.results.date
 com.microblink.results.ocr

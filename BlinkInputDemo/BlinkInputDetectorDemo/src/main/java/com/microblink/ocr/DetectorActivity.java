@@ -67,7 +67,7 @@ public class DetectorActivity extends Activity implements CameraEventsListener, 
     private View mResultView;
     /** Shows result image. */
     private ImageView mImageView;
-    /** This is BlinkOCR's built-in helper for built-in view that draws detection location */
+    /** This is BlinkInput's built-in helper for built-in view that draws detection location */
     private QuadViewManager mQuadViewManager;
     /** Last dewarped image. */
     private Image mLastDewarpedImg;

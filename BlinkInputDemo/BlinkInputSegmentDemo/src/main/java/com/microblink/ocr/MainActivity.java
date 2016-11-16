@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
     private static final int BLINK_OCR_REQUEST_CODE = 100;
     // obtain your licence key at http://microblink.com/login or
     // contact us at http://help.microblink.com
-    private static final String LICENSE_KEY = "OE3CJCUH-JIRME5GT-YGVQ4IWW-MKYTEYZT-UGBW36CJ-ZIMR3WJC-2ZRLCEW4-INKK4C4M";
+    private static final String LICENSE_KEY = "OEWESRMK-OENGL3VK-IVWYB4DY-OTNT457T-5PGLUYNA-IVQ2ARLB-UBCWCAAC-IYXKU56C";
     private static final String NAME_TOTAL_AMOUNT = "TotalAmount";
     private static final String NAME_TAX = "Tax";
     private static final String NAME_IBAN = "IBAN";
@@ -52,7 +52,7 @@ public class MainActivity extends Activity {
      */
     public void simpleIntegration(View v) {
         /*
-         * In this simple example we will use BlinkOCR SDK to create a simple app
+         * In this simple example we will use BlinkInput SDK to create a simple app
          * that scans an amount from invoice, tax amount from invoice and IBAN
          * to which amount has to be paid.
          */
@@ -139,7 +139,7 @@ public class MainActivity extends Activity {
      */
     public void mobileCouponsExample(View view) {
         /*
-         * In this simple example we will use BlinkOCR SDK to create a simple app
+         * In this simple example we will use BlinkInput SDK to create a simple app
          * that scans prepaid mobile coupon codes.
          */
 

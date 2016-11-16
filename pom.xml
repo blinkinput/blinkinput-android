@@ -2,12 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.microblink</groupId>
-  <artifactId>blinkocr</artifactId>
-  <version>2.8.0</version>
+  <artifactId>blinkinput</artifactId>
+  <version>3.0.0</version>
   <packaging>aar</packaging>
-  <name>BlinkOCR SDK for Android</name>
-  <description>SDK that enables Optical Character Recognition (OCR) in your Android application</description>
-  <url/>
+  <name>BlinkInput SDK for Android</name>
+  <description>SDK that enables Optical Character Recognition (OCR) based input in your Android application</description>
+  <url>https://microblink.com/en/products/blinkinput</url>
   <licenses>
     <license>
       <name>MicroBlink Terms of Use</name>
@@ -25,7 +25,7 @@
     <dependency>
       <groupId>com.android.support</groupId>
       <artifactId>appcompat-v7</artifactId>
-      <version>24.2.0</version>
+      <version>25.0.1</version>
       <scope>compile</scope>
       <type>aar</type>
     </dependency>

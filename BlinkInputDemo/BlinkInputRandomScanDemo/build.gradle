@@ -5,7 +5,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.microblink.ocr"
+        applicationId "com.microblink.input"
         minSdkVersion 10
         targetSdkVersion rootProject.ext.targetSdkVersion
     }
@@ -24,7 +24,7 @@ android {
 }
 
 dependencies {
-    compile("com.microblink:blinkocr:${rootProject.ext.blinkOcrVersion}@aar") {
+    compile("com.microblink:blinkinput:${rootProject.ext.blinkInputVersion}@aar") {
         transitive = true
     }
 }
