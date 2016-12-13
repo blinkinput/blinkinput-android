@@ -103,7 +103,7 @@ After that, you just need to add _BlinkInput_ as a dependency to your applicatio
 
 ```
 dependencies {
-    compile('com.microblink:blinkinput:3.0.0@aar') {
+    compile('com.microblink:blinkinput:3.1.0@aar') {
     	transitive = true
     }
 }
@@ -124,7 +124,7 @@ Current version of Android Studio will not automatically import javadoc from mav
 
 1. In Android Studio project sidebar, ensure [project view is enabled](https://developer.android.com/sdk/installing/studio-androidview.html)
 2. Expand `External Libraries` entry (usually this is the last entry in project view)
-3. Locate `blinkinput-3.0.0` entry, right click on it and select `Library Properties...`
+3. Locate `blinkinput-3.1.0` entry, right click on it and select `Library Properties...`
 4. A `Library Properties` pop-up window will appear
 5. Click the second `+` button in bottom left corner of the window (the one that contains `+` with little globe)
 6. Window for definining documentation URL will appear
@@ -149,7 +149,7 @@ Open your `pom.xml` file and add these directives as appropriate:
 	<dependency>
 		  <groupId>com.microblink</groupId>
 		  <artifactId>blinkinput</artifactId>
-		  <version>3.0.0</version>
+		  <version>3.1.0</version>
 		  <type>aar</type>
   	</dependency>
 </dependencies>
@@ -695,10 +695,6 @@ This method pauses the scanning loop, but keeps both camera and native library i
 
 ##### <a name="recognizerView_resumeScanning"></a> [`resumeScanning(boolean)`](https://blinkinput.github.io/blinkinput-android/com/microblink/view/recognition/RecognizerView.html#resumeScanning-boolean-)
 With this method you can resume the paused scanning loop. If called with `true` parameter, implicitly calls `resetRecognitionState()`. If called with `false`, old recognition state will not be reset, so it could be reused for boosting recognition result. This may not be always a desired behaviour.  Pause and resume scanning methods count the number of calls, so if you called `pauseScanning()` twice, you will have to call `resumeScanning` twice to actually resume scanning loop.
-
-
-##### <a name="recognizerView_setInitialScanningPaused"></a> [`setInitialScanningPaused()`](https://blinkinput.github.io/blinkinput-android/com/microblink/view/recognition/RecognizerView.html#setInitialScanningPaused-boolean-)
-This method lets you set up RecognizerView to not automatically resume scanning first time [resume](#recognizerView_resume) is called. An example use case of when you might want this is if you want to display onboarding help when opening camera first time and want to prevent scanning in background while onboarding is displayed over camera preview.
 
 ##### <a name="recognizerView_resetRecognitionState"></a> [`resetRecognitionState()`](https://blinkinput.github.io/blinkinput-android/com/microblink/view/recognition/RecognizerView.html#resetRecognitionState--)
 With this method you can reset internal recognition state. State is usually kept to improve recognition quality over time, but without resetting recognition state sometimes you might get poorer results (for example if you scan one object and then another without resetting state you might end up with result that contains properties from both scanned objects).
