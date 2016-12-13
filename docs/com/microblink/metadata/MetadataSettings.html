@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -191,27 +191,39 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i4" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/metadata/MetadataSettings.html#isPartialResultMetadataAllowed--">isPartialResultMetadataAllowed</a></span>()</code>
+<div class="block">Returns true if <a href="../../../com/microblink/metadata/RecognitionResultMetadata.html" title="class in com.microblink.metadata"><code>RecognitionResultMetadata</code></a> will be available in <a href="../../../com/microblink/metadata/MetadataListener.html" title="interface in com.microblink.metadata"><code>MetadataListener</code></a>.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/metadata/MetadataSettings.html#setDebugMetadataAllowed-boolean-">setDebugMetadataAllowed</a></span>(boolean&nbsp;debugMetadataAllowed)</code>
 <div class="block">Sets whether debug metadata should be available in MetadataListener.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/metadata/MetadataSettings.html#setDetectionMetadataAllowed-boolean-">setDetectionMetadataAllowed</a></span>(boolean&nbsp;detectionMetadataAllowed)</code>
 <div class="block">Sets whether detection metadata should be available in MetadataListener.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/metadata/MetadataSettings.html#setImageMetadataSettings-com.microblink.metadata.MetadataSettings.ImageMetadataSettings-">setImageMetadataSettings</a></span>(<a href="../../../com/microblink/metadata/MetadataSettings.ImageMetadataSettings.html" title="class in com.microblink.metadata">MetadataSettings.ImageMetadataSettings</a>&nbsp;imageMetadataSettings)</code>
 <div class="block">Sets object containing settings defining which images should be available in MetadataListener.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/metadata/MetadataSettings.html#setOcrMetadataAllowed-boolean-">setOcrMetadataAllowed</a></span>(boolean&nbsp;ocrMetadataAllowed)</code>
 <div class="block">Sets whether OCR metadata should be available in MetadataListener.</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/microblink/metadata/MetadataSettings.html#setPartialResultMetadataAllowed-boolean-">setPartialResultMetadataAllowed</a></span>(boolean&nbsp;partialResultMetadataAllowed)</code>
+<div class="block">Sets whether <a href="../../../com/microblink/metadata/RecognitionResultMetadata.html" title="class in com.microblink.metadata"><code>RecognitionResultMetadata</code></a> will be available in <a href="../../../com/microblink/metadata/MetadataListener.html" title="interface in com.microblink.metadata"><code>MetadataListener</code></a>.</div>
 </td>
 </tr>
 </table>
@@ -282,6 +294,34 @@ extends java.lang.Object</pre>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>detectionMetadataAllowed</code> - whether detection metadata should be available in MetadataListener.</dd>
+</dl>
+</li>
+</ul>
+<a name="isPartialResultMetadataAllowed--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isPartialResultMetadataAllowed</h4>
+<pre>public&nbsp;boolean&nbsp;isPartialResultMetadataAllowed()</pre>
+<div class="block">Returns true if <a href="../../../com/microblink/metadata/RecognitionResultMetadata.html" title="class in com.microblink.metadata"><code>RecognitionResultMetadata</code></a> will be available in <a href="../../../com/microblink/metadata/MetadataListener.html" title="interface in com.microblink.metadata"><code>MetadataListener</code></a>.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if <a href="../../../com/microblink/metadata/RecognitionResultMetadata.html" title="class in com.microblink.metadata"><code>RecognitionResultMetadata</code></a> will be available in <a href="../../../com/microblink/metadata/MetadataListener.html" title="interface in com.microblink.metadata"><code>MetadataListener</code></a>.</dd>
+</dl>
+</li>
+</ul>
+<a name="setPartialResultMetadataAllowed-boolean-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setPartialResultMetadataAllowed</h4>
+<pre>public&nbsp;void&nbsp;setPartialResultMetadataAllowed(boolean&nbsp;partialResultMetadataAllowed)</pre>
+<div class="block">Sets whether <a href="../../../com/microblink/metadata/RecognitionResultMetadata.html" title="class in com.microblink.metadata"><code>RecognitionResultMetadata</code></a> will be available in <a href="../../../com/microblink/metadata/MetadataListener.html" title="interface in com.microblink.metadata"><code>MetadataListener</code></a>.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>partialResultMetadataAllowed</code> - whether <a href="../../../com/microblink/metadata/RecognitionResultMetadata.html" title="class in com.microblink.metadata"><code>RecognitionResultMetadata</code></a> will be available in <a href="../../../com/microblink/metadata/MetadataListener.html" title="interface in com.microblink.metadata"><code>MetadataListener</code></a>.</dd>
 </dl>
 </li>
 </ul>
