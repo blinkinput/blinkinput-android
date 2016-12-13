@@ -1,5 +1,12 @@
 # Release notes
 
+## 3.1.0
+
+- removed `RecognizerView` method `setInitialScanningPaused`. For achieving the same functionality, method `pauseScanning` should be used.
+- added support for scanning IBANs that contain spaces and dashes
+- added support for scanning IBAN from Georgia in Segment Scan
+- added support for cancelling ongoing DirectAPI recognition call
+
 ## 3.0.0
 
 - _LibRecognizer.aar_ renamed to _LibBlinkInput.aar_
