@@ -11,8 +11,8 @@ import com.microblink.help.HelpActivity;
 import com.microblink.recognizers.blinkocr.engine.BlinkOCREngineOptions;
 import com.microblink.recognizers.blinkocr.parser.generic.AmountParserSettings;
 import com.microblink.recognizers.blinkocr.parser.generic.IbanParserSettings;
-import com.microblink.recognizers.blinkocr.parser.mobilecoupons.MobileCouponsParserSettings;
 import com.microblink.recognizers.blinkocr.parser.regex.RegexParserSettings;
+import com.microblink.recognizers.blinkocr.parser.topup.TopUpParserSettings;
 import com.microblink.results.ocr.OcrFont;
 
 
@@ -148,19 +148,19 @@ public class MainActivity extends Activity {
         intent.putExtra(SegmentScanActivity.EXTRAS_LICENSE_KEY, LICENSE_KEY);
 
         // create settings for mobile coupon parser, find codes with prefix "*123*"
-        MobileCouponsParserSettings couponParserSett = new MobileCouponsParserSettings(MobileCouponsParserSettings.TopUpPrefix.TOP_UP_PREFIX_123);
+        TopUpParserSettings topUpParserSett = new TopUpParserSettings(TopUpParserSettings.TopUpPrefix.TOP_UP_PREFIX_123);
         // it is possible to create parser settings with given prefix and USSD length for codes in form *prefixString*USSDCodeLength_digits#
-        // MobileCouponsParserSettings couponParserSett = new MobileCouponsParserSettings("01", 14);
+        // MobileCouponsParserSettings topUpParserSett = new MobileCouponsParserSettings("01", 14);
 
         // allow codes without prefix, but prefix "*123*" will be added (we defined prefix in parser settings constructor)
-        couponParserSett.setAllowNoPrefix(true);
+        topUpParserSett.setAllowNoPrefix(true);
 
         // we need to scan 1 item, so we will add 1 scan configuration to scan configuration array
         ScanConfiguration conf[] = new ScanConfiguration[] {
                 // each scan configuration contains two string resource IDs: string shown in title bar and string shown
                 // in text field above scan box. Besides that, it contains name of the result and settings object
                 // which defines what will be scanned.
-                new ScanConfiguration(R.string.mobile_coupon_title, R.string.mobile_coupon_msg, NAME_MOBILE_COUPON, couponParserSett)
+                new ScanConfiguration(R.string.mobile_coupon_title, R.string.mobile_coupon_msg, NAME_MOBILE_COUPON, topUpParserSett)
         };
 
         intent.putExtra(SegmentScanActivity.EXTRAS_SCAN_CONFIGURATION, conf);

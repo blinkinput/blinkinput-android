@@ -8,7 +8,6 @@ com.microblink.detectors.points
 com.microblink.detectors.quad
 com.microblink.detectors.quad.mrtd
 com.microblink.directApi
-com.microblink.directApi.frame
 com.microblink.geometry
 com.microblink.hardware
 com.microblink.hardware.accelerometer
@@ -29,8 +28,8 @@ com.microblink.recognizers.blinkocr.engine
 com.microblink.recognizers.blinkocr.parser
 com.microblink.recognizers.blinkocr.parser.generic
 com.microblink.recognizers.blinkocr.parser.licenseplates
-com.microblink.recognizers.blinkocr.parser.mobilecoupons
 com.microblink.recognizers.blinkocr.parser.regex
+com.microblink.recognizers.blinkocr.parser.topup
 com.microblink.recognizers.blinkocr.parser.vin
 com.microblink.recognizers.detector
 com.microblink.recognizers.settings
