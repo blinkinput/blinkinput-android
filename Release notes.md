@@ -1,5 +1,14 @@
 # Release notes
 
+## 3.2.0
+
+- added support for Android 7 multi-window mode
+- fixed autofocus bug on Huawei Honor 8
+- fixed black camera on Motorola Moto Z
+- made camera focusing more stable on some devices
+    - _stable_ means less "jumpy" when searching for focused image
+- MobileCoupon parser renamed to TopUp parser
+
 ## 3.1.0
 
 - removed `RecognizerView` method `setInitialScanningPaused`. For achieving the same functionality, method `pauseScanning` should be used.

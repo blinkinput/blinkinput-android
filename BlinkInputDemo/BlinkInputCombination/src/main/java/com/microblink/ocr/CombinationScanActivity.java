@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,6 @@ import com.microblink.results.ocr.OcrChar;
 import com.microblink.results.ocr.OcrResult;
 import com.microblink.util.CameraPermissionManager;
 import com.microblink.util.Log;
-import com.microblink.view.BaseCameraView;
 import com.microblink.view.CameraAspectMode;
 import com.microblink.view.CameraEventsListener;
 import com.microblink.view.recognition.RecognizerView;
@@ -257,7 +257,7 @@ public class CombinationScanActivity extends Activity implements CameraEventsLis
             // we set the same rectangle as for scanning region
             // we also define that this metering area will not follow device orientation changes because
             // we have set non rotatable scanning region
-            mRecognizerView.setMeteringAreas(new Rectangle[]{new Rectangle(0.05f, 0.17f, 0.9f, 0.47f)}, false);
+            mRecognizerView.setMeteringAreas(new RectF[]{new RectF(0.05f, 0.17f, 0.05f + 0.9f, 0.17f + 0.47f)}, false);
         }
     }
 

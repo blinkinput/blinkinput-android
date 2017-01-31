@@ -50,6 +50,7 @@ See below for more information about how to integrate _BlinkInput_ SDK into your
 * [Troubleshooting](#troubleshoot)
   * [Integration problems](#integrationTroubleshoot)
   * [SDK problems](#sdkTroubleshoot)
+  * [Frequently asked questions and known problems](#faq)
 * [Additional info](#info)
 
 # <a name="intro"></a> Android _BlinkInput_ integration instructions
@@ -103,7 +104,7 @@ After that, you just need to add _BlinkInput_ as a dependency to your applicatio
 
 ```
 dependencies {
-    compile('com.microblink:blinkinput:3.1.0@aar') {
+    compile('com.microblink:blinkinput:3.2.0@aar') {
     	transitive = true
     }
 }
@@ -124,7 +125,7 @@ Current version of Android Studio will not automatically import javadoc from mav
 
 1. In Android Studio project sidebar, ensure [project view is enabled](https://developer.android.com/sdk/installing/studio-androidview.html)
 2. Expand `External Libraries` entry (usually this is the last entry in project view)
-3. Locate `blinkinput-3.1.0` entry, right click on it and select `Library Properties...`
+3. Locate `blinkinput-3.2.0` entry, right click on it and select `Library Properties...`
 4. A `Library Properties` pop-up window will appear
 5. Click the second `+` button in bottom left corner of the window (the one that contains `+` with little globe)
 6. Window for definining documentation URL will appear
@@ -149,7 +150,7 @@ Open your `pom.xml` file and add these directives as appropriate:
 	<dependency>
 		  <groupId>com.microblink</groupId>
 		  <artifactId>blinkinput</artifactId>
-		  <version>3.1.0</version>
+		  <version>3.2.0</version>
 		  <type>aar</type>
   	</dependency>
 </dependencies>
@@ -165,7 +166,7 @@ Open your `pom.xml` file and add these directives as appropriate:
 	```
 	dependencies {
    		compile project(':LibBlinkInput')
- 		compile "com.android.support:appcompat-v7:25.0.1"
+ 		compile "com.android.support:appcompat-v7:25.1.1"
 	}
 	```
 5. If you plan to use ProGuard, add following lines to your `proguard-rules.pro`:
@@ -1919,6 +1920,21 @@ If you are having problems with scanning certain items, undesired behaviour on s
 	* high resolution scan/photo of the item that you are trying to scan
 	* information about device that you are using - we need exact model name of the device. You can obtain that information with [this app](https://play.google.com/store/apps/details?id=com.jphilli85.deviceinfo&hl=en)
 	* please stress out that you are reporting problem related to Android version of _BlinkInput_ SDK
+
+## <a name="faq"></a> Frequently asked questions and known problems
+Here is a list of frequently asked questions and solutions for them and also a list of known problems in the SDK and how to work around them.
+
+### <a name="featureNotSupportedByLicenseKey"></a> Sometimes scanning works, sometimes it says that feature is not supported by license key
+
+Each license key contains information about which features are allowed to use and which are not. This error can usually happens with production licence keys when you attempt to use recognizer which was not included in licence key. You should contact [support](http://help.microblink.com) to check if provided licence key is OK and that it really contains all features that you have purchased.
+
+### <a name="missingResources"></a> When my app starts, I get exception telling me that some resource/class cannot be found or I get `ClassNotFoundException`
+
+This usually happens when you perform integration into [Eclipse project](#eclipseIntegration) and you forget to add resources or native libraries into the project. You must alway take care that same versions of both resources, assets, java library and native libraries are used in combination. Combining different versions of resources, assets, java and native libraries will trigger crash in SDK. This problem can also occur when you have performed improper integration of _BlinkInput_ SDK into your SDK. Please read how to [embed _BlinkInput_ inside another SDK](#embedAAR).
+
+### <a name="unsatisfiedLinkError"></a> When my app starts, I get `UnsatisfiedLinkError`
+
+This error happens when JVM fails to load some native method from native library. If performing integration into [Eclipse project](#eclipseIntegration) make sure you have the same version of all native libraries and java wrapper. If performing integration [into Android studio](quickIntegration) and this error happens, make sure that you have correctly combined _BlinkInput_ SDK with [third party SDKs that contain native code](#combineNativeLibraries). If this error also happens in our integration demo apps, then it may indicate a bug in the SDK that is manifested on specific device. Please report that to our [support team](http://help.microblink.com).
 
 
 # <a name="info"></a> Additional info
