@@ -1,5 +1,27 @@
 # Release notes
 
+## 3.3.0
+
+- optimised native binary size
+    - 33% size reduction for `arm64-v8a` ABI
+    - 39% size reduction for `armeabi-v7a` ABI
+    - 34% size reduction for `x86` ABI
+    - 31% size reduction for `x86_64` ABI
+- `LibBlinkInput` is now fully ProGuard-compatible, i.e. you no longer need to exclude `com.microblink.**` classes in your ProGuard configuration
+- removed support for Android 2.3 and Android 4.0 - minimum required Android version is now Android 4.1 (API level 16)
+	- devices with Android 4.0 and earlier take [less than 2% of market share](https://developer.android.com/about/dashboards/index.html#Platform) and is very costly to support them
+- removed `isItalic` and `isBold` getters from `OcrChar` class
+    - they always returned `false`, since OCR engine cannot accurately detect that
+- removed `setLineGroupingEnabled` and `isLineGroupingEnabled` from `BlinkOCREngineOptions` because disabling line grouping completely destroyed the OCR accuracy
+- improved `TopUpParser`:
+    - added option to enable all prefixes at the same time (generic prefix)
+    - added suport for 14 digits long sim numbers in addition to existing lengths (12, 19, 20)
+- `DateParser` can parse dates with month names in English (either full or abbreviated), if this option is enabled
+- added support for polish IBAN without PL prefix to `IBANParser`
+- prefixed custom attributes to avoid name collisions with attributes from other libraries:
+    - `CameraViewGroup`: renamed animateRotation to `mb_animateRotation`, animationDuration to `mb_animationDuration`, rotatable to `mb_rotatable`
+    - `BaseCameraView`:  renamed initialOrientation to `mb_initialOrientation`, aspectMode to `mb_aspectMode`
+
 ## 3.2.0
 
 - added support for Android 7 multi-window mode
