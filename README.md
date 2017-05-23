@@ -32,7 +32,7 @@ See below for more information about how to integrate _BlinkInput_ SDK into your
   * [Obtaining various metadata with _MetadataListener_](#metadataListener)
   * [Using ImageListener to obtain images that are being processed](#imageListener)
 * [Recognition settings and results](#recognitionSettingsAndResults)
-  * [[Recognition settings](https://blinkinput.github.io/blinkinput-android/com/microblink/recognizers/settings/RecognitionSettings.html)](#recognitionSettings)
+  * [Recognition settings](#recognitionSettings)
   * [Scanning segments with BlinkOCR recognizer](#blinkOCR)
   * [Scanning templated documents with BlinkOCR recognizer](#blinkOCR_templating)
   * [Scanning PDF417 barcodes](#pdf417Recognizer)
@@ -104,19 +104,10 @@ After that, you just need to add _BlinkInput_ as a dependency to your applicatio
 
 ```
 dependencies {
-    compile('com.microblink:blinkinput:3.2.0@aar') {
+    compile('com.microblink:blinkinput:3.3.0@aar') {
     	transitive = true
     }
 }
-```
-
-If you plan to use ProGuard, add following lines to your `proguard-rules.pro`:
-	
-```
--keep class com.microblink.** { *; }
--keepclassmembers class com.microblink.** { *; }
--dontwarn android.hardware.**
--dontwarn android.support.v4.**
 ```
 
 #### Import Javadoc to Android Studio
@@ -125,7 +116,7 @@ Current version of Android Studio will not automatically import javadoc from mav
 
 1. In Android Studio project sidebar, ensure [project view is enabled](https://developer.android.com/sdk/installing/studio-androidview.html)
 2. Expand `External Libraries` entry (usually this is the last entry in project view)
-3. Locate `blinkinput-3.2.0` entry, right click on it and select `Library Properties...`
+3. Locate `blinkinput-3.3.0` entry, right click on it and select `Library Properties...`
 4. A `Library Properties` pop-up window will appear
 5. Click the second `+` button in bottom left corner of the window (the one that contains `+` with little globe)
 6. Window for definining documentation URL will appear
@@ -150,7 +141,7 @@ Open your `pom.xml` file and add these directives as appropriate:
 	<dependency>
 		  <groupId>com.microblink</groupId>
 		  <artifactId>blinkinput</artifactId>
-		  <version>3.2.0</version>
+		  <version>3.3.0</version>
 		  <type>aar</type>
   	</dependency>
 </dependencies>
@@ -166,16 +157,8 @@ Open your `pom.xml` file and add these directives as appropriate:
 	```
 	dependencies {
    		compile project(':LibBlinkInput')
- 		compile "com.android.support:appcompat-v7:25.1.1"
+ 		compile "com.android.support:appcompat-v7:25.3.1"
 	}
-	```
-5. If you plan to use ProGuard, add following lines to your `proguard-rules.pro`:
-	
-	```
-	-keep class com.microblink.** { *; }
-	-keepclassmembers class com.microblink.** { *; }
-	-dontwarn android.hardware.**
-	-dontwarn android.support.v4.**
 	```
 	
 ### <a name="androidStudio_importAAR_javadoc"></a> Import Javadoc to Android Studio
@@ -208,8 +191,7 @@ You’ve already created the project that contains almost everything you need. N
 2. Open the `AndroidManifest.xml` file inside `LibBlinkInput.aar` file and make sure to copy all permissions, features and activities to the `AndroidManifest.xml` file of the target project.
 3. Copy the contents of `assets` folder from `LibBlinkInput.aar` into `assets` folder of target project. If `assets` folder in target project does not exist, create it.
 4. Clean and Rebuild your target project
-5. If you plan to use ProGuard, add same statements as in [Android studio guide](#quickIntegration) to your ProGuard configuration file.
-6. Add appcompat-v7 library to your workspace and reference it by target project (modern ADT plugin for Eclipse does this automatically for all new android projects).
+5. Add appcompat-v7 library to your workspace and reference it by target project (modern ADT plugin for Eclipse does this automatically for all new android projects).
 
 ## <a name="quickScan"></a> Performing your first segment scan
 1. You can start recognition process by starting `SegmentScanActivity` activity with Intent initialized in the following way:
@@ -334,7 +316,7 @@ This section will cover more advanced details in _BlinkInput_ integration. First
 ### _BlinkInput_ requirements
 Even before starting the scan activity, you should check if _BlinkInput_ is supported on current device. In order to be supported, device needs to have camera. 
 
-Android 2.3 is the minimum android version on which _BlinkInput_ is supported. For best performance and compatibility, we recommend Android 5.0 or newer.
+Android 4.1 is the minimum android version on which _BlinkInput_ is supported. For best performance and compatibility, we recommend Android 5.0 or newer.
 
 Camera video preview resolution also matters. In order to perform successful scans, camera preview resolution cannot be too low. _BlinkInput_ requires minimum 480p camera preview resolution in order to perform scan. It must be noted that camera preview resolution is not the same as the video record resolution, although on most devices those are the same. However, there are some devices that allow recording of HD video (720p resolution), but do not allow high enough camera preview resolution (for example, [Sony Xperia Go](http://www.gsmarena.com/sony_xperia_go-4782.php) supports video record resolution at 720p, but camera preview resolution is only 320p - _BlinkInput_ does not work on that device).
 
@@ -1030,9 +1012,9 @@ Note that [ImageListener](https://blinkinput.github.io/blinkinput-android/com/mi
 
 This chapter will discuss various recognition settings used to configure different recognizers and scan results generated by them.
 
-## <a name="recognitionSettings"></a> [Recognition settings](https://blinkinput.github.io/blinkinput-android/com/microblink/recognizers/settings/RecognitionSettings.html)
+## <a name="recognitionSettings"></a> Recognition settings
 
-Recognition settings define what will be scanned and how will the recognition process be performed. Here is the list of methods that are most relevant:
+[Recognition settings](https://blinkinput.github.io/blinkinput-android/com/microblink/recognizers/settings/RecognitionSettings.html) define what will be scanned and how will the recognition process be performed. Here is the list of methods that are most relevant:
 
 ##### [`setAllowMultipleScanResultsOnSingleImage(boolean)`](https://blinkinput.github.io/blinkinput-android/com/microblink/recognizers/settings/RecognitionSettings.html#setAllowMultipleScanResultsOnSingleImage-boolean-)
 Sets whether or not outputting of multiple scan results from same image is allowed. If that is `true`, it is possible to return multiple recognition results produced by different recognizers from same image. However, single recognizer can still produce only a single result from single image. If this option is `false`, the array of `BaseRecognitionResults` will contain at most 1 element. The upside of setting that option to `false` is the speed - if you enable lots of recognizers, as soon as the first recognizer succeeds in scanning, recognition chain will be terminated and other recognizers will not get a chance to analyze the image. The downside is that you are then unable to obtain multiple results from different recognizers from single image. By default, this option is `false`.
@@ -1110,7 +1092,7 @@ The following is a list of available parsers:
 	- used for parsing arbitrary regular expressions
 	- please note that some features, like back references, match grouping and certain regex metacharacters are not supported. See javadoc for more info.
 
-- Mobile coupons parser - represented by [MobileCouponsParserSettings](https://blinkinput.github.io/blinkinput-android/com/microblink/recognizers/blinkocr/parser/mobilecoupons/MobileCouponsParserSettings.html)
+- TopUp parser - represented by [TopUpParserSettings](https://blinkinput.github.io/blinkinput-android/com/microblink/recognizers/blinkocr/parser/topup/TopUpParserSettings.html)
 	- used for parsing prepaid codes from mobile phone coupons
 
 ### <a name="blinkOCR_results"></a> Obtaining results from BlinkOCR recognizer
@@ -1761,9 +1743,9 @@ _BlinkInput_ is distributed with both ARMv7, ARM64, x86 and x86_64 native librar
 
 ARMv7 architecture gives the ability to take advantage of hardware accelerated floating point operations and SIMD processing with [NEON](http://www.arm.com/products/processors/technologies/neon.php). This gives _BlinkInput_ a huge performance boost on devices that have ARMv7 processors. Most new devices (all since 2012.) have ARMv7 processor so it makes little sense not to take advantage of performance boosts that those processors can give. Also note that some devices with ARMv7 processors do not support NEON instruction sets. Most popular are those based on [NVIDIA Tegra 2](https://en.wikipedia.org/wiki/Tegra#Tegra_2) fall into this category. Since these devices are old by today's standard, _BlinkInput_ does not support them.
 
-ARM64 is the new processor architecture that some new high end devices use. ARM64 processors are very powerful and also have the possibility to take advantage of new NEON64 SIMD instruction set to quickly process multiple pixels with single instruction.
+ARM64 is the new processor architecture that most new devices use. ARM64 processors are very powerful and also have the possibility to take advantage of new NEON64 SIMD instruction set to quickly process multiple pixels with single instruction.
 
-x86 architecture gives the ability to obtain native speed on x86 android devices, like [Prestigio 5430](http://www.gsmarena.com/prestigio_multiphone_5430_duo-5721.php). Without that, _BlinkInput_ will not work on such devices, or it will be run on top of ARM emulator that is shipped with device - this will give a huge performance penalty.
+x86 architecture gives the ability to obtain native speed on x86 android devices, like [Asus Zenfone 4](http://www.gsmarena.com/asus_zenfone_4-5951.php). Without that, _BlinkInput_ will not work on such devices, or it will be run on top of ARM emulator that is shipped with device - this will give a huge performance penalty.
 
 x86_64 architecture gives better performance than x86 on devices that use 64-bit Intel Atom processor.
 
@@ -1876,10 +1858,10 @@ However, removing a processor architecture has some consequences:
 
 Our recommendation is to include all architectures into your app - it will work on all devices and will provide best user experience. However, if you really need to reduce the size of your app, we recommend releasing separate version of your app for each processor architecture. It is easiest to do that with [APK splits](#reduceSize).
 
+
 ## <a name="combineNativeLibraries"></a> Combining _BlinkInput_ with other native libraries
 
 If you are combining _BlinkInput_ library with some other libraries that contain native code into your application, make sure you match the architectures of all native libraries. For example, if third party library has got only ARMv7 and x86 versions, you must use exactly ARMv7 and x86 versions of _BlinkInput_ with that library, but not ARM64. Using these architectures will crash your app in initialization step because JVM will try to load all its native dependencies in same preferred architecture and will fail with `UnsatisfiedLinkError`.
-
 # <a name="troubleshoot"></a> Troubleshooting
 
 ## <a name="integrationTroubleshoot"></a> Integration problems

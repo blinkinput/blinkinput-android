@@ -25,8 +25,10 @@ import com.microblink.metadata.MetadataSettings;
 import com.microblink.metadata.OcrMetadata;
 import com.microblink.recognition.InvalidLicenceKeyException;
 import com.microblink.recognizers.BaseRecognitionResult;
+import com.microblink.recognizers.IResultHolder;
 import com.microblink.recognizers.RecognitionResults;
 import com.microblink.recognizers.settings.RecognitionSettings;
+import com.microblink.results.date.DateResult;
 import com.microblink.util.CameraPermissionManager;
 import com.microblink.util.Log;
 import com.microblink.view.CameraEventsListener;
@@ -241,8 +243,18 @@ public class IDScanActivity extends Activity implements CameraEventsListener, Sc
                 mRecognizerView.pauseScanning();
                 StringBuilder sb = new StringBuilder();
 
-                for (String s : result.getResultHolder().keySet()) {
-                    sb.append(s).append(": ").append(result.getStringElement(s)).append('\n');
+                IResultHolder resultHolder = result.getResultHolder();
+                for (String key : resultHolder.keySet()) {
+                    Object value = resultHolder.getObject(key);
+                    String stringValue = null;
+                    if (value instanceof String) {
+                        stringValue = (String) value;
+                    } else if (value instanceof DateResult) {
+                        stringValue = ((DateResult) value).getOriginalDateString();
+                    }
+                    if (stringValue != null && !stringValue.isEmpty()) {
+                        sb.append(key).append(": ").append(stringValue).append('\n');
+                    }
                 }
 
                 AlertDialog.Builder ab = new AlertDialog.Builder(this);

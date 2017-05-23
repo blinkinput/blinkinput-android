@@ -29,8 +29,8 @@ public class MainActivity extends Activity {
     private static final int BLINK_OCR_VIN_REQUEST_CODE = 101;
     private static final String NAME_VIN = "VIN";
 
-    private static final int BLINK_OCR_MOBILE_COUPON_REQUEST_CODE = 102;
-    private static final String NAME_MOBILE_COUPON = "MobileCoupon";
+    private static final int BLINK_OCR_TOPUP_REQUEST_CODE = 102;
+    private static final String NAME_TOPUP = "TopUp";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,9 +135,9 @@ public class MainActivity extends Activity {
     }
 
     /**
-     * Called as handler for "Mobile coupons example" button
+     * Called as handler for "TopUp example" button
      */
-    public void mobileCouponsExample(View view) {
+    public void topUpExample(View view) {
         /*
          * In this simple example we will use BlinkInput SDK to create a simple app
          * that scans prepaid mobile coupon codes.
@@ -147,10 +147,10 @@ public class MainActivity extends Activity {
         // license key is required for recognizer to work.
         intent.putExtra(SegmentScanActivity.EXTRAS_LICENSE_KEY, LICENSE_KEY);
 
-        // create settings for mobile coupon parser, find codes with prefix "*123*"
+        // create settings for top up parser, find codes with prefix "*123*"
         TopUpParserSettings topUpParserSett = new TopUpParserSettings(TopUpParserSettings.TopUpPrefix.TOP_UP_PREFIX_123);
         // it is possible to create parser settings with given prefix and USSD length for codes in form *prefixString*USSDCodeLength_digits#
-        // MobileCouponsParserSettings topUpParserSett = new MobileCouponsParserSettings("01", 14);
+        // TopUpParserSettings topUpParserSett = new TopUpParserSettings("01", 14);
 
         // allow codes without prefix, but prefix "*123*" will be added (we defined prefix in parser settings constructor)
         topUpParserSett.setAllowNoPrefix(true);
@@ -160,7 +160,7 @@ public class MainActivity extends Activity {
                 // each scan configuration contains two string resource IDs: string shown in title bar and string shown
                 // in text field above scan box. Besides that, it contains name of the result and settings object
                 // which defines what will be scanned.
-                new ScanConfiguration(R.string.mobile_coupon_title, R.string.mobile_coupon_msg, NAME_MOBILE_COUPON, topUpParserSett)
+                new ScanConfiguration(R.string.topup_title, R.string.topup_msg, NAME_TOPUP, topUpParserSett)
         };
 
         intent.putExtra(SegmentScanActivity.EXTRAS_SCAN_CONFIGURATION, conf);
@@ -172,7 +172,7 @@ public class MainActivity extends Activity {
 
         // once intent is prepared, we start the SegmentScanActivity which will preform scan and return results
         // by calling onActivityResult
-        startActivityForResult(intent, BLINK_OCR_MOBILE_COUPON_REQUEST_CODE);
+        startActivityForResult(intent, BLINK_OCR_TOPUP_REQUEST_CODE);
     }
 
     /**
@@ -198,9 +198,9 @@ public class MainActivity extends Activity {
                     String vin = result.getString(NAME_VIN);
                     Toast.makeText(this, "Vehicle identification number is: " + vin, Toast.LENGTH_LONG).show();
                     break;
-                case BLINK_OCR_MOBILE_COUPON_REQUEST_CODE:
-                    String mobileCouponCode = result.getString(NAME_MOBILE_COUPON);
-                    Toast.makeText(this, "Mobile coupon code is: " + mobileCouponCode, Toast.LENGTH_LONG).show();
+                case BLINK_OCR_TOPUP_REQUEST_CODE:
+                    String topUpCode = result.getString(NAME_TOPUP);
+                    Toast.makeText(this, "TopUp code is: " + topUpCode, Toast.LENGTH_LONG).show();
                     break;
             }
         }

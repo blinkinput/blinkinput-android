@@ -35,11 +35,11 @@
         android:text="Regex parser example"/>
 
     <Button
-        android:id="@+id/btnMobileCoupons"
+        android:id="@+id/btnTopUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:onClick="mobileCouponsExample"
-        android:text="Mobile coupons example"/>
+        android:onClick="topUpExample"
+        android:text="TopUp example"/>
 
 </LinearLayout>

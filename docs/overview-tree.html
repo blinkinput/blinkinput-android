@@ -89,6 +89,7 @@
 <li><a href="com/microblink/image/package-tree.html">com.microblink.image</a>, </li>
 <li><a href="com/microblink/locale/package-tree.html">com.microblink.locale</a>, </li>
 <li><a href="com/microblink/metadata/package-tree.html">com.microblink.metadata</a>, </li>
+<li><a href="com/microblink/metadata/liveness/package-tree.html">com.microblink.metadata.liveness</a>, </li>
 <li><a href="com/microblink/ocr/package-tree.html">com.microblink.ocr</a>, </li>
 <li><a href="com/microblink/recognition/package-tree.html">com.microblink.recognition</a>, </li>
 <li><a href="com/microblink/recognizers/package-tree.html">com.microblink.recognizers</a>, </li>
@@ -204,6 +205,8 @@
 <li type="circle">com.microblink.metadata.<a href="com/microblink/metadata/DetectionMetadata.html" title="class in com.microblink.metadata"><span class="typeNameLink">DetectionMetadata</span></a></li>
 <li type="circle">com.microblink.metadata.<a href="com/microblink/metadata/GlareMetadata.html" title="class in com.microblink.metadata"><span class="typeNameLink">GlareMetadata</span></a></li>
 <li type="circle">com.microblink.metadata.<a href="com/microblink/metadata/ImageMetadata.html" title="class in com.microblink.metadata"><span class="typeNameLink">ImageMetadata</span></a></li>
+<li type="circle">com.microblink.metadata.liveness.<a href="com/microblink/metadata/liveness/LivenessActionMetadata.html" title="class in com.microblink.metadata.liveness"><span class="typeNameLink">LivenessActionMetadata</span></a></li>
+<li type="circle">com.microblink.metadata.liveness.<a href="com/microblink/metadata/liveness/LivenessErrorMetadata.html" title="class in com.microblink.metadata.liveness"><span class="typeNameLink">LivenessErrorMetadata</span></a></li>
 <li type="circle">com.microblink.metadata.<a href="com/microblink/metadata/OcrMetadata.html" title="class in com.microblink.metadata"><span class="typeNameLink">OcrMetadata</span></a></li>
 <li type="circle">com.microblink.metadata.<a href="com/microblink/metadata/RecognitionResultMetadata.html" title="class in com.microblink.metadata"><span class="typeNameLink">RecognitionResultMetadata</span></a></li>
 <li type="circle">com.microblink.metadata.<a href="com/microblink/metadata/TextMetadata.html" title="class in com.microblink.metadata"><span class="typeNameLink">TextMetadata</span></a></li>
@@ -253,7 +256,6 @@
 </li>
 <li type="circle">com.microblink.recognizers.settings.<a href="com/microblink/recognizers/settings/RecognizerSettingsUtils.html" title="class in com.microblink.recognizers.settings"><span class="typeNameLink">RecognizerSettingsUtils</span></a></li>
 <li type="circle">com.microblink.geometry.<a href="com/microblink/geometry/Rectangle.html" title="class in com.microblink.geometry"><span class="typeNameLink">Rectangle</span></a> (implements android.os.Parcelable)</li>
-<li type="circle">com.microblink.recognition.<a href="com/microblink/recognition/ResourceManager.html" title="class in com.microblink.recognition"><span class="typeNameLink">ResourceManager</span></a></li>
 <li type="circle">com.microblink.ocr.<a href="com/microblink/ocr/ScanConfiguration.html" title="class in com.microblink.ocr"><span class="typeNameLink">ScanConfiguration</span></a> (implements android.os.Parcelable)</li>
 <li type="circle">java.lang.Throwable (implements java.io.Serializable)
 <ul>
@@ -306,12 +308,17 @@
 <ul>
 <li type="circle">com.microblink.recognizers.blinkocr.<a href="com/microblink/recognizers/blinkocr/DocumentClassifier.html" title="interface in com.microblink.recognizers.blinkocr"><span class="typeNameLink">DocumentClassifier</span></a></li>
 <li type="circle">com.microblink.image.<a href="com/microblink/image/ImageListener.html" title="interface in com.microblink.image"><span class="typeNameLink">ImageListener</span></a></li>
+<li type="circle">com.microblink.view.recognition.<a href="com/microblink/view/recognition/ParcelableScanResultListener.html" title="interface in com.microblink.view.recognition"><span class="typeNameLink">ParcelableScanResultListener</span></a> (also extends com.microblink.view.recognition.<a href="com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition">ScanResultListener</a>)</li>
 </ul>
 </li>
 <li type="circle">com.microblink.view.viewfinder.quadview.<a href="com/microblink/view/viewfinder/quadview/QuadViewAnimationListener.html" title="interface in com.microblink.view.viewfinder.quadview"><span class="typeNameLink">QuadViewAnimationListener</span></a></li>
 <li type="circle">com.microblink.recognizers.<a href="com/microblink/recognizers/RecognitionResultConstants.html" title="interface in com.microblink.recognizers"><span class="typeNameLink">RecognitionResultConstants</span></a></li>
 <li type="circle">com.microblink.results.<a href="com/microblink/results/Result.html" title="interface in com.microblink.results"><span class="typeNameLink">Result</span></a></li>
-<li type="circle">com.microblink.view.recognition.<a href="com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition"><span class="typeNameLink">ScanResultListener</span></a></li>
+<li type="circle">com.microblink.view.recognition.<a href="com/microblink/view/recognition/ScanResultListener.html" title="interface in com.microblink.view.recognition"><span class="typeNameLink">ScanResultListener</span></a>
+<ul>
+<li type="circle">com.microblink.view.recognition.<a href="com/microblink/view/recognition/ParcelableScanResultListener.html" title="interface in com.microblink.view.recognition"><span class="typeNameLink">ParcelableScanResultListener</span></a> (also extends android.os.Parcelable)</li>
+</ul>
+</li>
 <li type="circle">com.microblink.hardware.accelerometer.<a href="com/microblink/hardware/accelerometer/ShakeCallback.html" title="interface in com.microblink.hardware.accelerometer"><span class="typeNameLink">ShakeCallback</span></a></li>
 <li type="circle">com.microblink.hardware.<a href="com/microblink/hardware/SuccessCallback.html" title="interface in com.microblink.hardware"><span class="typeNameLink">SuccessCallback</span></a></li>
 </ul>
@@ -341,6 +348,8 @@
 <li type="circle">com.microblink.detectors.document.<a href="com/microblink/detectors/document/DocumentSpecificationPreset.html" title="enum in com.microblink.detectors.document"><span class="typeNameLink">DocumentSpecificationPreset</span></a></li>
 <li type="circle">com.microblink.detectors.document.<a href="com/microblink/detectors/document/ScanningMode.html" title="enum in com.microblink.detectors.document"><span class="typeNameLink">ScanningMode</span></a></li>
 <li type="circle">com.microblink.detectors.quad.mrtd.<a href="com/microblink/detectors/quad/mrtd/MRTDDetectorResult.MRTDDetectionCode.html" title="enum in com.microblink.detectors.quad.mrtd"><span class="typeNameLink">MRTDDetectorResult.MRTDDetectionCode</span></a></li>
+<li type="circle">com.microblink.metadata.liveness.<a href="com/microblink/metadata/liveness/LivenessAction.html" title="enum in com.microblink.metadata.liveness"><span class="typeNameLink">LivenessAction</span></a></li>
+<li type="circle">com.microblink.metadata.liveness.<a href="com/microblink/metadata/liveness/LivenessError.html" title="enum in com.microblink.metadata.liveness"><span class="typeNameLink">LivenessError</span></a></li>
 <li type="circle">com.microblink.recognizers.blinkbarcode.<a href="com/microblink/recognizers/blinkbarcode/BarcodeType.html" title="enum in com.microblink.recognizers.blinkbarcode"><span class="typeNameLink">BarcodeType</span></a></li>
 <li type="circle">com.microblink.recognizers.blinkocr.engine.<a href="com/microblink/recognizers/blinkocr/engine/OcrDocumentType.html" title="enum in com.microblink.recognizers.blinkocr.engine"><span class="typeNameLink">OcrDocumentType</span></a></li>
 <li type="circle">com.microblink.recognizers.blinkocr.parser.generic.<a href="com/microblink/recognizers/blinkocr/parser/generic/AmountParserSettings.Preset.html" title="enum in com.microblink.recognizers.blinkocr.parser.generic"><span class="typeNameLink">AmountParserSettings.Preset</span></a></li>

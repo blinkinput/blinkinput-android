@@ -25,8 +25,8 @@
     <string name="vin_title">VIN</string>
     <string name="vin_msg">Position VIN in this frame</string>
 
-    <string name="mobile_coupon_title">Mobile coupon code</string>
-    <string name="mobile_coupon_msg">Position mobile coupon code in this frame</string>
+    <string name="topup_title">TopUp</string>
+    <string name="topup_msg">Position TopUp code in this frame</string>
 
     <string name="help_msg_01">Place mobile phone above element that should be scanned and center it inside scanning frame.</string>
     <string name="help_msg_02">When scanning is done you can edit data by tapping it.</string>
