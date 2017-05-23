@@ -16,6 +16,7 @@ com.microblink.hardware.orientation
 com.microblink.image
 com.microblink.locale
 com.microblink.metadata
+com.microblink.metadata.liveness
 com.microblink.ocr
 com.microblink.recognition
 com.microblink.recognizers
