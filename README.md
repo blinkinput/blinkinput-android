@@ -44,6 +44,9 @@ See below for more information about how to integrate _BlinkInput_ SDK into your
   * [Detection of documents with Document Detector](#documentDetector)
   * [Detection of faces with Face Detector](#faceDetector)
   * [Combining detectors with MultiDetector](#multiDetector)
+* [Embedding _BlinkInput_ inside another SDK](#embedAAR)
+  * [_BlinkInput_ licensing model](#licensingModel)
+  * [Ensuring the final app gets all resources required by _BlinkInput_](#sdkIntegrationIntoApp)
 * [Processor architecture considerations](#archConsider)
   * [Reducing the final size of your app](#reduceSize)
   * [Combining _BlinkInput_ with other native libraries](#combineNativeLibraries)
@@ -1736,6 +1739,52 @@ As you can see from the snippet, `MultiDetectorResult` contains one getter:
 ##### `getDetectionResults()`
 
 Returns the array of detection results contained within. You can iterate over the array to inspect each detection result's contents.
+
+# <a name="embedAAR"></a> Embedding _BlinkInput_ inside another SDK
+
+When creating your own SDK which depends on _BlinkInput_, you should consider following cases:
+
+- [_BlinkInput_ licensing model](#licensingModel)
+- [ensuring final app gets all classes and resources that are required by _BlinkInput_](#sdkIntegrationIntoApp)
+
+## <a name="licensingModel"></a> _BlinkInput_ licensing model
+
+_BlinkInput_ supports two types of licenses: 
+
+- application licenses
+- library licenses.
+
+### <a name="appLicence"></a> Application licenses
+
+Application license keys are bound to application's [package name](http://tools.android.com/tech-docs/new-build-system/applicationid-vs-packagename). This means that each app must have its own license key in order to be able to use _BlinkInput_. This model is appropriate when integrating _BlinkInput_ directly into app, however if you are creating SDK that depends on _BlinkInput_, you would need separate _BlinkInput_ license key for each of your clients using your SDK. This is not practical, so you should contact us at [help.microblink.com](http://help.microblink.com) and we can provide you a library license key.
+
+### <a name="libLicence"></a> Library licenses
+
+Library license keys are bound to licensee name. You will provide your licensee name with your inquiry for library license key. Unlike application license keys, library license keys must be set together with licensee name:
+
+- when using _SegmentScanActivity_, you should provide licensee name with extra `SegmentScanActivity.EXTRAS_LICENSEE`, for example:
+
+	```java
+	// set the license key
+	intent.putExtra(SegmentScanActivity.EXTRAS_LICENSE_KEY, "Enter_License_Key_Here");
+	intent.putExtra(SegmentScanActivity.EXTRAS_LICENSEE, "Enter_Licensee_Here");
+	```
+	
+- when using [RecognizerView](#recognizerView), you should use [method that accepts both license key and licensee](#recognizerView_setLicenseKey2), for example:
+
+	```java
+	mRecognizerView.setLicenseKey("Enter_License_Key_Here", "Enter_Licensee_Here");
+	```
+	
+## <a name="sdkIntegrationIntoApp"></a> Ensuring the final app gets all resources required by _BlinkInput_
+
+At the time of writing this documentation, [Android does not have support for combining multiple AAR libraries into single fat AAR](https://stackoverflow.com/questions/20700581/android-studio-how-to-package-single-aar-from-multiple-library-projects/20715155#20715155). The problem is that resource merging is done while building application, not while building AAR, so application must be aware of all its dependencies. **There is no official Android way of "hiding" third party AAR within your AAR.**
+
+This problem is usually solved with transitive Maven dependencies, i.e. when publishing your AAR to Maven you specify dependencies of your AAR so they are automatically referenced by app using your AAR. Besides this, there are also several other approaches you can try:
+
+- you can ask your clients to reference _BlinkInput_ in their app when integrating your SDK
+- since the problem lies in resource merging part you can try avoiding this step by ensuring your library will not use any component from _BlinkInput_ that uses resources (i.e. _SegmentScanActivity_). You can perform [custom UI integration](#recognizerView) while taking care that all resources (strings, layouts, images, ...) used are solely from your AAR, not from _BlinkInput_. Then, in your AAR you should not reference `LibBlinkInput.aar` as gradle dependency, instead you should unzip it and copy its assets to your AAR’s assets folder, its classes.jar to your AAR’s lib folder (which should be referenced by gradle as jar dependency) and contents of its jni folder to your AAR’s src/main/jniLibs folder.
+- Another approach is to use [3rd party unofficial gradle script](https://github.com/adwiv/android-fat-aar) that aim to combine multiple AARs into single fat AAR. Use this script at your own risk.
 
 # <a name="archConsider"></a> Processor architecture considerations
 
