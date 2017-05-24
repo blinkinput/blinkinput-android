@@ -68,7 +68,7 @@ Besides AAR, package also contains a demo project that contains following module
  
 Source code of all demo apps is given to you to show you how to perform integration of _BlinkInput_ SDK into your app. You can use this source code and all resources as you wish. You can use demo apps as basis for creating your own app, or you can copy/paste code and/or resources from demo apps into your app and use them as you wish without even asking us for permission.
 
-_BlinkInput_ is supported on Android SDK version 10 (Android 2.3.3) or later.
+_BlinkInput_ is supported on Android SDK version 16 (Android 4.1) or later.
 
 The library contains two activities:
 
