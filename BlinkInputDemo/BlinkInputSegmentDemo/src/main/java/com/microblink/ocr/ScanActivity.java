@@ -24,8 +24,8 @@ import com.microblink.help.HelpActivity;
 import com.microblink.recognition.InvalidLicenceKeyException;
 import com.microblink.recognizers.BaseRecognitionResult;
 import com.microblink.recognizers.RecognitionResults;
-import com.microblink.recognizers.blinkocr.BlinkOCRRecognitionResult;
-import com.microblink.recognizers.blinkocr.BlinkOCRRecognizerSettings;
+import com.microblink.recognizers.blinkinput.BlinkInputRecognitionResult;
+import com.microblink.recognizers.blinkinput.BlinkInputRecognizerSettings;
 import com.microblink.recognizers.settings.RecognitionSettings;
 import com.microblink.recognizers.settings.RecognizerSettings;
 import com.microblink.util.CameraPermissionManager;
@@ -43,7 +43,7 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
 
     // obtain your licence key at http://microblink.com/login or
     // contact us at http://help.microblink.com
-    private static final String LICENSE_KEY = "OEWESRMK-OENGL3VK-IVWYB4DY-OTNT457T-5PGLUYNA-IVQ2ARLB-UBCWCAAC-IYXKU56C";
+    private static final String LICENSE_KEY = "GZLX6RM4-KUOPKVFO-F27ZHP23-GKFVGELE-GXCYIOHW-DNT6JOYT-RNJRDRDR-CTHZ4N3O";
     /** CameraPermissionManager is provided helper class that can be used to obtain the permission to use camera.
      * It is used on Android 6.0 (API level 23) or newer.
      */
@@ -139,9 +139,9 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
         }
         mRecognizerView.setOptimizeCameraForNearScan(true);
 
-        // initialize BlinkOCR recognizer with currently selected parser
-        // create BlinkOCR recognizer settings object and add parser to it
-        BlinkOCRRecognizerSettings ocrSett = new BlinkOCRRecognizerSettings();
+        // initialize BlinkInput recognizer with currently selected parser
+        // create BlinkInput recognizer settings object and add parser to it
+        BlinkInputRecognizerSettings ocrSett = new BlinkInputRecognizerSettings();
         ocrSett.addParser(mConfiguration[mSelectedConfiguration].getParserName(),
                 mConfiguration[mSelectedConfiguration].getParserSettings());
 
@@ -195,7 +195,7 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
         if(updateRecognizerSettings) {
             RecognitionSettings recognitionSettings = new RecognitionSettings();
 
-            BlinkOCRRecognizerSettings ocrSett = new BlinkOCRRecognizerSettings();
+            BlinkInputRecognizerSettings ocrSett = new BlinkInputRecognizerSettings();
             ocrSett.addParser(mConfiguration[mSelectedConfiguration].getParserName(),
                     mConfiguration[mSelectedConfiguration].getParserSettings());
 
@@ -342,8 +342,8 @@ public class ScanActivity extends Activity implements CameraEventsListener, Scan
         BaseRecognitionResult[] dataArray = results.getRecognitionResults();
         // we've enabled only one recognizer, so we expect only one element in dataArray
         if (dataArray != null && dataArray.length == 1) {
-            if (dataArray[0] instanceof BlinkOCRRecognitionResult) {
-                BlinkOCRRecognitionResult result = (BlinkOCRRecognitionResult) dataArray[0];
+            if (dataArray[0] instanceof BlinkInputRecognitionResult) {
+                BlinkInputRecognitionResult result = (BlinkInputRecognitionResult) dataArray[0];
                 String scanned = result.getParsedResult(mConfiguration[mSelectedConfiguration].getParserName());
                 if(scanned != null && !scanned.isEmpty()) {
                     mResult.setText(scanned);

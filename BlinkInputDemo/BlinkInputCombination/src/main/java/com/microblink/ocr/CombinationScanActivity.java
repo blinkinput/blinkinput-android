@@ -28,11 +28,12 @@ import com.microblink.recognition.FeatureNotSupportedException;
 import com.microblink.recognition.InvalidLicenceKeyException;
 import com.microblink.recognizers.BaseRecognitionResult;
 import com.microblink.recognizers.RecognitionResults;
-import com.microblink.recognizers.blinkocr.BlinkOCRRecognitionResult;
-import com.microblink.recognizers.blinkocr.BlinkOCRRecognizerSettings;
+import com.microblink.recognizers.blinkinput.BlinkInputRecognitionResult;
+import com.microblink.recognizers.blinkinput.BlinkInputRecognizerSettings;
 import com.microblink.recognizers.blinkocr.parser.generic.RawParserSettings;
 import com.microblink.recognizers.settings.RecognitionSettings;
 import com.microblink.recognizers.settings.RecognizerSettings;
+import com.microblink.results.ocr.CharWithVariants;
 import com.microblink.results.ocr.OcrChar;
 import com.microblink.results.ocr.OcrResult;
 import com.microblink.util.CameraPermissionManager;
@@ -46,7 +47,7 @@ public class CombinationScanActivity extends Activity implements CameraEventsLis
 
     // obtain your licence key at http://microblink.com/login or
     // contact us at http://help.microblink.com
-    private static final String LICENSE_KEY = "OEWESRMK-OENGL3VK-IVWYB4DY-OTNT457T-5PGLUYNA-IVQ2ARLB-UBCWCAAC-IYXKU56C";
+    private static final String LICENSE_KEY = "GZLX6RM4-KUOPKVFO-F27ZHP23-GKFVGELE-GXCYIOHW-DNT6JOYT-RNJRDRDR-CTHZ4N3O";
 
     /** RecognizerView is the built-in view that controls camera and recognition */
     private RecognizerView mRecognizerView;
@@ -119,8 +120,8 @@ public class CombinationScanActivity extends Activity implements CameraEventsLis
             finish();
         }
 
-        // create BlinkOCR recognizer settings object and add parser to it
-        BlinkOCRRecognizerSettings ocrSett = new BlinkOCRRecognizerSettings();
+        // create BlinkInput recognizer settings object and add parser to it
+        BlinkInputRecognizerSettings ocrSett = new BlinkInputRecognizerSettings();
         RawParserSettings rawSett = new RawParserSettings();
 
         // add raw parser with name "Raw" to default parser group
@@ -130,7 +131,7 @@ public class CombinationScanActivity extends Activity implements CameraEventsLis
         // prepare recognition settings
         RecognitionSettings recognitionSettings = new RecognitionSettings();
         // set recognizer settings array that is used to configure recognition
-        // BlinkOCRRecognizer will be used in the recognition process
+        // BlinkInputRecognizer will be used in the recognition process
         recognitionSettings.setRecognizerSettingsArray(new RecognizerSettings[]{ocrSett});
         mRecognizerView.setRecognitionSettings(recognitionSettings);
 
@@ -355,8 +356,8 @@ public class CombinationScanActivity extends Activity implements CameraEventsLis
         BaseRecognitionResult[] dataArray = results.getRecognitionResults();
         // we have enabled only one recognizer, so we expect only one element in dataArray
         if (dataArray != null && dataArray.length == 1) {
-            if (dataArray[0] instanceof BlinkOCRRecognitionResult) {
-                BlinkOCRRecognitionResult result = (BlinkOCRRecognitionResult) dataArray[0];
+            if (dataArray[0] instanceof BlinkInputRecognitionResult) {
+                BlinkInputRecognitionResult result = (BlinkInputRecognitionResult) dataArray[0];
 
                 String scanned = result.getParsedResult("Raw");
 
@@ -372,13 +373,13 @@ public class CombinationScanActivity extends Activity implements CameraEventsLis
                         mOcrResult.setText("Horizontal text: " + iteratorToString(iter));
 
                         if(mLastScannedImage != null) {
-                            OcrChar ch = iter.getCurrentChar();
+                            CharWithVariants ch = iter.getCurrentCharWithVariants();
 
                             // now determine position of image where vertical text is expected
                             // let's say it is the whole vertical strip of image ending with
                             // first letter of string "Carat Weight"
 
-                            float charX = ch.getPosition().getX();
+                            float charX = ch.getChar().getPosition().getX();
 
                             // determine region that will be scanned for vertical text as vertical
                             // strip left of string "Carat Weight"
@@ -401,8 +402,8 @@ public class CombinationScanActivity extends Activity implements CameraEventsLis
                                     public void onScanningDone(RecognitionResults results) {
                                         BaseRecognitionResult[] baseRecognitionResults = results.getRecognitionResults();
                                         if (baseRecognitionResults != null && baseRecognitionResults.length == 1) {
-                                            if (baseRecognitionResults[0] instanceof BlinkOCRRecognitionResult) {
-                                                BlinkOCRRecognitionResult result = (BlinkOCRRecognitionResult) baseRecognitionResults[0];
+                                            if (baseRecognitionResults[0] instanceof BlinkInputRecognitionResult) {
+                                                BlinkInputRecognitionResult result = (BlinkInputRecognitionResult) baseRecognitionResults[0];
                                                 final String verticalText = result.getParsedResult("Raw");
                                                 runOnUiThread(new Runnable() {
                                                     @Override
@@ -433,7 +434,7 @@ public class CombinationScanActivity extends Activity implements CameraEventsLis
         StringBuilder sb = new StringBuilder();
         OcrResultIterator iter = new OcrResultIterator(i);
         while(iter.hasNext()) {
-            sb.append(iter.getCurrentChar().getValue());
+            sb.append(iter.getCurrentCharWithVariants().getChar().getValue());
             boolean newLine = iter.moveToNext();
             if(newLine) {
                 sb.append('\n');
@@ -460,7 +461,7 @@ public class CombinationScanActivity extends Activity implements CameraEventsLis
     private boolean stringMatch(String str, OcrResultIterator iter) {
         OcrResultIterator iterCopy = new OcrResultIterator(iter);
         for (int pos = 0; pos < str.length(); ++pos) {
-            if(!charMatch(str.charAt(pos), iterCopy.getCurrentChar())) return false;
+            if(!charMatch(str.charAt(pos), iterCopy.getCurrentCharWithVariants())) return false;
             if(pos != str.length() - 1 && !iterCopy.hasNext()) return false;
             iterCopy.moveToNext();
         }
@@ -468,12 +469,12 @@ public class CombinationScanActivity extends Activity implements CameraEventsLis
     }
 
     /**
-     * Returns true if char matches given OcrChar or any of its recognition alternatives
+     * Returns true if char matches given char or any of its recognition alternatives
      */
-    private boolean charMatch(char c, OcrChar ocrC) {
-        if(c == ocrC.getValue()) return true;
+    private boolean charMatch(char c, CharWithVariants ocrCharWithVariants) {
+        if(c == ocrCharWithVariants.getChar().getValue()) return true;
         // check alternatives
-        OcrChar[] variants = ocrC.getRecognitionVariants();
+        OcrChar[] variants = ocrCharWithVariants.getRecognitionVariants();
         if (variants != null) { // some chars do not have alternatives
             for (OcrChar var : variants) {
                 if (c == var.getValue()) return true;
@@ -513,7 +514,7 @@ public class CombinationScanActivity extends Activity implements CameraEventsLis
             mLine = other.mLine;
         }
 
-        public OcrChar getCurrentChar() {
+        public CharWithVariants getCurrentCharWithVariants() {
             return mOcrResult.getBlocks()[mBlock].getLines()[mLine].getChars()[mChar];
         }
 

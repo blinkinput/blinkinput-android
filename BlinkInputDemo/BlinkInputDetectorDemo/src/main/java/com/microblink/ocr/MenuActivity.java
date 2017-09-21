@@ -28,7 +28,7 @@ public class MenuActivity extends Activity {
 
     // obtain your licence key at http://microblink.com/login or
     // contact us at http://help.microblink.com
-    static final String LICENSE_KEY = "OEWESRMK-OENGL3VK-IVWYB4DY-OTNT457T-5PGLUYNA-IVQ2ARLB-UBCWCAAC-IYXKU56C";
+    static final String LICENSE_KEY = "GZLX6RM4-KUOPKVFO-F27ZHP23-GKFVGELE-GXCYIOHW-DNT6JOYT-RNJRDRDR-CTHZ4N3O";
 
     /** List view elements. */
     private ListElement[] mElements;
@@ -122,7 +122,7 @@ public class MenuActivity extends Activity {
         // Decoding info is used to define the position in the detected location that is
         // interesting (it is expressed as rectangle relative to detected rectangle)
         // and the height of the dewarped image obtained from that position.
-        DecodingInfo di = new DecodingInfo(new Rectangle(0.f, 0.f, 1.f, 1.f), 100, "MRZ");
+        DecodingInfo di = new DecodingInfo(new Rectangle(0.f, 0.f, 1.f, 1.f), 500, "MRTD");
 
         // Prepare machine readable travel document detector settings with defined
         // decoding info.

@@ -57,7 +57,7 @@ import com.microblink.recognition.FeatureNotSupportedException;
 import com.microblink.recognition.InvalidLicenceKeyException;
 import com.microblink.recognizers.BaseRecognitionResult;
 import com.microblink.recognizers.RecognitionResults;
-import com.microblink.recognizers.blinkocr.BlinkOCRRecognitionResult;
+import com.microblink.recognizers.blinkinput.BlinkInputRecognitionResult;
 import com.microblink.recognizers.settings.RecognitionSettings;
 import com.microblink.view.recognition.ScanResultListener;
 
@@ -679,9 +679,9 @@ public class Camera2Fragment extends Fragment implements ScanResultListener {
         // get results array
         BaseRecognitionResult[] dataArray = results.getRecognitionResults();
         if (dataArray != null && dataArray.length > 0) {
-            // only single result from BlinkOCRRecognizer is expected
-            if (dataArray[0] instanceof BlinkOCRRecognitionResult) {
-                BlinkOCRRecognitionResult result = (BlinkOCRRecognitionResult) dataArray[0];
+            // only single result from BlinkInputRecognizer is expected
+            if (dataArray[0] instanceof BlinkInputRecognitionResult) {
+                BlinkInputRecognitionResult result = (BlinkInputRecognitionResult) dataArray[0];
                 // get string result from configured parser with parser name "Raw"
                 final String parsed = result.getParsedResult("Raw");
                 getActivity().runOnUiThread(new Runnable() {
