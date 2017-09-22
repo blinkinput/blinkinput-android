@@ -3,47 +3,28 @@ package com.microblink.ocr;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.AssetManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
-import com.microblink.directApi.DirectApiErrorListener;
-import com.microblink.directApi.Recognizer;
-import com.microblink.hardware.orientation.Orientation;
 import com.microblink.ocr.customcamera.Camera1Activity;
 import com.microblink.ocr.customcamera.camera2.Camera2Activity;
 import com.microblink.ocr.imagescan.ScanImageActivity;
-import com.microblink.recognition.FeatureNotSupportedException;
-import com.microblink.recognition.InvalidLicenceKeyException;
 import com.microblink.recognizers.BaseRecognitionResult;
 import com.microblink.recognizers.RecognitionResults;
-import com.microblink.recognizers.blinkbarcode.BarcodeType;
-import com.microblink.recognizers.blinkbarcode.bardecoder.BarDecoderScanResult;
-import com.microblink.recognizers.blinkbarcode.pdf417.Pdf417ScanResult;
-import com.microblink.recognizers.blinkbarcode.zxing.ZXingScanResult;
-import com.microblink.recognizers.blinkocr.BlinkOCRRecognitionResult;
-import com.microblink.recognizers.blinkocr.BlinkOCRRecognizerSettings;
+import com.microblink.recognizers.blinkinput.BlinkInputRecognitionResult;
+import com.microblink.recognizers.blinkinput.BlinkInputRecognizerSettings;
 import com.microblink.recognizers.blinkocr.engine.BlinkOCREngineOptions;
 import com.microblink.recognizers.blinkocr.parser.generic.RawParserSettings;
 import com.microblink.recognizers.settings.RecognitionSettings;
 import com.microblink.recognizers.settings.RecognizerSettings;
-import com.microblink.results.barcode.BarcodeDetailedData;
-import com.microblink.view.recognition.ScanResultListener;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +33,7 @@ public class MenuActivity extends Activity {
 
     // obtain your licence key at http://microblink.com/login or
     // contact us at http://help.microblink.com
-    private static final String LICENSE_KEY = "OEWESRMK-OENGL3VK-IVWYB4DY-OTNT457T-5PGLUYNA-IVQ2ARLB-UBCWCAAC-IYXKU56C";
+    private static final String LICENSE_KEY = "GZLX6RM4-KUOPKVFO-F27ZHP23-GKFVGELE-GXCYIOHW-DNT6JOYT-RNJRDRDR-CTHZ4N3O";
 
     private static final int MY_REQUEST_CODE = 1337;
     private static final String TAG = "DirectApiDemo";
@@ -89,7 +70,7 @@ public class MenuActivity extends Activity {
 
     private void buildRecognitionSettings() {
         // prepare settings for raw OCR
-        BlinkOCRRecognizerSettings ocrSett = new BlinkOCRRecognizerSettings();
+        BlinkInputRecognizerSettings ocrSett = new BlinkInputRecognizerSettings();
         RawParserSettings rawSett = new RawParserSettings();
 
         // set OCR engine options
@@ -156,8 +137,8 @@ public class MenuActivity extends Activity {
         BaseRecognitionResult[] dataArray = results.getRecognitionResults();
         if (dataArray != null && dataArray.length > 0) {
             // only single result from BlinkOCRRecognizer is expected
-            if (dataArray[0] instanceof BlinkOCRRecognitionResult) {
-                BlinkOCRRecognitionResult result = (BlinkOCRRecognitionResult) dataArray[0];
+            if (dataArray[0] instanceof BlinkInputRecognitionResult) {
+                BlinkInputRecognitionResult result = (BlinkInputRecognitionResult) dataArray[0];
                 // get string result from configured parser with parser name "Raw"
                 final String parsed = result.getParsedResult("Raw");
                 AlertDialog dialog = new AlertDialog.Builder(this)

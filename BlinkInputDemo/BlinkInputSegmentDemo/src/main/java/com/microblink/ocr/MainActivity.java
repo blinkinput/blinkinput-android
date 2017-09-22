@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
     private static final int BLINK_OCR_REQUEST_CODE = 100;
     // obtain your licence key at http://microblink.com/login or
     // contact us at http://help.microblink.com
-    private static final String LICENSE_KEY = "OEWESRMK-OENGL3VK-IVWYB4DY-OTNT457T-5PGLUYNA-IVQ2ARLB-UBCWCAAC-IYXKU56C";
+    private static final String LICENSE_KEY = "GZLX6RM4-KUOPKVFO-F27ZHP23-GKFVGELE-GXCYIOHW-DNT6JOYT-RNJRDRDR-CTHZ4N3O";
     private static final String NAME_TOTAL_AMOUNT = "TotalAmount";
     private static final String NAME_TAX = "Tax";
     private static final String NAME_IBAN = "IBAN";

@@ -16,7 +16,7 @@ public class MainActivity extends Activity {
 
     // obtain your licence key at http://microblink.com/login or
     // contact us at http://help.microblink.com
-    private static final String LICENSE_KEY = "OEWESRMK-OENGL3VK-IVWYB4DY-OTNT457T-5PGLUYNA-IVQ2ARLB-UBCWCAAC-IYXKU56C";
+    private static final String LICENSE_KEY = "GZLX6RM4-KUOPKVFO-F27ZHP23-GKFVGELE-GXCYIOHW-DNT6JOYT-RNJRDRDR-CTHZ4N3O";
 
     private static final int SINGLE_GROUP_REQ_CODE = 123;
     private static final int MULTIPLE_GROUPS_REQ_CODE = 234;

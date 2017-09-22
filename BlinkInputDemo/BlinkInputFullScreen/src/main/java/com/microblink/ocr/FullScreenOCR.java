@@ -21,10 +21,10 @@ import com.microblink.metadata.OcrMetadata;
 import com.microblink.recognition.InvalidLicenceKeyException;
 import com.microblink.recognizers.BaseRecognitionResult;
 import com.microblink.recognizers.RecognitionResults;
-import com.microblink.recognizers.blinkbarcode.bardecoder.BarDecoderRecognizerSettings;
-import com.microblink.recognizers.blinkbarcode.bardecoder.BarDecoderScanResult;
-import com.microblink.recognizers.blinkocr.BlinkOCRRecognitionResult;
-import com.microblink.recognizers.blinkocr.BlinkOCRRecognizerSettings;
+import com.microblink.recognizers.blinkbarcode.barcode.BarcodeRecognizerSettings;
+import com.microblink.recognizers.blinkbarcode.barcode.BarcodeScanResult;
+import com.microblink.recognizers.blinkinput.BlinkInputRecognitionResult;
+import com.microblink.recognizers.blinkinput.BlinkInputRecognizerSettings;
 import com.microblink.recognizers.blinkocr.parser.generic.RawParserSettings;
 import com.microblink.recognizers.settings.RecognitionSettings;
 import com.microblink.recognizers.settings.RecognizerSettings;
@@ -43,7 +43,7 @@ public class FullScreenOCR extends Activity implements MetadataListener, CameraE
 
     // obtain your licence key at http://microblink.com/login or
     // contact us at http://help.microblink.com
-    private static final String LICENSE_KEY = "OEWESRMK-OENGL3VK-IVWYB4DY-OTNT457T-5PGLUYNA-IVQ2ARLB-UBCWCAAC-IYXKU56C";
+    private static final String LICENSE_KEY = "GZLX6RM4-KUOPKVFO-F27ZHP23-GKFVGELE-GXCYIOHW-DNT6JOYT-RNJRDRDR-CTHZ4N3O";
 
     /** RecognizerView is the built-in view that controls camera and recognition */
     private RecognizerView mRecognizerView;
@@ -66,21 +66,21 @@ public class FullScreenOCR extends Activity implements MetadataListener, CameraE
         // set log level to information because ocr results will be passed to Log (information level)
         Log.setLogLevel(Log.LogLevel.LOG_INFORMATION);
 
-        // initialize BlinkOCR recognizer with only raw parser
-        BlinkOCRRecognizerSettings ocrSett = new BlinkOCRRecognizerSettings();
+        // initialize BlinkInput recognizer with only raw parser
+        BlinkInputRecognizerSettings ocrSett = new BlinkInputRecognizerSettings();
         RawParserSettings rawSett = new RawParserSettings();
         // add raw parser with name "Raw" to default parser group
         // parser name is important for obtaining results later
         ocrSett.addParser("Raw", rawSett);
 
-        // initialize 1D barcode recognizer and set it to scan Code39 and Code128 barcodes
-        BarDecoderRecognizerSettings barSett = new BarDecoderRecognizerSettings();
+        // initialize barcode recognizer and set it to scan Code39 and Code128 barcodes
+        BarcodeRecognizerSettings barSett = new BarcodeRecognizerSettings();
         barSett.setScanCode128(true);
         barSett.setScanCode39(true);
 
         // prepare the recognition settings
         RecognitionSettings recognitionSettings = new RecognitionSettings();
-        // BlinkOCRRecognizer and BarDecoderRecognizer will be used in the recognition process
+        // BlinkInputRecognizer and BarcodeRecognizer will be used in the recognition process
         recognitionSettings.setRecognizerSettingsArray(new RecognizerSettings[]{ocrSett, barSett});
 
         mRecognizerView.setRecognitionSettings(recognitionSettings);
@@ -234,14 +234,14 @@ public class FullScreenOCR extends Activity implements MetadataListener, CameraE
         // We also check if dataArray contains raw parser result and log it to ADB.
         BaseRecognitionResult[] dataArray = results.getRecognitionResults();
         for (BaseRecognitionResult r : dataArray) {
-            if (r instanceof BarDecoderScanResult) { // r is barcode scan result
-                BarDecoderScanResult bdsr = (BarDecoderScanResult) r;
+            if (r instanceof BarcodeScanResult) { // r is barcode scan result
+                BarcodeScanResult barcodeSr = (BarcodeScanResult) r;
 
                 // create toast with contents: Barcode type: barcode contents
-                String res = bdsr.getBarcodeType().name() + ": " + bdsr.getStringData();
+                String res = barcodeSr.getBarcodeType().name() + ": " + barcodeSr.getStringData();
                 Toast.makeText(this, res, Toast.LENGTH_SHORT).show();
-            } else if (r instanceof BlinkOCRRecognitionResult) {
-                BlinkOCRRecognitionResult bocrRes = (BlinkOCRRecognitionResult) r;
+            } else if (r instanceof BlinkInputRecognitionResult) {
+                BlinkInputRecognitionResult bocrRes = (BlinkInputRecognitionResult) r;
 
                 // obtain parse result from the parser named "Raw"
                 String rawParsed = bocrRes.getParsedResult("Raw");
