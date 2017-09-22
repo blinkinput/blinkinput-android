@@ -1,5 +1,48 @@
 # Release notes
 
+## 3.4.0
+
+### New features:
+- Added `VinRecognizer` for scanning VIN (*Vehicle Identification Number*) barcodes
+- Added unified `BarcodeRecognizer` for scanning various tipes of barcodes
+    - `ZXingRecognizer` and  `BarDecoderRecognizer` are **deprecated**, `BarcodeRecognizer` should be used for all barcode types that are supported by these recognizers
+- added support for reading mirrored QR codes:
+	- affects all recognizers that perform QR code scanning
+- introduced `GlareDetector` which is by default used in all recognizers whose settings implement `GlareDetectorOptions`:
+    - when glare is detected, OCR will not be performed on the affected document position to prevent errors in the extracted data
+    - if the glare detector is used and obtaining of glare metadata is enabled in `MetadataSettings`, glare status will be reported to `MetadataListener`
+    - glare detector can be disabled by using `setDetectGlare(boolean)` method on the recognizer settings
+- added `QuadDetectorWithSizeResult` which inherits existing `QuadDetectorResult`:
+    - it's subclasses are `DocumentDetectorResult` and `MRTDDetectorResult`
+    - returns information about physical size (height) in inches of the detected location when physical size is known
+- added support for characters `{` and `}` in `OCR_FONT_VERDANA` to OCR engine
+
+### Minor API changes:
+- Date fields in recognition results are returned as `com.microblink.results.date.Date` class which represents immutable dates that are consisted of day, month and year
+- `OcrLine.getChars()` method returns `CharWithVariants` array. OCR char is defined by all its parameters (value, font, position, quality, etc.) and for each resulting char it is possible to have multiple variants. For example it is possible to have same char value with different font.
+- `RegexParserSettings` and `RawParserSettings` now work with `AbstractOCREngineOptions`, which is a base class of `BlinkOCREngineOptions`
+	- default engine options returned by method `getOcrEngineOptions` for both parser settings return instance of `BlinkOCREngineOptions`
+- `BlinkOCRRecognizerSettings` is now deprecated and will be removed in `v4.0.0`
+	- use `DetectorRecognizerSettings` to perform scanning of templated documents
+	- use `BlinkInputRecognizerSettings` for segment scan or for full-screen OCR
+	- until `v4.0.0`, `BlinkOCRRecognizerSettings` will behave as before, however you are encouraged to update your code not to use it anymore
+- `DocumentClassifier` interface is moved from `com.microblink.recognizers.blinkocr` to `com.microblink.recognizers.detector` package and `DocumentClassifier.classifyDocument()` now accepts `DetectorRecognitionResult` as parameter for document classification
+
+### Improvements for existing features:
+- improved `TopUpParser`:
+    - added option to return USSD code without prefix
+- improved `IbanParser`:
+    - improved extraction of IBANs without prefix and introduced `setAlwaysReturnPrefix` option to always return prefix (country code)
+    - added support for french IBANs
+- enabled reading of Pdf417 barcodes having width/height bar aspect ratio less than 2:1
+- improved date parsing:
+	- affects date parser and all recognizers which perform date parsing
+
+### Bug fixes:
+- fixed returning of images inside TemplatingAPI for frames when document was not correctly detected
+- Fixed bug in SegmentScanActivity:
+    - scan results are no longer hidden on shake event
+
 ## 3.3.0
 
 - optimised native binary size
