@@ -1,4 +1,4 @@
-package com.microblink.ocr;
+package com.microblink.detector;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,26 +9,18 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.microblink.detectors.DecodingInfo;
-import com.microblink.detectors.DetectorSettings;
-import com.microblink.detectors.document.DocumentDetectorSettings;
-import com.microblink.detectors.document.DocumentSpecification;
-import com.microblink.detectors.document.DocumentSpecificationPreset;
-import com.microblink.detectors.quad.mrtd.MRTDDetectorSettings;
-import com.microblink.geometry.Rectangle;
-import com.microblink.recognizers.settings.RecognitionSettings;
-import com.microblink.recognizers.settings.RecognizerSettings;
+import com.microblink.entities.detectors.Detector;
+import com.microblink.entities.detectors.quad.document.DocumentDetector;
+import com.microblink.entities.detectors.quad.document.DocumentSpecification;
+import com.microblink.entities.detectors.quad.document.DocumentSpecificationPreset;
+import com.microblink.entities.detectors.quad.mrtd.MRTDDetector;
+import com.microblink.input.R;
 import com.microblink.util.RecognizerCompatibility;
 import com.microblink.util.RecognizerCompatibilityStatus;
-import com.microblink.util.templating.CroatianIDFrontSide;
 
 import java.util.ArrayList;
 
 public class MenuActivity extends Activity {
-
-    // obtain your licence key at http://microblink.com/login or
-    // contact us at http://help.microblink.com
-    static final String LICENSE_KEY = "GZLX6RM4-KUOPKVFO-F27ZHP23-GKFVGELE-GXCYIOHW-DNT6JOYT-RNJRDRDR-CTHZ4N3O";
 
     /** List view elements. */
     private ListElement[] mElements;
@@ -46,7 +38,7 @@ public class MenuActivity extends Activity {
 
         // build list elements
         mElements = buildListElements();
-        ListView lv = (ListView) findViewById(R.id.detectorList);
+        ListView lv = findViewById(R.id.detectorList);
         ArrayAdapter<ListElement> listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mElements);
         lv.setAdapter(listAdapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -58,17 +50,14 @@ public class MenuActivity extends Activity {
     }
 
     /**
-     * Builds intent that can be used to start the {@link DetectorActivity} with given detector settings.
-     * @param detectorSettings Detector settings determine which detector will be used.
-     * @return Intent that can be used to start the {@link DetectorActivity} with given detector settings.
+     * Builds intent that can be used to start the {@link DetectorActivity} with given detector.
+     * @param detector Detector that will be used.
+     * @return Intent that can be used to start the {@link DetectorActivity} with given detector.
      */
-    private Intent buildDetectorIntent(DetectorSettings detectorSettings) {
+    private Intent buildDetectorIntent(Detector detector) {
         Intent intent = new Intent(this, DetectorActivity.class);
-        // pass detector settings, DetectorActivity accepts array of detector settings
-        intent.putExtra(DetectorActivity.EXTRAS_DETECTOR_SETTINGS,
-                new DetectorSettings[]{detectorSettings});
-        // pass license key
-        intent.putExtra(DetectorActivity.EXTRAS_LICENSE_KEY, LICENSE_KEY);
+        // pass prepared detector to activity
+        intent.putExtra(DetectorActivity.EXTRAS_DETECTOR, detector);
         return intent;
     }
 
@@ -106,52 +95,33 @@ public class MenuActivity extends Activity {
         // * MRTD list entry *
         elements.add(buildMRTDDetectorElement());
 
-        // templating API example (Croatian ID card - front side)
-        elements.add(buildTemplatingAPIElement());
-
         ListElement[] elemsArray = new ListElement[elements.size()];
         return elements.toArray(elemsArray);
     }
 
     /**
      * Builds the {@link ListElement} with corresponding title and intent that can be
-     * used to start the {@link DetectorActivity} with settings for MRTDDetector.
+     * used to start the {@link DetectorActivity} with MRTDDetector.
      * @return Built list element.
      */
     private ListElement buildMRTDDetectorElement() {
-        // Decoding info is used to define the position in the detected location that is
-        // interesting (it is expressed as rectangle relative to detected rectangle)
-        // and the height of the dewarped image obtained from that position.
-        DecodingInfo di = new DecodingInfo(new Rectangle(0.f, 0.f, 1.f, 1.f), 500, "MRTD");
-
-        // Prepare machine readable travel document detector settings with defined
-        // decoding info.
-        MRTDDetectorSettings mrtds = new MRTDDetectorSettings(new DecodingInfo[] {di});
-        return new ListElement(getString(R.string.mrtd_detector), buildDetectorIntent(mrtds));
+        MRTDDetector mrtdDetector = new MRTDDetector();
+        return new ListElement(getString(R.string.mrtd_detector), buildDetectorIntent(mrtdDetector));
     }
 
     /**
-     * Builds the {@link ListElement} with given title and intent that can be
-     * used to start the {@link DetectorActivity} with settings for DocumentDetector.
+     * Builds the {@link ListElement} with given title and intent that can be used to start the
+     * {@link DetectorActivity} with DocumentDetector.
      * @param title Title that will be shown in list view.
      * @param documentSpec Specification for the document that should be detected (idCard, cheque...)
      * @return Built list element.
      */
     private ListElement buildDocumentDetectorElement(String title, DocumentSpecification documentSpec) {
-        // prepare document detector settings with defined document specification
-        DocumentDetectorSettings dds = new DocumentDetectorSettings(new DocumentSpecification[] {documentSpec});
+        // prepare document detector with defined document specification
+        DocumentDetector documentDetector = new DocumentDetector(documentSpec);
         // set minimum number of stable detections to return detector result
-        dds.setNumStableDetectionsThreshold(3);
-        return new ListElement(title, buildDetectorIntent(dds));
-    }
-
-    private ListElement buildTemplatingAPIElement() {
-        Intent intent = new Intent(this, IDScanActivity.class);
-        RecognitionSettings sett = new RecognitionSettings();
-        sett.setRecognizerSettingsArray(new RecognizerSettings[] {CroatianIDFrontSide.buildCroatianIDFrontSideRecognizerSettings()});
-        intent.putExtra(IDScanActivity.EXTRAS_RECOGNITION_SETTINGS, sett);
-
-        return new ListElement(getString(R.string.templating_api_example), intent);
+        documentDetector.setNumStableDetectionsThreshold(3);
+        return new ListElement(title, buildDetectorIntent(documentDetector));
     }
 
     /**
@@ -162,15 +132,15 @@ public class MenuActivity extends Activity {
         private String mTitle;
         private Intent mScanIntent;
 
-        public String getTitle() {
+        String getTitle() {
             return mTitle;
         }
 
-        public Intent getScanIntent() {
+        Intent getScanIntent() {
             return mScanIntent;
         }
 
-        public ListElement(String title, Intent scanIntent) {
+        ListElement(String title, Intent scanIntent) {
             mTitle = title;
             mScanIntent = scanIntent;
         }
@@ -183,6 +153,4 @@ public class MenuActivity extends Activity {
             return getTitle();
         }
     }
-
-
 }

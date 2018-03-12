@@ -20,7 +20,8 @@ android {
 }
 
 dependencies {
-    compile("com.microblink:blinkinput:${rootProject.ext.blinkInputVersion}@aar") {
+    implementation("com.microblink:blinkinput:${rootProject.ext.blinkInputVersion}@aar") {
         transitive = true
     }
+    implementation project(':LibUtils')
 }

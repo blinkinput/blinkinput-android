@@ -6,7 +6,6 @@
     <string name="mrtd_detector">Machine readable travel document</string>
     <string name="a4_portrait_detector">A4 document (portrait) detector</string>
     <string name="a4_landscape_detector">A4 document (landscape) detector</string>
-    <string name="templating_api_example">Templating API example (Croatian ID Front Side)</string>
     <string name="err_license">Invalid licence key</string>
     <string name="title_activity_menu">BlinkInput Detector</string>
 </resources>
