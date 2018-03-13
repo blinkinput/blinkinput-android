@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BlinkInput Random Scan Demo</string>
+    <string name="app_name">BlinkInput Random Field Sample</string>
 
     <string name="iban_title">IBAN</string>
     <string name="amount_title">Amount</string>

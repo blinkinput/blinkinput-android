@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BlinkInput Direct API Demo</string>
+    <string name="app_name">BlinkInput Direct API Sample</string>
 
     <string name="scan">Scan</string>
     <string name="takePhoto">Take Photo</string>
