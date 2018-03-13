@@ -1,4 +1,4 @@
-package com.microblink.ocr.customcamera.camera2;
+package com.microblink.input.customcamera.camera2;
 
 /*
  * Copyright 2014 The Android Open Source Project

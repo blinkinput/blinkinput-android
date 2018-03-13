@@ -1,10 +1,10 @@
-package com.microblink.ocr.customcamera.camera2;
+package com.microblink.input.customcamera.camera2;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.microblink.ocr.R;
+import com.microblink.input.R;
 
 
 @TargetApi(21)

@@ -1,30 +1,29 @@
-package com.microblink.ocr.customcamera;
+package com.microblink.input.customcamera;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.ImageFormat;
 import android.hardware.Camera;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.microblink.directApi.DirectApiErrorListener;
-import com.microblink.directApi.Recognizer;
+import com.microblink.directApi.RecognizerRunner;
+import com.microblink.entities.recognizers.RecognizerBundle;
 import com.microblink.hardware.orientation.Orientation;
 import com.microblink.image.Image;
 import com.microblink.image.ImageBuilder;
-import com.microblink.ocr.ExtrasKeys;
-import com.microblink.ocr.R;
+import com.microblink.input.R;
+import com.microblink.input.util.ResultFormater;
 import com.microblink.recognition.FeatureNotSupportedException;
-import com.microblink.recognition.InvalidLicenceKeyException;
-import com.microblink.recognizers.BaseRecognitionResult;
-import com.microblink.recognizers.RecognitionResults;
-import com.microblink.recognizers.blinkinput.BlinkInputRecognitionResult;
-import com.microblink.recognizers.settings.RecognitionSettings;
+import com.microblink.recognition.RecognitionSuccessType;
 import com.microblink.view.recognition.ScanResultListener;
 
 import java.io.IOException;
@@ -42,15 +41,11 @@ public class Camera1Activity extends Activity implements ScanResultListener, Sur
     private int mFrameWidth;
     private int mFrameHeight;
 
-    /** Recognizer instance */
-    private Recognizer mRecognizer;
-    /** Recognition settings instance. */
-    private RecognitionSettings mSettings;
-    private String mLicenseKey;
-
-    private TextView mTvResult;
+    private RecognizerRunner mRecognizerRunner;
+    private RecognizerBundle mRecognizerBundle = new RecognizerBundle();
 
     private long mTimestamp;
+    private TextView mTvResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,52 +53,32 @@ public class Camera1Activity extends Activity implements ScanResultListener, Sur
         setContentView(R.layout.activity_camera1);
 
         Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
-        if (extras != null) {
-            mSettings = extras.getParcelable(ExtrasKeys.EXTRAS_RECOGNITION_SETTINGS);
-            mLicenseKey = extras.getString(ExtrasKeys.EXTRAS_LICENSE_KEY);
-        }
+
+        mRecognizerBundle.loadFromIntent(intent);
 
         // setup camera view
-        mSurfaceView = (SurfaceView) findViewById(R.id.camera1SurfaceView);
-        mTvResult = (TextView) findViewById(R.id.tv_result);
+        mSurfaceView = findViewById(R.id.camera1SurfaceView);
+
+        mTvResult = findViewById(R.id.tv_result);
+        mTvResult.setVisibility(View.VISIBLE);
         mTvResult.setMovementMethod(new ScrollingMovementMethod());
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        // get the recognizer instance
         try {
-            mRecognizer = Recognizer.getSingletonInstance();
+            mRecognizerRunner = RecognizerRunner.getSingletonInstance();
         } catch (FeatureNotSupportedException e) {
             Toast.makeText(this, "Feature not supported! Reason: " + e.getReason().getDescription(), Toast.LENGTH_LONG).show();
             finish();
             return;
         }
 
-        // In order for scanning to work, you must enter a valid licence key. Without licence key,
-        // scanning will not work. Licence key is bound the the package name of your app, so when
-        // obtaining your licence key from Microblink make sure you give us the correct package name
-        // of your app. You can obtain your licence key at http://microblink.com/login or contact us
-        // at http://help.microblink.com.
-        // Licence key also defines which recognizers are enabled and which are not. Since the licence
-        // key validation is performed on image processing thread in native code, all enabled recognizers
-        // that are disallowed by licence key will be turned off without any error and information
-        // about turning them off will be logged to ADB logcat.
-        try {
-            mRecognizer.setLicenseKey(this, mLicenseKey);
-        } catch (InvalidLicenceKeyException exc) {
-            Toast.makeText(this, "License key check failed! Reason: " + exc.getMessage(), Toast.LENGTH_LONG).show();
-            finish();
-            return;
-        }
-
-        // initialize recognizer singleton
-        mRecognizer.initialize(this, mSettings, new DirectApiErrorListener() {
+        mRecognizerRunner.initialize(this, mRecognizerBundle, new DirectApiErrorListener() {
             @Override
             public void onRecognizerError(Throwable t) {
-                Toast.makeText(Camera1Activity.this, "There was an error in Recognizer: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Camera1Activity.this, "There was an error in RecognizerRunner: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
@@ -114,7 +89,7 @@ public class Camera1Activity extends Activity implements ScanResultListener, Sur
     @Override
     protected void onResume() {
         super.onResume();
-        if (mHaveSurfaceView) {
+        if(mHaveSurfaceView) {
             startCamera();
         }
 
@@ -135,7 +110,7 @@ public class Camera1Activity extends Activity implements ScanResultListener, Sur
             Camera.Size bestSize = null;
             int bestDiff = Integer.MAX_VALUE;
             for (Camera.Size size : sizes) {
-                int diff = size.width * size.height - 1920 * 1080;
+                int diff = size.width * size.height - 1920*1080;
                 if (Math.abs(diff) < Math.abs(bestDiff)) {
                     bestDiff = diff;
                     bestSize = size;
@@ -145,9 +120,6 @@ public class Camera1Activity extends Activity implements ScanResultListener, Sur
             params.setPreviewSize(bestSize.width, bestSize.height);
             mFrameWidth = bestSize.width;
             mFrameHeight = bestSize.height;
-
-            Log.i(TAG, "Chosen frame size: " + mFrameWidth + "x" + mFrameHeight);
-
 
             mCamera.setParameters(params);
 
@@ -181,33 +153,34 @@ public class Camera1Activity extends Activity implements ScanResultListener, Sur
     @Override
     protected void onStop() {
         super.onStop();
-        if (mRecognizer != null) {
-            mRecognizer.terminate();
+        if (mRecognizerRunner != null) {
+            mRecognizerRunner.terminate();
         }
         mSurfaceView.getHolder().removeCallback(this);
     }
 
     @Override
-    public void onScanningDone(RecognitionResults results) {
-        Log.i(TAG, "Recognition took " + (System.currentTimeMillis() - mTimestamp) + " ms");
-        // get results array
-        BaseRecognitionResult[] dataArray = results.getRecognitionResults();
-        if (dataArray != null && dataArray.length > 0) {
-            // only single result from BlinkInputRecognizer is expected
-            if (dataArray[0] instanceof BlinkInputRecognitionResult) {
-                BlinkInputRecognitionResult result = (BlinkInputRecognitionResult) dataArray[0];
-                // get string result from configured parser with parser name "Raw"
-                final String parsed = result.getParsedResult("Raw");
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mTvResult.setText(parsed.trim());
-                    }
-                });
+    public void onScanningDone(@NonNull RecognitionSuccessType successType) {
+        long timePassed = System.currentTimeMillis() - mTimestamp;
+        Log.w(TAG, "Frame processing took " + timePassed + " ms");
+
+        // check if results contain valid data
+        if (successType != RecognitionSuccessType.UNSUCCESSFUL) {
+            final String s = ResultFormater.stringifyRecognitionResults(mRecognizerBundle.getRecognizers());
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mTvResult.setText(s);
+                }
+            });
+            // ask for another frame
+            if (mCamera != null) {
+                mCamera.addCallbackBuffer(mPixelBuffer);
             }
-        }
-        if (mCamera != null) {
-            mCamera.addCallbackBuffer(mPixelBuffer);
+        } else {
+            if (mCamera != null) {
+                mCamera.addCallbackBuffer(mPixelBuffer);
+            }
         }
     }
 
@@ -229,11 +202,11 @@ public class Camera1Activity extends Activity implements ScanResultListener, Sur
 
     @Override
     public void onPreviewFrame(byte[] data, Camera camera) {
-        if (mRecognizer.getCurrentState() == Recognizer.State.READY) {
+        if (mRecognizerRunner.getCurrentState() == RecognizerRunner.State.READY) {
             // create image
             Image img = ImageBuilder.buildImageFromCamera1NV21Frame(data, mFrameWidth, mFrameHeight, Orientation.ORIENTATION_LANDSCAPE_RIGHT, null);
             mTimestamp = System.currentTimeMillis();
-            mRecognizer.recognizeImage(img, this);
+            mRecognizerRunner.recognizeImage(img, this);
         } else {
             // just ask for another frame
             camera.addCallbackBuffer(data);

@@ -3,7 +3,7 @@
  */
 
 
-package com.microblink.ocr.customcamera.camera2;
+package com.microblink.input.customcamera.camera2;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -48,17 +48,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.microblink.directApi.DirectApiErrorListener;
-import com.microblink.directApi.Recognizer;
+import com.microblink.directApi.RecognizerRunner;
+import com.microblink.entities.recognizers.RecognizerBundle;
 import com.microblink.hardware.orientation.Orientation;
 import com.microblink.image.ImageBuilder;
-import com.microblink.ocr.ExtrasKeys;
-import com.microblink.ocr.R;
+import com.microblink.input.R;
+import com.microblink.input.util.ResultFormater;
 import com.microblink.recognition.FeatureNotSupportedException;
-import com.microblink.recognition.InvalidLicenceKeyException;
-import com.microblink.recognizers.BaseRecognitionResult;
-import com.microblink.recognizers.RecognitionResults;
-import com.microblink.recognizers.blinkinput.BlinkInputRecognitionResult;
-import com.microblink.recognizers.settings.RecognitionSettings;
+import com.microblink.recognition.RecognitionSuccessType;
 import com.microblink.view.recognition.ScanResultListener;
 
 import java.util.ArrayList;
@@ -88,14 +85,10 @@ public class Camera2Fragment extends Fragment implements ScanResultListener {
      * Max preview height that is guaranteed by Camera2 API
      */
     private static final int MAX_PREVIEW_HEIGHT = 1080;
-    private Recognizer mRecognizer;
-    private RecognitionSettings mSettings = new RecognitionSettings();
-    private String mLicenseKey = null;
+    private RecognizerRunner mRecognizerRunner;
+    private RecognizerBundle mRecognizerBundle = new RecognizerBundle();
     private Image mImageBeingRecognized = null;
     private long mTimestamp;
-
-    private TextView mTvResult;
-
     /**
      * This a callback object for the {@link ImageReader}. "onImageAvailable" will be called when a
      * still image is ready to be saved.
@@ -109,14 +102,14 @@ public class Camera2Fragment extends Fragment implements ScanResultListener {
             try {
                 img = reader.acquireNextImage();
                 if (img != null) {
-                    if (mRecognizer.getCurrentState() == Recognizer.State.READY) {
+                    if (mRecognizerRunner.getCurrentState() == RecognizerRunner.State.READY) {
                         mImageBeingRecognized = img;
                         com.microblink.image.Image image = ImageBuilder.buildImageFromCamera2Image(mImageBeingRecognized, Orientation.ORIENTATION_LANDSCAPE_RIGHT, null);
                         Log.i(TAG, "Starting recognition");
                         mTimestamp = System.currentTimeMillis();
-                        mRecognizer.recognizeImage(image, Camera2Fragment.this);
+                        mRecognizerRunner.recognizeImage(image, Camera2Fragment.this);
                     } else {
-                        Log.v(TAG, "Recognizer is busy. Dropping current frame");
+                        Log.v(TAG, "RecognizerRunner is busy. Dropping current frame");
                         img.close();
                         // request another frame
                         mCaptureSession.capture(mFrameRequest, null, mBackgroundHandler);
@@ -136,7 +129,7 @@ public class Camera2Fragment extends Fragment implements ScanResultListener {
         }
 
     };
-
+    private TextView mTvResult;
     /**
      * ID of the current {@link CameraDevice}.
      */
@@ -257,11 +250,11 @@ public class Camera2Fragment extends Fragment implements ScanResultListener {
      * doesn't exist, choose the largest one that is at most as large as the respective max size,
      * and whose aspect ratio matches with the specified value.
      *
-     * @param choices     The list of sizes that the camera supports for the intended output
-     *                    class
-     * @param maxWidth    The maximum width that can be chosen
-     * @param maxHeight   The maximum height that can be chosen
-     * @param aspectRatio The aspect ratio
+     * @param choices           The list of sizes that the camera supports for the intended output
+     *                          class
+     * @param maxWidth          The maximum width that can be chosen
+     * @param maxHeight         The maximum height that can be chosen
+     * @param aspectRatio       The aspect ratio
      * @return The optimal {@code Size}, or an arbitrary one if none were big enough
      */
     private static Size chooseOptimalSize(Size[] choices, int maxWidth, int maxHeight, Size aspectRatio) {
@@ -273,7 +266,7 @@ public class Camera2Fragment extends Fragment implements ScanResultListener {
         for (Size option : choices) {
             if (option.getWidth() <= maxWidth && option.getHeight() <= maxHeight &&
                     option.getHeight() == option.getWidth() * h / w) {
-                bigEnough.add(option);
+                    bigEnough.add(option);
             }
         }
 
@@ -298,8 +291,10 @@ public class Camera2Fragment extends Fragment implements ScanResultListener {
 
     @Override
     public void onViewCreated(final View view, Bundle savedInstanceState) {
-        mTextureView = (AutoFitTextureView) view.findViewById(R.id.texture);
-        mTvResult = (TextView) view.findViewById(R.id.tv_result);
+        mTextureView = view.findViewById(R.id.texture);
+
+        mTvResult = view.findViewById(R.id.tv_result);
+        mTvResult.setVisibility(View.VISIBLE);
         mTvResult.setMovementMethod(new ScrollingMovementMethod());
     }
 
@@ -308,46 +303,26 @@ public class Camera2Fragment extends Fragment implements ScanResultListener {
         super.onCreate(savedInstanceState);
 
         Intent intent = getActivity().getIntent();
-        Bundle extras = intent.getExtras();
 
-        if (extras != null) {
-            mSettings = extras.getParcelable(ExtrasKeys.EXTRAS_RECOGNITION_SETTINGS);
-            mLicenseKey = extras.getString(ExtrasKeys.EXTRAS_LICENSE_KEY);
-        }
+        mRecognizerBundle.loadFromIntent(intent);
+
     }
 
     @Override
     public void onStart() {
         super.onStart();
         try {
-            mRecognizer = Recognizer.getSingletonInstance();
+            mRecognizerRunner = RecognizerRunner.getSingletonInstance();
         } catch (FeatureNotSupportedException e) {
             Toast.makeText(Camera2Fragment.this.getActivity(), "Feature not supported! Reason: " + e.getReason().getDescription(), Toast.LENGTH_LONG).show();
             getActivity().finish();
             return;
         }
-        try {
-            // In order for scanning to work, you must enter a valid licence key. Without licence key,
-            // scanning will not work. Licence key is bound the the package name of your app, so when
-            // obtaining your licence key from Microblink make sure you give us the correct package name
-            // of your app. You can obtain your licence key at http://microblink.com/login or contact us
-            // at http://help.microblink.com.
-            // Licence key also defines which recognizers are enabled and which are not. Since the licence
-            // key validation is performed on image processing thread in native code, all enabled recognizers
-            // that are disallowed by licence key will be turned off without any error and information
-            // about turning them off will be logged to ADB logcat.
-            mRecognizer.setLicenseKey(Camera2Fragment.this.getActivity(), mLicenseKey);
-        } catch (InvalidLicenceKeyException exc) {
-            Toast.makeText(Camera2Fragment.this.getActivity(), "License key check failed! Reason: " + exc.getMessage(), Toast.LENGTH_LONG).show();
-            getActivity().finish();
-            return;
-        }
 
-
-        mRecognizer.initialize(getActivity(), mSettings, new DirectApiErrorListener() {
+        mRecognizerRunner.initialize(getActivity(), mRecognizerBundle, new DirectApiErrorListener() {
             @Override
             public void onRecognizerError(Throwable t) {
-                Toast.makeText(Camera2Fragment.this.getActivity(), "There was an error in Recognizer: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Camera2Fragment.this.getActivity(), "There was an error in RecognizerRunner: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 getActivity().finish();
             }
         });
@@ -379,8 +354,8 @@ public class Camera2Fragment extends Fragment implements ScanResultListener {
     @Override
     public void onStop() {
         super.onStop();
-        if (mRecognizer != null) {
-            mRecognizer.terminate();
+        if (mRecognizerRunner != null) {
+            mRecognizerRunner.terminate();
         }
     }
 
@@ -488,6 +463,7 @@ public class Camera2Fragment extends Fragment implements ScanResultListener {
      */
     private void openCamera(int width, int height) {
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(getActivity(), "Camera permission is required!", Toast.LENGTH_LONG).show();
             getActivity().finish();
             return;
         }
@@ -572,6 +548,7 @@ public class Camera2Fragment extends Fragment implements ScanResultListener {
             // We set up a CaptureRequest.Builder with the output Surface.
             mPreviewRequestBuilder = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
             mPreviewRequestBuilder.addTarget(surface);
+//            mPreviewRequestBuilder.addTarget(mImageReader.getSurface());
 
             // Here, we create a CameraCaptureSession for camera preview.
             mCameraDevice.createCaptureSession(Arrays.asList(surface, mImageReader.getSurface()),
@@ -670,36 +647,34 @@ public class Camera2Fragment extends Fragment implements ScanResultListener {
     }
 
     @Override
-    public void onScanningDone(RecognitionResults results) {
+    public void onScanningDone(@NonNull RecognitionSuccessType successType) {
         long timePassed = System.currentTimeMillis() - mTimestamp;
         Log.w(TAG, "Frame processing took " + timePassed + " ms");
 
         mImageBeingRecognized.close();
 
-        // get results array
-        BaseRecognitionResult[] dataArray = results.getRecognitionResults();
-        if (dataArray != null && dataArray.length > 0) {
-            // only single result from BlinkInputRecognizer is expected
-            if (dataArray[0] instanceof BlinkInputRecognitionResult) {
-                BlinkInputRecognitionResult result = (BlinkInputRecognitionResult) dataArray[0];
-                // get string result from configured parser with parser name "Raw"
-                final String parsed = result.getParsedResult("Raw");
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mTvResult.setText(parsed.trim());
-                    }
-                });
+        if ( successType != RecognitionSuccessType.UNSUCCESSFUL ) {
+            final String s = ResultFormater.stringifyRecognitionResults(mRecognizerBundle.getRecognizers());
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mTvResult.setText(s);
+                }
+            });
+            try {
+                // request frame to image reader
+                mCaptureSession.capture(mFrameRequest, null, mBackgroundHandler);
+            } catch (Exception exc) {
+                Log.w(TAG, "Failed to capture another frame for ImageReader");
+            }
+        } else {
+            try {
+                // request frame to image reader
+                mCaptureSession.capture(mFrameRequest, null, mBackgroundHandler);
+            } catch (Exception exc) {
+                Log.w(TAG, "Failed to capture another frame for ImageReader");
             }
         }
-
-        try {
-            // request frame to image reader
-            mCaptureSession.capture(mFrameRequest, null, mBackgroundHandler);
-        } catch (Exception exc) {
-            Log.w(TAG, "Failed to capture another frame for ImageReader");
-        }
-
     }
 
     /**
@@ -746,4 +721,5 @@ public class Camera2Fragment extends Fragment implements ScanResultListener {
         }
 
     }
+
 }
