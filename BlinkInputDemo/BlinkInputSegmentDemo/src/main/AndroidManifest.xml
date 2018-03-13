@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.microblink.ocr"
+    package="com.microblink.input"
     android:installLocation="auto"
     android:versionCode="8"
     android:versionName="2.0" >
@@ -22,28 +21,21 @@
         android:name="android.hardware.camera.flash"
         android:required="false" />
 
-    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <android:uses-permission
-        android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="18" />
-
     <application
+        android:name="com.microblink.input.BlinkInputSampleApp"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:largeHeap="true"
         android:theme="@style/Theme.AppTheme.FullScreen">
         <activity
-            android:name=".ScanActivity"
+            android:name="com.microblink.input.CustomFieldByFieldScanActivity"
             android:label="@string/title_activity_scan"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.microblink.help.HelpActivity"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait"/>
         <activity
-            android:name=".MainActivity" >
+            android:name="com.microblink.input.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

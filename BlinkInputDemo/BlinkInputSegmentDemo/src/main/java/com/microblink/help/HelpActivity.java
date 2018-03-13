@@ -1,25 +1,19 @@
 package com.microblink.help;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.microblink.help.adapters.BlinkOCRAdapter;
 import com.microblink.help.pageindicator.UnderlinePageIndicator;
+import com.microblink.input.R;
 import com.microblink.locale.LanguageUtils;
-import com.microblink.ocr.R;
 
 /**
  * Activity responsible for showing help screens.

@@ -186,7 +186,6 @@
                     android:id="@+id/txtResult"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:editable="true"
                     android:maxLines="4"
                     android:text="123,54"
                     android:textAlignment="center"
