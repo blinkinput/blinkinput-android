@@ -1,0 +1,31 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.microblink.input"
+        minSdkVersion 16
+        targetSdkVersion rootProject.ext.targetSdkVersion
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig = debug.signingConfig
+        }
+    }
+}
+
+dependencies {
+    implementation("com.microblink:blinkinput:${rootProject.ext.blinkInputVersion}@aar") {
+        transitive = true
+    }
+    implementation project(':LibUtils')
+}
