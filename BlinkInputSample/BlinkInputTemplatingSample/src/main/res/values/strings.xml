@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">BlinkInput Templating Sample</string>
+    <string name="autofocus_fail">Camera cannot autofocus. Please try scanning under better light</string>
+    <string name="croatian_id_front">Croatian ID Front Side</string>
+    <string name="title_activity_menu">Templating API</string>
+
+    <string name="result_dialog_title">Scan results</string>
+
+    <string name="result_key_first_name">First name</string>
+    <string name="result_key_last_name">Last name</string>
+    <string name="result_key_sex">Sex</string>
+    <string name="result_key_citizenship">Citizenship</string>
+    <string name="result_key_date_of_birth">Date of birth</string>
+    <string name="result_key_old_document_number">Old ID document number</string>
+    <string name="result_key_new_document_number">New ID document number</string>
+
+</resources>
