@@ -90,27 +90,6 @@ public class ScanImageActivity extends Activity {
             finish();
         }
 
-//        // initial bitmap is loaded from assets
-//        AssetManager assets = getAssets();
-//        InputStream istr = null;
-//        try {
-//            istr = assets.open(ASSETS_BITMAP_NAME);
-//            // load inital bitmap from assets
-//            BitmapFactory.Options options = new BitmapFactory.Options();
-//            options.inPreferredConfig = BITMAP_CONFIG;
-//            mBitmap = BitmapFactory.decodeStream(istr, null, options);
-//        } catch (IOException e) {
-//            // handle exception
-//            Log.e(TAG, "Failed to load image from assets!");
-//            Toast.makeText(this, "Failed to load image from assets!", Toast.LENGTH_LONG).show();
-//            finish();
-//            return;
-//        } finally {
-//            try {
-//                istr.close();
-//            } catch (IOException ignorable) { }
-//        }
-
     }
 
     private void loadDefaultBitmapFromAssets() {
