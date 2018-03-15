@@ -1,12 +1,12 @@
 package com.microblink.input;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import com.microblink.activity.FieldByFieldScanActivity;
+import com.microblink.blinkinput.BaseMenuActivity;
+import com.microblink.blinkinput.MenuListItem;
 import com.microblink.entities.ocrengine.legacy.BlinkOCREngineOptions;
 import com.microblink.entities.parsers.amount.AmountParser;
 import com.microblink.entities.parsers.config.fieldbyfield.FieldByFieldBundle;
@@ -20,7 +20,10 @@ import com.microblink.results.ocr.OcrFont;
 import com.microblink.uisettings.ActivityRunner;
 import com.microblink.uisettings.FieldByFieldUISettings;
 
-public class MainActivity extends Activity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends BaseMenuActivity {
 
     private static final int BLINK_INPUT_REQUEST_CODE = 100;
     private static final int BLINK_INPUT_VIN_REQUEST_CODE = 101;
@@ -39,22 +42,49 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
     }
 
-    /**
-     * Called as handler for "custom scan ui integration" button.
-     */
-    public void advancedIntegration(View v) {
-        // advanced integration example is given in CustomFieldByFieldScanActivity source code
-        Intent intent = new Intent(this, CustomFieldByFieldScanActivity.class);
-        startActivity(intent);
+    @Override
+    protected List<MenuListItem> createMenuListItems() {
+        List<MenuListItem> items = new ArrayList<>();
+
+        items.add(new MenuListItem("Simple integration", new Runnable() {
+            @Override
+            public void run() {
+                onSimpleIntegrationClick();
+            }
+        }));
+
+        items.add(new MenuListItem("Custom scan UI integration", new Runnable() {
+            @Override
+            public void run() {
+                onCustomScanUiClick();
+            }
+        }));
+
+        items.add(new MenuListItem("Regex parser example", new Runnable() {
+            @Override
+            public void run() {
+                onRegexExampleClick();
+            }
+        }));
+
+        items.add(new MenuListItem("TopUp example", new Runnable() {
+            @Override
+            public void run() {
+                onTopUpExampleClick();
+            }
+        }));
+
+        return items;
     }
 
-    /**
-     * Called as handler for "simple integration" button.
-     */
-    public void simpleIntegration(View v) {
+    @Override
+    protected String getTitleText() {
+        return getString(R.string.app_name);
+    }
+
+    public void onSimpleIntegrationClick() {
         /*
          * In this simple example we will use BlinkInput SDK and provided scan activity to scan
          * invoice fields: amount, tax amount and IBAN to which amount has to be paid.
@@ -87,10 +117,13 @@ public class MainActivity extends Activity {
         ActivityRunner.startActivityForResult(this, BLINK_INPUT_REQUEST_CODE, scanActivitySettings);
     }
 
-    /**
-     * Called as handler for "regex example" button
-     */
-    public void regexExample(View v) {
+    public void onCustomScanUiClick() {
+        // advanced integration example is given in CustomFieldByFieldScanActivity source code
+        Intent intent = new Intent(this, CustomFieldByFieldScanActivity.class);
+        startActivity(intent);
+    }
+
+    public void onRegexExampleClick() {
         /*
          * In this example we will use default FieldByFieldScanActivity to drive the recognition,
          * but here we will show how to setup a Regex parser. Regex parser allows configuring
@@ -134,10 +167,7 @@ public class MainActivity extends Activity {
         ActivityRunner.startActivityForResult(this, BLINK_INPUT_VIN_REQUEST_CODE, scanActivitySettings);
     }
 
-    /**
-     * Called as handler for "TopUp example" button
-     */
-    public void topUpExample(View view) {
+    public void onTopUpExampleClick() {
         /*
          * In this simple example we will use BlinkInput SDK to create a sample
          * that scans prepaid mobile coupon codes.

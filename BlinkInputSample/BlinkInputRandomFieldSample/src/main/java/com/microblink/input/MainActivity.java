@@ -1,12 +1,12 @@
 package com.microblink.input;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import com.microblink.activity.RandomFieldScanActivity;
+import com.microblink.blinkinput.BaseMenuActivity;
+import com.microblink.blinkinput.MenuListItem;
 import com.microblink.entities.parsers.amount.AmountParser;
 import com.microblink.entities.parsers.config.randomfield.RandomFieldBundle;
 import com.microblink.entities.parsers.config.randomfield.RandomFieldElement;
@@ -17,7 +17,10 @@ import com.microblink.entities.parsers.iban.IbanParser;
 import com.microblink.uisettings.ActivityRunner;
 import com.microblink.uisettings.RandomFieldUISettings;
 
-public class MainActivity extends Activity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends BaseMenuActivity {
 
     private static final int SINGLE_GROUP_REQ_CODE = 123;
     private static final int MULTIPLE_GROUPS_REQ_CODE = 234;
@@ -34,13 +37,35 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
     }
 
-    /**
-     * Called as handler for "Single parser group" button.
-     */
-    public void onScanSingleGroup(View view) {
+    @Override
+    protected List<MenuListItem> createMenuListItems() {
+        List<MenuListItem> items = new ArrayList<>();
+
+        items.add(new MenuListItem("Single parser group", new Runnable() {
+            @Override
+            public void run() {
+                onScanSingleGroupClick();
+            }
+        }));
+
+        items.add(new MenuListItem("onScanMultipleGroupsClick", new Runnable() {
+            @Override
+            public void run() {
+                onScanMultipleGroupsClick();
+            }
+        }));
+
+        return items;
+    }
+
+    @Override
+    protected String getTitleText() {
+        return getString(R.string.app_name);
+    }
+
+    public void onScanSingleGroupClick() {
 
         /*
          * In this sample we will use BlinkInput SDK to create a sample that scans an amount,
@@ -99,10 +124,7 @@ public class MainActivity extends Activity {
          ActivityRunner.startActivityForResult(this, SINGLE_GROUP_REQ_CODE, scanActivitySettings);
     }
 
-    /**
-     * Called as handler for "Multiple parser groups" button.
-     */
-    public void onScanMultipleGroups(View view) {
+    public void onScanMultipleGroupsClick() {
         /*
          * This example is similar to "Single parser group" example. Email element is added
          * which causes that some parsers are unable to parse valid element data if all parsers
@@ -150,7 +172,6 @@ public class MainActivity extends Activity {
         // this helper method should be used for starting the provided activities with prepared
         // scan settings
         ActivityRunner.startActivityForResult(this, MULTIPLE_GROUPS_REQ_CODE, scanActivitySettings);
-
     }
 
     /**
@@ -188,4 +209,5 @@ public class MainActivity extends Activity {
             }
         }
     }
+
 }
