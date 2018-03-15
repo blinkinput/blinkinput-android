@@ -13,6 +13,7 @@ import com.microblink.entities.recognizers.Recognizer;
 import com.microblink.entities.recognizers.RecognizerBundle;
 import com.microblink.entities.recognizers.detector.DetectorRecognizer;
 import com.microblink.entities.recognizers.successframe.SuccessFrameGrabberRecognizer;
+import com.microblink.image.Image;
 import com.microblink.results.date.Date;
 import com.microblink.util.RecognizerCompatibility;
 import com.microblink.util.RecognizerCompatibilityStatus;
@@ -75,6 +76,8 @@ public class MenuActivity extends BaseMenuActivity {
             @Override
             public void run() {
                 mCroatianIdFrontTemplatingRecognizer = mCroatianIDFrontSideTemplatingUtil.getDetectorRecognizer();
+
+                //wrapping into SuccessFrameGrabberRecognizer because we want to show successful scan image
                 mSuccessFrameGrabberRecognizer = new SuccessFrameGrabberRecognizer(mCroatianIdFrontTemplatingRecognizer);
 
                 mRecognizerBundle = new RecognizerBundle(mSuccessFrameGrabberRecognizer);
@@ -98,23 +101,38 @@ public class MenuActivity extends BaseMenuActivity {
             // through recognizer instances
             mRecognizerBundle.loadFromIntent(data);
 
-            String resultImagePath;
-            try {
-                Bitmap successBitmap = mSuccessFrameGrabberRecognizer.getResult().getSuccessFrame().convertToBitmap();
-                File resultImage = new File(getFilesDir(), "result.jpg");
-                OutputStream os = new BufferedOutputStream(new FileOutputStream(resultImage));
-                successBitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
-                resultImagePath = resultImage.getAbsolutePath();
-                os.close();
-            } catch (Exception e) {
-                resultImagePath = null;
-            }
+            String successFramePath = storeImageToFile(mSuccessFrameGrabberRecognizer.getResult().getSuccessFrame(),
+                    "successFrame.jpg");
+
+            String fullDocumentPath = storeImageToFile(mCroatianIDFrontSideTemplatingUtil.getmFullDocumentImage().getResult().getRawImage(),
+                    "fullDocument.jpg");
+
+            String facePath = storeImageToFile(mCroatianIDFrontSideTemplatingUtil.getmFaceImage().getResult().getRawImage(),
+                    "face.jpg");
 
             String resultText = extractCroatianIdFrontData();
             if (mCroatianIdFrontTemplatingRecognizer.getResult().getResultState() == Recognizer.Result.State.Valid) {
-                startActivity(ResultsActivity.buildIntent(this, resultText, resultImagePath));
+                startActivity(ResultsActivity.buildIntent(this, resultText, successFramePath, fullDocumentPath, facePath));
             }
         }
+    }
+
+    //returns absolute file path
+    private String storeImageToFile(Image image, String filename) {
+        String filePath;
+
+        try {
+            Bitmap bitmap = image.convertToBitmap();
+            File imageFile = new File(getFilesDir(), filename);
+            OutputStream os = new BufferedOutputStream(new FileOutputStream(imageFile));
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+            filePath = imageFile.getAbsolutePath();
+            os.close();
+        } catch (Exception e) {
+            filePath = null;
+        }
+
+        return filePath;
     }
 
     private String extractCroatianIdFrontData() {
