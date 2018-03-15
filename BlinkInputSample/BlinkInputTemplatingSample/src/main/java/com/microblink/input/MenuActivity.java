@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.microblink.entities.recognizers.Recognizer;
@@ -53,7 +54,9 @@ public class MenuActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.activity_menu_list);
+        TextView titleTxt = findViewById(R.id.txtTitle);
+        titleTxt.setText(R.string.title_activity_menu);
 
         // check if BlinkInput is supported on the device
         RecognizerCompatibilityStatus supportStatus = RecognizerCompatibility.getRecognizerCompatibilityStatus(this);
