@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="Theme.AppTheme" parent="Theme.AppCompat.NoActionBar" />
+    <style name="Theme.AppTheme" parent="Theme.AppCompat" />
 
-    <style name="Theme.AppTheme.FullScreen" parent="Theme.AppTheme">
+    <style name="Theme.AppTheme.FullScreen" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
