@@ -3,6 +3,8 @@ package com.microblink.input.imagescan;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +13,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,20 +32,19 @@ import com.microblink.view.recognition.ScanResultListener;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 public class ScanImageActivity extends Activity {
-
-    private static final String STATE_BITMAP = "bitmap";
 
     private static final Bitmap.Config BITMAP_CONFIG = Bitmap.Config.ARGB_8888;
 
     private static final String ASSETS_BITMAP_NAME = "lipsum.png";
 
-    /** Request code for built-in camera activity. */
-    public static final int CAMERA_REQUEST_CODE = 0x101;
+    public static final int TAKE_PHOTO_REQUEST_CODE = 1;
+    public static final int CHOOSE_PHOTO_REQUEST_CODE = 2;
 
     /** File that will hold the image taken from camera. */
-    private String mCameraFile = Environment.getExternalStorageDirectory().getPath() + "/my-photo.jpg";
+    private String mCameraFile = "";
 
     /** Tag for logcat. */
     public static final String TAG = "BlinkOCRDemo";
@@ -76,11 +78,7 @@ public class ScanImageActivity extends Activity {
         // new recognizers from intent data and automatically bundle them inside mRecognizerBundle
         mRecognizerBundle.loadFromIntent(intent);
 
-        if (savedInstanceState == null) {
-            loadDefaultBitmapFromAssets();
-        } else {
-            mBitmap = savedInstanceState.getParcelable(STATE_BITMAP);
-        }
+        loadDefaultBitmapFromAssets();
 
         if (mBitmap != null) {
             // show loaded bitmap
@@ -149,14 +147,29 @@ public class ScanImageActivity extends Activity {
         mRecognizerBundle.clearSavedState();
     }
 
-    /**
-     * Handler for button "Take Photo"
-     */
     public void onTakePhotoClick(View view) {
         // Starts built-in camera intent for taking scan images
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(mCameraFile)));
-        startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE);
+        File photoFile = new File(getFilesDir(), "photo.jpg");
+        mCameraFile = photoFile.getAbsolutePath();
+        Uri photoURI = FileProvider.getUriForFile(this,
+                "com.microblink.input.provider",
+                photoFile);
+        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+
+        List<ResolveInfo> resolveInfoList = getPackageManager().queryIntentActivities(takePictureIntent, PackageManager.MATCH_DEFAULT_ONLY);
+        for (ResolveInfo resolveInfo : resolveInfoList) {
+            String packageName = resolveInfo.activityInfo.packageName;
+            grantUriPermission(packageName, photoURI, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        }
+
+        startActivityForResult(takePictureIntent, TAKE_PHOTO_REQUEST_CODE);
+    }
+
+    public void onChoosePhotoClick(View view) {
+        Intent choosePhotoIntent = new Intent(Intent.ACTION_PICK);
+        choosePhotoIntent.setType("image/*");
+        startActivityForResult(choosePhotoIntent, CHOOSE_PHOTO_REQUEST_CODE);
     }
 
     /**
@@ -214,9 +227,6 @@ public class ScanImageActivity extends Activity {
          * temporary file gets deleted. Therefore, you must call clearSavedState in your onResume callback.
          */
         mRecognizerBundle.saveState();
-
-        // persist loaded bitmap
-        outState.putParcelable(STATE_BITMAP, mBitmap);
     }
 
     @Override
@@ -230,24 +240,44 @@ public class ScanImageActivity extends Activity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == CAMERA_REQUEST_CODE) {
+        if (requestCode == TAKE_PHOTO_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                // obtain image that was saved to external storage by camera activity
-                try {
-                    BitmapFactory.Options options = new BitmapFactory.Options();
-                    options.inPreferredConfig = BITMAP_CONFIG;
-                    mBitmap = BitmapFactory.decodeFile(mCameraFile, options);
-                    //noinspection ResultOfMethodCallIgnored
-                    new File(mCameraFile).delete();
-                    // show camera image
-                    mImgView.setImageBitmap(mBitmap);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-                }
+                handleBitmapFromCamera();
             } else {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
             }
+        } else if (requestCode == CHOOSE_PHOTO_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                handleBitmapFromChooser(data);
+            } else {
+                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    private void handleBitmapFromCamera() {
+        // obtain image that was saved to external storage by camera activity
+        try {
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inPreferredConfig = BITMAP_CONFIG;
+            mBitmap = BitmapFactory.decodeFile(mCameraFile, options);
+            //noinspection ResultOfMethodCallIgnored
+            new File(mCameraFile).delete();
+            mImgView.setImageBitmap(mBitmap);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void handleBitmapFromChooser(Intent data) {
+        Uri selectedImage = data.getData();
+        try {
+            InputStream imageStream = getContentResolver().openInputStream(selectedImage);
+            mBitmap = BitmapFactory.decodeStream(imageStream);
+            mImgView.setImageBitmap(mBitmap);
+        } catch (Exception e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
