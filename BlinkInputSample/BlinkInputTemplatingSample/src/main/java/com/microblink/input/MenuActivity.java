@@ -3,6 +3,7 @@ package com.microblink.input;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
@@ -15,11 +16,17 @@ import android.widget.Toast;
 import com.microblink.entities.recognizers.Recognizer;
 import com.microblink.entities.recognizers.RecognizerBundle;
 import com.microblink.entities.recognizers.detector.DetectorRecognizer;
+import com.microblink.entities.recognizers.successframe.SuccessFrameGrabberRecognizer;
+import com.microblink.image.Image;
 import com.microblink.results.date.Date;
 import com.microblink.util.RecognizerCompatibility;
 import com.microblink.util.RecognizerCompatibilityStatus;
 import com.microblink.util.templating.CroatianIDFrontSideTemplatingUtil;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -38,6 +45,7 @@ public class MenuActivity extends Activity {
     private CroatianIDFrontSideTemplatingUtil mCroatianIDFrontSideTemplatingUtil;
 
     private DetectorRecognizer mCroatianIdFrontTemplatingRecognizer;
+    private SuccessFrameGrabberRecognizer mSuccessFrameGrabberRecognizer;
 
     /** Reference to bundle is kept, it is used later for loading results from intent */
     private RecognizerBundle mRecognizerBundle;
@@ -90,8 +98,10 @@ public class MenuActivity extends Activity {
             @Override
             public void run() {
                 mCroatianIdFrontTemplatingRecognizer = mCroatianIDFrontSideTemplatingUtil.getDetectorRecognizer();
+                mSuccessFrameGrabberRecognizer = new SuccessFrameGrabberRecognizer(mCroatianIdFrontTemplatingRecognizer);
+
                 mRecognizerBundle =
-                        new RecognizerBundle(mCroatianIdFrontTemplatingRecognizer);
+                        new RecognizerBundle(mSuccessFrameGrabberRecognizer);
                 mRecognizerBundle.setNumMsBeforeTimeout(10_000);
                 startScanActivity(mRecognizerBundle, REQ_CODE_CROID_FRONT);
             }
@@ -112,16 +122,22 @@ public class MenuActivity extends Activity {
             // through recognizer instances
             mRecognizerBundle.loadFromIntent(data);
 
-            if (mCroatianIdFrontTemplatingRecognizer.getResult().getResultState()
-                    == Recognizer.Result.State.Valid) {
-
-                DialogFragment dialogFragment =
-                        ResultDialogFragment.newInstance(
-                                extractCroatianIdFrontData()
-                        );
-                dialogFragment.show(getFragmentManager(), "resultDialog");
+            String resultImagePath;
+            try {
+                Bitmap successBitmap = mSuccessFrameGrabberRecognizer.getResult().getSuccessFrame().convertToBitmap();
+                File resultImage = new File(getFilesDir(), "result.jpg");
+                OutputStream os = new BufferedOutputStream(new FileOutputStream(resultImage));
+                successBitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+                resultImagePath = resultImage.getAbsolutePath();
+                os.close();
+            } catch (Exception e) {
+                resultImagePath = null;
             }
 
+            String resultText = extractCroatianIdFrontData();
+            if (mCroatianIdFrontTemplatingRecognizer.getResult().getResultState() == Recognizer.Result.State.Valid) {
+                startActivity(ResultsActivity.buildIntent(this, resultText, resultImagePath));
+            }
         }
     }
 
