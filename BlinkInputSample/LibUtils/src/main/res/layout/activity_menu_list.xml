@@ -16,8 +16,6 @@
             android:id="@+id/image_logo"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
             android:layout_marginRight="8dp"
             android:contentDescription="@string/app_name"
             android:scaleType="centerInside"
