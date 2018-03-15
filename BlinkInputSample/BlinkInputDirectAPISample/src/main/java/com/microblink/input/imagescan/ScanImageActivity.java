@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.View;
@@ -46,7 +47,7 @@ public class ScanImageActivity extends Activity {
     private String mCameraFile = "";
 
     /** Tag for logcat. */
-    public static final String TAG = "BlinkOCRDemo";
+    public static final String TAG = "BlinkInputDemo";
 
     /** Image view which shows current image that will be scanned. */
     private ImageView mImgView;
@@ -256,27 +257,32 @@ public class ScanImageActivity extends Activity {
 
     private void handleBitmapFromCamera() {
         // obtain image that was saved to external storage by camera activity
-        try {
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inPreferredConfig = BITMAP_CONFIG;
-            mBitmap = BitmapFactory.decodeFile(mCameraFile, options);
-            //noinspection ResultOfMethodCallIgnored
-            new File(mCameraFile).delete();
-            mImgView.setImageBitmap(mBitmap);
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-        }
+        prepareBitmapFromUri(Uri.fromFile(new File(mCameraFile)));
     }
 
     private void handleBitmapFromChooser(Intent data) {
         Uri selectedImage = data.getData();
-        try {
-            InputStream imageStream = getContentResolver().openInputStream(selectedImage);
-            mBitmap = BitmapFactory.decodeStream(imageStream);
+        prepareBitmapFromUri(selectedImage);
+    }
+
+    private void prepareBitmapFromUri(Uri uri) {
+        Bitmap loadedBitmap = loadBitmapFromUri(uri);
+        if (loadedBitmap != null) {
+            mBitmap = loadedBitmap;
             mImgView.setImageBitmap(mBitmap);
+        } else {
+            Toast.makeText(this, "Bitmap cannot be loaded", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Nullable
+    private Bitmap loadBitmapFromUri(Uri uri) {
+        try {
+            InputStream imageStream = getContentResolver().openInputStream(uri);
+            return BitmapFactory.decodeStream(imageStream);
         } catch (Exception e) {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Log.e(TAG, e.getMessage());
+            return null;
         }
     }
 
