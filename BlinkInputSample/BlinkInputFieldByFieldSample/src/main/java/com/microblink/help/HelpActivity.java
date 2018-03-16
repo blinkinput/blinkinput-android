@@ -40,15 +40,15 @@ public class HelpActivity extends FragmentActivity {
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.help_view);
-        mViewPager = (ViewPager) findViewById(R.id.view_pager);
+        mViewPager = findViewById(R.id.view_pager);
         FragmentPagerAdapter pageAdapter = getPageAdapter();
         mViewPager.setAdapter(pageAdapter);
 
-        mIndicator = (UnderlinePageIndicator) findViewById(R.id.underline_indicator);
+        mIndicator = findViewById(R.id.underline_indicator);
         mIndicator.setViewPager(mViewPager);
         mIndicator.setFades(false);
 
-        mCloseButton = (ImageButton) findViewById(R.id.closeButton);
+        mCloseButton = findViewById(R.id.closeButton);
         mCloseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

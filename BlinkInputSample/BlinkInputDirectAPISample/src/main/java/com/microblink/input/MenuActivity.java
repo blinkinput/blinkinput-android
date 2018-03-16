@@ -11,9 +11,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.view.View;
 import android.widget.Toast;
 
+import com.microblink.blinkinput.BaseMenuActivity;
+import com.microblink.blinkinput.MenuListItem;
 import com.microblink.entities.ocrengine.legacy.BlinkOCREngineOptions;
 import com.microblink.entities.parsers.raw.RawParser;
 import com.microblink.entities.processors.parserGroup.ParserGroupProcessor;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MenuActivity extends Activity {
+public class MenuActivity extends BaseMenuActivity {
 
     private static final int MY_REQUEST_CODE = 1337;
 
@@ -46,7 +47,6 @@ public class MenuActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
         initRecognizer();
 
         // Request permissions if not granted, we need CAMERA permission and
@@ -64,6 +64,46 @@ public class MenuActivity extends Activity {
             permArray = requiredPermissions.toArray(permArray);
             ActivityCompat.requestPermissions(this, permArray, PERMISSION_REQUEST_CODE);
         }
+    }
+
+    @Override
+    protected List<MenuListItem> createMenuListItems() {
+        List<MenuListItem> items = new ArrayList<>();
+
+        items.add(new MenuListItem("Scan Image", new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(MenuActivity.this, ScanImageActivity.class);
+                mRecognizerBundle.saveToIntent(intent);
+                startActivityForResult(intent, MY_REQUEST_CODE);
+            }
+        }));
+
+        items.add(new MenuListItem("Camera 1 Activity", new Runnable() {
+            @Override
+            public void run() {
+                startCameraActivity(Camera1Activity.class);
+            }
+        }));
+
+        items.add(new MenuListItem("Camera 2 Activity", new Runnable() {
+            @Override
+            public void run() {
+                if (Build.VERSION.SDK_INT >= 21) {
+                    startCameraActivity(Camera2Activity.class);
+                } else {
+                    Toast.makeText(MenuActivity.this, "Camera2 API requires Android 5.0 or newer. Camera1 direct API will be used", Toast.LENGTH_SHORT).show();
+                    startCameraActivity(Camera1Activity.class);
+                }
+            }
+        }));
+
+        return items;
+    }
+
+    @Override
+    protected String getTitleText() {
+        return getString(R.string.app_name);
     }
 
     private void initRecognizer() {
@@ -84,29 +124,6 @@ public class MenuActivity extends Activity {
         );
 
         mRecognizerBundle = new RecognizerBundle(blinkInputRecognizer);
-    }
-
-
-    /**
-     * Handler for "Scan Image" button
-     */
-    public void onScanImageClick(View v) {
-        Intent intent = new Intent(this, ScanImageActivity.class);
-        mRecognizerBundle.saveToIntent(intent);
-        startActivityForResult(intent, MY_REQUEST_CODE);
-    }
-
-    public void onCamera1Click(View view) {
-        startCameraActivity(Camera1Activity.class);
-    }
-
-    public void onCamera2Click(View view) {
-        if (Build.VERSION.SDK_INT >= 21) {
-            startCameraActivity(Camera2Activity.class);
-        } else {
-            Toast.makeText(this, "Camera2 API requires Android 5.0 or newer. Camera1 direct API will be used", Toast.LENGTH_SHORT).show();
-            startCameraActivity(Camera1Activity.class);
-        }
     }
 
     private void startCameraActivity(Class targetActivity) {

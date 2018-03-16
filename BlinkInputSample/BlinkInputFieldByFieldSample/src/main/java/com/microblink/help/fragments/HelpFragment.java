@@ -49,14 +49,14 @@ public class HelpFragment extends Fragment {
         int helpImage = getResources().getIdentifier("helpImage", "id", getActivity().getPackageName());
         View convertView = inflater.inflate(help_view_page, container, false);
 
-        TextView messageView = ((TextView) convertView.findViewById(helpMessage));
+        TextView messageView = convertView.findViewById(helpMessage);
         if (messageView != null) {
             if (messageId_ != 0) {
                 messageView.setText(getString(messageId_));
             }
         }
 
-        ImageView imageView = ((ImageView) convertView.findViewById(helpImage));
+        ImageView imageView = convertView.findViewById(helpImage);
         if (imageView != null) {
             if (imageId_ != 0) {
                 imageView.setImageDrawable(getResources().getDrawable(imageId_));

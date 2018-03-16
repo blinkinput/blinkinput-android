@@ -1,32 +1,33 @@
 package com.microblink.input;
 
-import android.app.Activity;
-import android.app.DialogFragment;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
 
+import com.microblink.blinkinput.BaseMenuActivity;
+import com.microblink.blinkinput.MenuListItem;
 import com.microblink.entities.recognizers.Recognizer;
 import com.microblink.entities.recognizers.RecognizerBundle;
 import com.microblink.entities.recognizers.detector.DetectorRecognizer;
+import com.microblink.entities.recognizers.successframe.SuccessFrameGrabberRecognizer;
+import com.microblink.image.Image;
 import com.microblink.results.date.Date;
 import com.microblink.util.RecognizerCompatibility;
 import com.microblink.util.RecognizerCompatibilityStatus;
 import com.microblink.util.templating.CroatianIDFrontSideTemplatingUtil;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
-public class MenuActivity extends Activity {
-
-    /** List view elements. */
-    private ListElement[] mElements;
+public class MenuActivity extends BaseMenuActivity {
 
     private static final int REQ_CODE_CROID_FRONT = 123;
 
@@ -38,6 +39,7 @@ public class MenuActivity extends Activity {
     private CroatianIDFrontSideTemplatingUtil mCroatianIDFrontSideTemplatingUtil;
 
     private DetectorRecognizer mCroatianIdFrontTemplatingRecognizer;
+    private SuccessFrameGrabberRecognizer mSuccessFrameGrabberRecognizer;
 
     /** Reference to bundle is kept, it is used later for loading results from intent */
     private RecognizerBundle mRecognizerBundle;
@@ -45,53 +47,40 @@ public class MenuActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+        mCroatianIDFrontSideTemplatingUtil = new CroatianIDFrontSideTemplatingUtil();
 
         // check if BlinkInput is supported on the device
         RecognizerCompatibilityStatus supportStatus = RecognizerCompatibility.getRecognizerCompatibilityStatus(this);
         if (supportStatus != RecognizerCompatibilityStatus.RECOGNIZER_SUPPORTED) {
             Toast.makeText(this, "BlinkInput is not supported! Reason: " + supportStatus.name(), Toast.LENGTH_LONG).show();
         }
-
-        // build list elements
-        mElements = buildListElements();
-        ListView lv = findViewById(R.id.detectorList);
-        ArrayAdapter<ListElement> listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mElements);
-        lv.setAdapter(listAdapter);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                mElements[position].getAction().run();
-            }
-        });
     }
 
-    /**
-     * This method is used to build the array of {@link ListElement} objects.
-     * @return Array of {@link ListElement} objects. Each {@link ListElement}
-     * object will have its title that will be shown in ListView and prepared {@link Runnable}
-     * action that can be used to start the {@link IDScanActivity}.
-     */
-    private ListElement[] buildListElements() {
-        ArrayList<ListElement> elements = new ArrayList<>();
+    @Override
+    protected String getTitleText() {
+        return getString(R.string.title_activity_menu);
+    }
+
+    @Override
+    protected List<MenuListItem> createMenuListItems() {
+        ArrayList<MenuListItem> items = new ArrayList<>();
 
         // templating API sample (Croatian ID card - front side)
-        elements.add(buildCroatianIdFrontElement());
+        items.add(buildCroatianIdFrontElement());
 
-        ListElement[] elemsArray = new ListElement[elements.size()];
-        return elements.toArray(elemsArray);
+        return items;
     }
 
-
-    private ListElement buildCroatianIdFrontElement() {
-        mCroatianIDFrontSideTemplatingUtil = new CroatianIDFrontSideTemplatingUtil();
-
-        return new ListElement(getString(R.string.croatian_id_front), new Runnable() {
+    private MenuListItem buildCroatianIdFrontElement() {
+        return new MenuListItem(getString(R.string.croatian_id_front), new Runnable() {
             @Override
             public void run() {
                 mCroatianIdFrontTemplatingRecognizer = mCroatianIDFrontSideTemplatingUtil.getDetectorRecognizer();
-                mRecognizerBundle =
-                        new RecognizerBundle(mCroatianIdFrontTemplatingRecognizer);
+
+                //wrapping into SuccessFrameGrabberRecognizer because we want to show successful scan image
+                mSuccessFrameGrabberRecognizer = new SuccessFrameGrabberRecognizer(mCroatianIdFrontTemplatingRecognizer);
+
+                mRecognizerBundle = new RecognizerBundle(mSuccessFrameGrabberRecognizer);
                 mRecognizerBundle.setNumMsBeforeTimeout(10_000);
                 startScanActivity(mRecognizerBundle, REQ_CODE_CROID_FRONT);
             }
@@ -112,17 +101,38 @@ public class MenuActivity extends Activity {
             // through recognizer instances
             mRecognizerBundle.loadFromIntent(data);
 
-            if (mCroatianIdFrontTemplatingRecognizer.getResult().getResultState()
-                    == Recognizer.Result.State.Valid) {
+            String successFramePath = storeImageToFile(mSuccessFrameGrabberRecognizer.getResult().getSuccessFrame(),
+                    "successFrame.jpg");
 
-                DialogFragment dialogFragment =
-                        ResultDialogFragment.newInstance(
-                                extractCroatianIdFrontData()
-                        );
-                dialogFragment.show(getFragmentManager(), "resultDialog");
+            String fullDocumentPath = storeImageToFile(mCroatianIDFrontSideTemplatingUtil.getmFullDocumentImage().getResult().getRawImage(),
+                    "fullDocument.jpg");
+
+            String facePath = storeImageToFile(mCroatianIDFrontSideTemplatingUtil.getmFaceImage().getResult().getRawImage(),
+                    "face.jpg");
+
+            String resultText = extractCroatianIdFrontData();
+            if (mCroatianIdFrontTemplatingRecognizer.getResult().getResultState() == Recognizer.Result.State.Valid) {
+                startActivity(ResultsActivity.buildIntent(this, resultText, successFramePath, fullDocumentPath, facePath));
             }
-
         }
+    }
+
+    //returns absolute file path
+    private String storeImageToFile(Image image, String filename) {
+        String filePath;
+
+        try {
+            Bitmap bitmap = image.convertToBitmap();
+            File imageFile = new File(getFilesDir(), filename);
+            OutputStream os = new BufferedOutputStream(new FileOutputStream(imageFile));
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+            filePath = imageFile.getAbsolutePath();
+            os.close();
+        } catch (Exception e) {
+            filePath = null;
+        }
+
+        return filePath;
     }
 
     private String extractCroatianIdFrontData() {
@@ -170,38 +180,5 @@ public class MenuActivity extends Activity {
     private String formatDate(@NonNull Date date) {
         return String.format(Locale.US, "%02d.%02d.%d.", date.getDay(), date.getMonth(), date.getYear());
     }
-
-    /**
-     * Element of {@link ArrayAdapter} for {@link ListView} that holds information about title
-     * which should be displayed in list and {@link Runnable} action that should be started on click.
-     */
-    private class ListElement {
-        private String mTitle;
-        private Runnable mAction;
-
-        @NonNull
-        public String getTitle() {
-            return mTitle;
-        }
-
-        @NonNull
-        Runnable getAction() {
-            return mAction;
-        }
-
-        ListElement(@NonNull String title, @NonNull Runnable action) {
-            mTitle = title;
-            mAction = action;
-        }
-
-        /**
-         * Used by array adapter to determine list element text
-         */
-        @Override
-        public String toString() {
-            return getTitle();
-        }
-    }
-
 
 }
