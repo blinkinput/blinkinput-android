@@ -3,5 +3,6 @@
 
     <string name="scan">Scan</string>
     <string name="takePhoto">Take Photo</string>
+    <string name="choosePhoto">Choose Photo</string>
 
 </resources>

@@ -89,6 +89,14 @@ public final class CroatianIDFrontSideTemplatingUtil {
         return mNewDocumentNumberParser;
     }
 
+    public ImageReturnProcessor getFullDocumentImage() {
+        return mFullDocumentImage;
+    }
+
+    public ImageReturnProcessor getFaceImage() {
+        return mFaceImage;
+    }
+
     /**
      * This function fill configure parsers for parsing data from OCR.
      */
