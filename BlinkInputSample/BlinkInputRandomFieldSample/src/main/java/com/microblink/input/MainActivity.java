@@ -50,7 +50,7 @@ public class MainActivity extends BaseMenuActivity {
             }
         }));
 
-        items.add(new MenuListItem("onScanMultipleGroupsClick", new Runnable() {
+        items.add(new MenuListItem("Multiple parser groups", new Runnable() {
             @Override
             public void run() {
                 onScanMultipleGroupsClick();
