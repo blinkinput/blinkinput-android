@@ -89,11 +89,11 @@ public final class CroatianIDFrontSideTemplatingUtil {
         return mNewDocumentNumberParser;
     }
 
-    public ImageReturnProcessor getmFullDocumentImage() {
+    public ImageReturnProcessor getFullDocumentImage() {
         return mFullDocumentImage;
     }
 
-    public ImageReturnProcessor getmFaceImage() {
+    public ImageReturnProcessor getFaceImage() {
         return mFaceImage;
     }
 

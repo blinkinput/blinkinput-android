@@ -104,10 +104,10 @@ public class MenuActivity extends BaseMenuActivity {
             String successFramePath = storeImageToFile(mSuccessFrameGrabberRecognizer.getResult().getSuccessFrame(),
                     "successFrame.jpg");
 
-            String fullDocumentPath = storeImageToFile(mCroatianIDFrontSideTemplatingUtil.getmFullDocumentImage().getResult().getRawImage(),
+            String fullDocumentPath = storeImageToFile(mCroatianIDFrontSideTemplatingUtil.getFullDocumentImage().getResult().getRawImage(),
                     "fullDocument.jpg");
 
-            String facePath = storeImageToFile(mCroatianIDFrontSideTemplatingUtil.getmFaceImage().getResult().getRawImage(),
+            String facePath = storeImageToFile(mCroatianIDFrontSideTemplatingUtil.getFaceImage().getResult().getRawImage(),
                     "face.jpg");
 
             String resultText = extractCroatianIdFrontData();
