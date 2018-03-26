@@ -6,7 +6,7 @@ The templating API is an extension of `DetectorRecognizer` which is part of the 
 
 The [next section](#detectorTemplating) will describe the concept of the templating API and how to use `DetectorRecognizer` to scan fields of interest from generic documents.
 
-The [section that follows](#detectorTemplatingSample) will explain in more details how templating API should be used on concrete inplemetation example for the Croatian identity card, with attached code snippets.
+The [section that follows](#detectorTemplatingSample) will explain in more details how templating API should be used on concrete implemetation example for the Croatian identity card, with attached code snippets.
 
 ## <a name="detectorTemplating"></a> Scanning generic documents
 
@@ -14,19 +14,19 @@ For implementing support for scanning generic documents, `DetectorRecognizer` is
 
 ### 1) Document detection
 
-First, document position should be detected on the input image because all fields of interest are defined in coordinates relative to document detection. For that purpose, `DetectorRecognizer` sould be configured with appropriate `Detector` for the expected document type. When document is detected, all further processing is done on the detected part of the image.
+First, document position should be detected on the input image because all fields of interest are defined in coordinates relative to document detection. For that purpose, `DetectorRecognizer` should be configured with appropriate `Detector` for the expected document type. When the document is detected, all further processing is done on the detected part of the image.
 
-> `Detector` is an object that knows how to find certain object on a camera image. For example `DocumentDetector` can be used to find documents by using edge detection and predefined aspect ratios. Other example is `MRTDDetector` that can find documents containing machine readable zone.
+> `Detector` is an object that knows how to find a certain object on a camera image. For example `DocumentDetector` can be used to find documents by using edge detection and predefined aspect ratios. Another example is `MRTDDetector` that can find documents containing machine readable zone.
 
 ### 2) Defining locations of interest on the detected document
 
-For each location of interest on the detected document, processing should be performed to extract needed information. To make processing of the document location possible, for example to perform the OCR, it should be dewarped (cropped and rotated) first. Concrete processor operates on the dewarped piece of the input image. So, for each document field that should be processed, following should be defined:
+For each location of interest on the detected document, processing should be performed to extract needed information. To make processing of the document location possible, for example to perform the OCR, it should be dewarped (cropped and rotated) first. The concrete processor operates on the dewarped piece of the input image. So, for each document field that should be processed, the following should be defined:
 
 - location coordinates relative to document detection
-- dewarp policy which determines the resulting image chunk for processing
+- the dewarp policy which determines the resulting image chunk for processing
 - processors that will extract information from the prepared chunk of the image
 
-For that purpose `ProcessorGroup` is used.
+For that purpose, `ProcessorGroup` is used.
 
 > `ProcessorGroup` represents a group of processors that will be executed on the dewarped input image.
 
@@ -37,22 +37,23 @@ In addition to defining processors, which will be described in the next section,
 There are three concrete types of the dewarp policies available:
 
 - `FixedDewarpPolicy`: 
-    - defines exact height of the dewarped image in pixels
+    - defines the exact height of the dewarped image in pixels
+    - **usually the best policy for processor groups that use a legacy OCR engine**
 - `DPIBasedDewarpPolicy`:
     - defines the desired DPI (*Dots Per Inch*)
-    - height of the dewarped image will be calculated based on the actual physical size of the document provided by the used detector and choosen DPI
+    - the height of the dewarped image will be calculated based on the actual physical size of the document provided by the used detector and chosen DPI
     - **usually the best policy for processor groups that prepare location's raw image for output**
 - `NoUpScalingDewarpPolicy`: 
-    - defines maximal allowed height of the dewarped image in pixels
-    - height of the dewarped image will be calculated in a way that no part of the image will be up-scaled
-    - if height of the resulting image is larger than maximal allowed, then maximal allowed height will be used as actual height, which effectively scales down the image
+    - defines the maximum allowed height of the dewarped image in pixels
+    - the height of the dewarped image will be calculated in a way that no part of the image will be up-scaled
+    - if the height of the resulting image is larger than maximum allowed, then the maximum allowed height will be used as actual height, which effectively scales down the image
     - **usually the best policy for processors that use neural networks, for example DEEP OCR, hologram detection or NN-based classification**
 
 ### 3) Processing locations of interest
 
 When the chunk of the image which represents the location of interest from the scanned document is prepared, all processors from the associated group are executed to extract data. 
 
-> `Processor` is an object that can perform recognition of the image. It is similar to `Recognizer`, but it is not stand-alone. `Processor` must be used within some `Recognizer` that supports processors, like it is the case with the templating API recognizers. 
+> `Processor` is an object that can perform recognition of the image. It is similar to `Recognizer`, but it is not stand-alone. `Processor` must be used within some `Recognizer` that supports processors like it is the case with the templating API recognizers. 
 
 Available processors are:
 
@@ -62,23 +63,23 @@ Available processors are:
 - `ImageReturnProcessor`:
     - simply saves the input image
 
-OCR is performed once for each activated `ParserGroupProcessor`. Before performing the OCR, best possible OCR engine options are calculated by combining engine options needed by each `Parser` from the group. For example, if one parser expects and produces result from upercase characters and other parser extracts data from digits, both uppercase characters and digits must be added to the list of allowed characters that can appear in the OCR result.
+OCR is performed once for each activated `ParserGroupProcessor`. Before performing the OCR, best possible OCR engine options are calculated by combining engine options needed by each `Parser` from the group. For example, if one parser expects and produces the result from uppercase characters and other parser extracts data from digits, both uppercase characters and digits must be added to the list of allowed characters that can appear in the OCR result.
 
 > `Parser` is an object that can extract structured data from raw OCR result.
 
-There are a lot of different parsers available, for example to extract dates from the OCR result, `DateParser` can be used. Another example is generic `RegexParser` which returns strings that are accepted by the predefined regular expression.
+There are a lot of different parsers available. For example, to extract dates from the OCR result, `DateParser` can be used. Another example is generic `RegexParser` which returns strings that are accepted by the predefined regular expression.
     
 ### 4) Document classification based on the processed data
 
-There may be different versions of the same document type, which may have slight differences in contained information and positions of the fields. For example, normal case for templating API is implementing support for both old and new version of the document where new version may contain additional information which is not present on the old version of the document. Also positions of the fields may be different for old and new version of the document.
+There may be different versions of the same document type, which may have slight differences in contained information and positions of the fields. For example, the normal case for templating API is implementing support for both old and new version of the document where new version may contain additional information which is not present on the old version of the document. Also, positions of the fields may be different for the old and new version of the document.
 
 To support such cases, there is a concept called a `TemplatingClass`. 
 
 > `TemplatingClass` is an object containing two collections of processor groups and a classifier.
 
-The two collections of processor groups within `TemplatingClass` are the classification processor group collection and non-classification processor group collection. The idea is that first all processor groups within classification collection perform processing. `TemplatingClassifier` decides whether the object being recognizer belongs to current class and if it decides so, non-classification collection performs processing. The final `TemplatingRecognizer` then just contains a bunch of `TemplatingClass` objects.
+The two collections of processor groups within `TemplatingClass` are the classification processor group collection and non-classification processor group collection. The idea is that first all processor groups within classification collection perform processing. `TemplatingClassifier` decides then whether the object being recognized belongs to the current class and if it decides so, non-classification collection performs processing. The final `TemplatingRecognizer` then just contains a bunch of `TemplatingClass` objects.
 
-> `TemplatingClassifier` is an object which decides whether document that is being scanned belongs to the associated `TemplatingClass` or not, based on the data extracted by the classification processor groups.
+> `TemplatingClassifier` is an object which decides whether the document that is being scanned belongs to the associated `TemplatingClass` or not, based on the data extracted by the classification processor groups.
 
 ## <a name="detectorTemplatingSample"></a> Templating API sample for Croatian ID card
 
@@ -89,7 +90,7 @@ Let's start by examining how front side of Croatian identity card looks like. He
 ![Front side of the old Croatian ID card](images/oldFront.jpg)
 ![Front side of the new Croatian ID card](images/newFront.jpg)
 
-We will have two different `TemplatingClasses`, one for old and one for new version of the document. First, we will define locations of document number on both old and new versions of ID and then `TemplatingClassifier` will tell us whether the scanned document belongs to the associated `TemplatingClass`. After classifications, the recognizer will be able to use correct locations for each document version to extract information.
+We will have two different `TemplatingClasses`, one for the old and one for the new version of the document. First, we will define locations of document number on both old and new versions of ID and then `TemplatingClassifier` will tell us whether the scanned document belongs to the associated `TemplatingClass`. After classifications, the recognizer will be able to use correct locations for each document version to extract information.
 
 In templating API utility class [CroatianIDFrontSideTemplatingUtil.java](https://github.com/blinkinput/blinkinput-android/blob/master/BlinkInputSample/BlinkInputTemplatingSample/src/main/java/com/microblink/util/templating/CroatianIDFrontSideTemplatingUtil.java) there are methods which configure all needed components for the final implementation of the recognizer. They are called in the following order:
 
@@ -114,11 +115,11 @@ configureClasses();
 configureDetectorRecognizer();
 ```
 
-Implementation will be explained from the last called configuration method to the first one, because this is the logical order when someone thinks about the implementation.
+Implementation will be explained from the last called configuration method to the first one because this is the logical order when someone thinks about the implementation.
 
 Let's start in a step by step manner.
 
-For performing detection of ID card, we will use [DocumentDetector](https://blinkid.github.io/blinkid-android/com/microblink/entities/detectors/quad/document/DocumentDetector.html). `DocumentDetector` can detect document which conforms to any of the [DocumentSpecifications](https://blinkid.github.io/blinkid-android/com/microblink/entities/detectors/quad/document/DocumentSpecification.html) used in initialisation of document detector. `DocumentSpecification` object defines low level settings required for accurate detection of document, like aspect ratio, expected positions and much more. Refer to [javadoc](https://blinkid.github.io/blinkid-android/com/microblink/entities/detectors/quad/document/DocumentSpecification.html) for more information. To ease the creation of DocumentSpecification, BlinkInput SDK already provides prebuilt DocumentSpecification objects for common document sizes, like ID1 card (credit-card-like document), cheques, etc. You can use method [createFromPreset](https://blinkid.github.io/blinkid-android/com/microblink/entities/detectors/quad/document/DocumentSpecification.html#createFromPreset-com.microblink.entities.detectors.quad.document.DocumentSpecificationPreset-) to automatically obtain DocumentSpecification tweaked with optimal parameters.
+For performing detection of ID card, we will use [DocumentDetector](https://blinkid.github.io/blinkid-android/com/microblink/entities/detectors/quad/document/DocumentDetector.html). `DocumentDetector` can detect document which conforms to any of the [DocumentSpecifications](https://blinkid.github.io/blinkid-android/com/microblink/entities/detectors/quad/document/DocumentSpecification.html) used in the initialisation of document detector. `DocumentSpecification` object defines low-level settings required for accurate detection of the document, like aspect ratio, expected positions and much more. Refer to [Javadoc](https://blinkid.github.io/blinkid-android/com/microblink/entities/detectors/quad/document/DocumentSpecification.html) for more information. To ease the creation of DocumentSpecification, BlinkInput SDK already provides prebuilt DocumentSpecification objects for common document sizes, like ID1 card (credit-card-like document), cheques, etc. You can use method [createFromPreset](https://blinkid.github.io/blinkid-android/com/microblink/entities/detectors/quad/document/DocumentSpecification.html#createFromPreset-com.microblink.entities.detectors.quad.document.DocumentSpecificationPreset-) to automatically obtain DocumentSpecification tweaked with optimal parameters.
 
 ```java
 DocumentSpecification docSpecId1 = DocumentSpecification.createFromPreset(DocumentSpecificationPreset.DOCUMENT_SPECIFICATION_PRESET_ID1_CARD);
@@ -132,14 +133,14 @@ mDocumentDetector = new DocumentDetector(docSpecId1);
 mDetectorRecognizer = new DetectorRecognizer(mDocumentDetector);
 ```
 
-Since there are two versions of ID cards, we will need to set two templating classes - one for old ID card and one for new one:
+Since there are two versions of ID cards, we will need to set two templating classes - one for the old ID card and one for the new one:
 
 ```java
 // here we set previously configured templating classes
 mDetectorRecognizer.setTemplatingClasses(mOldID, mNewID);
 ```
 
-We need to add support for correct recognition when document is held upside down. Since card-like documents are symmetric, simple detection of quadrilateral representing the document will not tell us the orientation of the document. For that matter, we need to enable detection of upside down document:
+We need to add support for correct recognition when the document is held upside down. Since card-like documents are symmetric, simple detection of quadrilateral representing the document will not tell us the orientation of the document. For that matter, we need to enable detection of upside down document:
 
 ```java
 mDetectorRecognizer.setAllowFlippedRecognition(true);
@@ -170,7 +171,7 @@ Templating classes are created in the following way:
 
 In this example, the extracted document number is used for classification of the document. Because of that, document number processor group is added to the classification processor groups collection. All other fields of interest are added to the collection of the non-classification processor groups.
 
-[It will be shown later](#templatingClassifiers) how templating classifiers are implemented. For now it is important to know that they simply tels whether the document belongs to the associated class: `true` or `false`.
+[It will be shown later](#templatingClassifiers) how templating classifiers are implemented. For now, it is important to know that they simply tell whether the document belongs to the associated class: `true` or `false`.
 
 Let's see how processor groups, which are responsible for processing locations of interest, are defined.
 
@@ -326,7 +327,7 @@ mSexCitizenshipDOBNewID = new ProcessorGroup(
 //------------------------------------------------------------------------------------------
 // Document number
 //------------------------------------------------------------------------------------------
-// In same way as above, we create ProcessorGroup for old and new versions of document number
+// In the same way as above, we create ProcessorGroup for old and new versions of document number
 // parsers.
 //------------------------------------------------------------------------------------------
 
@@ -345,7 +346,7 @@ mDocumentNumberNewID = new ProcessorGroup(
 //------------------------------------------------------------------------------------------
 // Face image
 //------------------------------------------------------------------------------------------
-// In same way as above, we create ProcessorGroup for image of the face on document.
+// In the same way as above, we create ProcessorGroup for image of the face on document.
 //------------------------------------------------------------------------------------------
 
 mFaceOldID = new ProcessorGroup(
@@ -365,7 +366,7 @@ mFaceNewID = new ProcessorGroup(
 //------------------------------------------------------------------------------------------
 // Full document image
 //------------------------------------------------------------------------------------------
-// location of full document is same regardless of document version
+// location of the full document is same regardless of document version
 //------------------------------------------------------------------------------------------
 
 mFullDocument = new ProcessorGroup(
@@ -413,11 +414,11 @@ Each `TemplatingClass` has associated templating classifier. For the old version
 
 So, let's start with the `CroIDOldTemplatingClassifier`.
 
-As every concrete templating classifier, it implements `TemplatingClassifier` interface, which requires to implement its `classify` method that is invoked while evaluating associated `TemplatingClass`. First, all processors within classification processor groups are executed. Then this method is invoked to determine whether non-classification processor groups should also be executed. If this method returns `false`, then non-classification processor groups will not be executed and evaluation will continue to next `TemplatingClass` within `TemplatingRecognizer`.
+As every concrete templating classifier, it implements `TemplatingClassifier` interface, which requires implementing its `classify` method that is invoked while evaluating associated `TemplatingClass`. First, all processors within classification processor groups are executed. Then this method is invoked to determine whether non-classification processor groups should also be executed. If this method returns `false`, then non-classification processor groups will not be executed and evaluation will continue to next `TemplatingClass` within `TemplatingRecognizer`.
 
-As we are making classification decision based on the document number, which is returned by the `RegexParser` from the `ParserGroupProcessor` that is in the classification procesor group, our classifier must be able to retrieve parsed data from the document number parser. For that purpose, it keeps reference to the mentioned parser.
+As we are making the classification decision based on the document number, which is returned by the `RegexParser` from the `ParserGroupProcessor` that is in the classification processor group, our classifier must be able to retrieve parsed data from the document number parser. For that purpose, it keeps the reference to the mentioned parser.
 
-Also, because `TemplatingRecognizer` can be parcelized and run on the different activity from the one within it is created, classifier also implements `Parcelable` interface (`TemplatingClassifier` interface extends `Parcelable`). This is the most tricky part of the classifier implementation, it will be described later. For now it is important to notice that our classifier has some additional member variables for that purpose.
+Also, because `TemplatingRecognizer` can be parcelized and run on the different activity from the one within it is created, classifier also implements `Parcelable` interface (`TemplatingClassifier` interface extends `Parcelable`). This is the most tricky part of the classifier implementation, it will be described later. For now, it is important to notice that our classifier has some additional member variables for that purpose.
 
 ```java
 private static final class CroIDOldTemplatingClassifier implements TemplatingClassifier {
@@ -448,9 +449,9 @@ private static final class CroIDOldTemplatingClassifier implements TemplatingCla
 }
 ```
 
-Probably, you have noticed `ParserParcelization` class and its purpose is not clear on first sight. `ParserParcelization` is utility class that helps to serialize captured parser within templating classifier. It contains information how to access given `Parser` after `TemplatingClassifier` has been serialized and deserialized via `Parcel`. It is used for implementing the parcelization of the `CroIDOldTemplatingClassifier`.
+Probably, you have noticed `ParserParcelization` class and its purpose is not clear at first sight. `ParserParcelization` is utility class that helps to serialize captured parser within templating classifier. It contains information how to access given `Parser` after `TemplatingClassifier` has been serialized and deserialized via `Parcel`. It is used for implementing the parcelization of the `CroIDOldTemplatingClassifier`.
 
-**Notice that parser instance for the document number that is used during scan after parcelization/deparcelization is not the same instance that is captured in `CroIDOldTemplatingClassifier` before parcelization. So, we need a mechanism to access active parser instance for classification during scan.**
+**Notice that parser instance for the document number that is used during the scan after parcelization/deparcelization is not the same instance that is captured in `CroIDOldTemplatingClassifier` before parcelization. So, we need a mechanism to access active parser instance for classification during the scan.**
 
 Here is the code snippet which shows how writing to `Parcel` is implemented:
 
@@ -472,7 +473,7 @@ public void writeToParcel(Parcel dest, int flags) {
     // parser and class. The ParcelParcelization will simply find our parser withing given
     // Templating Class and remember its coordinates. This coordinates will then be written
     // to dest and restored when creating this object from Parcel. Finally, those coordinates
-    // will then be used to obtain access to same parser within the context of recognition.
+    // will then be used to obtain access to the same parser within the context of recognition.
     //--------------------------------------------------------------------------------------
 
     ParserParcelization oldDocumentNumberParcelization = new ParserParcelization(mOldDocumentNumberParser, mMyTemplatingClass);
@@ -498,21 +499,21 @@ The last thing that should be explained is how `obtainReferenceToDocumentNumberP
 ```java
 private RegexParser obtainReferenceToDocumentNumberParser(@NonNull TemplatingClass currentClass) {
     if ( mMyTemplatingClass == currentClass ) {
-        // if captured templating class is the same reference as currentClass, this means
+        // if the captured templating class is the same reference as currentClass, this means
         // that we are still using the original instance of the classifier, which has access
         // to original document number parser
 
         return mOldDocumentNumberParser;
     } else {
         // if references are not the same, this means that classifier has been parcelized
-        // and then de-parcelized during transmission to another activity. We need to ensure
+        // and then deparcelized during transmission to another activity. We need to ensure
         // that we perform the check of the document number parser's result within the
         // context we are currently running, so we need to utilize ParserParcelization
-        // obtained during creating from Parcel to obtain access to correct parser.
+        // obtained during creating from Parcel to obtain access to the correct parser.
         // For more information, see implementation note in writeToParcel below.
         return mParcelizedOldDocumentNumberParser.getParser(currentClass);
     }
 }
 ```
 
-The implementaton of the `CroIDNewTemplatingClassifier` is similar to the described implementation for `CroIDOldTemplatingClassifier`, so we will not repeat all steps. Only difference is that `CroIDNewTemplatingClassifier` captures reference to `RegexParser` for the document number from the new version of the identity card and checks whether that parser has produced result in its `classify` method. 
+The implementation of the `CroIDNewTemplatingClassifier` is similar to the described implementation for `CroIDOldTemplatingClassifier`, so we will not repeat all steps. The only difference is that `CroIDNewTemplatingClassifier` captures the reference to `RegexParser` for the document number from the new version of the identity card and checks whether that parser has produced the result in its `classify` method. 
