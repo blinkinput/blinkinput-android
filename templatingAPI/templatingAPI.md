@@ -173,31 +173,24 @@ In this example, the extracted document number is used for classification of the
 
 [It will be shown later](#templatingClassifiers) how templating classifiers are implemented. For now, it is important to know that they simply tell whether the document belongs to the associated class: `true` or `false`.
 
-Let's see how processor groups, which are responsible for processing locations of interest, are defined.
+Let's see how processor groups, which are responsible for processing locations of interest, are defined. Here we will give an example for the last name field. 
+
+First, we need to precisely define the location of the last name field inside the document.
+
+![Last name on the new Croatian ID card](images/newFront_surname.jpg)
+
+To measure that, we take a ruler and first measure the dimensions of the document. For Croatian Identity card, we measure 85 mm width and 54 mm height. After that we need to measure the location of the last name field. After measuring we see that last name field starts from 23 mm from the left and 11 mm from the top and has width of 31 mm and height of 9 mm.
+
+Here is the source code snippet that shows how to define last name `ProcessorGroups` for the both new and old versions of the ID card.
 
 ```java
 
 //------------------------------------------------------------------------------------------
-// First and last name
+// Last name
 //------------------------------------------------------------------------------------------
 //
 // The Croatian ID card has width of 85mm and height of 54mm. If we take a ruler and measure
 // the locations of fields, we get the following measurements:
-//
-// on old croatian ID card, last name is located in following rectangle:
-//
-// left = 23 mm
-// right = 50 mm
-// top = 11 mm
-// bottom = 17 mm
-//
-// ProcessorGroup requires converting this into relative coordinates, so we
-// get the following:
-//
-// x = 23mm / 85mm = 0.271
-// y = 11mm / 54mm = 0.204
-// width = (50mm - 23mm) / 85mm = 0.318
-// height = (17mm - 11mm) / 54mm = 0.111
 //
 // on new croatian ID card, last name is located in following rectangle:
 //
@@ -214,42 +207,22 @@ Let's see how processor groups, which are responsible for processing locations o
 // w = (54mm - 23mm) / 85mm = 0.365
 // h = (20mm - 11mm) / 54mm = 0.167
 //
-// In the same manner we can measure the locations of first name on both old and new ID cards.
+// on old croatian ID card, last name is located in following rectangle:
 //
-// Both first and last name can hold a single line of text, but both on new and old ID card
-// first name is printed with smaller font than last name. Therefore, we will require that
-// dewarped image for last names will be of height 100 pixels and for first names of height 150
-// pixels.
-// The width of the image will be automatically determined to keep the original aspect ratio.
+// left = 23 mm
+// right = 50 mm
+// top = 11 mm
+// bottom = 17 mm
+//
+// ProcessorGroup requires converting this into relative coordinates, so we
+// get the following:
+//
+// x = 23mm / 85mm = 0.271
+// y = 11mm / 54mm = 0.204
+// width = (50mm - 23mm) / 85mm = 0.318
+// height = (17mm - 11mm) / 54mm = 0.111
+//
 //------------------------------------------------------------------------------------------
-
-mFirstNameOldID = new ProcessorGroup(
-        // location as described above
-        new Rectangle(0.282f, 0.333f, 0.306f, 0.167f),
-        // dewarp height as described above will be achieved using fixed dewarp policy
-        new FixedDewarpPolicy(150),
-        // processors in this processor group
-        mFirstNameParserGroup
-);
-
-mFirstNameNewID = new ProcessorGroup(
-        // location as described above
-        new Rectangle(0.282f, 0.389f, 0.353f, 0.167f),
-        // dewarp height as described above will be achieved using fixed dewarp policy
-        new FixedDewarpPolicy(150),
-        // processors in this processor group. Note that same processor can be in multiple
-        // processor groups
-        mFirstNameParserGroup
-);
-
-mLastNameOldID = new ProcessorGroup(
-        // location as described above
-        new Rectangle(0.271f, 0.204f, 0.318f, 0.111f),
-        // dewarp height as described above will be achieved using fixed dewarp policy
-        new FixedDewarpPolicy(100),
-        // processors in this processor group
-        mLastNameParserGroup
-);
 
 mLastNameNewID = new ProcessorGroup(
         // location as described above
@@ -261,88 +234,19 @@ mLastNameNewID = new ProcessorGroup(
         mLastNameParserGroup
 );
 
-//------------------------------------------------------------------------------------------
-// Sex, citizenship and date of birth
-//------------------------------------------------------------------------------------------
-// Sex, citizenship and date of birth parsers are bundled together into single parser group
-// processor. Now let's define a processor group for new and old ID version for that
-// processor.
-//
-// Firstly, we need to take a ruler and measure the location from which all these fields
-// will be extracted.
-// On old croatian ID cards, the location containing both sex, citizenship and date of birth
-// is in following rectangle:
-//
-// left = 35 mm
-// right = 57 mm
-// top = 27 mm
-// bottom = 43 mm
-//
-// ProcessorGroup requires converting this into relative coordinates, so we
-// get the following:
-//
-// x = 35mm / 85mm = 0.412
-// y = 27 mm / 54mm = 0.500
-// w = (57mm - 35mm) / 85mm = 0.259
-// h = (43mm - 27mm) / 54mm = 0.296
-//
-// Similarly, on new croatian ID card, rectangle holding same information is the following:
-//
-// left = 33 mm
-// right = 57 mm
-// top = 27 mm
-// bottom = 43 mm
-//
-// ProcessorGroup requires converting this into relative coordinates, so we
-// get the following:
-//
-// x = 33mm / 85mm = 0.388
-// y = 27mm / 54mm = 0.556
-// w = (57mm - 33mm) / 85mm = 0.282
-// h = (43mm - 27mm) / 54mm = 0.296
-//
-// This location contains three fields in three lines of text. So we will set the height of
-// dewarped image to 300 pixels.
-// The width of the image will be automatically determined to keep the original aspect ratio.
-//------------------------------------------------------------------------------------------
-
-mSexCitizenshipDOBOldID = new ProcessorGroup(
+mLastNameOldID = new ProcessorGroup(
         // location as described above
-        new Rectangle(0.412f, 0.500f, 0.259f, 0.296f),
-        // fixed dewarp policy to get dewarp height of exactly 300 pixels
-        new FixedDewarpPolicy(300),
+        new Rectangle(0.271f, 0.204f, 0.318f, 0.111f),
+        // dewarp height as described above will be achieved using fixed dewarp policy
+        new FixedDewarpPolicy(100),
         // processors in this processor group
-        mSexCitizenshipDOBGroup
+        mLastNameParserGroup
 );
+```
 
-mSexCitizenshipDOBNewID = new ProcessorGroup(
-        // location as described above
-        new Rectangle(0.388f, 0.500f, 0.282f, 0.296f),
-        // fixed dewarp policy to get dewarp height of exactly 300 pixels
-        new FixedDewarpPolicy(300),
-        // processors in this processor group
-        mSexCitizenshipDOBGroup
-);
+Here is the code snippet which shows how to define `ProcessorGroups` for obtaining document images.
 
-//------------------------------------------------------------------------------------------
-// Document number
-//------------------------------------------------------------------------------------------
-// In the same way as above, we create ProcessorGroup for old and new versions of document number
-// parsers.
-//------------------------------------------------------------------------------------------
-
-mDocumentNumberOldID = new ProcessorGroup(
-        new Rectangle(0.047f, 0.519f, 0.224f, 0.111f),
-        new FixedDewarpPolicy(150),
-        mOldDocumentNumberGroup
-);
-
-mDocumentNumberNewID = new ProcessorGroup(
-        new Rectangle(0.047f, 0.685f, 0.224f, 0.111f),
-        new FixedDewarpPolicy(150),
-        mNewDocumentNumberGroup
-);
-
+```java
 //------------------------------------------------------------------------------------------
 // Face image
 //------------------------------------------------------------------------------------------
@@ -376,17 +280,17 @@ mFullDocument = new ProcessorGroup(
 );
 ```
 
-The definition of all used processors can be found in the [complete code sample](https://github.com/blinkinput/blinkinput-android/blob/master/BlinkInputSample/BlinkInputTemplatingSample/src/main/java/com/microblink/util/templating/CroatianIDFrontSideTemplatingUtil.java), here we will only show how `ParserGroupProcessor` for the first name is created and an example of `ImageReturnProcessor` for obtaining the face image of the ID card owner.
+The definition of all used processors can be found in the [complete code sample](https://github.com/blinkinput/blinkinput-android/blob/master/BlinkInputSample/BlinkInputTemplatingSample/src/main/java/com/microblink/util/templating/CroatianIDFrontSideTemplatingUtil.java), here we will only show how `ParserGroupProcessor` for the last name is created and an example of `ImageReturnProcessor` for obtaining the face image of the ID card owner.
 
-Here is the code snippet for defining the `ParserGroupProcessor` for the first name:
+Here is the code snippet for defining the `ParserGroupProcessor` for the last name:
 
 ```java
-// For extracting first names, we will use regex parser with regular expression which
+// For extracting last names, we will use regex parser with regular expression which
 // attempts to extract as may uppercase words as possible from single line.
-mFirstNameParser = new RegexParser("([A-ZŠĐŽČĆ]+ ?)+");
+mLastNameParser = new RegexParser("([A-ZŠĐŽČĆ]+ ?)+");
 
 // we will tweak OCR engine options for the regex parser
-BlinkOCREngineOptions options = (BlinkOCREngineOptions) mFirstNameParser.getOcrEngineOptions();
+BlinkOCREngineOptions options = (BlinkOCREngineOptions) mLastNameParser.getOcrEngineOptions();
 
 // only uppercase characters are allowed
 options.addUppercaseCharsToWhitelist(OcrFont.OCR_FONT_ANY);
@@ -397,8 +301,8 @@ options.addCharToWhitelist('Ž', OcrFont.OCR_FONT_ANY);
 options.addCharToWhitelist('Č', OcrFont.OCR_FONT_ANY);
 options.addCharToWhitelist('Ć', OcrFont.OCR_FONT_ANY);
 
-// put first name parser in its own parser group
-mFirstNameParserGroup = new ParserGroupProcessor(mFirstNameParser);
+// put last name parser in its own parser group
+mLastNameParserGroup = new ParserGroupProcessor(mLastNameParser);
 ```
 
 Definition of the `ImageReturnProcessor` for the face image is very simple. 
