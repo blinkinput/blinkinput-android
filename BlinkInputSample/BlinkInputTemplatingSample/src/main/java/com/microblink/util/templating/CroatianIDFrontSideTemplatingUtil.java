@@ -407,7 +407,7 @@ public final class CroatianIDFrontSideTemplatingUtil {
         // configure old version class
         {
             mOldID = new TemplatingClass();
-            mOldID.setTemplatingClassifier(new CroIDOldTemplatingClassifier(mOldID, mOldDocumentNumberParser));
+            mOldID.setTemplatingClassifier(new CroIDTemplatingClassifier(mOldID, mOldDocumentNumberParser));
 
             mOldID.setClassificationProcessorGroups(mDocumentNumberOldID);
             mOldID.setNonClassificationProcessorGroups(mFirstNameOldID, mLastNameOldID, mSexCitizenshipDOBOldID, mFaceOldID, mFullDocument);
@@ -415,7 +415,7 @@ public final class CroatianIDFrontSideTemplatingUtil {
         // configure new version class
         {
             mNewID = new TemplatingClass();
-            mNewID.setTemplatingClassifier(new CroIDNewTemplatingClassifier(mNewID, mNewDocumentNumberParser));
+            mNewID.setTemplatingClassifier(new CroIDTemplatingClassifier(mNewID, mNewDocumentNumberParser));
 
             mNewID.setClassificationProcessorGroups(mDocumentNumberNewID);
             mNewID.setNonClassificationProcessorGroups(mFirstNameNewID, mLastNameNewID, mSexCitizenshipDOBNewID, mFaceNewID, mFullDocument);
@@ -448,31 +448,38 @@ public final class CroatianIDFrontSideTemplatingUtil {
     }
 
     /**
-     * This class represents a {@link TemplatingClassifier} for determining whether old version of
-     * Croatian ID document is being scanned. The class also must implement {@link android.os.Parcelable}
+     * This class represents a {@link TemplatingClassifier} which determines whether the currently
+     * scanned Croatian ID document belongs to the associated class (old or new version of the ID
+     * document). The class also must implement {@link android.os.Parcelable}
      * interface in order to support passing it through {@link Parcel}.
      */
-    private static final class CroIDOldTemplatingClassifier implements TemplatingClassifier {
+    private static final class CroIDTemplatingClassifier implements TemplatingClassifier {
 
         private TemplatingClass mMyTemplatingClass;
-        private RegexParser mOldDocumentNumberParser;
-        private ParserParcelization mParcelizedOldDocumentNumberParser;
+        /** Document number parser which is used for classification. */
+        private RegexParser mDocumentNumberParser;
+        private ParserParcelization mParcelizedDocumentNumberParser;
 
-        CroIDOldTemplatingClassifier( @NonNull TemplatingClass myTemplatingClass, @Nullable RegexParser oldDocumentNumberParser ) {
+        /**
+         * Constructor which accepts classifier class and parser used for classification.
+         * @param myTemplatingClass associated templating class for which the classifier is responsible.
+         * @param documentNumberParser parser whose data is used for the classification.
+         */
+        CroIDTemplatingClassifier(@NonNull TemplatingClass myTemplatingClass, @Nullable RegexParser documentNumberParser) {
             mMyTemplatingClass = myTemplatingClass;
-            mOldDocumentNumberParser = oldDocumentNumberParser;
+            mDocumentNumberParser = documentNumberParser;
         }
 
         @Override
         public boolean classify(@NonNull TemplatingClass currentClass) {
-            RegexParser oldDocumentNumberParser;
+            RegexParser documentNumberParser;
 
             if ( mMyTemplatingClass == currentClass ) {
                 // if captured templating class is the same reference as currentClass, this means
                 // that we are still using the original instance of the classifier, which has access
                 // to original document number parser
 
-                oldDocumentNumberParser = mOldDocumentNumberParser;
+                documentNumberParser = mDocumentNumberParser;
             } else {
                 // if references are not the same, this means that classifier has been parcelized
                 // and then de-parcelized during transmission to another activity. We need to ensure
@@ -480,13 +487,14 @@ public final class CroatianIDFrontSideTemplatingUtil {
                 // context we are currently running, so we need to utilize ParserParcelization
                 // obtained during creating from Parcel to obtain access to correct parser.
                 // For more information, see implementation note in writeToParcel below.
-                oldDocumentNumberParser = mParcelizedOldDocumentNumberParser.getParser(currentClass);
+                documentNumberParser = mParcelizedDocumentNumberParser.getParser(currentClass);
             }
 
-            // if old document number parser has succeeded in parsing the document number, then
-            // we are certain we are scanning old version of Croatian National ID card
-            String oldDocumentNumber = oldDocumentNumberParser.getResult().getParsedString();
-            return !"".equals(oldDocumentNumber);
+            // if document number parser has succeeded in parsing the document number, then
+            // we are certain we are scanning the version (class) of Croatian National ID card
+            // for which this classifier instance is responsible
+            String documentNumber = documentNumberParser.getResult().getParsedString();
+            return !"".equals(documentNumber);
         }
 
         @Override
@@ -502,7 +510,7 @@ public final class CroatianIDFrontSideTemplatingUtil {
             // If we write mMyTemplatingClass to dest, we will trigger StackOverflowException because
             // this classifier is contained within mMyTemplatingClass, so writeToParcel will be called
             // recursively.
-            // If we write mOldDocumentNumberParser to dest, it will be OK, but the problem will be
+            // If we write mDocumentNumberParser to dest, it will be OK, but the problem will be
             // on deserialization side - the deparcelized instance of the parser will not be the same
             // as the one actually used for recognition and therefore it will not be possible to use
             // it for classification.
@@ -514,124 +522,32 @@ public final class CroatianIDFrontSideTemplatingUtil {
             // will then be used to obtain access to same parser within the context of recognition.
             //--------------------------------------------------------------------------------------
 
-            ParserParcelization oldDocumentNumberParcelization = new ParserParcelization(mOldDocumentNumberParser, mMyTemplatingClass);
+            ParserParcelization documentNumberParcelization = new ParserParcelization(mDocumentNumberParser, mMyTemplatingClass);
             // we do not need to use writeParcelable because ParserParcelization is not polymorphic
-            oldDocumentNumberParcelization.writeToParcel(dest, flags);
+            documentNumberParcelization.writeToParcel(dest, flags);
         }
 
         /**
          * Constructor from {@link Parcel}
          * @param in Parcel containing serialized classifier.
          */
-        private CroIDOldTemplatingClassifier( Parcel in ) {
-            mParcelizedOldDocumentNumberParser = ParserParcelization.CREATOR.createFromParcel(in);
+        private CroIDTemplatingClassifier(Parcel in ) {
+            mParcelizedDocumentNumberParser = ParserParcelization.CREATOR.createFromParcel(in);
         }
 
-        public static final Creator<CroIDOldTemplatingClassifier> CREATOR = new Creator<CroIDOldTemplatingClassifier>() {
+        public static final Creator<CroIDTemplatingClassifier> CREATOR = new Creator<CroIDTemplatingClassifier>() {
             @Override
-            public CroIDOldTemplatingClassifier createFromParcel(Parcel source) {
-                return new CroIDOldTemplatingClassifier(source);
+            public CroIDTemplatingClassifier createFromParcel(Parcel source) {
+                return new CroIDTemplatingClassifier(source);
             }
 
             @Override
-            public CroIDOldTemplatingClassifier[] newArray(int size) {
-                return new CroIDOldTemplatingClassifier[size];
+            public CroIDTemplatingClassifier[] newArray(int size) {
+                return new CroIDTemplatingClassifier[size];
             }
         };
     }
 
-    /**
-     * This class represents a {@link TemplatingClassifier} for determining whether new version of
-     * Croatian ID document is being scanned. The class also must implement {@link android.os.Parcelable}
-     * interface in order to support passing it through {@link Parcel}.
-     */
-    private static final class CroIDNewTemplatingClassifier implements TemplatingClassifier {
-
-        private TemplatingClass mMyTemplatingClass;
-        private RegexParser mNewDocumentNumberParser;
-        private ParserParcelization mParcelizedNewDocumentNumberParser;
-
-        CroIDNewTemplatingClassifier(@NonNull TemplatingClass myTemplatingClass, @Nullable RegexParser newDocumentNumberParser) {
-            mMyTemplatingClass = myTemplatingClass;
-            mNewDocumentNumberParser = newDocumentNumberParser;
-        }
-
-        @Override
-        public boolean classify(@NonNull TemplatingClass currentClass) {
-            RegexParser newDocumentNumberParser;
-
-            if ( mMyTemplatingClass == currentClass ) {
-                // if captured templating class is the same reference as currentClass, this means
-                // that we are still using the original instance of the classifier, which has access
-                // to original document number parser
-
-                newDocumentNumberParser = mNewDocumentNumberParser;
-            } else {
-                // if references are not the same, this means that classifier has been parcelized
-                // and then de-parcelized during transmission to another activity. We need to ensure
-                // that we perform the check of the document number parser's result within the
-                // context we are currently running, so we need to utilize ParserParcelization
-                // obtained during creating from Parcel to obtain access to correct parser.
-                // For more information, see implementation note in writeToParcel below.
-                newDocumentNumberParser = mParcelizedNewDocumentNumberParser.getParser(currentClass);
-            }
-
-            // if new document number parser has succeeded in parsing the document number, then
-            // we are certain we are scanning new version of Croatian National ID card
-            String newDocumentNumber = newDocumentNumberParser.getResult().getParsedString();
-            return !"".equals(newDocumentNumber);
-        }
-
-        @Override
-        public int describeContents() {
-            return 0;
-        }
-
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-            //--------------------------------------------------------------------------------------
-            // IMPLEMENTATION NOTE:
-            //--------------------------------------------------------------------------------------
-            // If we write mMyTemplatingClass to dest, we will trigger StackOverflowException because
-            // this classifier is contained within mMyTemplatingClass, so writeToParcel will be called
-            // recursively.
-            // If we write mNewDocumentNumberParser to dest, it will be OK, but the problem will be
-            // on deserialization side - the deparcelized instance of the parser will not be the same
-            // as the one actually used for recognition and therefore it will not be possible to use
-            // it for classification.
-            //
-            // To address this problem, we will create a ParserParcelization instance around our
-            // parser and class. The ParcelParcelization will simply find our parser withing given
-            // Templating Class and remember its coordinates. This coordinates will then be written
-            // to dest and restored when creating this object from Parcel. Finally, those coordinates
-            // will then be used to obtain access to same parser within the context of recognition.
-            //--------------------------------------------------------------------------------------
-
-            ParserParcelization newDocumentNumberParcelization = new ParserParcelization(mNewDocumentNumberParser, mMyTemplatingClass);
-            // we do not need to use writeParcelable because ParserParcelization is not polymorphic
-            newDocumentNumberParcelization.writeToParcel(dest, flags);
-        }
-
-        /**
-         * Constructor from {@link Parcel}
-         * @param in Parcel containing serialized classifier.
-         */
-        private CroIDNewTemplatingClassifier( Parcel in ) {
-            mParcelizedNewDocumentNumberParser = ParserParcelization.CREATOR.createFromParcel(in);
-        }
-
-        public static final Creator<CroIDNewTemplatingClassifier> CREATOR = new Creator<CroIDNewTemplatingClassifier>() {
-            @Override
-            public CroIDNewTemplatingClassifier createFromParcel(Parcel source) {
-                return new CroIDNewTemplatingClassifier(source);
-            }
-
-            @Override
-            public CroIDNewTemplatingClassifier[] newArray(int size) {
-                return new CroIDNewTemplatingClassifier[size];
-            }
-        };
-    }
 
     //----------------------------------------------------------------------------------------------
     // Detector recognizer
