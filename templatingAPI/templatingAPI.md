@@ -23,7 +23,7 @@ First, document position should be detected on the input image because all field
 For each location of interest on the detected document, processing should be performed to extract needed information. To make processing of the document location possible, for example to perform the OCR, it should be dewarped (cropped and rotated) first. The concrete processor operates on the dewarped piece of the input image. So, for each document field that should be processed, the following should be defined:
 
 - location coordinates relative to document detection
-- the dewarp policy which determines the resulting image chunk for processing
+- the dewarp policy which determines how the perspective will be corrected for the current location (i.e. how image dewarp will be performed)
 - processors that will extract information from the prepared chunk of the image
 
 For that purpose, `ProcessorGroup` is used.
@@ -32,7 +32,7 @@ For that purpose, `ProcessorGroup` is used.
 
 In addition to defining processors, which will be described in the next section, it is used for defining the document location on which processors will be executed and for choosing the dewarp policy.
 
-> `DewarpPolicy` is an object which defines how specific location of interest should be dewarped. It determines the height and width of the resulting dewarped image in pixels.
+> `DewarpPolicy` is an object which determines how the perspective will be corrected for the specific location of interest (i.e. how image dewarp will be performed).
 
 There are three concrete types of the dewarp policies available:
 
@@ -55,13 +55,7 @@ When the chunk of the image which represents the location of interest from the s
 
 > `Processor` is an object that can perform recognition of the image. It is similar to `Recognizer`, but it is not stand-alone. `Processor` must be used within some `Recognizer` that supports processors like it is the case with the templating API recognizers. 
 
-Available processors are:
-
-- `ParserGroupProcessor`:
-    - performs the OCR on the input image
-    - lets all parsers associated with the group to extract data from the OCR result
-- `ImageReturnProcessor`:
-    - simply saves the input image
+The list of all available `Processors` can be found [here](https://github.com/blinkinput/blinkinput-android#processorList).
 
 OCR is performed once for each activated `ParserGroupProcessor`. Before performing the OCR, best possible OCR engine options are calculated by combining engine options needed by each `Parser` from the group. For example, if one parser expects and produces the result from uppercase characters and other parser extracts data from digits, both uppercase characters and digits must be added to the list of allowed characters that can appear in the OCR result.
 
@@ -154,7 +148,7 @@ Templating classes are created in the following way:
 // configure old version class
 {
     mOldID = new TemplatingClass();
-    mOldID.setTemplatingClassifier(new CroIDOldTemplatingClassifier(mOldID, mOldDocumentNumberParser));
+    mOldID.setTemplatingClassifier(new CroIDTemplatingClassifier(mOldID, mOldDocumentNumberParser));
 
     mOldID.setClassificationProcessorGroups(mDocumentNumberOldID);
     mOldID.setNonClassificationProcessorGroups(mFirstNameOldID, mLastNameOldID, mSexCitizenshipDOBOldID, mFaceOldID, mFullDocument);
@@ -162,7 +156,7 @@ Templating classes are created in the following way:
 // configure new version class
 {
     mNewID = new TemplatingClass();
-    mNewID.setTemplatingClassifier(new CroIDNewTemplatingClassifier(mNewID, mNewDocumentNumberParser));
+    mNewID.setTemplatingClassifier(new CroIDTemplatingClassifier(mNewID, mNewDocumentNumberParser));
 
     mNewID.setClassificationProcessorGroups(mDocumentNumberNewID);
     mNewID.setNonClassificationProcessorGroups(mFirstNameNewID, mLastNameNewID, mSexCitizenshipDOBNewID, mFaceNewID, mFullDocument);
@@ -314,9 +308,9 @@ Position of the image is configured by the enclosing `ProcessorGroup`, which is 
 
 ### <a name="templatingClassifiers"></a> Implementing the templating classifiers
 
-Each `TemplatingClass` has associated templating classifier. For the old version of the Croatian identity card, there is `CroIDOldTemplatingClassifier` and for new one there is `CroIDNewTemplatingClassifier`. 
+Each `TemplatingClass` has associated templating classifier instance. For the old and new version of the Croatian identity card, different instances of the `CroIDTemplatingClassifier` are used. Each of them captures the `RegexParser` reference for the document number from the associated identity card class and checks whether that `Parser` has produced the result. 
 
-So, let's start with the `CroIDOldTemplatingClassifier`.
+Let's explain the implementation of the `CroIDTemplatingClassifier` in more details.
 
 As every concrete templating classifier, it implements `TemplatingClassifier` interface, which requires implementing its `classify` method that is invoked while evaluating associated `TemplatingClass`. First, all processors within classification processor groups are executed. Then this method is invoked to determine whether non-classification processor groups should also be executed. If this method returns `false`, then non-classification processor groups will not be executed and evaluation will continue to next `TemplatingClass` within `TemplatingRecognizer`.
 
@@ -325,37 +319,37 @@ As we are making the classification decision based on the document number, which
 Also, because `TemplatingRecognizer` can be parcelized and run on the different activity from the one within it is created, classifier also implements `Parcelable` interface (`TemplatingClassifier` interface extends `Parcelable`). This is the most tricky part of the classifier implementation, it will be described later. For now, it is important to notice that our classifier has some additional member variables for that purpose.
 
 ```java
-private static final class CroIDOldTemplatingClassifier implements TemplatingClassifier {
+private static final class CroIDTemplatingClassifier implements TemplatingClassifier {
 
     private TemplatingClass mMyTemplatingClass;
-    private RegexParser mOldDocumentNumberParser;
-    private ParserParcelization mParcelizedOldDocumentNumberParser;
+    /** Document number parser which is used for classification. */
+    private RegexParser mDocumentNumberParser;
+    private ParserParcelization mParcelizedDocumentNumberParser;
     
-    CroIDOldTemplatingClassifier( @NonNull TemplatingClass myTemplatingClass, @Nullable RegexParser oldDocumentNumberParser ) {
+    CroIDTemplatingClassifier(@NonNull TemplatingClass myTemplatingClass, @Nullable RegexParser documentNumberParser) {
         mMyTemplatingClass = myTemplatingClass;
-        mOldDocumentNumberParser = oldDocumentNumberParser;
+        mDocumentNumberParser = documentNumberParser;
     }
     
     @Override
     public boolean classify(@NonNull TemplatingClass currentClass) {
         // obtains reference to the document number parser which is active in the current context
         // this will be explained later
-        RegexParser oldDocumentNumberParser = obtainReferenceToDocumentNumberParser(currentClass);
+        RegexParser documentNumberParser = obtainReferenceToDocumentNumberParser(currentClass);
     
-        // if old document number parser has succeeded in parsing the document number, then
-        // we are certain that we are scanning old version of Croatian National ID card
-        String oldDocumentNumber = oldDocumentNumberParser.getResult().getParsedString();
-        return !"".equals(oldDocumentNumber);
+        // if document number parser has succeeded in parsing the document number, then
+        // we are certain we are scanning the version (class) of Croatian National ID card
+        // for which this classifier instance is responsible
+        String documentNumber = documentNumberParser.getResult().getParsedString();
+        return !"".equals(documentNumber);
     }
-
     ...
-
 }
 ```
 
-Probably, you have noticed `ParserParcelization` class and its purpose is not clear at first sight. `ParserParcelization` is utility class that helps to serialize captured parser within templating classifier. It contains information how to access given `Parser` after `TemplatingClassifier` has been serialized and deserialized via `Parcel`. It is used for implementing the parcelization of the `CroIDOldTemplatingClassifier`.
+Probably, you have noticed `ParserParcelization` class and its purpose is not clear at first sight. `ParserParcelization` is utility class that helps to serialize captured parser within templating classifier. It contains information how to access given `Parser` after `TemplatingClassifier` has been serialized and deserialized via `Parcel`. It is used for implementing the parcelization of the `CroIDTemplatingClassifier`.
 
-**Notice that parser instance for the document number that is used during the scan after parcelization/deparcelization is not the same instance that is captured in `CroIDOldTemplatingClassifier` before parcelization. So, we need a mechanism to access active parser instance for classification during the scan.**
+**Notice that parser instance for the document number that is used during the scan after parcelization/deparcelization is not the same instance that is captured in `CroIDTemplatingClassifier` before parcelization. So, we need a mechanism to access active parser instance for classification during the scan.**
 
 Here is the code snippet which shows how writing to `Parcel` is implemented:
 
@@ -368,7 +362,7 @@ public void writeToParcel(Parcel dest, int flags) {
     // If we write mMyTemplatingClass to dest, we will trigger StackOverflowException because
     // this classifier is contained within mMyTemplatingClass, so writeToParcel will be called
     // recursively.
-    // If we write mOldDocumentNumberParser to dest, it will be OK, but the problem will be
+    // If we write mDocumentNumberParser to dest, it will be OK, but the problem will be
     // on deserialization side - the deparcelized instance of the parser will not be the same
     // as the one actually used for recognition and therefore it will not be possible to use
     // it for classification.
@@ -380,9 +374,9 @@ public void writeToParcel(Parcel dest, int flags) {
     // will then be used to obtain access to the same parser within the context of recognition.
     //--------------------------------------------------------------------------------------
 
-    ParserParcelization oldDocumentNumberParcelization = new ParserParcelization(mOldDocumentNumberParser, mMyTemplatingClass);
+    ParserParcelization documentNumberParcelization = new ParserParcelization(mDocumentNumberParser, mMyTemplatingClass);
     // we do not need to use writeParcelable because ParserParcelization is not polymorphic
-    oldDocumentNumberParcelization.writeToParcel(dest, flags);
+    documentNumberParcelization.writeToParcel(dest, flags);
 }
 ```
 
@@ -393,8 +387,8 @@ When constructing the classifier from parcel, we just need to use `ParserParceli
  * Constructor from {@link Parcel}
  * @param in Parcel containing serialized classifier.
  */
-private CroIDOldTemplatingClassifier(Parcel in) {
-    mParcelizedOldDocumentNumberParser = ParserParcelization.CREATOR.createFromParcel(in);
+private CroIDTemplatingClassifier(Parcel in ) {
+    mParcelizedDocumentNumberParser = ParserParcelization.CREATOR.createFromParcel(in);
 }
 ```
 
@@ -406,8 +400,7 @@ private RegexParser obtainReferenceToDocumentNumberParser(@NonNull TemplatingCla
         // if the captured templating class is the same reference as currentClass, this means
         // that we are still using the original instance of the classifier, which has access
         // to original document number parser
-
-        return mOldDocumentNumberParser;
+        return mDocumentNumberParser;
     } else {
         // if references are not the same, this means that classifier has been parcelized
         // and then deparcelized during transmission to another activity. We need to ensure
@@ -415,9 +408,7 @@ private RegexParser obtainReferenceToDocumentNumberParser(@NonNull TemplatingCla
         // context we are currently running, so we need to utilize ParserParcelization
         // obtained during creating from Parcel to obtain access to the correct parser.
         // For more information, see implementation note in writeToParcel below.
-        return mParcelizedOldDocumentNumberParser.getParser(currentClass);
+        return mParcelizedDocumentNumberParser.getParser(currentClass);
     }
 }
 ```
-
-The implementation of the `CroIDNewTemplatingClassifier` is similar to the described implementation for `CroIDOldTemplatingClassifier`, so we will not repeat all steps. The only difference is that `CroIDNewTemplatingClassifier` captures the reference to `RegexParser` for the document number from the new version of the identity card and checks whether that parser has produced the result in its `classify` method. 
