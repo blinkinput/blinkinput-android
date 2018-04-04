@@ -3,11 +3,14 @@ package com.microblink.input;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Rect;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.WorkerThread;
+import android.view.InflateException;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -28,6 +31,7 @@ import com.microblink.recognition.RecognitionSuccessType;
 import com.microblink.util.CameraPermissionManager;
 import com.microblink.util.Log;
 import com.microblink.view.CameraEventsListener;
+import com.microblink.view.NonLandscapeOrientationNotSupportedException;
 import com.microblink.view.OnSizeChangedListener;
 import com.microblink.view.OrientationAllowedListener;
 import com.microblink.view.ocrResult.OcrResultDotsView;
@@ -52,7 +56,24 @@ public class IDScanActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_idscan);
+
+        try {
+            setContentView(R.layout.activity_idscan);
+        } catch (InflateException ie) {
+            Throwable cause = ie.getCause();
+            while (cause.getCause() != null) {
+                cause = cause.getCause();
+            }
+            if (cause instanceof NonLandscapeOrientationNotSupportedException) {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                if (Build.VERSION.SDK_INT >= 11) {
+                    recreate();
+                }
+                return;
+            } else {
+                throw ie;
+            }
+        }
 
         Intent intent = getIntent();
         // since mRecognizerBundle does not contain any recognizers, loadFromIntent will create
