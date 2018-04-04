@@ -5,14 +5,17 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.InflateException;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -33,6 +36,7 @@ import com.microblink.util.CameraPermissionManager;
 import com.microblink.util.Log;
 import com.microblink.view.CameraAspectMode;
 import com.microblink.view.CameraEventsListener;
+import com.microblink.view.NonLandscapeOrientationNotSupportedException;
 import com.microblink.view.recognition.RecognizerRunnerView;
 import com.microblink.view.recognition.ScanResultListener;
 
@@ -83,7 +87,23 @@ public class CustomFieldByFieldScanActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_custom_field_by_field);
+        try {
+            setContentView(R.layout.activity_custom_field_by_field);
+        } catch (InflateException ie) {
+            Throwable cause = ie.getCause();
+            while (cause.getCause() != null) {
+                cause = cause.getCause();
+            }
+            if (cause instanceof NonLandscapeOrientationNotSupportedException) {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                if (Build.VERSION.SDK_INT >= 11) {
+                    recreate();
+                }
+                return;
+            } else {
+                throw ie;
+            }
+        }
 
         // obtain references to needed member variables
         mRecognizerRunnerView = findViewById(R.id.rec_view);

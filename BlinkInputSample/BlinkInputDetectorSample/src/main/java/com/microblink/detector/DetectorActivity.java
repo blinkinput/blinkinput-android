@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -14,6 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.view.InflateException;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -42,6 +44,7 @@ import com.microblink.util.CameraPermissionManager;
 import com.microblink.util.Log;
 import com.microblink.view.BaseCameraView;
 import com.microblink.view.CameraEventsListener;
+import com.microblink.view.NonLandscapeOrientationNotSupportedException;
 import com.microblink.view.OnSizeChangedListener;
 import com.microblink.view.OrientationAllowedListener;
 import com.microblink.view.recognition.RecognizerRunnerView;
@@ -101,7 +104,25 @@ public class DetectorActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detector);
+
+        try {
+            setContentView(R.layout.activity_detector);
+        } catch (InflateException ie) {
+            Throwable cause = ie.getCause();
+            while (cause.getCause() != null) {
+                cause = cause.getCause();
+            }
+            if (cause instanceof NonLandscapeOrientationNotSupportedException) {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                if (Build.VERSION.SDK_INT >= 11) {
+                    recreate();
+                }
+                return;
+            } else {
+                throw ie;
+            }
+        }
+
         mActivityState = ActivityState.CREATED;
 
         Intent intent = getIntent();
