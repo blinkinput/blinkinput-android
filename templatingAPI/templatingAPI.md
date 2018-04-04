@@ -340,8 +340,7 @@ private static final class CroIDTemplatingClassifier implements TemplatingClassi
         // if document number parser has succeeded in parsing the document number, then
         // we are certain we are scanning the version (class) of Croatian National ID card
         // for which this classifier instance is responsible
-        String documentNumber = documentNumberParser.getResult().getParsedString();
-        return !"".equals(documentNumber);
+        return documentNumberParser.getResult().getResultState() == Parser.Result.State.Valid;
     }
     ...
 }
