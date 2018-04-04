@@ -410,17 +410,17 @@ public class CustomFieldByFieldScanActivity extends Activity {
             // obtain result of the currently active parser
             Parser.Result<?> parserResult = scanElement.getParser().getResult();
 
-            final String resultString = parserResult.toString().trim();
+            if (parserResult.getResultState() == Parser.Result.State.Valid) {
 
-            if (!resultString.isEmpty()) {
+                final String resultString = parserResult.toString().trim();
+
                 mLastResultCloned = parserResult.clone();
                 mUiThreadHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         mResult.setText(resultString);
-                        mResultView.setVisibility(View.VISIBLE);
-                    }
-                });
+                        mResultView.setVisibility(View.VISIBLE); }});
+
                 // additionally if you want to process raw OCR result instead of parsed strings, and
                 // your license key allows obtaining of the OCR result, you can obtain it like this:
                 //  OcrResult ocrResult = mParserGroupProcessor.getResult().getOcrResult();

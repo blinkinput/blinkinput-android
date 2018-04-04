@@ -8,6 +8,7 @@ import com.microblink.entities.detectors.quad.document.DocumentDetector;
 import com.microblink.entities.detectors.quad.document.DocumentSpecification;
 import com.microblink.entities.detectors.quad.document.DocumentSpecificationPreset;
 import com.microblink.entities.ocrengine.legacy.BlinkOCREngineOptions;
+import com.microblink.entities.parsers.Parser;
 import com.microblink.entities.parsers.date.DateParser;
 import com.microblink.entities.parsers.regex.RegexParser;
 import com.microblink.entities.processors.imageReturn.ImageReturnProcessor;
@@ -493,8 +494,7 @@ public final class CroatianIDFrontSideTemplatingUtil {
             // if document number parser has succeeded in parsing the document number, then
             // we are certain we are scanning the version (class) of Croatian National ID card
             // for which this classifier instance is responsible
-            String documentNumber = documentNumberParser.getResult().getParsedString();
-            return !"".equals(documentNumber);
+            return documentNumberParser.getResult().getResultState() == Parser.Result.State.Valid;
         }
 
         @Override
