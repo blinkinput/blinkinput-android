@@ -1,1 +1,1 @@
-include ':BlinkInputDetectorSample', ':BlinkInputFieldByFieldSample', ':BlinkInputDirectAPISample', 'BlinkInputTemplatingSample', ':LibUtils'
+include ':BlinkInputDetectorSample', ':BlinkInputFieldByFieldSample', ':BlinkInputDirectAPISample', ':BlinkInputRawOcrSample', 'BlinkInputTemplatingSample', ':LibUtils'
