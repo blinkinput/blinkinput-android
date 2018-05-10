@@ -24,7 +24,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.microblink.entities.detectors.Detector;
+import com.microblink.entities.detectors.quad.QuadWithSizeDetector;
 import com.microblink.entities.processors.imageReturn.ImageReturnProcessor;
 import com.microblink.entities.recognizers.RecognizerBundle;
 import com.microblink.entities.recognizers.detector.DetectorRecognizer;
@@ -56,7 +56,7 @@ import com.microblink.view.viewfinder.quadview.QuadViewPreset;
 
 public class DetectorActivity extends Activity {
 
-    /** Intent extras key for setting the {@link Detector} that will be used. */
+    /** Intent extras key for setting the {@link QuadWithSizeDetector} that will be used. */
     public static final String EXTRAS_DETECTOR = "EXTRAS_DETECTOR";
 
     private final int MY_STORAGE_REQUEST_CODE = 6969;
@@ -128,7 +128,7 @@ public class DetectorActivity extends Activity {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 
-        Detector detector = null;
+        QuadWithSizeDetector detector = null;
 
         if (extras != null) {
             detector = extras.getParcelable(EXTRAS_DETECTOR);
