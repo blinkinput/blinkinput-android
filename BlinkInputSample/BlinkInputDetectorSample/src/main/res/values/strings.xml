@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">BlinkInput Detector Sample</string>
+    <string name="autofocus_fail">Camera cannot autofocus. Please try scanning under better light</string>
+    <string name="id_detector">ID card detector</string>
+    <string name="cheque_detector">Cheque detector</string>
+    <string name="mrtd_detector">Machine readable travel document</string>
+    <string name="a4_portrait_detector">A4 document (portrait) detector</string>
+    <string name="a4_landscape_detector">A4 document (landscape) detector</string>
+    <string name="err_license">Invalid licence key</string>
+    <string name="title_activity_menu">BlinkInput Detector</string>
+</resources>
