@@ -12,6 +12,7 @@
     - added `RecognizerRunnerFragment` with support for various scanning overlays in a manner similar to iOS API. This now allows you to use built-in UI, which was previously strictly available for built-in activities, in form of fragment anywhere within your activity. Full details are given in [README](README.md) and in updated demo applications.
 - new licence format, which is not backward compatible. Full details are given in [README](README.md) and in updated applications, but the gist of it is:
     - licence can now be provided with either file, byte array or base64-encoded bytes
+- introduced preview version of next generation `DeepOCR`. Check _BlinkInputRawOcrSample_ to see how it can be enabled.
 
 
 ## 3.4.0
