@@ -12,7 +12,6 @@ com.microblink.entities.ocrengine.legacy
 com.microblink.entities.parsers
 com.microblink.entities.parsers.amount
 com.microblink.entities.parsers.config.fieldbyfield
-com.microblink.entities.parsers.config.randomfield
 com.microblink.entities.parsers.date
 com.microblink.entities.parsers.email
 com.microblink.entities.parsers.iban
@@ -55,9 +54,7 @@ com.microblink.metadata.detection.points
 com.microblink.metadata.detection.quad
 com.microblink.metadata.glare
 com.microblink.metadata.image
-com.microblink.metadata.liveness
 com.microblink.metadata.ocr
-com.microblink.metadata.recognition
 com.microblink.metadata.text
 com.microblink.recognition
 com.microblink.results

@@ -4,7 +4,7 @@
 - new API, which is not backward compatible. Please check [README](README.md) and updated demo applications for more information, but the gist of it is:
     - `RecognizerView` has been renamed to `RecognizerRunnerView` and `Recognizer` singleton to `RecognizerRunner`
     - `SegmentScanActivity` has been renamed to `FieldByFieldScanActivity`
-    - `RandomScanActivity` has been renamed to `RandomFieldScanActivity`
+    - `RandomScanActivity` does not exist anymore
     - previously internal `Recognizer` objects are not internal anymore - instead of having opaque `RecognizerSettings` and `RecognizerResult` objects, you now have stateful `Recognizer` object that contains its `Result` within and mutates it while performing recognition. 
         - similarly we now have stateful `Parser` and `Detector` objects
         - introduced new `Processor` object type
