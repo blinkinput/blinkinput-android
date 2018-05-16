@@ -6,13 +6,13 @@ android:
     components:
         - platform-tools
         - tools
-        - build-tools-26.0.2
-        - android-26
+        - build-tools-27.0.3
+        - android-27
         - extra-android-m2repository
 script:
     - cd BlinkInputSample
     - ./gradlew clean :BlinkInputDetectorSample:assembleRelease
     - ./gradlew clean :BlinkInputDirectAPISample:assembleRelease
     - ./gradlew clean :BlinkInputFieldByFieldSample:assembleRelease
-    - ./gradlew clean :BlinkInputFieldByFieldSample:assembleRelease
+    - ./gradlew clean :BlinkInputRawOcrSample:assembleRelease
     - ./gradlew clean :BlinkInputTemplatingSample:assembleRelease
