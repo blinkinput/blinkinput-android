@@ -18,6 +18,7 @@ import com.microblink.entities.ocrengine.deep.DeepOCREngineOptions;
 import com.microblink.entities.ocrengine.legacy.BlinkOCREngineOptions;
 import com.microblink.entities.parsers.raw.RawParser;
 import com.microblink.entities.processors.parserGroup.ParserGroupProcessor;
+import com.microblink.entities.recognizers.Recognizer;
 import com.microblink.entities.recognizers.RecognizerBundle;
 import com.microblink.entities.recognizers.blinkinput.BlinkInputRecognizer;
 import com.microblink.metadata.MetadataCallbacks;
@@ -37,7 +38,7 @@ public class ScanActivity extends Activity {
     private static final String EXTRA_OCR_ENGINE_TYPE = "OCR_ENGINE_TYPE";
 
     private RecognizerRunnerView mRecognizerRunnerView;
-    private BlinkInputRecognizer mBlinkInputRecognizer;
+    private RawParser mRawParser;
     private TextView mResultTextView;
     private OcrResultDotsView mDotsView;
 
@@ -62,8 +63,8 @@ public class ScanActivity extends Activity {
         mRecognizerRunnerView = findViewById(R.id.recognizerView);
         mResultTextView = findViewById(R.id.result_view);
 
-        mBlinkInputRecognizer = setupRecognizer(getIntent());
-        RecognizerBundle recognizerBundle = new RecognizerBundle(mBlinkInputRecognizer);
+        BlinkInputRecognizer blinkInputRecognizer = setupRecognizer(getIntent());
+        RecognizerBundle recognizerBundle = new RecognizerBundle(blinkInputRecognizer);
         mRecognizerRunnerView.setRecognizerBundle(recognizerBundle);
 
         mDotsView = setupDotsView();
@@ -93,9 +94,9 @@ public class ScanActivity extends Activity {
         }
 
         AbstractOCREngineOptions engineOptions = createOcrEngineOptions(ocrEngineType);
-        final RawParser rawParser = new RawParser();
-        rawParser.setOcrEngineOptions(engineOptions);
-        return new BlinkInputRecognizer(new ParserGroupProcessor(rawParser));
+        mRawParser = new RawParser();
+        mRawParser.setOcrEngineOptions(engineOptions);
+        return new BlinkInputRecognizer(new ParserGroupProcessor(mRawParser));
     }
 
     private OcrResultDotsView setupDotsView() {
@@ -183,7 +184,7 @@ public class ScanActivity extends Activity {
                 return;
             }
 
-            final String resultString = mBlinkInputRecognizer.getResult().toString();
+            final String resultString = mRawParser.getResult().getRawText();
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
