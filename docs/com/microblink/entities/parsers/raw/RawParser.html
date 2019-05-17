@@ -359,7 +359,8 @@ extends <a href="../../../../../com/microblink/entities/parsers/Parser.html" tit
 <h4>setOcrEngineOptions</h4>
 <pre>public&nbsp;void&nbsp;setOcrEngineOptions(@NonNull
                                 <a href="../../../../../com/microblink/entities/ocrengine/AbstractOCREngineOptions.html" title="class in com.microblink.entities.ocrengine">AbstractOCREngineOptions</a>&nbsp;ocrEngineOptions)</pre>
-<div class="block">Sets the OCR engine options used in Regex OCR parser.</div>
+<div class="block">Sets the OCR engine options used in Regex OCR parser.
+ By default, this is set to 'default instance of <a href="../../../../../com/microblink/entities/ocrengine/legacy/BlinkOCREngineOptions.html" title="class in com.microblink.entities.ocrengine.legacy"><code>BlinkOCREngineOptions</code></a>'.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>ocrEngineOptions</code> - OCR engine options used in Regex OCR parser</dd>
@@ -374,7 +375,8 @@ extends <a href="../../../../../com/microblink/entities/parsers/Parser.html" tit
 <h4>getOcrEngineOptions</h4>
 <pre>@NonNull
 public&nbsp;<a href="../../../../../com/microblink/entities/ocrengine/AbstractOCREngineOptions.html" title="class in com.microblink.entities.ocrengine">AbstractOCREngineOptions</a>&nbsp;getOcrEngineOptions()</pre>
-<div class="block">Returns the OCR engine options used in Regex OCR parser.</div>
+<div class="block">Returns the OCR engine options used in Regex OCR parser.
+ By default, this is set to 'default instance of <a href="../../../../../com/microblink/entities/ocrengine/legacy/BlinkOCREngineOptions.html" title="class in com.microblink.entities.ocrengine.legacy"><code>BlinkOCREngineOptions</code></a>'.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>OCR engine options used in Regex OCR parser</dd>
@@ -389,7 +391,7 @@ public&nbsp;<a href="../../../../../com/microblink/entities/ocrengine/AbstractOC
 <h4>setUseSieve</h4>
 <pre>public&nbsp;void&nbsp;setUseSieve(boolean&nbsp;useSieve)</pre>
 <div class="block">Enable the usage of algorithm for combining consecutive OCR results between video frames
- for improving OCR quality. By default this is turned off.
+ for improving OCR quality. By default, this is set to 'false'.
 
  Note: This option works together only with if instance of <a href="../../../../../com/microblink/entities/ocrengine/legacy/BlinkOCREngineOptions.html" title="class in com.microblink.entities.ocrengine.legacy"><code>BlinkOCREngineOptions</code></a> is given
  to <a href="../../../../../com/microblink/entities/parsers/raw/RawParser.html#setOcrEngineOptions-com.microblink.entities.ocrengine.AbstractOCREngineOptions-"><code>RawParser.setOcrEngineOptions(com.microblink.entities.ocrengine.AbstractOCREngineOptions)</code></a>. Otherwise, it will not be
@@ -408,7 +410,8 @@ public&nbsp;<a href="../../../../../com/microblink/entities/ocrengine/AbstractOC
 <h4>isUsingSieve</h4>
 <pre>public&nbsp;boolean&nbsp;isUsingSieve()</pre>
 <div class="block">Returns true if algorithm for combining consecutive OCR results between video frames
- for improving OCR quality is used.</div>
+ for improving OCR quality is used.
+ By default, this is set to 'false'</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>true if sieve algorithm is used</dd>

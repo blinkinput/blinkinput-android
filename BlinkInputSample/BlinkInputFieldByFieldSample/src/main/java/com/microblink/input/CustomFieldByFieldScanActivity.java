@@ -36,7 +36,7 @@ import com.microblink.util.CameraPermissionManager;
 import com.microblink.util.Log;
 import com.microblink.view.CameraAspectMode;
 import com.microblink.view.CameraEventsListener;
-import com.microblink.view.NonLandscapeOrientationNotSupportedException;
+import com.microblink.view.exception.NonLandscapeOrientationNotSupportedException;
 import com.microblink.view.recognition.RecognizerRunnerView;
 import com.microblink.view.recognition.ScanResultListener;
 

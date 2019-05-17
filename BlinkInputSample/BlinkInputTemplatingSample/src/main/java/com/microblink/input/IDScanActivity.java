@@ -31,9 +31,9 @@ import com.microblink.recognition.RecognitionSuccessType;
 import com.microblink.util.CameraPermissionManager;
 import com.microblink.util.Log;
 import com.microblink.view.CameraEventsListener;
-import com.microblink.view.NonLandscapeOrientationNotSupportedException;
 import com.microblink.view.OnSizeChangedListener;
 import com.microblink.view.OrientationAllowedListener;
+import com.microblink.view.exception.NonLandscapeOrientationNotSupportedException;
 import com.microblink.view.ocrResult.OcrResultDotsView;
 import com.microblink.view.recognition.RecognizerRunnerView;
 import com.microblink.view.recognition.ScanResultListener;
@@ -317,7 +317,7 @@ public class IDScanActivity extends Activity {
     private void enableTorchButtonIfPossible() {
         if (mRecognizerRunnerView.isCameraTorchSupported() && mTorchButton != null) {
             mTorchButton.setVisibility(View.VISIBLE);
-            mTorchButton.setImageResource(R.drawable.flashlight_blink_ocr);
+            mTorchButton.setImageResource(R.drawable.mb_ic_flash_off_24dp);
             mTorchEnabled = false;
             mTorchButton.setOnClickListener(new View.OnClickListener() {
 
@@ -333,10 +333,11 @@ public class IDScanActivity extends Activity {
                                     if (success) {
                                         mTorchEnabled = !mTorchEnabled;
                                         if (mTorchEnabled) {
-                                            mTorchButton.setImageResource(R.drawable.flashlight_inverse_blink_ocr);
+                                            mTorchButton.setImageResource(R.drawable.mb_ic_flash_on_24dp);
                                         } else {
-                                            mTorchButton.setImageResource(R.drawable.flashlight_blink_ocr);
+                                            mTorchButton.setImageResource(R.drawable.mb_ic_flash_off_24dp);
                                         }
+                                        mTorchButton.requestLayout();
                                     }
                                 }
                             });
