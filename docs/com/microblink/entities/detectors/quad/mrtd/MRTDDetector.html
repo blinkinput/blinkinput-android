@@ -245,9 +245,9 @@ extends <a href="../../../../../../com/microblink/entities/detectors/quad/QuadWi
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/microblink/entities/detectors/quad/mrtd/MRTDDetector.html#deserializeNativeSettings-byte:A-">deserializeNativeSettings</a></span>(byte[]&nbsp;serializedSettings)</code>&nbsp;</td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code><a href="../../../../../../com/microblink/entities/detectors/quad/mrtd/MRTDSpecification.html" title="class in com.microblink.entities.detectors.quad.mrtd">MRTDSpecification</a>[]</code></td>
+<td class="colFirst"><code><a href="../../../../../../com/microblink/entities/detectors/quad/mrtd/MrtdSpecification.html" title="class in com.microblink.entities.detectors.quad.mrtd">MrtdSpecification</a>[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/microblink/entities/detectors/quad/mrtd/MRTDDetector.html#getSpecifications--">getSpecifications</a></span>()</code>
-<div class="block">Returns the array of <a href="../../../../../../com/microblink/entities/detectors/quad/mrtd/MRTDSpecification.html" title="class in com.microblink.entities.detectors.quad.mrtd"><code>MRTDSpecification</code></a> objects that will define which MRTD documents
+<div class="block">Returns the array of <a href="../../../../../../com/microblink/entities/detectors/quad/mrtd/MrtdSpecification.html" title="class in com.microblink.entities.detectors.quad.mrtd"><code>MrtdSpecification</code></a> objects that will define which MRTD documents
  should be detectable.</div>
 </td>
 </tr>
@@ -275,8 +275,8 @@ extends <a href="../../../../../../com/microblink/entities/detectors/quad/QuadWi
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/microblink/entities/detectors/quad/mrtd/MRTDDetector.html#setSpecifications-com.microblink.entities.detectors.quad.mrtd.MRTDSpecification:A-">setSpecifications</a></span>(<a href="../../../../../../com/microblink/entities/detectors/quad/mrtd/MRTDSpecification.html" title="class in com.microblink.entities.detectors.quad.mrtd">MRTDSpecification</a>[]&nbsp;specifications)</code>
-<div class="block">Sets one or more <a href="../../../../../../com/microblink/entities/detectors/quad/mrtd/MRTDSpecification.html" title="class in com.microblink.entities.detectors.quad.mrtd"><code>MRTDSpecification</code></a> objects that will define which MRTD documents
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/microblink/entities/detectors/quad/mrtd/MRTDDetector.html#setSpecifications-com.microblink.entities.detectors.quad.mrtd.MrtdSpecification:A-">setSpecifications</a></span>(<a href="../../../../../../com/microblink/entities/detectors/quad/mrtd/MrtdSpecification.html" title="class in com.microblink.entities.detectors.quad.mrtd">MrtdSpecification</a>[]&nbsp;specifications)</code>
+<div class="block">Sets one or more <a href="../../../../../../com/microblink/entities/detectors/quad/mrtd/MrtdSpecification.html" title="class in com.microblink.entities.detectors.quad.mrtd"><code>MrtdSpecification</code></a> objects that will define which MRTD documents
  should be detectable.</div>
 </td>
 </tr>
@@ -362,7 +362,8 @@ extends <a href="../../../../../../com/microblink/entities/detectors/quad/QuadWi
 <pre>public&nbsp;void&nbsp;setDetectFullDocument(boolean&nbsp;detectFullDocument)</pre>
 <div class="block">Defines whether full document will be detected. If set to false, result will contain
  location of Machine Readable Zone only. If set to true, result will contain location
- of entire document.</div>
+ of entire document.
+ By default, this is set to 'true'</div>
 </li>
 </ul>
 <a name="isDetectFullDocument--">
@@ -374,7 +375,8 @@ extends <a href="../../../../../../com/microblink/entities/detectors/quad/QuadWi
 <pre>public&nbsp;boolean&nbsp;isDetectFullDocument()</pre>
 <div class="block">Defines whether full document will be detected. If set to false, result will contain
  location of Machine Readable Zone only. If set to true, result will contain location
- of entire document.</div>
+ of entire document.
+ By default, this is set to 'true'</div>
 </li>
 </ul>
 <a name="setUseCardDetector-boolean-">
@@ -388,7 +390,8 @@ extends <a href="../../../../../../com/microblink/entities/detectors/quad/QuadWi
  MRTD detector has found the document, it will internally use <a href="../../../../../../com/microblink/entities/detectors/quad/document/DocumentDetector.html" title="class in com.microblink.entities.detectors.quad.document"><code>DocumentDetector</code></a>
  to additionally correct document location estimated from detected MRZ location.
  Note that although enabling this option will usually improve detection accuracy, it may
- be possible that for some use cases accuracy will be lower.</div>
+ be possible that for some use cases accuracy will be lower.
+ By default, this is set to 'false'</div>
 </li>
 </ul>
 <a name="isUseCardDetector--">
@@ -402,18 +405,19 @@ extends <a href="../../../../../../com/microblink/entities/detectors/quad/QuadWi
  MRTD detector has found the document, it will internally use <a href="../../../../../../com/microblink/entities/detectors/quad/document/DocumentDetector.html" title="class in com.microblink.entities.detectors.quad.document"><code>DocumentDetector</code></a>
  to additionally correct document location estimated from detected MRZ location.
  Note that although enabling this option will usually improve detection accuracy, it may
- be possible that for some use cases accuracy will be lower.</div>
+ be possible that for some use cases accuracy will be lower.
+ By default, this is set to 'false'</div>
 </li>
 </ul>
-<a name="setSpecifications-com.microblink.entities.detectors.quad.mrtd.MRTDSpecification:A-">
+<a name="setSpecifications-com.microblink.entities.detectors.quad.mrtd.MrtdSpecification:A-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setSpecifications</h4>
 <pre>public&nbsp;void&nbsp;setSpecifications(@Nullable
-                              <a href="../../../../../../com/microblink/entities/detectors/quad/mrtd/MRTDSpecification.html" title="class in com.microblink.entities.detectors.quad.mrtd">MRTDSpecification</a>[]&nbsp;specifications)</pre>
-<div class="block">Sets one or more <a href="../../../../../../com/microblink/entities/detectors/quad/mrtd/MRTDSpecification.html" title="class in com.microblink.entities.detectors.quad.mrtd"><code>MRTDSpecification</code></a> objects that will define which MRTD documents
+                              <a href="../../../../../../com/microblink/entities/detectors/quad/mrtd/MrtdSpecification.html" title="class in com.microblink.entities.detectors.quad.mrtd">MrtdSpecification</a>[]&nbsp;specifications)</pre>
+<div class="block">Sets one or more <a href="../../../../../../com/microblink/entities/detectors/quad/mrtd/MrtdSpecification.html" title="class in com.microblink.entities.detectors.quad.mrtd"><code>MrtdSpecification</code></a> objects that will define which MRTD documents
  should be detectable. Setting null or empty array will enable all possible specifications.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -428,12 +432,12 @@ extends <a href="../../../../../../com/microblink/entities/detectors/quad/QuadWi
 <li class="blockList">
 <h4>getSpecifications</h4>
 <pre>@NonNull
-public&nbsp;<a href="../../../../../../com/microblink/entities/detectors/quad/mrtd/MRTDSpecification.html" title="class in com.microblink.entities.detectors.quad.mrtd">MRTDSpecification</a>[]&nbsp;getSpecifications()</pre>
-<div class="block">Returns the array of <a href="../../../../../../com/microblink/entities/detectors/quad/mrtd/MRTDSpecification.html" title="class in com.microblink.entities.detectors.quad.mrtd"><code>MRTDSpecification</code></a> objects that will define which MRTD documents
+public&nbsp;<a href="../../../../../../com/microblink/entities/detectors/quad/mrtd/MrtdSpecification.html" title="class in com.microblink.entities.detectors.quad.mrtd">MrtdSpecification</a>[]&nbsp;getSpecifications()</pre>
+<div class="block">Returns the array of <a href="../../../../../../com/microblink/entities/detectors/quad/mrtd/MrtdSpecification.html" title="class in com.microblink.entities.detectors.quad.mrtd"><code>MrtdSpecification</code></a> objects that will define which MRTD documents
  should be detectable.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the array of <a href="../../../../../../com/microblink/entities/detectors/quad/mrtd/MRTDSpecification.html" title="class in com.microblink.entities.detectors.quad.mrtd"><code>MRTDSpecification</code></a> objects that will define which MRTD documents
+<dd>the array of <a href="../../../../../../com/microblink/entities/detectors/quad/mrtd/MrtdSpecification.html" title="class in com.microblink.entities.detectors.quad.mrtd"><code>MrtdSpecification</code></a> objects that will define which MRTD documents
  should be detectable.</dd>
 </dl>
 </li>

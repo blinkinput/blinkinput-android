@@ -29,22 +29,24 @@ See below for more information about how to integrate _BlinkInput_ SDK into your
         * [Translation and localization](#translation)
     * [Embedding `RecognizerRunnerView` into custom scan activity](#recognizerRunnerView)
         * [Scan activity's orientation](#scanOrientation)
-    * [Using Direct API for recognition of Android Bitmaps and custom camera frames](#directAPI)
+    * [Direct API](#directAPI)
+        * [Using Direct API for recognition of Android Bitmaps and custom camera frames](#directAPI_images)
+        * [Using Direct API for `String` recognition (parsing)](#directAPI_strings)
         * [Understanding DirectAPI's state machine](#directAPIStateMachine)
         * [Using DirectAPI while RecognizerRunnerView is active](#directAPIWithRecognizer)
     * [Handling processing events with `RecognizerRunner` and `RecognizerRunnerView`](#processingEvents)
         * [Note about the `setMetadataCallbacks` method](#processingEventsImportantNote)
-* [`RecognizerBundle` and available recognizers](#availableRecognizers)
+* [`Recognizer` concept and `RecognizerBundle`](#availableRecognizers)
     * [The `Recognizer` concept](#recognizerConcept)
     * [`RecognizerBundle`](#recognizerBundle)
         * [Passing `Recognizer` objects between activities](#intentOptimization)
-    * [List of available recognizers](#recognizerList)
-        * [Frame Grabber Recognizer](#frameGrabberRecognizer)
-        * [Success Frame Grabber Recognizer](#successFrameGrabberRecognizer)
-        * [PDF417 recognizer](#pdf417Recognizer)
-        * [Barcode recognizer](#barcodeRecognizer)
-        * [BlinkInput recognizer](#blinkInputRecognizer)
-        * [Detector recognizer](#detectorRecognizer)
+* [List of available recognizers](#recognizerList)
+    * [Frame Grabber Recognizer](#frameGrabberRecognizer)
+    * [Success Frame Grabber Recognizer](#successFrameGrabberRecognizer)
+    * [PDF417 recognizer](#pdf417Recognizer)
+    * [Barcode recognizer](#barcodeRecognizer)
+    * [BlinkInput recognizer](#blinkInputRecognizer)
+    * [Detector recognizer](#detectorRecognizer)
 * [`Field by field` scanning feature](#fieldByFieldFeature)
 * [`Processor` and `Parser`](#processorsAndParsers)
     * [The `Processor` concept](#processorConcept)
@@ -77,7 +79,6 @@ See below for more information about how to integrate _BlinkInput_ SDK into your
 * [Embedding _BlinkInput_ inside another SDK](#embedAAR)
     * [_BlinkInput_ licensing model](#licensingModel)
         * [Application licenses](#appLicence)
-        * [Library licenses](#libLicence)
     * [Ensuring the final app gets all resources required by _BlinkInput_](#sdkIntegrationIntoApp)
 * [Processor architecture considerations](#archConsider)
     * [Reducing the final size of your app](#reduceSize)
@@ -113,7 +114,7 @@ Besides AAR, the package also contains a sample project that contains following 
 - _BlinkInputTemplatingSample_ shows how to use Templating API to implement support for scanning generic documents
 - _BlinkInputRawOcrSample_ shows how to perform full camera frame generic OCR, by using legacy OCR engine or Deep OCR engine (uses neural networks)
  
-The source code of all demo apps is given to you to show you how to perform integration of _BlinkInput_ SDK into your app. You can use this source code and all resources as you wish. You can use demo apps as a basis for creating your own app, or you can copy/paste the code and/or resources from demo apps into your app and use them as you wish without even asking us for permission.
+The source code of all sample apps is given to you to show you how to perform integration of _BlinkInput_ SDK into your app. You can use this source code and all resources as you wish. You can use demo apps as a basis for creating your own app, or you can copy/paste the code and/or resources from demo apps into your app and use them as you wish without even asking us for permission.
 
 _BlinkInput_ is supported on Android SDK version 16 (Android 4.1) or later.
 
@@ -132,13 +133,14 @@ For advanced use cases, you will need to embed `RecognizerRunnerView` into your 
 
 ## <a name="androidStudioIntegration"></a> Android Studio integration
 
+
 ### Using Maven repository
 
 In your `build.gradle` you first need to add _BlinkInput_ maven repository to repositories list:
 
 ```
 repositories {
-	maven { url 'http://maven.microblink.com' }
+    maven { url 'https://maven.microblink.com' }
 }
 ```
 
@@ -146,8 +148,8 @@ After that, you just need to add _BlinkInput_ as a dependency to your applicatio
 
 ```
 dependencies {
-    implementation('com.microblink:blinkinput:4.0.0@aar') {
-    	transitive = true
+    implementation('com.microblink:blinkinput:4.1.0@aar') {
+        transitive = true
     }
 }
 ```
@@ -158,12 +160,13 @@ Android studio 3.0 should automatically import javadoc from maven dependency. If
 
 1. In Android Studio project sidebar, ensure [project view is enabled](https://developer.android.com/sdk/installing/studio-androidview.html)
 2. Expand `External Libraries` entry (usually this is the last entry in project view)
-3. Locate `blinkinput-4.0.0` entry, right click on it and select `Library Properties...`
+3. Locate `blinkinput-4.1.0` entry, right click on it and select `Library Properties...`
 4. A `Library Properties` pop-up window will appear
 5. Click the second `+` button in bottom left corner of the window (the one that contains `+` with little globe)
-6. Window for definining documentation URL will appear
+6. Window for defining documentation URL will appear
 7. Enter following address: `https://blinkinput.github.io/blinkinput-android/`
 8. Click `OK`
+
 
 ### Using AAR
 
@@ -175,7 +178,7 @@ Android studio 3.0 should automatically import javadoc from maven dependency. If
     ```
     dependencies {
         implementation project(':LibBlinkInput')
-        implementation "com.android.support:appcompat-v7:27.1.1"
+        implementation "com.android.support:appcompat-v7:28.0.0"
     }
     ```
     
@@ -219,19 +222,19 @@ Open your `pom.xml` file and add these directives as appropriate:
 
 ```xml
 <repositories>
-   	<repository>
-       	<id>MicroblinkRepo</id>
-       	<url>http://maven.microblink.com</url>
+    <repository>
+        <id>MicroblinkRepo</id>
+        <url>https://maven.microblink.com</url>
    	</repository>
 </repositories>
 
 <dependencies>
-	<dependency>
-		  <groupId>com.microblink</groupId>
-		  <artifactId>blinkinput</artifactId>
-		  <version>4.0.0</version>
-		  <type>aar</type>
-  	</dependency>
+    <dependency>
+        <groupId>com.microblink</groupId>
+        <artifactId>blinkinput</artifactId>
+        <version>4.1.0</version>
+        <type>aar</type>
+    </dependency>
 </dependencies>
 ```
 ## <a name="quickScan"></a> Performing your first `field by field` scan
@@ -340,7 +343,7 @@ This section covers more advanced details of _BlinkInput_ integration.
 
 1. [First part](#supportCheck) will discuss the methods for checking whether _BlinkInput_ is supported on current device. 
 2. [Second part](#uiCustomizations) will cover the possible customizations when using UI provided by the SDK.
-3. [Third part](#recognizerRunnerView) will describe how to embed `RecognizerRunnerView` into your activity with the goal of creating a custom UI for scanning, while still using camera management capabilites of the SDK.
+3. [Third part](#recognizerRunnerView) will describe how to embed `RecognizerRunnerView` into your activity with the goal of creating a custom UI for scanning, while still using camera management capabilities of the SDK.
 4. [Fourth part](#directAPI) will describe how to use the `RecognizerRunner` singleton (Direct API) for recognition directly from android bitmaps without the need of camera or to recognize camera frames that are obtained by custom camera management.
 5. [Fifth part](#processingEvents) will describe how to subscribe to and handle processing events when using either `RecognizerRunnerView` or `RecognizerRunner`.
 
@@ -481,7 +484,9 @@ Within _BlinkInput_ SDK there are several built-in activities and scanning overl
 [`FieldByFieldScanActivity`](https://blinkinput.github.io/blinkinput-android/com/microblink/activity/FieldByFieldScanActivity.html) is the activity containing `RecognizerRunnerFragment` with [`FieldByFieldOverlayController`](https://blinkinput.github.io/blinkinput-android/com/microblink/fragment/overlay/FieldByFieldOverlayController.html), which can be used out of the box to simply perform the scanning using the default UI.
 #### `BarcodeScanActivity` and `BarcodeOverlayController`
 
-[`BarcodeOverlayController`](https://blinkinput.github.io/blinkinput-android/com/microblink/fragment/overlay/BarcodeOverlayController.html) is overlay for [`RecognizerRunnerFragment`](https://blinkinput.github.io/blinkinput-android/com/microblink/fragment/RecognizerRunnerFragment.html) best suited for performing scanning of various barcodes. [`BarcodeScanActivity`](https://blinkinput.github.io/blinkinput-android/com/microblink/activity/BarcodeScanActivity.html) contains `RecognizerRunnerFragment` with [`BarcodeOverlayController`](https://blinkinput.github.io/blinkinput-android/com/microblink/fragment/overlay/BarcodeOverlayController.html), which can be used out of the box to perform scanning using the default UI.
+[`BarcodeOverlayController`](https://blinkinput.github.io/blinkinput-android/com/microblink/fragment/overlay/BarcodeOverlayController.html) is overlay for [`RecognizerRunnerFragment`](https://blinkinput.github.io/blinkinput-android/com/microblink/fragment/RecognizerRunnerFragment.html) best suited for performing scanning of various barcodes.
+
+[`BarcodeScanActivity`](https://blinkinput.github.io/blinkinput-android/com/microblink/activity/BarcodeScanActivity.html) contains `RecognizerRunnerFragment` with [`BarcodeOverlayController`](https://blinkinput.github.io/blinkinput-android/com/microblink/fragment/overlay/BarcodeOverlayController.html), which can be used out of the box to perform scanning using the default UI.
 ### <a name="changeBuiltInUIComponents"></a> Changing the appearance of built-in activities and scanning overlays
 
 Built-in activities and overlays use resources from the `res` folder within `LibBlinkInput.aar` to display its contents. If you need a fully customised UI, we recommend creating completely custom scanning procedure (either activity or fragment), as described [here](#recognizerRunnerView). However, if you just want to slightly change the appearance of built-in activity or overlay, you can do that by overriding appropriate resource values, however this is **strictly not recommended**, as it can have unknown effects on the appearance of the UI component. If you think that some part of our built-in UI component should be configurable in a way that it currently is not, please [let us know](https://help.microblink.com) and we will consider adding that configurability into appropriate settings object.
@@ -722,9 +727,11 @@ If activity's `screenOrientation` property in `AndroidManifest.xml` is set to `s
 For that matter, we recommend setting your scan activity to either `portrait` or `landscape` mode and handle device orientation changes manually. To help you with this, `RecognizerRunnerView` supports adding child views to it that will be rotated regardless of activity's `screenOrientation`. You add a view you wish to be rotated (such as view that contains buttons, status messages, etc.) to `RecognizerRunnerView` with [addChildView](#{javadocUrl}(com/microblink/view/CameraViewGroup.html#addChildView-android.view.View-boolean-)) method. The second parameter of the method is a boolean that defines whether the view you are adding will be rotated with device. To define allowed orientations, implement [OrientationAllowedListener](https://blinkinput.github.io/blinkinput-android/com/microblink/view/OrientationAllowedListener.html) interface and add it to `RecognizerRunnerView` with method `setOrientationAllowedListener`. **This is the recommended way of rotating camera overlay.**
 
 However, if you really want to set `screenOrientation` property to `sensor` or similar and want Android to handle orientation changes of your scan activity, then we recommend to set `configChanges` property of your activity to `orientation|screenSize`. This will tell Android not to restart your activity when device orientation changes. Instead, activity's `onConfigurationChanged` method will be called so that activity can be notified of the configuration change. In your implementation of this method, you should call `changeConfiguration` method of `RecognizerView` so it can adapt its camera surface and child views to new configuration.
-## <a name="directAPI"></a> Using Direct API for recognition of Android Bitmaps and custom camera frames
+## <a name="directAPI"></a> Direct API
 
-This section will describe how to use direct API to recognize android Bitmaps without the need for camera. You can use direct API anywhere from your application, not just from activities.
+This section will describe how to use direct API to recognize android Bitmaps and java `Strings` without the need for camera. You can use direct API anywhere from your application, not just from activities.
+
+### <a name="directAPI_images"></a> Using Direct API for recognition of Android Bitmaps and custom camera frames
 
 1. First, you need to obtain reference to [RecognizerRunner singleton](https://blinkinput.github.io/blinkinput-android/com/microblink/directApi/RecognizerRunner.html) using [getSingletonInstance](https://blinkinput.github.io/blinkinput-android/com/microblink/directApi/RecognizerRunner.html#getSingletonInstance--).
 2. Second, you need to [initialize the recognizer runner](https://blinkinput.github.io/blinkinput-android/com/microblink/directApi/RecognizerRunner.html#initialize-android.content.Context-com.microblink.entities.recognizers.RecognizerBundle-com.microblink.directApi.DirectApiErrorListener-).
@@ -799,6 +806,18 @@ public class DirectAPIActivity extends Activity {
 }
 ```
 
+### <a name="directAPI_strings"></a> Using Direct API for `String` recognition (parsing)
+
+Some recognizers support recognition from `String`. They can be used through Direct API to parse given `String` and return data just like when they are used on an input image. When recognition is performed on `String`, there is no need for the OCR. Input `String` is used in the same way as the OCR output is used when image is being recognized. 
+
+Recognition from `String` can be performed in the same way as recognition from image, described in the [previous section](#directAPI_images). 
+
+The only difference is that one of the [RecognizerRunner singleton](https://blinkinput.github.io/blinkinput-android/com/microblink/directApi/RecognizerRunner.html) methods for recognition from string should be called:
+
+- [recognizeString](https://blinkinput.github.io/blinkinput-android/com/microblink/directApi/RecognizerRunner.html#recognizeString-java.lang.String-com.microblink.view.recognition.ScanResultListener-)
+- [recognizeStringWithRecognizers](https://blinkinput.github.io/blinkinput-android/com/microblink/directApi/RecognizerRunner.html#recognizeStringWithRecognizers-java.lang.String-com.microblink.view.recognition.ScanResultListener-com.microblink.entities.recognizers.RecognizerBundle-)
+
+
 ### <a name="directAPIStateMachine"></a> Understanding DirectAPI's state machine
 
 DirectAPI's `RecognizerRunner` singleton is actually a state machine which can be in one of 3 states: `OFFLINE`, `READY` and `WORKING`. 
@@ -809,13 +828,14 @@ DirectAPI's `RecognizerRunner` singleton is actually a state machine which can b
 - When starting recognition with any of the `recognize*` methods, `RecognizerRunner` will move to `WORKING` state. If you attempt to call these methods while `RecognizerRunner` is not in `READY` state, you will get `IllegalStateException`
 - Recognition is performed on background thread so it is safe to call all `RecognizerRunner's` methods from UI thread
 - When recognition is finished, `RecognizerRunner` first moves back to `READY` state and then calls the [onScanningDone](https://blinkinput.github.io/blinkinput-android/com/microblink/view/recognition/ScanResultListener.html#onScanningDone-RecognitionSuccessType-) method of the provided [`ScanResultListener`](https://blinkinput.github.io/blinkinput-android/com/microblink/view/recognition/ScanResultListener.html). 
-- Please note that `ScanResultListener`'s [`onScanningDone`](https://blinkinput.github.io/blinkinput-android/com/microblink/view/recognition/ScanResultListener.html#onScanningDone-RecognitionSuccessType-) method will be called on background processing thread, so make sure you do not perform UI operations in this calback. Also note that until the `onScanningDone` method completes, `RecognizerRunner` will not perform recognition of another image, even if any of the `recognize*` methods have been called just after transitioning to `READY` state. This is to ensure that results of the recognizers bundled within `RecognizerBundle` associated with `RecognizerRunner` are not modified while possibly being used within `onScanningDone` method.
+- Please note that `ScanResultListener`'s [`onScanningDone`](https://blinkinput.github.io/blinkinput-android/com/microblink/view/recognition/ScanResultListener.html#onScanningDone-RecognitionSuccessType-) method will be called on background processing thread, so make sure you do not perform UI operations in this callback. Also note that until the `onScanningDone` method completes, `RecognizerRunner` will not perform recognition of another image or string, even if any of the `recognize*` methods have been called just after transitioning to `READY` state. This is to ensure that results of the recognizers bundled within `RecognizerBundle` associated with `RecognizerRunner` are not modified while possibly being used within `onScanningDone` method.
 - By calling [`terminate`](https://blinkinput.github.io/blinkinput-android/com/microblink/directApi/RecognizerRunner.html#terminate--) method, `RecognizerRunner` singleton will release all its internal resources. Note that even after calling `terminate` you might receive `onScanningDone` event if there was work in progress when `terminate` was called.
 - `terminate` method can be called from any `RecognizerRunner` singleton's state
 - You can observe `RecognizerRunner` singleton's state with method [`getCurrentState`](https://blinkinput.github.io/blinkinput-android/com/microblink/directApi/RecognizerRunner.html#getCurrentState--)
 
 ### <a name="directAPIWithRecognizer"></a> Using DirectAPI while RecognizerRunnerView is active
 Both [RecognizerRunnerView](#recognizerRunnerView) and `RecognizerRunner` use the same internal singleton that manages native code. This singleton handles initialization and termination of native library and propagating recognizers to native library. It is possible to use `RecognizerRunnerView` and `RecognizerRunner` together, as internal singleton will make sure correct synchronization and correct recognition settings are used. If you run into problems while using `RecognizerRunner` in combination with `RecognizerRunnerView`, [let us know](http://help.microblink.com)!
+
 
 ## <a name="processingEvents"></a> Handling processing events with `RecognizerRunner` and `RecognizerRunnerView`
 
@@ -836,11 +856,13 @@ Similarly, if you, for example, remove the `QuadDetectionCallback` from `Metadat
 
 **Remember**, each time you make some changes to `MetadataCallbacks` object, you need to apply those changes to to your `RecognizerRunner` or `RecognizerRunnerView` by calling its `setMetadataCallbacks` method.
 
-# <a name="availableRecognizers"></a> `RecognizerBundle` and available recognizers
+# <a name="availableRecognizers"></a> `Recognizer` concept and `RecognizerBundle`
+
+This section will first describe [what is a `Recognizer`](#recognizerConcept) and how it should be used to perform recognition of the images, videos and camera stream. Next, [we will describe how `RecognizerBundle`](#recognizerBundle) can be used to tweak the recognition procedure and to transfer `Recognizer` objects between activities.
 
 [RecognizerBundle](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/recognizers/RecognizerBundle.html) is an object which wraps the [Recognizers](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/recognizers/Recognizer.html) and defines settings about how recognition should be performed. Besides that, `RecognizerBundle` makes it possible to transfer `Recognizer` objects between different activities, which is required when using built-in activities to perform scanning, as described in [first scan section](#quickScan), but is also handy when you need to pass `Recognizer` objects between your activities.
 
-This section will first describe [what is a `Recognizer`](#recognizerConcept) and how it should be used to perform recognition of the images, videos and camera stream. Next, [we will describe how `RecognizerBundle`](#recognizerBundle) can be used to tweak the recognition procedure and to transfer `Recognizer` objects between activities. Finally, we will give a [list of all available `Recognizer` objects](#recognizerList) and give a brief description of each `Recognizer`, its purpose and recommendations how it should be used to get best performance and user experience.
+List of all available `Recognizer` objects, with a brief description of each `Recognizer`, its purpose and recommendations how it should be used to get best performance and user experience, can be found [here](#recognizerList) .
 
 ## <a name="recognizerConcept"></a> The `Recognizer` concept
 
@@ -865,11 +887,11 @@ The `RecognizerBundle` is always [constructed with array](https://blinkinput.git
 
 The `RecognizerBundle` manages a chain of `Recognizer` objects within the recognition process. When a new image arrives, it is processed by the first `Recognizer` in chain, then by the second and so on, iterating until a `Recognizer` object's `Result` changes its state to `Valid` or all of the `Recognizer` objects in chain were invoked (none getting a `Valid` result state). If you want to invoke all `Recognizers` in the chain, regardless of whether some `Recognizer` object's `Result` in chain has changed its state to `Valid` or not, you can [allow returning of multiple results on a single image](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/recognizers/RecognizerBundle.html#setAllowMultipleScanResultsOnSingleImage-boolean-).
 
-You cannot change the order of the `Recognizer` objects within the chain - no matter the order in which you give `Recognizer` objects to `RecognizerBundle`, they are internally ordered in a way that provides best possible performance and accuracy. Also, in order for _BlinkInput_ SDK to be able to order `Recognizer` objects in recognition chain in a best way possible, it is not allowed to have multiple instances of `Recognizer` objects of the same type within the chain. Attempting to do so will crash your application.
+You cannot change the order of the `Recognizer` objects within the chain - no matter the order in which you give `Recognizer` objects to `RecognizerBundle`, they are internally ordered in a way that provides best possible performance and accuracy. Also, in order for _BlinkInput_ SDK to be able to order `Recognizer` objects in recognition chain in the best way possible, it is not allowed to have multiple instances of `Recognizer` objects of the same type within the chain. Attempting to do so will crash your application.
 
 ### <a name="intentOptimization"></a> Passing `Recognizer` objects between activities
 
-Besides managing the chain of `Recognizer` objects, `RecognizerBundle` also manages transferring bundled `Recognizer` objects between different activities within your app. Although each `Recognizer` object, and each its `Result` object implements [Parcelable interface](https://developer.android.com/reference/android/os/Parcelable.html), it is not so straight forward to put those objects into [Intent](https://developer.android.com/reference/android/content/Intent.html) and pass them around between your activities and services for two main reasons:
+Besides managing the chain of `Recognizer` objects, `RecognizerBundle` also manages transferring bundled `Recognizer` objects between different activities within your app. Although each `Recognizer` object, and each its `Result` object implements [Parcelable interface](https://developer.android.com/reference/android/os/Parcelable.html), it is not so straightforward to put those objects into [Intent](https://developer.android.com/reference/android/content/Intent.html) and pass them around between your activities and services for two main reasons:
 
 - `Result` object is tied to its `Recognizer` object, which manages lifetime of the native `Result` object.
 - `Result` object often contains large data blocks, such as images, which cannot be transferred via `Intent` because of [Android's Intent transaction data limit](https://developer.android.com/reference/android/os/TransactionTooLargeException.html).
@@ -883,11 +905,11 @@ Although the first problem can be easily worked around by making a [copy](https:
     - If your app gets restarted multiple times, only after first restart will reading succeed and will delete the file after reading. If multiple restarts take place, you must implement [`onSaveInstanceState`](https://developer.android.com/reference/android/app/Activity.html#onSaveInstanceState(android.os.Bundle)) and save bundle back to file by calling its [`saveState`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/recognizers/RecognizerBundle.html#saveState--) method. Also, after saving state, you should ensure that you [clear saved state](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/recognizers/RecognizerBundle.html#clearSavedState--) in your [`onResume`](https://developer.android.com/reference/android/app/Activity.html#onResume()), as [`onCreate`](https://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle)) may not be called if activity is not restarted, while `onSaveInstanceState` may be called as soon as your activity goes to background (before `onStop`), even though activity may not be killed at later time. 
     - If saving data to file in private storage is a concern to you, you should use either `OPTIMISED` mode to transfer large data and image between activities or create your own mechanism for data transfer. Note that your application's private folder is only accessible by your application and your application alone, unless the end-user's device is rooted.
 
-## <a name="recognizerList"></a> List of available recognizers
+# <a name="recognizerList"></a> List of available recognizers
 
 This section will give a list of all `Recognizer` objects that are available within _BlinkInput_ SDK, their purpose and recommendations how they should be used to get best performance and user experience.
 
-### <a name="frameGrabberRecognizer"></a> Frame Grabber Recognizer
+## <a name="frameGrabberRecognizer"></a> Frame Grabber Recognizer
 
 The [`FrameGrabberRecognizer`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/recognizers/framegrabber/FrameGrabberRecognizer.html) is the simplest recognizer in _BlinkInput_ SDK, as it does not perform any processing on the given image, instead it just returns that image back to its [`FrameCallback`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/recognizers/framegrabber/FrameCallback.html). Its [Result](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/recognizers/framegrabber/FrameGrabberRecognizer.Result.html) never changes state from [Empty](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/recognizers/Recognizer.Result.State.html#Empty).
 
@@ -897,28 +919,28 @@ Also note that [`FrameCallback`](https://blinkinput.github.io/blinkinput-android
 
 This is especially important if you plan to transfer `FrameGrabberRecognizer` between activities - in that case, keep in mind that the instance of your object may not be the same as the instance on which `onFrameAvailable` method gets called - the instance that receives `onFrameAvailable` calls is the one that is created within activity that is performing the scan.
 
-### <a name="successFrameGrabberRecognizer"></a> Success Frame Grabber Recognizer
+## <a name="successFrameGrabberRecognizer"></a> Success Frame Grabber Recognizer
 
 The [`SuccessFrameGrabberRecognizer`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/recognizers/successframe/SuccessFrameGrabberRecognizer.html) is a special `Recognizer` that wraps some other `Recognizer` and impersonates it while processing the image. However, when the `Recognizer` being impersonated changes its `Result` into `Valid` state, the `SuccessFrameGrabberRecognizer` captures the image and saves it into its own `Result` object.
 
 Since `SuccessFrameGrabberRecognizer` impersonates its slave `Recognizer` object, it is not possible to give both concrete `Recognizer` object and `SuccessFrameGrabberRecognizer` that wraps it to same `RecognizerBundle` - doing so will have the same result as if you have given two instances of same `Recognizer` type to the `RecognizerBundle` - it will crash your application.
 
-This recognizer is best for use cases when you need to capture the exact image that was being processed by some other `Recognizer` object at the time its `Result` became `Valid`. When that happens, `SuccessFrameGrabber's` [`Result`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/recognizers/successframe/SuccessFrameGrabberRecognizer.Result.html) will also become `Valid` and will contain described image. That image can then be retreived with [`getSuccessFrame()`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/recognizers/successframe/SuccessFrameGrabberRecognizer.Result.html#getSuccessFrame--) method.
+This recognizer is best for use cases when you need to capture the exact image that was being processed by some other `Recognizer` object at the time its `Result` became `Valid`. When that happens, `SuccessFrameGrabber's` [`Result`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/recognizers/successframe/SuccessFrameGrabberRecognizer.Result.html) will also become `Valid` and will contain described image. That image can then be retrieved with [`getSuccessFrame()`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/recognizers/successframe/SuccessFrameGrabberRecognizer.Result.html#getSuccessFrame--) method.
 
-### <a name="pdf417Recognizer"></a> PDF417 recognizer
+## <a name="pdf417Recognizer"></a> PDF417 recognizer
 
 The [`Pdf417Recognizer`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/recognizers/blinkbarcode/pdf417/Pdf417Recognizer.html) is recognizer specialised for scanning [PDF417 2D barcodes](https://en.wikipedia.org/wiki/PDF417). This recognizer can recognize only PDF417 2D barcodes - for recognition of other barcodes, please refer to [BarcodeRecognizer](#barcodeRecognizer).
 
 This recognizer can be used in any context, but it works best with the [`BarcodeScanActivity`](https://blinkinput.github.io/blinkinput-android/com/microblink/activity/BarcodeScanActivity.html), which has UI best suited for barcode scanning.
 
-### <a name="barcodeRecognizer"></a> Barcode recognizer
+## <a name="barcodeRecognizer"></a> Barcode recognizer
 
 The [`BarcodeRecognizer`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/recognizers/blinkbarcode/barcode/BarcodeRecognizer.html) is recognizer specialised for scanning various types of barcodes. This recognizer should be your first choice when scanning barcodes as it supports lots of barcode symbologies, including the [PDF417 2D barcodes](https://en.wikipedia.org/wiki/PDF417), thus making [PDF417 recognizer](#pdf417Recognizer) possibly redundant, which was kept only for its simplicity.
 
 As you can see from [javadoc](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/recognizers/blinkbarcode/barcode/BarcodeRecognizer.html), you can enable multiple barcode symbologies within this recognizer, however keep in mind that enabling more barcode symbologies affects scanning performance - the more barcode symbologies are enabled, the slower the overall recognition performance. Also, keep in mind that some simple barcode symbologies that lack proper redundancy, such as [Code 39](https://en.wikipedia.org/wiki/Code_39), can be recognized within more complex barcodes, especially 2D barcodes, like [PDF417](https://en.wikipedia.org/wiki/PDF417).
 
 This recognizer can be used in any context, but it works best with the [`BarcodeScanActivity`](https://blinkinput.github.io/blinkinput-android/com/microblink/activity/BarcodeScanActivity.html), which has UI best suited for barcode scanning.
-### <a name="blinkInputRecognizer"></a> BlinkInput recognizer
+## <a name="blinkInputRecognizer"></a> BlinkInput recognizer
 
 The [`BlinkInputRecognizer`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/recognizers/blinkinput/BlinkInputRecognizer.html) is generic OCR recognizer used for scanning segments which enables specifying `Processors` that will be used for scanning. Most commonly used `Processor` within this recognizer is [`ParserGroupProcessor`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/processors/parserGroup/ParserGroupProcessor.html) that activates all `Parsers` in the group to extract data of interest from the OCR result.
 
@@ -927,11 +949,11 @@ This recognizer can be used in any context. It is used internally in the impleme
 `Processors` are explained in [The Processor concept](#processorConcept) section and you can find more about `Parsers` in [The Parser concept](#parserConcept) section.
 
 
-### <a name="detectorRecognizer"></a> Detector recognizer
+## <a name="detectorRecognizer"></a> Detector recognizer
 
 The [`DetectorRecognizer`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/recognizers/detector/DetectorRecognizer.html) is recognizer for scanning generic documents using custom `Detector`. You can find more about `Detector` in [The Detector concept](#detectorConcept) section. `DetectorRecognizer` can be used simply for document detection and obtaining its image. The more interesting use case is data extraction from the custom document type. `DetectorRecognizer` performs document detection and can be configured to extract fields of interest from the scanned document by using **Templating API**. You can find more about Templating API in [this](#detectorTemplating) section.  
 
-This recognizer can be used in any context, but it works best with the [`DocumentScanActivity`](https://blinkinput.github.io/blinkinput-android/com/microblink/activity/DocumentScanActivity.html), which has UI best suited for document scanning.
+This recognizer can be used in any context, but it works best with the activity which has UI suited for document scanning.
 # <a name="fieldByFieldFeature"></a> `Field by field` scanning feature
 
 [`Field by field`](#fieldByFieldFeature) scanning feature is designed for scanning small text fields which are called scan elements. Elements are scanned in the predefined order. For each scan element, specific [`Parser`](#parserConcept) that will extract structured data of interest from the OCR result is defined. Focusing on the small text fields which are scanned one by one enables implementing support for the **free-form documents** because field detection is not required. The user is responsible for positioning the field of interest inside the scanning window and the scanning process guides him. When implementing support for the custom document, only fields of interest has to be defined.
@@ -1031,7 +1053,7 @@ There are a lot of different `Parsers` for extracting most common fields which a
 
 ### <a name="regexParser"></a> Regex Parser
 
-[`RegexParser`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/parsers/regex/RegexParser.html) is used for extracting OCR result content which is in accordance with the given regular expression. Regular expression parsing is not performed with java's regex engine. Instead, it is performed with custom regular expression engine. Due to differences between parsing normal strings and OCR results, this parser does not support some regex features found in Java's regex engine, like backreferences. See [setRegex(String)](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/parsers/regex/RegexParser.html#setRegex-String-) method javadoc for more information about what is supported.
+[`RegexParser`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/parsers/regex/RegexParser.html) is used for extracting OCR result content which is in accordance with the given regular expression. Regular expression parsing is not performed with java's regex engine. Instead, it is performed with custom regular expression engine. Due to differences between parsing normal strings and OCR results, this parser does not support some regex features found in Java's regex engine, like backreferences. See [setRegex(String)](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/parsers/regex/RegexParser.html#setRegex-java.lang.String-) method javadoc for more information about what is supported.
 
 For available configuration options and result getters please check [javadoc](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/parsers/regex/RegexParser.html).
 
@@ -1138,7 +1160,7 @@ When `classify` method is called, processing units that are needed for classific
 
 - [`ParserParcelization`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/recognizers/templating/parcelization/ParserParcelization.html) is utility class which helps to obtain the reference to the captured `Parser` from the `TemplatingClass` instance, after the parcelization. For more information see [javadoc](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/recognizers/templating/parcelization/ParserParcelization.html).
 
-For the complete source code sample, please check [Templating API whitepaper](https://github.com/blinkinput/blinkinput-android/blob/master/templatingAPI/templatingAPI.md) and [BlinkInputTemplatingSample](https://github.com/blinkinput/blinkinput-android/tree/master/BlinkInputSample/BlinkInputTemplatingSample).
+For the complete source code sample, please check [Templating API whitepaper](https://github.com/blinkinput/blinkinput-android/blob/master/templatingAPI/templatingAPI.md) and `BlinkInputTemplatingSample`.
 
 ## <a name="detectorTemplating_results"></a> Obtaining recognition results
 
@@ -1174,7 +1196,7 @@ To support common use cases, there are several different `Detector` implementati
 
 It accepts one or more `DocumentSpecifications`. [`DocumentSpecification`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/detectors/quad/document/DocumentSpecification.html) represents a specification of the document that should be detected by using edge detection algorithm and predefined aspect ratio.
 
-For the most commonly used document formats, there is a helper method  [`DocumentSpecification.createFromPreset(DocumentSpecificationPreset)`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/detectors/quad/document/DocumentSpecification.html#createFromPreset-DocumentSpecificationPreset-) which creates and initializes the document specification based on the given [DocumentSpecificationPreset](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/detectors/quad/document/DocumentSpecificationPreset.html). For more information about `DocumentSpecification`, please see [javadoc](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/detectors/quad/document/DocumentSpecification.html).
+For the most commonly used document formats, there is a helper method  [`DocumentSpecification.createFromPreset(DocumentSpecificationPreset)`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/detectors/quad/document/DocumentSpecification.html#createFromPreset-com.microblink.entities.detectors.quad.document.DocumentSpecificationPreset-) which creates and initializes the document specification based on the given [DocumentSpecificationPreset](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/detectors/quad/document/DocumentSpecificationPreset.html). For more information about `DocumentSpecification`, please see [javadoc](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/detectors/quad/document/DocumentSpecification.html).
 
 For the list of all available configuration methods see [`DocumentDetector`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/detectors/quad/document/DocumentDetector.html) javadoc, and for available result content see [`DocumentDetector.Result`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/detectors/quad/document/DocumentDetector.Result.html) javadoc.
 
@@ -1183,9 +1205,9 @@ For the list of all available configuration methods see [`DocumentDetector`](htt
 
 [`MRTDDetector`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/detectors/quad/mrtd/MRTDDetector.html) is used to perform detection of *Machine Readable Travel Documents (MRTD)*.
 
-Method [`setSpecifications`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/detectors/quad/mrtd/MRTDDetector.html#setSpecifications-MRTDSpecification:A-) can be used to define which MRTD documents should be detectable. It accepts the array of `MRTDSpecifications`. [`MRTDSpecification`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/detectors/quad/mrtd/MRTDSpecification.html) represents specification of MRTD that should be detected. It can be created from the [`MRTDSpecificationPreset`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/detectors/quad/mrtd/MRTDSpecificationPreset.html) by using [`MRTDSpecification.createFromPreset(MRTDSpecificationPreset)`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/detectors/quad/mrtd/MRTDSpecification.html#createFromPreset-MRTDSpecificationPreset-) method.
+Method [`setSpecifications`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/detectors/quad/mrtd/MRTDDetector.html#setSpecifications-com.microblink.entities.detectors.quad.mrtd.MrtdSpecification:A-) can be used to define which MRTD documents should be detectable. It accepts the array of `MrtdSpecifications`. [`MrtdSpecification`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/detectors/quad/mrtd/MrtdSpecification.html) represents specification of MRTD that should be detected. It can be created from the [`MrtdSpecificationPreset`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/detectors/quad/mrtd/MrtdSpecificationPreset.html) by using [`MrtdSpecification.createFromPreset(MrtdSpecificationPreset)`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/detectors/quad/mrtd/MrtdSpecification.html#createFromPreset-com.microblink.entities.detectors.quad.mrtd.MrtdSpecificationPreset-) method.
 
-If `MRTDSpecifications` are not set, all supported MRTD formats will be detectable.
+If `MrtdSpecifications` are not set, all supported MRTD formats will be detectable.
 
 For the list of all available configuration methods see [`MRTDDetector`](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/detectors/quad/mrtd/MRTDDetector.html) javadoc, and for available result content see [MRTDDetector.Result](https://blinkinput.github.io/blinkinput-android/com/microblink/entities/detectors/quad/mrtd/MRTDDetector.Result.html) javadoc.
 
@@ -1199,27 +1221,9 @@ When creating your own SDK which depends on _BlinkInput_, you should consider fo
 
 ## <a name="licensingModel"></a> _BlinkInput_ licensing model
 
-_BlinkInput_ supports two types of licenses: 
-
-- application licenses
-- library licenses.
-
 ### <a name="appLicence"></a> Application licenses
 
 Application licenses are bound to application's [package name](http://tools.android.com/tech-docs/new-build-system/applicationid-vs-packagename). This means that each app must have its own license in order to be able to use _BlinkInput_. This model is appropriate when integrating _BlinkInput_ directly into app, however if you are creating SDK that depends on _BlinkInput_, you would need separate _BlinkInput_ license for each of your clients using your SDK. This is not practical, so you should contact us at [help.microblink.com](http://help.microblink.com) and we can provide you a library license.
-
-### <a name="libLicence"></a> Library licenses
-
-Library license keys are bound to licensee name. You will provide your licensee name with your inquiry for library license. Unlike application licenses, library licenses must be set together with licensee name:
-
-```java
-public class MyApplication extends Application {
-    @Override
-    public void onCreate() {
-        MicroblinkSDK.setLicenseFile("path/to/license/file/within/assets/dir", "licensee", this);
-    }
-}
-```
 	
 ## <a name="sdkIntegrationIntoApp"></a> Ensuring the final app gets all resources required by _BlinkInput_
 
@@ -1446,7 +1450,7 @@ This usually happens when you use `Recognizer` that produces image or similar la
 
 This usually happens when you attempt to transfer standalone `Result` that contains images or similar large objects via Intent and the size of the object exceeds Android intent transaction limit. Depending on the device, you will get either [TransactionTooLargeException](https://developer.android.com/reference/android/os/TransactionTooLargeException.html), a simple message `BINDER TRANSACTION FAILED` in log and your app will freeze or your app will get into restart loop. We recommend that you use `RecognizerBundle` and its API for sending `Recognizer` objects via Intent in a more safe manner ([check this section](#intentOptimization) for more information). However, if you really need to transfer standalone `Result` object (e.g. `Result` object obtained by cloning `Result` object owned by specific `Recognizer` object), you need to do that using global variables or singletons within your application. Sending large objects via Intent is not supported by Android.
 # <a name="info"></a> Additional info
-Complete API reference can be found in [Javadoc](https://blinkinput.github.io/blinkinput-android/index.html). 
+Complete API reference can be found in [Javadoc](https://blinkinput.github.io/blinkinput-android). 
 
 For any other questions, feel free to contact us at [help.microblink.com](http://help.microblink.com).
 

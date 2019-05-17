@@ -174,13 +174,6 @@ extends <a href="../../../../../../com/microblink/entities/recognizers/Recognize
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="fields.inherited.from.class.com.microblink.entities.recognizers.Recognizer">
-<!--   -->
-</a>
-<h3>Fields inherited from class&nbsp;com.microblink.entities.recognizers.<a href="../../../../../../com/microblink/entities/recognizers/Recognizer.html" title="class in com.microblink.entities.recognizers">Recognizer</a></h3>
-<code><a href="../../../../../../com/microblink/entities/recognizers/Recognizer.html#CLASS_NAME">CLASS_NAME</a></code></li>
-</ul>
-<ul class="blockList">
 <li class="blockList"><a name="fields.inherited.from.class.android.os.Parcelable">
 <!--   -->
 </a>
@@ -236,21 +229,20 @@ extends <a href="../../../../../../com/microblink/entities/recognizers/Recognize
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/microblink/entities/recognizers/blinkbarcode/pdf417/Pdf417Recognizer.html#isInverseScanning--">isInverseScanning</a></span>()</code>
-<div class="block">Enables scanning of barcodes with inverse intensity values
- (e.g.</div>
-</td>
-</tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/microblink/entities/recognizers/blinkbarcode/pdf417/Pdf417Recognizer.html#isNullQuietZoneAllowed--">isNullQuietZoneAllowed</a></span>()</code>
 <div class="block">Allow scanning PDF417 barcodes which don't have quiet zone
  surrounding it (e.g.</div>
 </td>
 </tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/microblink/entities/recognizers/blinkbarcode/pdf417/Pdf417Recognizer.html#isScanInverse--">isScanInverse</a></span>()</code>
+<div class="block">Enables scanning of barcodes with inverse intensity values (e.g.</div>
+</td>
+</tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/microblink/entities/recognizers/blinkbarcode/pdf417/Pdf417Recognizer.html#isUncertainDecoding--">isUncertainDecoding</a></span>()</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/microblink/entities/recognizers/blinkbarcode/pdf417/Pdf417Recognizer.html#isScanUncertain--">isScanUncertain</a></span>()</code>
 <div class="block">Enable decoding of non-standard PDF417 barcodes, but without
  guarantee that all data will be read.</div>
 </td>
@@ -261,21 +253,20 @@ extends <a href="../../../../../../com/microblink/entities/recognizers/Recognize
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/microblink/entities/recognizers/blinkbarcode/pdf417/Pdf417Recognizer.html#setInverseScanning-boolean-">setInverseScanning</a></span>(boolean&nbsp;inverseScanning)</code>
-<div class="block">Enables scanning of barcodes with inverse intensity values
- (e.g.</div>
-</td>
-</tr>
-<tr id="i8" class="altColor">
-<td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/microblink/entities/recognizers/blinkbarcode/pdf417/Pdf417Recognizer.html#setNullQuietZoneAllowed-boolean-">setNullQuietZoneAllowed</a></span>(boolean&nbsp;nullQuietZoneAllowed)</code>
 <div class="block">Allow scanning PDF417 barcodes which don't have quiet zone
  surrounding it (e.g.</div>
 </td>
 </tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/microblink/entities/recognizers/blinkbarcode/pdf417/Pdf417Recognizer.html#setScanInverse-boolean-">setScanInverse</a></span>(boolean&nbsp;scanInverse)</code>
+<div class="block">Enables scanning of barcodes with inverse intensity values (e.g.</div>
+</td>
+</tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/microblink/entities/recognizers/blinkbarcode/pdf417/Pdf417Recognizer.html#setUncertainDecoding-boolean-">setUncertainDecoding</a></span>(boolean&nbsp;uncertainDecoding)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/microblink/entities/recognizers/blinkbarcode/pdf417/Pdf417Recognizer.html#setScanUncertain-boolean-">setScanUncertain</a></span>(boolean&nbsp;scanUncertain)</code>
 <div class="block">Enable decoding of non-standard PDF417 barcodes, but without
  guarantee that all data will be read.</div>
 </td>
@@ -354,30 +345,32 @@ extends <a href="../../../../../../com/microblink/entities/recognizers/Recognize
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="setUncertainDecoding-boolean-">
+<a name="setScanUncertain-boolean-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setUncertainDecoding</h4>
-<pre>public&nbsp;void&nbsp;setUncertainDecoding(boolean&nbsp;uncertainDecoding)</pre>
+<h4>setScanUncertain</h4>
+<pre>public&nbsp;void&nbsp;setScanUncertain(boolean&nbsp;scanUncertain)</pre>
 <div class="block">Enable decoding of non-standard PDF417 barcodes, but without
  guarantee that all data will be read. This option should be enabled
  for PDF417 barcode that has missing rows (i.e. not whole barcode is
- printed)</div>
+ printed)
+ By default, this is set to 'true'</div>
 </li>
 </ul>
-<a name="isUncertainDecoding--">
+<a name="isScanUncertain--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>isUncertainDecoding</h4>
-<pre>public&nbsp;boolean&nbsp;isUncertainDecoding()</pre>
+<h4>isScanUncertain</h4>
+<pre>public&nbsp;boolean&nbsp;isScanUncertain()</pre>
 <div class="block">Enable decoding of non-standard PDF417 barcodes, but without
  guarantee that all data will be read. This option should be enabled
  for PDF417 barcode that has missing rows (i.e. not whole barcode is
- printed)</div>
+ printed)
+ By default, this is set to 'true'</div>
 </li>
 </ul>
 <a name="setNullQuietZoneAllowed-boolean-">
@@ -389,7 +382,8 @@ extends <a href="../../../../../../com/microblink/entities/recognizers/Recognize
 <pre>public&nbsp;void&nbsp;setNullQuietZoneAllowed(boolean&nbsp;nullQuietZoneAllowed)</pre>
 <div class="block">Allow scanning PDF417 barcodes which don't have quiet zone
  surrounding it (e.g. text concatenated with barcode). This
- option can significantly increase recognition time.</div>
+ option can significantly increase recognition time.
+ By default, this is set to 'false'</div>
 </li>
 </ul>
 <a name="isNullQuietZoneAllowed--">
@@ -401,29 +395,30 @@ extends <a href="../../../../../../com/microblink/entities/recognizers/Recognize
 <pre>public&nbsp;boolean&nbsp;isNullQuietZoneAllowed()</pre>
 <div class="block">Allow scanning PDF417 barcodes which don't have quiet zone
  surrounding it (e.g. text concatenated with barcode). This
- option can significantly increase recognition time.</div>
+ option can significantly increase recognition time.
+ By default, this is set to 'false'</div>
 </li>
 </ul>
-<a name="setInverseScanning-boolean-">
+<a name="setScanInverse-boolean-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setInverseScanning</h4>
-<pre>public&nbsp;void&nbsp;setInverseScanning(boolean&nbsp;inverseScanning)</pre>
-<div class="block">Enables scanning of barcodes with inverse intensity values
- (e.g. white barcode on black background)</div>
+<h4>setScanInverse</h4>
+<pre>public&nbsp;void&nbsp;setScanInverse(boolean&nbsp;scanInverse)</pre>
+<div class="block">Enables scanning of barcodes with inverse intensity values (e.g. white barcode on black background)
+ By default, this is set to 'false'</div>
 </li>
 </ul>
-<a name="isInverseScanning--">
+<a name="isScanInverse--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>isInverseScanning</h4>
-<pre>public&nbsp;boolean&nbsp;isInverseScanning()</pre>
-<div class="block">Enables scanning of barcodes with inverse intensity values
- (e.g. white barcode on black background)</div>
+<h4>isScanInverse</h4>
+<pre>public&nbsp;boolean&nbsp;isScanInverse()</pre>
+<div class="block">Enables scanning of barcodes with inverse intensity values (e.g. white barcode on black background)
+ By default, this is set to 'false'</div>
 </li>
 </ul>
 <a name="terminateNative-long-">

@@ -359,7 +359,8 @@ extends <a href="../../../../../com/microblink/entities/parsers/Parser.html" tit
 <div class="block">Set of allowed country codes. If whitelist is defined, only IBANs with defined country codes
  will be recognized. For example to allow only Croatian IBANs define whitelist with country
  code "HR". If whitelist is not defined, or if it is set to <code>null</code>, all valid IBANs will
- be returned.</div>
+ be returned.
+ By default, this is set to '[]'</div>
 </li>
 </ul>
 <a name="getCountryCodeWhitelist--">
@@ -373,7 +374,8 @@ public&nbsp;java.lang.String[]&nbsp;getCountryCodeWhitelist()</pre>
 <div class="block">Set of allowed country codes. If whitelist is defined, only IBANs with defined country codes
  will be recognized. For example to allow only Croatian IBANs define whitelist with country
  code "HR". If whitelist is not defined, or if it is set to <code>null</code>, all valid IBANs will
- be returned.</div>
+ be returned.
+ By default, this is set to '[]'</div>
 </li>
 </ul>
 <a name="setAlwaysReturnPrefix-boolean-">
@@ -383,7 +385,8 @@ public&nbsp;java.lang.String[]&nbsp;getCountryCodeWhitelist()</pre>
 <li class="blockList">
 <h4>setAlwaysReturnPrefix</h4>
 <pre>public&nbsp;void&nbsp;setAlwaysReturnPrefix(boolean&nbsp;alwaysReturnPrefix)</pre>
-<div class="block">Should prefix (country code) always be returned.</div>
+<div class="block">Should prefix (country code) always be returned.
+ By default, this is set to 'false'</div>
 </li>
 </ul>
 <a name="shouldAlwaysReturnPrefix--">
@@ -393,7 +396,8 @@ public&nbsp;java.lang.String[]&nbsp;getCountryCodeWhitelist()</pre>
 <li class="blockList">
 <h4>shouldAlwaysReturnPrefix</h4>
 <pre>public&nbsp;boolean&nbsp;shouldAlwaysReturnPrefix()</pre>
-<div class="block">Should prefix (country code) always be returned.</div>
+<div class="block">Should prefix (country code) always be returned.
+ By default, this is set to 'false'</div>
 </li>
 </ul>
 <a name="terminateNative-long-">
