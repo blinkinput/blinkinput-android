@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,20 +17,17 @@ import androidx.annotation.Nullable;
 public class ResultsActivity extends Activity {
 
     private static final String KEY_RESULT_TEXT = "resultText";
-    private static final String KEY_SUCCESS_FRAME_IMAGE_PATH = "successFramePath";
-    private static final String KEY_FULL_DOCUMENT_IMAGE_PATH = "fullDocumentPath";
-    private static final String KEY_FACE_IMAGE_PATH = "facePath";
+    private static final String KEY_DOCUMENT_IMAGE_PATH = "documentImagePath";
+    private static final String KEY_FULL_IMAGE_PATH = "fullImagePath";
 
     public static Intent buildIntent(Context context,
                                      String resultText,
-                                     String successFramePath,
-                                     String fullDocumentImagePath,
-                                     String faceImagePath) {
+                                     String documentImagePath,
+                                     String fullImagePath) {
         Intent intent = new Intent(context, ResultsActivity.class);
         intent.putExtra(KEY_RESULT_TEXT, resultText);
-        intent.putExtra(KEY_SUCCESS_FRAME_IMAGE_PATH, successFramePath);
-        intent.putExtra(KEY_FULL_DOCUMENT_IMAGE_PATH, fullDocumentImagePath);
-        intent.putExtra(KEY_FACE_IMAGE_PATH, faceImagePath);
+        intent.putExtra(KEY_DOCUMENT_IMAGE_PATH, documentImagePath);
+        intent.putExtra(KEY_FULL_IMAGE_PATH, fullImagePath);
         return intent;
     }
 
@@ -40,14 +38,23 @@ public class ResultsActivity extends Activity {
         TextView resultsTv = findViewById(R.id.results_tv);
         resultsTv.setText(getResultsFromExtras());
 
-        ImageView successFrameImg = findViewById(R.id.success_frame_img);
-        successFrameImg.setImageBitmap(getResultBitmapFromExtras(KEY_SUCCESS_FRAME_IMAGE_PATH));
+        ImageView fullDocumentIv = findViewById(R.id.document_img);
+        Bitmap documentBmp = getResultBitmapFromExtras(KEY_DOCUMENT_IMAGE_PATH);
+        if (documentBmp != null) {
+            fullDocumentIv.setVisibility(View.VISIBLE);
+            fullDocumentIv.setImageBitmap(documentBmp);
+        } else {
+            fullDocumentIv.setVisibility(View.GONE);
+        }
 
-        ImageView fullDocumentImg = findViewById(R.id.full_document_img);
-        fullDocumentImg.setImageBitmap(getResultBitmapFromExtras(KEY_FULL_DOCUMENT_IMAGE_PATH));
-
-        ImageView faceImg = findViewById(R.id.face_img);
-        faceImg.setImageBitmap(getResultBitmapFromExtras(KEY_FACE_IMAGE_PATH));
+        ImageView fullFrameIv = findViewById(R.id.full_frame);
+        Bitmap fullFrameBmp = getResultBitmapFromExtras(KEY_FULL_IMAGE_PATH);
+        if (fullFrameBmp != null) {
+            fullFrameIv.setVisibility(View.VISIBLE);
+            fullFrameIv.setImageBitmap(fullFrameBmp);
+        } else {
+            fullFrameIv.setVisibility(View.GONE);
+        }
     }
 
     private String getResultsFromExtras() {

@@ -7,16 +7,20 @@ android {
         applicationId "com.microblink.input"
         minSdkVersion 16
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
     }
+
     buildTypes {
         release {
+            debuggable true
             minifyEnabled true
             shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig = debug.signingConfig
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android.txt')
         }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
     }
 }
 

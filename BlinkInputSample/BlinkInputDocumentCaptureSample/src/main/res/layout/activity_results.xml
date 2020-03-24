@@ -20,34 +20,25 @@
             style="@style/ImageTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Full document" />
+            android:text="Document image" />
 
         <ImageView
-            android:id="@+id/full_document_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:id="@+id/document_img"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:scaleType="fitCenter"/>
 
         <TextView
             style="@style/ImageTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Face" />
+            android:text="Full camera frame" />
 
         <ImageView
-            android:id="@+id/face_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            style="@style/ImageTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Success frame" />
-
-        <ImageView
-            android:id="@+id/success_frame_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:id="@+id/full_frame"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:scaleType="fitCenter"/>
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<FrameLayout
     android:id="@+id/idscan_screen_root"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
@@ -11,9 +11,8 @@
     <com.microblink.view.recognition.RecognizerRunnerView
         android:id="@+id/recognizerRunnerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        custom:mb_initialOrientation="portrait">
+        android:layout_height="match_parent">
 
     </com.microblink.view.recognition.RecognizerRunnerView>
 
-</RelativeLayout>
+</FrameLayout>

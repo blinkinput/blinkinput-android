@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -18,20 +16,20 @@ import com.microblink.entities.ocrengine.deep.DeepOCREngineOptions;
 import com.microblink.entities.ocrengine.legacy.BlinkOCREngineOptions;
 import com.microblink.entities.parsers.raw.RawParser;
 import com.microblink.entities.processors.parserGroup.ParserGroupProcessor;
-import com.microblink.entities.recognizers.Recognizer;
 import com.microblink.entities.recognizers.RecognizerBundle;
 import com.microblink.entities.recognizers.blinkinput.BlinkInputRecognizer;
 import com.microblink.metadata.MetadataCallbacks;
 import com.microblink.metadata.detection.points.DisplayablePointsDetection;
 import com.microblink.metadata.detection.points.PointsDetectionCallback;
-import com.microblink.metadata.ocr.DisplayableOcrResult;
-import com.microblink.metadata.ocr.OcrCallback;
 import com.microblink.recognition.RecognitionSuccessType;
 import com.microblink.util.CameraPermissionManager;
 import com.microblink.view.CameraEventsListener;
 import com.microblink.view.ocrResult.OcrResultDotsView;
 import com.microblink.view.recognition.RecognizerRunnerView;
 import com.microblink.view.recognition.ScanResultListener;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class ScanActivity extends Activity {
 

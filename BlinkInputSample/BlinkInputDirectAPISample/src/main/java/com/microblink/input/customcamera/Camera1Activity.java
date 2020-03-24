@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.ImageFormat;
 import android.hardware.Camera;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -28,6 +27,8 @@ import com.microblink.view.recognition.ScanResultListener;
 
 import java.io.IOException;
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 @SuppressWarnings("deprecation")
 public class Camera1Activity extends Activity implements ScanResultListener, SurfaceHolder.Callback, Camera.PreviewCallback {
@@ -67,14 +68,7 @@ public class Camera1Activity extends Activity implements ScanResultListener, Sur
     @Override
     protected void onStart() {
         super.onStart();
-        try {
-            mRecognizerRunner = RecognizerRunner.getSingletonInstance();
-        } catch (FeatureNotSupportedException e) {
-            Toast.makeText(this, "Feature not supported! Reason: " + e.getReason().getDescription(), Toast.LENGTH_LONG).show();
-            finish();
-            return;
-        }
-
+        mRecognizerRunner = RecognizerRunner.getSingletonInstance();
         mRecognizerRunner.initialize(this, mRecognizerBundle, new DirectApiErrorListener() {
             @Override
             public void onRecognizerError(Throwable t) {
