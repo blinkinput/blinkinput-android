@@ -1,5 +1,51 @@
 # Release notes
 
+## 4.2.0
+
+### Breaking changes:
+
+- We decided to remove support for **x86_64** processor architecture.
+ **x86** and **x86_64** architectures are used on very few devices today; most of them are manufactured before 2015, and they take about 1% of all Android devices, according to the device catalog on Google Play Console.
+We distribute SDK with **ARMv7**, **ARM64**, and **x86** native library binaries. Native library x86 in SDK is kept mainly for emulator support.
+- We migrated the SDK to **AndroidX** dependencies. We replaced previous SDK dependency com.android.support:appcompat-v7 with  **androidx.appcompat:appcompat**.
+
+### New features:
+
+- We added the option to disable Microblink logs in the console output. Use `LoggingSettings.disableMicroblinkLogging()`, but be careful with this option. We need full log outputs from the application for support purposes. In case of having problems with scanning certain items, undesired behavior on the specific device(s), crashes inside the SDK, or anything unmentioned, we will need a full log from your side. If you disable Microblink logs, you won't be able to provide us this information. Hence support might be limited.
+- We added support for capturing images of various documents (A4, or some other format):
+    - Use `DocumentCaptureRecognizer` and `DocumentCaptureUISettings`.
+    - `DocumentCaptureUISettings` launches activity that uses `DocumentCaptureOverlayController`, which is designed for taking cropped **high resolution** document images and guides the user through the document capturing process. The overlay can be used only with `DocumentCaptureRecognizer`.
+- It’s possible to set the theme of the provided scan activity, launched from the UISettings, by using UISettings.setActivityTheme
+
+### Improvements:
+
+- We improved `VinParser`:
+    - We added support for Renewal Identification Number (RIN) - DMV California format.
+- We improved camera performance on some Samsung devices.
+
+### Minor API changes:
+
+- We removed `RecognizerRunnerView` custom attributes: `mb_initialOrientation` and `mb_aspectMode`.  Use `RecognizerRunnerView.setInitialOrientation` and `RecognizerRunnerView.setAspectMode` to configure the attributes in the code.
+- `RecognizerRunnerFragment` extends `androidx.fragment.app.Fragment`, instead of the deprecated `android.app.Fragment`.
+- All provided scan activities extend `AppCompatActivity` and they are `final`.
+- `RecognizerRunner.getSingletonInstance()` does not throw `FeatureNotSupportedException` anymore.
+- We added a new API for configuring camera options in `UISettings`. Use `UISettings.setCameraSettings`, which accepts an object of `CameraSettings` type.
+- `FieldByFieldOverlayController` is now configured by using `FieldByFieldOverlaySettings` instead of `FieldByFieldUISettings`.
+- `Recognizer` now only has one type parameter.
+- `Recognizer.Result` no longer has any type parameters.
+- We moved some classes to new packages.
+
+### Bugs that we fixed:
+
+- Crash when using Direct API on high resolution `com.microblink.image.Image` from `HighResImageWrapper`.
+- Problems with aspect ratio of camera preview on Huawei Mate 10.
+- Crash on some devices that use armeabi-v7a ABI. The SDK was unable to reserve address space due to memory fragmentation.
+- Camera busy error in camera management that was happening during the quick closing and opening of the camera.
+- Rare crash on Samsung J5 Prime which has been caused by race condition during the initialization of the native camera frame.
+- All default scan activities correctly set volume to media instead of the ring.
+- All default scan activities now apply a secure flag if enabled in `UISettings`.
+- Scanning bug on devices with problematic camera resolution, which caused that the SDK was unable to scan the data. Known affected devices were: `OnePlus 6T`, `OnePlus 7 Pro`, and `Vivo V15`.
+
 ## 4.1.0
 
 ### New features:
