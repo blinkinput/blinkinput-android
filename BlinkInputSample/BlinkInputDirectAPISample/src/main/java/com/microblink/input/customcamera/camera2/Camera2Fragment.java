@@ -6,7 +6,6 @@
 package com.microblink.input.customcamera.camera2;
 
 import android.Manifest;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -34,8 +33,6 @@ import android.media.ImageReader;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.util.Size;
@@ -54,7 +51,6 @@ import com.microblink.hardware.orientation.Orientation;
 import com.microblink.image.ImageBuilder;
 import com.microblink.input.R;
 import com.microblink.input.util.ResultFormater;
-import com.microblink.recognition.FeatureNotSupportedException;
 import com.microblink.recognition.RecognitionSuccessType;
 import com.microblink.view.recognition.ScanResultListener;
 
@@ -66,10 +62,13 @@ import java.util.List;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+
 /**
  * Created by dodo on 11/02/16.
  */
-@TargetApi(21)
+@androidx.annotation.RequiresApi(api = android.os.Build.VERSION_CODES.LOLLIPOP)
 public class Camera2Fragment extends Fragment implements ScanResultListener {
 
     private static final String FRAGMENT_DIALOG = "dialog";
@@ -311,14 +310,7 @@ public class Camera2Fragment extends Fragment implements ScanResultListener {
     @Override
     public void onStart() {
         super.onStart();
-        try {
-            mRecognizerRunner = RecognizerRunner.getSingletonInstance();
-        } catch (FeatureNotSupportedException e) {
-            Toast.makeText(Camera2Fragment.this.getActivity(), "Feature not supported! Reason: " + e.getReason().getDescription(), Toast.LENGTH_LONG).show();
-            getActivity().finish();
-            return;
-        }
-
+        mRecognizerRunner = RecognizerRunner.getSingletonInstance();
         mRecognizerRunner.initialize(getActivity(), mRecognizerBundle, new DirectApiErrorListener() {
             @Override
             public void onRecognizerError(Throwable t) {

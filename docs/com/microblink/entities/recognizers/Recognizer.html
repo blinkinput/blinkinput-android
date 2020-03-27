@@ -17,8 +17,8 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
+var methods = {"i0":6,"i1":10,"i2":10,"i3":10};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -116,7 +116,7 @@ var activeTableTab = "activeTableTab";
 </dl>
 <dl>
 <dt>Direct Known Subclasses:</dt>
-<dd><a href="../../../../com/microblink/entities/recognizers/blinkbarcode/barcode/BarcodeRecognizer.html" title="class in com.microblink.entities.recognizers.blinkbarcode.barcode">BarcodeRecognizer</a>, <a href="../../../../com/microblink/entities/recognizers/blinkinput/BlinkInputRecognizer.html" title="class in com.microblink.entities.recognizers.blinkinput">BlinkInputRecognizer</a>, <a href="../../../../com/microblink/entities/recognizers/framegrabber/FrameGrabberRecognizer.html" title="class in com.microblink.entities.recognizers.framegrabber">FrameGrabberRecognizer</a>, <a href="../../../../com/microblink/entities/recognizers/blinkbarcode/pdf417/Pdf417Recognizer.html" title="class in com.microblink.entities.recognizers.blinkbarcode.pdf417">Pdf417Recognizer</a>, <a href="../../../../com/microblink/entities/recognizers/blinkbarcode/simnumber/SimNumberRecognizer.html" title="class in com.microblink.entities.recognizers.blinkbarcode.simnumber">SimNumberRecognizer</a>, <a href="../../../../com/microblink/entities/recognizers/successframe/SuccessFrameGrabberRecognizer.html" title="class in com.microblink.entities.recognizers.successframe">SuccessFrameGrabberRecognizer</a>, <a href="../../../../com/microblink/entities/recognizers/templating/TemplatingRecognizer.html" title="class in com.microblink.entities.recognizers.templating">TemplatingRecognizer</a>, <a href="../../../../com/microblink/entities/recognizers/blinkbarcode/vin/VinRecognizer.html" title="class in com.microblink.entities.recognizers.blinkbarcode.vin">VinRecognizer</a></dd>
+<dd><a href="../../../../com/microblink/entities/recognizers/blinkbarcode/barcode/BarcodeRecognizer.html" title="class in com.microblink.entities.recognizers.blinkbarcode.barcode">BarcodeRecognizer</a>, <a href="../../../../com/microblink/entities/recognizers/blinkinput/BlinkInputRecognizer.html" title="class in com.microblink.entities.recognizers.blinkinput">BlinkInputRecognizer</a>, <a href="../../../../com/microblink/entities/recognizers/blinkinput/documentcapture/DocumentCaptureRecognizer.html" title="class in com.microblink.entities.recognizers.blinkinput.documentcapture">DocumentCaptureRecognizer</a>, <a href="../../../../com/microblink/entities/recognizers/framegrabber/FrameGrabberRecognizer.html" title="class in com.microblink.entities.recognizers.framegrabber">FrameGrabberRecognizer</a>, <a href="../../../../com/microblink/entities/recognizers/blinkbarcode/pdf417/Pdf417Recognizer.html" title="class in com.microblink.entities.recognizers.blinkbarcode.pdf417">Pdf417Recognizer</a>, <a href="../../../../com/microblink/entities/recognizers/blinkbarcode/simnumber/SimNumberRecognizer.html" title="class in com.microblink.entities.recognizers.blinkbarcode.simnumber">SimNumberRecognizer</a>, <a href="../../../../com/microblink/entities/recognizers/successframe/SuccessFrameGrabberRecognizer.html" title="class in com.microblink.entities.recognizers.successframe">SuccessFrameGrabberRecognizer</a>, <a href="../../../../com/microblink/entities/recognizers/templating/TemplatingRecognizer.html" title="class in com.microblink.entities.recognizers.templating">TemplatingRecognizer</a></dd>
 </dl>
 <hr>
 <br>
@@ -203,18 +203,30 @@ extends <a href="../../../../com/microblink/entities/Entity.html" title="class i
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>abstract <a href="../../../../com/microblink/entities/recognizers/Recognizer.html" title="class in com.microblink.entities.recognizers">Recognizer</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/entities/recognizers/Recognizer.html#clone--">clone</a></span>()</code>
+<div class="block">Create a copy of the entity.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/entities/recognizers/Recognizer.html#isExcludedFromPing--">isExcludedFromPing</a></span>()</code>
+<div class="block">Returns true if this recognizer should be excluded from reporting its scan success to ping server.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/entities/recognizers/Recognizer.html#requiresAutofocus--">requiresAutofocus</a></span>()</code>
 <div class="block">Returns true if this recognizer requires camera with autofocus.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/microblink/entities/recognizers/Recognizer.html#requiresLandscapeMode--">requiresLandscapeMode</a></span>()</code>
 <div class="block">Returns true if this recognizer works only in landscape mode.</div>
@@ -226,7 +238,7 @@ extends <a href="../../../../com/microblink/entities/Entity.html" title="class i
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;com.microblink.entities.<a href="../../../../com/microblink/entities/Entity.html" title="class in com.microblink.entities">Entity</a></h3>
-<code><a href="../../../../com/microblink/entities/Entity.html#clone--">clone</a>, <a href="../../../../com/microblink/entities/Entity.html#consumeResultFrom-E-">consumeResultFrom</a>, <a href="../../../../com/microblink/entities/Entity.html#describeContents--">describeContents</a>, <a href="../../../../com/microblink/entities/Entity.html#deserializeNativeSettings-byte:A-">deserializeNativeSettings</a>, <a href="../../../../com/microblink/entities/Entity.html#finalize--">finalize</a>, <a href="../../../../com/microblink/entities/Entity.html#getNativeContext--">getNativeContext</a>, <a href="../../../../com/microblink/entities/Entity.html#getResult--">getResult</a>, <a href="../../../../com/microblink/entities/Entity.html#nativeGetNativeResultContext-long-">nativeGetNativeResultContext</a>, <a href="../../../../com/microblink/entities/Entity.html#readFromParcel-android.os.Parcel-">readFromParcel</a>, <a href="../../../../com/microblink/entities/Entity.html#serializeNativeSettings--">serializeNativeSettings</a>, <a href="../../../../com/microblink/entities/Entity.html#terminateNative-long-">terminateNative</a>, <a href="../../../../com/microblink/entities/Entity.html#writeToParcel-android.os.Parcel-int-">writeToParcel</a></code></li>
+<code><a href="../../../../com/microblink/entities/Entity.html#consumeResultFrom-com.microblink.entities.Entity-">consumeResultFrom</a>, <a href="../../../../com/microblink/entities/Entity.html#describeContents--">describeContents</a>, <a href="../../../../com/microblink/entities/Entity.html#deserializeNativeSettings-byte:A-">deserializeNativeSettings</a>, <a href="../../../../com/microblink/entities/Entity.html#finalize--">finalize</a>, <a href="../../../../com/microblink/entities/Entity.html#getNativeContext--">getNativeContext</a>, <a href="../../../../com/microblink/entities/Entity.html#getResult--">getResult</a>, <a href="../../../../com/microblink/entities/Entity.html#nativeGetNativeResultContext-long-">nativeGetNativeResultContext</a>, <a href="../../../../com/microblink/entities/Entity.html#readFromParcel-android.os.Parcel-">readFromParcel</a>, <a href="../../../../com/microblink/entities/Entity.html#serializeNativeSettings--">serializeNativeSettings</a>, <a href="../../../../com/microblink/entities/Entity.html#terminateNative-long-">terminateNative</a>, <a href="../../../../com/microblink/entities/Entity.html#writeToParcel-android.os.Parcel-int-">writeToParcel</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -292,10 +304,33 @@ extends <a href="../../../../com/microblink/entities/Entity.html" title="class i
 </dl>
 </li>
 </ul>
+<a name="clone--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>clone</h4>
+<pre>@NonNull
+public abstract&nbsp;<a href="../../../../com/microblink/entities/recognizers/Recognizer.html" title="class in com.microblink.entities.recognizers">Recognizer</a>&nbsp;clone()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../com/microblink/entities/Entity.html#clone--">Entity</a></code></span></div>
+<div class="block">Create a copy of the entity.
+ This is required if properties of the entity must be modified while background thread
+ performs processing. In order to avoid race conditions, changing properties is not allowed
+ while entity is used in background processing. However, you are able to make a copy of the
+ entity, change properties of it and then update the <a href="../../../../com/microblink/view/recognition/RecognizerRunnerView.html" title="class in com.microblink.view.recognition"><code>RecognizerRunnerView</code></a>
+ or <a href="../../../../com/microblink/directApi/RecognizerRunner.html" title="class in com.microblink.directApi"><code>RecognizerRunner</code></a> with the updated entity hierarchy.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../com/microblink/entities/Entity.html#clone--">clone</a></code>&nbsp;in class&nbsp;<code><a href="../../../../com/microblink/entities/Entity.html" title="class in com.microblink.entities">Entity</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a copy of the entity</dd>
+</dl>
+</li>
+</ul>
 <a name="requiresLandscapeMode--">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>requiresLandscapeMode</h4>
 <pre>public&nbsp;boolean&nbsp;requiresLandscapeMode()</pre>
@@ -303,6 +338,20 @@ extends <a href="../../../../com/microblink/entities/Entity.html" title="class i
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>true if this recognizer works only in landscape mode.</dd>
+</dl>
+</li>
+</ul>
+<a name="isExcludedFromPing--">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>isExcludedFromPing</h4>
+<pre>public&nbsp;boolean&nbsp;isExcludedFromPing()</pre>
+<div class="block">Returns true if this recognizer should be excluded from reporting its scan success to ping server.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if this recognizer should be excluded from reporting its scan success to ping server.</dd>
 </dl>
 </li>
 </ul>

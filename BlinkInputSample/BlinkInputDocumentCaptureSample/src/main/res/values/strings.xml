@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BlinkInput DocumentCaptureSample</string>
+    <string name="title_activity_custom_document_capture">Custom activity</string>
+
+    <string name="action_flash">Flash</string>
+
+    <string name="item_document_capture">Document capture</string>
+    <string name="item_document_capture_custom">Document capture custom</string>
+</resources>

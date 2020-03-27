@@ -1,8 +1,6 @@
 package com.microblink.util.templating;
 
 import android.os.Parcel;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.microblink.entities.detectors.quad.document.DocumentDetector;
 import com.microblink.entities.detectors.quad.document.DocumentSpecification;
@@ -22,6 +20,9 @@ import com.microblink.entities.recognizers.templating.dewarpPolicies.FixedDewarp
 import com.microblink.entities.recognizers.templating.parcelization.ParserParcelization;
 import com.microblink.geometry.Rectangle;
 import com.microblink.results.ocr.OcrFont;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * An example how Templating API can be used to add support for scanning custom document.

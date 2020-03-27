@@ -12,9 +12,6 @@ import android.graphics.RectF;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.InflateException;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.microblink.blinkinput.help.HelpActivity;
 import com.microblink.entities.parsers.Parser;
 import com.microblink.entities.parsers.config.fieldbyfield.FieldByFieldElement;
 import com.microblink.entities.processors.parserGroup.ParserGroupProcessor;
@@ -29,7 +27,6 @@ import com.microblink.entities.recognizers.RecognizerBundle;
 import com.microblink.entities.recognizers.blinkinput.BlinkInputRecognizer;
 import com.microblink.geometry.Rectangle;
 import com.microblink.hardware.SuccessCallback;
-import com.microblink.help.HelpActivity;
 import com.microblink.ocr.SlidingTabLayout;
 import com.microblink.recognition.RecognitionSuccessType;
 import com.microblink.util.CameraPermissionManager;
@@ -39,6 +36,10 @@ import com.microblink.view.CameraEventsListener;
 import com.microblink.view.exception.NonLandscapeOrientationNotSupportedException;
 import com.microblink.view.recognition.RecognizerRunnerView;
 import com.microblink.view.recognition.ScanResultListener;
+
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Custom field by field scan activity which uses predefined scan elements and scans fields
@@ -77,7 +78,7 @@ public class CustomFieldByFieldScanActivity extends Activity {
     /**
      * Last parsed result that is stored for the case when it is needed when "Accept" button is
      * pressed - {@link #onBtnAcceptClicked(View)}. */
-    private Parser.Result<?> mLastResultCloned;
+    private Parser.Result mLastResultCloned;
     /** Index of currently selected element. */
     private int mSelectedElement = 0;
 
@@ -428,7 +429,7 @@ public class CustomFieldByFieldScanActivity extends Activity {
             FieldByFieldElement scanElement = mScanElements[mSelectedElement];
 
             // obtain result of the currently active parser
-            Parser.Result<?> parserResult = scanElement.getParser().getResult();
+            Parser.Result parserResult = scanElement.getParser().getResult();
 
             if (parserResult.getResultState() == Parser.Result.State.Valid) {
 

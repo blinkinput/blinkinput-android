@@ -13,10 +13,8 @@
         android:id="@+id/rec_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        custom:mb_aspectMode="fill"
         custom:mb_animateRotation="true"
-        custom:mb_animationDuration="250"
-        custom:mb_initialOrientation="portrait">
+        custom:mb_animationDuration="250">
 
 
     </com.microblink.view.recognition.RecognizerRunnerView>

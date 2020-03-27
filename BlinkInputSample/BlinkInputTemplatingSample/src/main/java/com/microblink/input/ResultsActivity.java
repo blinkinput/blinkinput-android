@@ -6,11 +6,12 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.File;
+
+import androidx.annotation.Nullable;
 
 public class ResultsActivity extends Activity {
 

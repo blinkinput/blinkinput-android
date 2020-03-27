@@ -14,7 +14,6 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.view.InflateException;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +52,8 @@ import com.microblink.view.viewfinder.quadview.QuadViewAnimationListener;
 import com.microblink.view.viewfinder.quadview.QuadViewManager;
 import com.microblink.view.viewfinder.quadview.QuadViewManagerFactory;
 import com.microblink.view.viewfinder.quadview.QuadViewPreset;
+
+import androidx.annotation.NonNull;
 
 public class DetectorActivity extends Activity {
 

@@ -3,8 +3,6 @@ package com.microblink.input;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.StringRes;
 import android.widget.Toast;
 
 import com.microblink.blinkinput.BaseMenuActivity;
@@ -26,6 +24,9 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 
 public class MenuActivity extends BaseMenuActivity {
 

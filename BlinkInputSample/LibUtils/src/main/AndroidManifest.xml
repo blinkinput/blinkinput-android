@@ -1,2 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.microblink.blinkinput"/>
+          package="com.microblink.blinkinput">
+
+    <application>
+        <activity android:name=".help.HelpActivity"/>
+    </application>
+
+</manifest>
