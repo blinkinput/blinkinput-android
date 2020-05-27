@@ -3,7 +3,7 @@ package com.microblink.input;
 import com.microblink.entities.parsers.amount.AmountParser;
 import com.microblink.entities.parsers.config.fieldbyfield.FieldByFieldElement;
 import com.microblink.entities.parsers.date.DateParser;
-import com.microblink.entities.parsers.email.EMailParser;
+import com.microblink.entities.parsers.email.EmailParser;
 import com.microblink.entities.parsers.raw.RawParser;
 
 public class CustomUIElementConfigurator {
@@ -26,7 +26,7 @@ public class CustomUIElementConfigurator {
         return new FieldByFieldElement[] {
                 new FieldByFieldElement(R.string.date_title, R.string.date_msg, new DateParser()),
                 new FieldByFieldElement(R.string.large_amount_title, R.string.amount_msg, largeAmountParser),
-                new FieldByFieldElement(R.string.email_title, R.string.email_msg, new EMailParser()),
+                new FieldByFieldElement(R.string.email_title, R.string.email_msg, new EmailParser()),
                 new FieldByFieldElement(R.string.raw_title, R.string.raw_msg, rawParser)
         };
     }

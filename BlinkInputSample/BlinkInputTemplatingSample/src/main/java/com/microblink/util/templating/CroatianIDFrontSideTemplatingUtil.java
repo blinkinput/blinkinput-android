@@ -132,8 +132,8 @@ public final class CroatianIDFrontSideTemplatingUtil {
                 .addCharToWhitelist('F', OcrFont.OCR_FONT_ANY)
                 .addCharToWhitelist('Ž', OcrFont.OCR_FONT_ANY)
                 .addCharToWhitelist('/', OcrFont.OCR_FONT_ANY);
-        mSexParser.setMustEndWithWhitespace(true);
-        mSexParser.setMustStartWithWhitespace(true);
+        mSexParser.setEndWithWhitespace(true);
+        mSexParser.setStartWithWhitespace(true);
 
         //------------------------------------------------------------------------------------------
         // Citizenship parser
@@ -142,8 +142,8 @@ public final class CroatianIDFrontSideTemplatingUtil {
         // for parsing citizenship we will use regex parser configured with simple regular expression
         mCitizenshipParser = new RegexParser("[A-Z]{3}");
         CroatianIDRecognizerUtils.addAllCroatianUppercaseCharsToWhitelist((BlinkOCREngineOptions)mCitizenshipParser.getOcrEngineOptions());
-        mCitizenshipParser.setMustEndWithWhitespace(true);
-        mCitizenshipParser.setMustStartWithWhitespace(true);
+        mCitizenshipParser.setEndWithWhitespace(true);
+        mCitizenshipParser.setStartWithWhitespace(true);
 
         //------------------------------------------------------------------------------------------
         // Document number parser

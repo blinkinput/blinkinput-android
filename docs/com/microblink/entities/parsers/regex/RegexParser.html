@@ -272,57 +272,57 @@ extends <a href="../../../../../com/microblink/entities/parsers/Parser.html" tit
 </td>
 </tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/entities/parsers/regex/RegexParser.html#isMustEndWithWhitespace--">isMustEndWithWhitespace</a></span>()</code>
-<div class="block">Returns whether matched string must end with whitespace.</div>
-</td>
-</tr>
-<tr id="i8" class="altColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/entities/parsers/regex/RegexParser.html#isMustStartWithWhitespace--">isMustStartWithWhitespace</a></span>()</code>
-<div class="block">Returns whether matched string must start with whitespace.</div>
-</td>
-</tr>
-<tr id="i9" class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/entities/parsers/regex/RegexParser.html#isUsingSieve--">isUsingSieve</a></span>()</code>
-<div class="block">Returns true if algorithm for combining consecutive OCR results between video frames
- for improving OCR quality is used.</div>
-</td>
-</tr>
-<tr id="i10" class="altColor">
 <td class="colFirst"><code>protected byte[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/entities/parsers/regex/RegexParser.html#serializeNativeSettings--">serializeNativeSettings</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/entities/parsers/regex/RegexParser.html#setMustEndWithWhitespace-boolean-">setMustEndWithWhitespace</a></span>(boolean&nbsp;mustEndWithWhitespace)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/entities/parsers/regex/RegexParser.html#setEndWithWhitespace-boolean-">setEndWithWhitespace</a></span>(boolean&nbsp;mustEndWithWhitespace)</code>
 <div class="block">If set to true, regex will not be matched if there is no whitespace after matched string.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/entities/parsers/regex/RegexParser.html#setMustStartWithWhitespace-boolean-">setMustStartWithWhitespace</a></span>(boolean&nbsp;mustStartWithWhitespace)</code>
-<div class="block">If set to true, regex will not be matched if there is no whitespace before matched string.</div>
-</td>
-</tr>
-<tr id="i13" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/entities/parsers/regex/RegexParser.html#setOcrEngineOptions-com.microblink.entities.ocrengine.AbstractOCREngineOptions-">setOcrEngineOptions</a></span>(<a href="../../../../../com/microblink/entities/ocrengine/AbstractOCREngineOptions.html" title="class in com.microblink.entities.ocrengine">AbstractOCREngineOptions</a>&nbsp;ocrEngineOptions)</code>
 <div class="block">Sets the OCR engine options used in Regex OCR parser.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/entities/parsers/regex/RegexParser.html#setRegex-java.lang.String-">setRegex</a></span>(java.lang.String&nbsp;regex)</code>
 <div class="block">Defines regex that will be used to parse OCR data.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i11" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/entities/parsers/regex/RegexParser.html#setStartWithWhitespace-boolean-">setStartWithWhitespace</a></span>(boolean&nbsp;mustStartWithWhitespace)</code>
+<div class="block">If set to true, regex will not be matched if there is no whitespace before matched string.</div>
+</td>
+</tr>
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/entities/parsers/regex/RegexParser.html#setUseSieve-boolean-">setUseSieve</a></span>(boolean&nbsp;useSieve)</code>
 <div class="block">Enable the usage of algorithm for combining consecutive OCR results between video frames
  for improving OCR quality.</div>
+</td>
+</tr>
+<tr id="i13" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/entities/parsers/regex/RegexParser.html#shouldEndWithWhitespace--">shouldEndWithWhitespace</a></span>()</code>
+<div class="block">Returns whether matched string must end with whitespace.</div>
+</td>
+</tr>
+<tr id="i14" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/entities/parsers/regex/RegexParser.html#shouldStartWithWhitespace--">shouldStartWithWhitespace</a></span>()</code>
+<div class="block">Returns whether matched string must start with whitespace.</div>
+</td>
+</tr>
+<tr id="i15" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/entities/parsers/regex/RegexParser.html#shouldUseSieve--">shouldUseSieve</a></span>()</code>
+<div class="block">Returns true if algorithm for combining consecutive OCR results between video frames
+ for improving OCR quality is used.</div>
 </td>
 </tr>
 <tr id="i16" class="altColor">
@@ -521,13 +521,13 @@ public&nbsp;<a href="../../../../../com/microblink/entities/ocrengine/AbstractOC
 </dl>
 </li>
 </ul>
-<a name="isUsingSieve--">
+<a name="shouldUseSieve--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>isUsingSieve</h4>
-<pre>public&nbsp;boolean&nbsp;isUsingSieve()</pre>
+<h4>shouldUseSieve</h4>
+<pre>public&nbsp;boolean&nbsp;shouldUseSieve()</pre>
 <div class="block">Returns true if algorithm for combining consecutive OCR results between video frames
  for improving OCR quality is used.</div>
 <dl>
@@ -536,13 +536,13 @@ public&nbsp;<a href="../../../../../com/microblink/entities/ocrengine/AbstractOC
 </dl>
 </li>
 </ul>
-<a name="setMustStartWithWhitespace-boolean-">
+<a name="setStartWithWhitespace-boolean-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setMustStartWithWhitespace</h4>
-<pre>public&nbsp;void&nbsp;setMustStartWithWhitespace(boolean&nbsp;mustStartWithWhitespace)</pre>
+<h4>setStartWithWhitespace</h4>
+<pre>public&nbsp;void&nbsp;setStartWithWhitespace(boolean&nbsp;mustStartWithWhitespace)</pre>
 <div class="block">If set to true, regex will not be matched if there is no whitespace before matched string.
  Whitespace is not returned in parsed result.</div>
 <dl>
@@ -551,13 +551,13 @@ public&nbsp;<a href="../../../../../com/microblink/entities/ocrengine/AbstractOC
 </dl>
 </li>
 </ul>
-<a name="isMustStartWithWhitespace--">
+<a name="shouldStartWithWhitespace--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>isMustStartWithWhitespace</h4>
-<pre>public&nbsp;boolean&nbsp;isMustStartWithWhitespace()</pre>
+<h4>shouldStartWithWhitespace</h4>
+<pre>public&nbsp;boolean&nbsp;shouldStartWithWhitespace()</pre>
 <div class="block">Returns whether matched string must start with whitespace.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -565,13 +565,13 @@ public&nbsp;<a href="../../../../../com/microblink/entities/ocrengine/AbstractOC
 </dl>
 </li>
 </ul>
-<a name="setMustEndWithWhitespace-boolean-">
+<a name="setEndWithWhitespace-boolean-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setMustEndWithWhitespace</h4>
-<pre>public&nbsp;void&nbsp;setMustEndWithWhitespace(boolean&nbsp;mustEndWithWhitespace)</pre>
+<h4>setEndWithWhitespace</h4>
+<pre>public&nbsp;void&nbsp;setEndWithWhitespace(boolean&nbsp;mustEndWithWhitespace)</pre>
 <div class="block">If set to true, regex will not be matched if there is no whitespace after matched string.
  Whitespace is not returned in parsed result.</div>
 <dl>
@@ -580,13 +580,13 @@ public&nbsp;<a href="../../../../../com/microblink/entities/ocrengine/AbstractOC
 </dl>
 </li>
 </ul>
-<a name="isMustEndWithWhitespace--">
+<a name="shouldEndWithWhitespace--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>isMustEndWithWhitespace</h4>
-<pre>public&nbsp;boolean&nbsp;isMustEndWithWhitespace()</pre>
+<h4>shouldEndWithWhitespace</h4>
+<pre>public&nbsp;boolean&nbsp;shouldEndWithWhitespace()</pre>
 <div class="block">Returns whether matched string must end with whitespace.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>

@@ -1,5 +1,26 @@
 # Release notes
 
+## v4.3.0
+### Breaking change:
+
+Based on the feedback, we have restored support for **x86_64** processor architecture. Due to the architecture specifics, there is no guarantee that the scanning process will work equally well as it does on the ARM architectures. The main reason for restoring support is to ease the compliance issue for developers.
+We distribute SDK with **ARMv7**, **ARM64**, **x86**, and **x86_64** native library binaries.
+
+### Improvements:
+
+- We have translated complete SDK to following languages: **Croatian**, **Czech**, **English**, **French**, **German**, **Italian**, **Portuguese**, **Slovak**, and **Spanish**.
+- We improved document detection with `DocumentCaptureRecognizer`.
+- We are now delivering the complete list of open source dependencies used in the SDK. Please check the `open-source-software-used` directory.
+
+### Minor API changes:
+
+- We removed `RecognizerRunnerView` custom attributes: `mb_initialOrientation` and `mb_aspectMode`. Use `RecognizerRunnerView.setInitialOrientation` and `RecognizerRunnerView.setAspectMode` to configure the attributes in the code.
+- We renamed `EMailParser` to `EmailParser`
+- We renamed some methods:
+ 	- `LicensePlatesParser`: `getLicensePlateString` to `getLicensePlate`
+	- `RegexParser`: `isUsingSieve` to `shouldUseSieve`, `setMustStartWithWhitespace ` to `setStartWithWhitespace `, `isMustStartWithWhitespace ` to `shouldStartWithWhitespace `, `setMustEndWithWhitespace ` to `setEndWithWhitespace `, `isMustEndWithWhitespace ` to `shouldEndWithWhitespace `
+	- `RawParser`: `isUsingSieve` to `shouldUseSieve`
+
 ## 4.2.0
 
 ### Breaking changes:
