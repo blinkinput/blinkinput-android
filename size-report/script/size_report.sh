@@ -11,8 +11,8 @@ SCRIPTPATH=`pwd -P`
 popd > /dev/null
 
 APKANALYZER=apkanalyzer
-command -v $APKANALYZER > /dev/null || { APKANALYZER="${ANDROID_SDK_DIR}/tools/bin/apkanalyzer"; }
-command -v $APKANALYZER > /dev/null || { echo >&2 "Please set ANDROID_SDK_DIR environment variable or add apkanalyzer (https://developer.android.com/studio/command-line/apkanalyzer) to PATH."; exit 1; }
+command -v $APKANALYZER > /dev/null || { APKANALYZER="${ANDROID_SDK_ROOT}/tools/bin/apkanalyzer"; }
+command -v $APKANALYZER > /dev/null || { echo >&2 "Please set ANDROID_SDK_ROOT environment variable or add apkanalyzer (https://developer.android.com/studio/command-line/apkanalyzer) to PATH."; exit 1; }
 
 SDK_NAME=$1
 PROJECT_PATH=$2

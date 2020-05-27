@@ -254,27 +254,27 @@ extends <a href="../../../../../com/microblink/entities/parsers/Parser.html" tit
 </td>
 </tr>
 <tr id="i6" class="altColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/entities/parsers/raw/RawParser.html#isUsingSieve--">isUsingSieve</a></span>()</code>
-<div class="block">Returns true if algorithm for combining consecutive OCR results between video frames
- for improving OCR quality is used.</div>
-</td>
-</tr>
-<tr id="i7" class="rowColor">
 <td class="colFirst"><code>protected byte[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/entities/parsers/raw/RawParser.html#serializeNativeSettings--">serializeNativeSettings</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/entities/parsers/raw/RawParser.html#setOcrEngineOptions-com.microblink.entities.ocrengine.AbstractOCREngineOptions-">setOcrEngineOptions</a></span>(<a href="../../../../../com/microblink/entities/ocrengine/AbstractOCREngineOptions.html" title="class in com.microblink.entities.ocrengine">AbstractOCREngineOptions</a>&nbsp;ocrEngineOptions)</code>
 <div class="block">Sets the OCR engine options used in Regex OCR parser.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/entities/parsers/raw/RawParser.html#setUseSieve-boolean-">setUseSieve</a></span>(boolean&nbsp;useSieve)</code>
 <div class="block">Enable the usage of algorithm for combining consecutive OCR results between video frames
  for improving OCR quality.</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/entities/parsers/raw/RawParser.html#shouldUseSieve--">shouldUseSieve</a></span>()</code>
+<div class="block">Returns true if algorithm for combining consecutive OCR results between video frames
+ for improving OCR quality is used.</div>
 </td>
 </tr>
 <tr id="i10" class="altColor">
@@ -402,13 +402,13 @@ public&nbsp;<a href="../../../../../com/microblink/entities/ocrengine/AbstractOC
 </dl>
 </li>
 </ul>
-<a name="isUsingSieve--">
+<a name="shouldUseSieve--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>isUsingSieve</h4>
-<pre>public&nbsp;boolean&nbsp;isUsingSieve()</pre>
+<h4>shouldUseSieve</h4>
+<pre>public&nbsp;boolean&nbsp;shouldUseSieve()</pre>
 <div class="block">Returns true if algorithm for combining consecutive OCR results between video frames
  for improving OCR quality is used.
  By default, this is set to 'false'</div>
