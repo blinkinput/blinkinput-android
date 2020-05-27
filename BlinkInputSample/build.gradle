@@ -5,7 +5,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.1'
+        classpath 'com.android.tools.build:gradle:3.6.3'
     }
 }
 
@@ -21,7 +21,7 @@ allprojects {
 // versions of libraries that all modules require
 
 project.ext {
-    blinkInputVersion = '4.2.0'
+    blinkInputVersion = '4.3.0'
     compileSdkVersion = 29
     targetSdkVersion = 29
     appCompatVersion = '1.1.0'
