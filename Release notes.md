@@ -1,6 +1,6 @@
 # Release notes
 
-## v4.3.0
+## 4.3.0
 ### Breaking change:
 
 Based on the feedback, we have restored support for **x86_64** processor architecture. Due to the architecture specifics, there is no guarantee that the scanning process will work equally well as it does on the ARM architectures. The main reason for restoring support is to ease the compliance issue for developers.
