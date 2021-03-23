@@ -1,7 +1,7 @@
 package com.microblink.util.templating;
 
-import com.microblink.entities.ocrengine.legacy.BlinkOCREngineOptions;
-import com.microblink.results.ocr.OcrFont;
+import com.microblink.blinkinput.entities.ocrengine.legacy.BlinkOCREngineOptions;
+import com.microblink.blinkinput.results.ocr.OcrFont;
 
 abstract class CroatianIDRecognizerUtils {
     /**

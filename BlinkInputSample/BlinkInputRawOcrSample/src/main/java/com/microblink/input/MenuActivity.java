@@ -5,8 +5,8 @@ import android.widget.Toast;
 
 import com.microblink.blinkinput.BaseMenuActivity;
 import com.microblink.blinkinput.MenuListItem;
-import com.microblink.util.RecognizerCompatibility;
-import com.microblink.util.RecognizerCompatibilityStatus;
+import com.microblink.blinkinput.util.RecognizerCompatibility;
+import com.microblink.blinkinput.util.RecognizerCompatibilityStatus;
 
 import java.util.ArrayList;
 import java.util.List;

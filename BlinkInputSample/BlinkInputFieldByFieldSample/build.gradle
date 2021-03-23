@@ -18,6 +18,7 @@ android {
             signingConfig = debug.signingConfig
         }
     }
+
     splits {
         abi {
             enable true

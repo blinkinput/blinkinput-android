@@ -9,13 +9,13 @@ import android.widget.Toast;
 
 import com.microblink.blinkinput.BaseMenuActivity;
 import com.microblink.blinkinput.MenuListItem;
-import com.microblink.entities.recognizers.blinkinput.documentcapture.DocumentCaptureRecognizer;
-import com.microblink.entities.recognizers.blinkinput.documentcapture.DocumentCaptureRecognizerTransferable;
-import com.microblink.image.Image;
-import com.microblink.uisettings.ActivityRunner;
-import com.microblink.uisettings.DocumentCaptureUISettings;
-import com.microblink.util.RecognizerCompatibility;
-import com.microblink.util.RecognizerCompatibilityStatus;
+import com.microblink.blinkinput.entities.recognizers.blinkinput.documentcapture.DocumentCaptureRecognizer;
+import com.microblink.blinkinput.entities.recognizers.blinkinput.documentcapture.DocumentCaptureRecognizerTransferable;
+import com.microblink.blinkinput.image.Image;
+import com.microblink.blinkinput.uisettings.ActivityRunner;
+import com.microblink.blinkinput.uisettings.DocumentCaptureUISettings;
+import com.microblink.blinkinput.util.RecognizerCompatibility;
+import com.microblink.blinkinput.util.RecognizerCompatibilityStatus;
 
 import java.io.BufferedOutputStream;
 import java.io.File;

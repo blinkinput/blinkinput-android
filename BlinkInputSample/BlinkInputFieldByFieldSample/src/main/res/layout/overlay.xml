@@ -111,7 +111,7 @@
                           android:gravity="center_vertical"
                           android:orientation="vertical">
 
-                <com.microblink.ocr.SlidingTabLayout
+                <com.microblink.blinkinput.ocr.SlidingTabLayout
                     android:id="@+id/indicator"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -182,13 +182,14 @@
                 android:visibility="invisible"
                 tools:visibility="visible">
 
-                <com.microblink.ocr.FontFitTextView
+                <com.microblink.blinkinput.ocr.FontFitTextView
                     android:id="@+id/txtResult"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLines="4"
                     android:text="123,54"
                     android:textAlignment="center"
+                    android:layout_gravity="center"
                     android:textColor="@color/text_white"
                     android:background="@android:color/transparent"
                     android:textSize="@dimen/text_size"

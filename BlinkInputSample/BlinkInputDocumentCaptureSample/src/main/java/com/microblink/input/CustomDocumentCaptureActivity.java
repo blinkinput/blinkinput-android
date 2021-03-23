@@ -5,18 +5,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
-import com.microblink.entities.recognizers.blinkinput.documentcapture.DocumentCaptureRecognizer;
-import com.microblink.entities.recognizers.blinkinput.documentcapture.DocumentCaptureRecognizerTransferable;
-import com.microblink.fragment.RecognizerRunnerFragment;
-import com.microblink.fragment.overlay.ScanningOverlay;
-import com.microblink.fragment.overlay.documentcapture.DocumentCaptureOverlayController;
-import com.microblink.fragment.overlay.documentcapture.DocumentCaptureOverlaySettings;
-import com.microblink.fragment.overlay.documentcapture.detectionui.DetectionOverlayStrings;
-import com.microblink.fragment.overlay.documentcapture.detectionui.DetectionOverlayView;
-import com.microblink.fragment.overlay.verification.OverlayTorchStateListener;
-import com.microblink.recognition.RecognitionSuccessType;
-import com.microblink.view.recognition.ScanResultListener;
+import com.microblink.blinkinput.entities.recognizers.blinkinput.documentcapture.DocumentCaptureRecognizer;
+import com.microblink.blinkinput.entities.recognizers.blinkinput.documentcapture.DocumentCaptureRecognizerTransferable;
+import com.microblink.blinkinput.fragment.RecognizerRunnerFragment;
+import com.microblink.blinkinput.fragment.overlay.ScanningOverlay;
+import com.microblink.blinkinput.fragment.overlay.documentcapture.DocumentCaptureOverlayController;
+import com.microblink.blinkinput.fragment.overlay.documentcapture.DocumentCaptureOverlaySettings;
+import com.microblink.blinkinput.fragment.overlay.documentcapture.detectionui.DetectionOverlayStrings;
+import com.microblink.blinkinput.fragment.overlay.documentcapture.detectionui.DetectionOverlayView;
+import com.microblink.blinkinput.fragment.overlay.verification.OverlayTorchStateListener;
+import com.microblink.blinkinput.recognition.RecognitionSuccessType;
+import com.microblink.blinkinput.view.recognition.ScanResultListener;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -129,6 +130,12 @@ public class CustomDocumentCaptureActivity extends AppCompatActivity implements
             }
 
             recognizerTransferable.saveToIntent(intent);
+            finish();
+        }
+
+        @Override
+        public void onUnrecoverableError(@NonNull Throwable throwable) {
+            Toast.makeText(CustomDocumentCaptureActivity.this, throwable.toString(), Toast.LENGTH_LONG).show();
             finish();
         }
     };

@@ -8,11 +8,11 @@
     android:layout_height="match_parent"
     tools:context="com.microblink.input.IDScanActivity">
 
-    <com.microblink.view.recognition.RecognizerRunnerView
+    <com.microblink.blinkinput.view.recognition.RecognizerRunnerView
         android:id="@+id/recognizerRunnerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </com.microblink.view.recognition.RecognizerRunnerView>
+    </com.microblink.blinkinput.view.recognition.RecognizerRunnerView>
 
 </FrameLayout>

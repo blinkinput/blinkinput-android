@@ -17,13 +17,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.microblink.directApi.DirectApiErrorListener;
-import com.microblink.directApi.RecognizerRunner;
-import com.microblink.entities.recognizers.RecognizerBundle;
-import com.microblink.hardware.orientation.Orientation;
+import com.microblink.blinkinput.directApi.DirectApiErrorListener;
+import com.microblink.blinkinput.directApi.RecognizerRunner;
+import com.microblink.blinkinput.entities.recognizers.RecognizerBundle;
+import com.microblink.blinkinput.hardware.orientation.Orientation;
 import com.microblink.input.R;
-import com.microblink.recognition.RecognitionSuccessType;
-import com.microblink.view.recognition.ScanResultListener;
+import com.microblink.blinkinput.recognition.RecognitionSuccessType;
+import com.microblink.blinkinput.view.recognition.ScanResultListener;
 
 import java.io.File;
 import java.io.IOException;
@@ -202,6 +202,12 @@ public class ScanImageActivity extends Activity {
                         }
                     });
                 }
+            }
+
+            @Override
+            public void onUnrecoverableError(@NonNull Throwable throwable) {
+                Toast.makeText(ScanImageActivity.this, throwable.toString(), Toast.LENGTH_LONG).show();
+                finish();
             }
         });
     }

@@ -12,11 +12,11 @@ import android.widget.Toast;
 
 import com.microblink.blinkinput.BaseMenuActivity;
 import com.microblink.blinkinput.MenuListItem;
-import com.microblink.entities.ocrengine.legacy.BlinkOCREngineOptions;
-import com.microblink.entities.parsers.raw.RawParser;
-import com.microblink.entities.processors.parserGroup.ParserGroupProcessor;
-import com.microblink.entities.recognizers.RecognizerBundle;
-import com.microblink.entities.recognizers.blinkinput.BlinkInputRecognizer;
+import com.microblink.blinkinput.entities.ocrengine.legacy.BlinkOCREngineOptions;
+import com.microblink.blinkinput.entities.parsers.raw.RawParser;
+import com.microblink.blinkinput.entities.processors.parserGroup.ParserGroupProcessor;
+import com.microblink.blinkinput.entities.recognizers.RecognizerBundle;
+import com.microblink.blinkinput.entities.recognizers.blinkinput.BlinkInputRecognizer;
 import com.microblink.input.customcamera.Camera1Activity;
 import com.microblink.input.customcamera.camera2.Camera2Activity;
 import com.microblink.input.imagescan.ScanImageActivity;

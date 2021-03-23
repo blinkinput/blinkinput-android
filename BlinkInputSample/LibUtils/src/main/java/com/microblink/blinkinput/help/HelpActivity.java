@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import com.microblink.blinkinput.R;
-import com.microblink.locale.LanguageUtils;
+import com.microblink.blinkinput.locale.LanguageUtils;
 
 import androidx.fragment.app.FragmentActivity;
 

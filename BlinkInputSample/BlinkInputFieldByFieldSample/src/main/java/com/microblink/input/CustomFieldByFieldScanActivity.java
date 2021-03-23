@@ -20,22 +20,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.microblink.blinkinput.help.HelpActivity;
-import com.microblink.entities.parsers.Parser;
-import com.microblink.entities.parsers.config.fieldbyfield.FieldByFieldElement;
-import com.microblink.entities.processors.parserGroup.ParserGroupProcessor;
-import com.microblink.entities.recognizers.RecognizerBundle;
-import com.microblink.entities.recognizers.blinkinput.BlinkInputRecognizer;
-import com.microblink.geometry.Rectangle;
-import com.microblink.hardware.SuccessCallback;
-import com.microblink.ocr.SlidingTabLayout;
-import com.microblink.recognition.RecognitionSuccessType;
-import com.microblink.util.CameraPermissionManager;
-import com.microblink.util.Log;
-import com.microblink.view.CameraAspectMode;
-import com.microblink.view.CameraEventsListener;
-import com.microblink.view.exception.NonLandscapeOrientationNotSupportedException;
-import com.microblink.view.recognition.RecognizerRunnerView;
-import com.microblink.view.recognition.ScanResultListener;
+import com.microblink.blinkinput.entities.parsers.Parser;
+import com.microblink.blinkinput.entities.parsers.config.fieldbyfield.FieldByFieldElement;
+import com.microblink.blinkinput.entities.processors.parserGroup.ParserGroupProcessor;
+import com.microblink.blinkinput.entities.recognizers.RecognizerBundle;
+import com.microblink.blinkinput.entities.recognizers.blinkinput.BlinkInputRecognizer;
+import com.microblink.blinkinput.geometry.Rectangle;
+import com.microblink.blinkinput.hardware.SuccessCallback;
+import com.microblink.blinkinput.ocr.SlidingTabLayout;
+import com.microblink.blinkinput.recognition.RecognitionSuccessType;
+import com.microblink.blinkinput.util.CameraPermissionManager;
+import com.microblink.blinkinput.util.Log;
+import com.microblink.blinkinput.view.CameraAspectMode;
+import com.microblink.blinkinput.view.CameraEventsListener;
+import com.microblink.blinkinput.view.exception.NonLandscapeOrientationNotSupportedException;
+import com.microblink.blinkinput.view.recognition.RecognizerRunnerView;
+import com.microblink.blinkinput.view.recognition.ScanResultListener;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
@@ -453,6 +453,12 @@ public class CustomFieldByFieldScanActivity extends Activity {
             // recognizers, including barcode recognizers (if enabled).
             // If you want to reset internal state call:
             // mRecognizerRunnerView.resetRecognitionState();
+        }
+
+        @Override
+        public void onUnrecoverableError(@NonNull Throwable throwable) {
+            Toast.makeText(CustomFieldByFieldScanActivity.this, throwable.toString(), Toast.LENGTH_LONG).show();
+            finish();
         }
 
     };

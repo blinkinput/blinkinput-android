@@ -1,10 +1,10 @@
 package com.microblink.input;
 
-import com.microblink.entities.parsers.amount.AmountParser;
-import com.microblink.entities.parsers.config.fieldbyfield.FieldByFieldElement;
-import com.microblink.entities.parsers.date.DateParser;
-import com.microblink.entities.parsers.email.EmailParser;
-import com.microblink.entities.parsers.raw.RawParser;
+import com.microblink.blinkinput.entities.parsers.amount.AmountParser;
+import com.microblink.blinkinput.entities.parsers.config.fieldbyfield.FieldByFieldElement;
+import com.microblink.blinkinput.entities.parsers.date.DateParser;
+import com.microblink.blinkinput.entities.parsers.email.EmailParser;
+import com.microblink.blinkinput.entities.parsers.raw.RawParser;
 
 public class CustomUIElementConfigurator {
     public static FieldByFieldElement[] createFieldByFieldElements() {

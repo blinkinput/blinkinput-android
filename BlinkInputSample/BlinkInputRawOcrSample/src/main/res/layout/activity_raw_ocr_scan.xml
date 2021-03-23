@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.microblink.view.recognition.RecognizerRunnerView
+        <com.microblink.blinkinput.view.recognition.RecognizerRunnerView
             android:id="@+id/recognizerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"

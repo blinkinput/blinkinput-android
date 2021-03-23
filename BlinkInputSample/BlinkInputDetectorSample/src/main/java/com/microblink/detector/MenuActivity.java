@@ -6,14 +6,14 @@ import android.widget.Toast;
 
 import com.microblink.blinkinput.BaseMenuActivity;
 import com.microblink.blinkinput.MenuListItem;
-import com.microblink.entities.detectors.Detector;
-import com.microblink.entities.detectors.quad.document.DocumentDetector;
-import com.microblink.entities.detectors.quad.document.DocumentSpecification;
-import com.microblink.entities.detectors.quad.document.DocumentSpecificationPreset;
-import com.microblink.entities.detectors.quad.mrtd.MRTDDetector;
+import com.microblink.blinkinput.entities.detectors.Detector;
+import com.microblink.blinkinput.entities.detectors.quad.document.DocumentDetector;
+import com.microblink.blinkinput.entities.detectors.quad.document.DocumentSpecification;
+import com.microblink.blinkinput.entities.detectors.quad.document.DocumentSpecificationPreset;
+import com.microblink.blinkinput.entities.detectors.quad.mrtd.MRTDDetector;
 import com.microblink.input.R;
-import com.microblink.util.RecognizerCompatibility;
-import com.microblink.util.RecognizerCompatibilityStatus;
+import com.microblink.blinkinput.util.RecognizerCompatibility;
+import com.microblink.blinkinput.util.RecognizerCompatibilityStatus;
 
 import java.util.ArrayList;
 import java.util.List;

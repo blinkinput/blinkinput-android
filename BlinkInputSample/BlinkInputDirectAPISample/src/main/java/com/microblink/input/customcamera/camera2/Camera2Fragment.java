@@ -44,15 +44,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.microblink.directApi.DirectApiErrorListener;
-import com.microblink.directApi.RecognizerRunner;
-import com.microblink.entities.recognizers.RecognizerBundle;
-import com.microblink.hardware.orientation.Orientation;
-import com.microblink.image.ImageBuilder;
+import com.microblink.blinkinput.directApi.DirectApiErrorListener;
+import com.microblink.blinkinput.directApi.RecognizerRunner;
+import com.microblink.blinkinput.entities.recognizers.RecognizerBundle;
+import com.microblink.blinkinput.hardware.orientation.Orientation;
+import com.microblink.blinkinput.image.ImageBuilder;
 import com.microblink.input.R;
 import com.microblink.input.util.ResultFormater;
-import com.microblink.recognition.RecognitionSuccessType;
-import com.microblink.view.recognition.ScanResultListener;
+import com.microblink.blinkinput.recognition.RecognitionSuccessType;
+import com.microblink.blinkinput.view.recognition.ScanResultListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -103,7 +103,7 @@ public class Camera2Fragment extends Fragment implements ScanResultListener {
                 if (img != null) {
                     if (mRecognizerRunner.getCurrentState() == RecognizerRunner.State.READY) {
                         mImageBeingRecognized = img;
-                        com.microblink.image.Image image = ImageBuilder.buildImageFromCamera2Image(mImageBeingRecognized, Orientation.ORIENTATION_LANDSCAPE_RIGHT, null);
+                        com.microblink.blinkinput.image.Image image = ImageBuilder.buildImageFromCamera2Image(mImageBeingRecognized, Orientation.ORIENTATION_LANDSCAPE_RIGHT, null);
                         Log.i(TAG, "Starting recognition");
                         mTimestamp = System.currentTimeMillis();
                         mRecognizerRunner.recognizeImage(image, Camera2Fragment.this);
@@ -666,6 +666,14 @@ public class Camera2Fragment extends Fragment implements ScanResultListener {
             } catch (Exception exc) {
                 Log.w(TAG, "Failed to capture another frame for ImageReader");
             }
+        }
+    }
+
+    @Override
+    public void onUnrecoverableError(@NonNull Throwable throwable) {
+        Activity hostActivity = getActivity();
+        if (hostActivity != null) {
+            Toast.makeText(hostActivity, throwable.toString(), Toast.LENGTH_LONG).show();
         }
     }
 
