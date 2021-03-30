@@ -1,6 +1,42 @@
 # Release notes
 
-## 4.3.0
+## v5.0.0
+
+### **BlinkInput v5 Release Announcement**
+
+As of this version, BlinkInput SDK is fully compatible with other Microblink SDKs, which means that you can use it with other Microblink SDKs in the same application.
+
+### Improvements:
+
+- We've translated complete SDK to the following additional languages: **Malay**, **Dutch**, **Hungarian**, **Serbian**, **Slovenian**, **Indonesian**, **Arabic**, **Romanian**, **Chinese traditional**, **Chinese simplified**, **Thai**, **Hewrew**, **Vietnamese** and **Filipino**.
+- We've  made the SDK safe from **tapjacking**, a form of attack where a user is tricked into tapping something he or she didn't intend to tap. We did this by adding a new security option that prompts the SDK to discard touches when the activity's window is obscured by another visible window. To activate it, use `UISettings.setFilterTouchesWhenObscured(true)`.
+- We've introduced a new `FrameRecognitionCallback` callback for the `RecognizerRunnerView`, which is invoked each time a camera frame from a video stream is recognized. Use `RecognizerRunnerView.setFrameRecognitionCallback` method to set the callback.
+
+### Major API changes
+
+- To ensure compatibility with other Microblink SDKs, we have repackaged all classes. We have renamed the root package `com.microblink` to `com.microblink.blinkinput`, which is unique to `BlinkInput` SDK.
+- `ScanResultListener` interface now has an additional method called when the scanning cannot continue because of an unrecoverable error. You have to implement `onUnrecoverableError` method.
+If you're using built-in activities, when `onActivityResult` is called with `RESULT_CANCELED` result code, the exception will be available via `ActivityRunner.EXTRA_SCAN_EXCEPTION` intent extra. If the user canceled the scan, the exception would be `null`.
+
+### Minor API changes:
+
+- We renamed `EMailParser` to `EmailParser`.
+- We renamed some methods:
+ 	- In `LicensePlatesParser`: `getLicensePlateString` to `getLicensePlate`.
+	- In `RegexParser`: `isUsingSieve` to `shouldUseSieve`, `setMustStartWithWhitespace ` to `setStartWithWhitespace `, `isMustStartWithWhitespace ` to `shouldStartWithWhitespace `, `setMustEndWithWhitespace ` to `setEndWithWhitespace `, `isMustEndWithWhitespace ` to `shouldEndWithWhitespace `.
+	- In `RawParser`: `isUsingSieve` to `shouldUseSieve`.
+- We've renamed `RecogitionMode` to `RecognitionDebugMode` in `RecognizerBundle`.
+- We've replaced `Using time-limited license!` warning with `Using trial license!` warning. The warning message is displayed when using a trial license key.
+- We've deprecated `DetectorRecognizer`- use `DocumentCaptureRecognizer`instead.
+- We've deprecated `Pdf417Recognizer` - use `BarcodeRecognizer` instead.
+
+### Bug fixes:
+
+- We've fixed bug in IBAN parsing which caused that reference number was sometimes read as part of the IBAN number.
+- We've fixed the front-facing camera error on `Oukitel WP8 Pro`.
+
+## v4.3.0
+
 ### Breaking change:
 
 Based on the feedback, we have restored support for **x86_64** processor architecture. Due to the architecture specifics, there is no guarantee that the scanning process will work equally well as it does on the ARM architectures. The main reason for restoring support is to ease the compliance issue for developers.
