@@ -1,6 +1,6 @@
 package com.microblink.input.util;
 
-import com.microblink.entities.recognizers.Recognizer;
+import com.microblink.blinkinput.entities.recognizers.Recognizer;
 
 public class ResultFormater {
 

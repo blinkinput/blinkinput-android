@@ -23,35 +23,35 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.microblink.entities.detectors.quad.QuadWithSizeDetector;
-import com.microblink.entities.processors.imageReturn.ImageReturnProcessor;
-import com.microblink.entities.recognizers.RecognizerBundle;
-import com.microblink.entities.recognizers.detector.DetectorRecognizer;
-import com.microblink.entities.recognizers.templating.ProcessorGroup;
-import com.microblink.entities.recognizers.templating.TemplatingClass;
-import com.microblink.entities.recognizers.templating.dewarpPolicies.DPIBasedDewarpPolicy;
-import com.microblink.geometry.Rectangle;
-import com.microblink.hardware.SuccessCallback;
-import com.microblink.hardware.orientation.Orientation;
+import com.microblink.blinkinput.entities.detectors.quad.QuadWithSizeDetector;
+import com.microblink.blinkinput.entities.processors.imageReturn.ImageReturnProcessor;
+import com.microblink.blinkinput.entities.recognizers.RecognizerBundle;
+import com.microblink.blinkinput.entities.recognizers.detector.DetectorRecognizer;
+import com.microblink.blinkinput.entities.recognizers.templating.ProcessorGroup;
+import com.microblink.blinkinput.entities.recognizers.templating.TemplatingClass;
+import com.microblink.blinkinput.entities.recognizers.templating.dewarpPolicies.DPIBasedDewarpPolicy;
+import com.microblink.blinkinput.geometry.Rectangle;
+import com.microblink.blinkinput.hardware.SuccessCallback;
+import com.microblink.blinkinput.hardware.orientation.Orientation;
 import com.microblink.input.R;
-import com.microblink.metadata.MetadataCallbacks;
-import com.microblink.metadata.detection.FailedDetectionCallback;
-import com.microblink.metadata.detection.quad.DisplayableQuadDetection;
-import com.microblink.metadata.detection.quad.QuadDetectionCallback;
-import com.microblink.recognition.RecognitionSuccessType;
-import com.microblink.util.CameraPermissionManager;
-import com.microblink.util.Log;
-import com.microblink.view.BaseCameraView;
-import com.microblink.view.CameraEventsListener;
-import com.microblink.view.OnSizeChangedListener;
-import com.microblink.view.OrientationAllowedListener;
-import com.microblink.view.exception.NonLandscapeOrientationNotSupportedException;
-import com.microblink.view.recognition.RecognizerRunnerView;
-import com.microblink.view.recognition.ScanResultListener;
-import com.microblink.view.viewfinder.quadview.QuadViewAnimationListener;
-import com.microblink.view.viewfinder.quadview.QuadViewManager;
-import com.microblink.view.viewfinder.quadview.QuadViewManagerFactory;
-import com.microblink.view.viewfinder.quadview.QuadViewPreset;
+import com.microblink.blinkinput.metadata.MetadataCallbacks;
+import com.microblink.blinkinput.metadata.detection.FailedDetectionCallback;
+import com.microblink.blinkinput.metadata.detection.quad.DisplayableQuadDetection;
+import com.microblink.blinkinput.metadata.detection.quad.QuadDetectionCallback;
+import com.microblink.blinkinput.recognition.RecognitionSuccessType;
+import com.microblink.blinkinput.util.CameraPermissionManager;
+import com.microblink.blinkinput.util.Log;
+import com.microblink.blinkinput.view.BaseCameraView;
+import com.microblink.blinkinput.view.CameraEventsListener;
+import com.microblink.blinkinput.view.OnSizeChangedListener;
+import com.microblink.blinkinput.view.OrientationAllowedListener;
+import com.microblink.blinkinput.view.exception.NonLandscapeOrientationNotSupportedException;
+import com.microblink.blinkinput.view.recognition.RecognizerRunnerView;
+import com.microblink.blinkinput.view.recognition.ScanResultListener;
+import com.microblink.blinkinput.view.viewfinder.quadview.QuadViewAnimationListener;
+import com.microblink.blinkinput.view.viewfinder.quadview.QuadViewManager;
+import com.microblink.blinkinput.view.viewfinder.quadview.QuadViewManagerFactory;
+import com.microblink.blinkinput.view.viewfinder.quadview.QuadViewPreset;
 
 import androidx.annotation.NonNull;
 
@@ -437,6 +437,12 @@ public class DetectorActivity extends Activity {
                 // else result will be shown when animation ends (animation listener)
                 mHaveResult = true;
             }
+        }
+
+        @Override
+        public void onUnrecoverableError(@NonNull Throwable throwable) {
+            Toast.makeText(DetectorActivity.this, throwable.toString(), Toast.LENGTH_LONG).show();
+            finish();
         }
     };
 

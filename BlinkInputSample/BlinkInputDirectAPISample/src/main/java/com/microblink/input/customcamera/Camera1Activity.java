@@ -13,17 +13,17 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.microblink.directApi.DirectApiErrorListener;
-import com.microblink.directApi.RecognizerRunner;
-import com.microblink.entities.recognizers.RecognizerBundle;
-import com.microblink.hardware.orientation.Orientation;
-import com.microblink.image.Image;
-import com.microblink.image.ImageBuilder;
+import com.microblink.blinkinput.directApi.DirectApiErrorListener;
+import com.microblink.blinkinput.directApi.RecognizerRunner;
+import com.microblink.blinkinput.entities.recognizers.RecognizerBundle;
+import com.microblink.blinkinput.hardware.orientation.Orientation;
+import com.microblink.blinkinput.image.Image;
+import com.microblink.blinkinput.image.ImageBuilder;
 import com.microblink.input.R;
 import com.microblink.input.util.ResultFormater;
-import com.microblink.recognition.FeatureNotSupportedException;
-import com.microblink.recognition.RecognitionSuccessType;
-import com.microblink.view.recognition.ScanResultListener;
+import com.microblink.blinkinput.recognition.FeatureNotSupportedException;
+import com.microblink.blinkinput.recognition.RecognitionSuccessType;
+import com.microblink.blinkinput.view.recognition.ScanResultListener;
 
 import java.io.IOException;
 import java.util.List;
@@ -176,6 +176,12 @@ public class Camera1Activity extends Activity implements ScanResultListener, Sur
                 mCamera.addCallbackBuffer(mPixelBuffer);
             }
         }
+    }
+
+    @Override
+    public void onUnrecoverableError(@NonNull Throwable throwable) {
+        Toast.makeText(this, throwable.toString(), Toast.LENGTH_LONG).show();
+        finish();
     }
 
     @Override

@@ -2,8 +2,8 @@ package com.microblink.input;
 
 import android.app.Application;
 
-import com.microblink.MicroblinkSDK;
-import com.microblink.intent.IntentDataTransferMode;
+import com.microblink.blinkinput.MicroblinkSDK;
+import com.microblink.blinkinput.intent.IntentDataTransferMode;
 
 public final class BlinkInputSampleApp extends Application {
     @Override

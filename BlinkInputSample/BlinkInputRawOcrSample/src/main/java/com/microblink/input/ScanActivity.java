@@ -10,23 +10,24 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.microblink.entities.ocrengine.AbstractOCREngineOptions;
-import com.microblink.entities.ocrengine.deep.DeepOCREngineOptions;
-import com.microblink.entities.ocrengine.legacy.BlinkOCREngineOptions;
-import com.microblink.entities.parsers.raw.RawParser;
-import com.microblink.entities.processors.parserGroup.ParserGroupProcessor;
-import com.microblink.entities.recognizers.RecognizerBundle;
-import com.microblink.entities.recognizers.blinkinput.BlinkInputRecognizer;
-import com.microblink.metadata.MetadataCallbacks;
-import com.microblink.metadata.detection.points.DisplayablePointsDetection;
-import com.microblink.metadata.detection.points.PointsDetectionCallback;
-import com.microblink.recognition.RecognitionSuccessType;
-import com.microblink.util.CameraPermissionManager;
-import com.microblink.view.CameraEventsListener;
-import com.microblink.view.ocrResult.OcrResultDotsView;
-import com.microblink.view.recognition.RecognizerRunnerView;
-import com.microblink.view.recognition.ScanResultListener;
+import com.microblink.blinkinput.entities.ocrengine.AbstractOCREngineOptions;
+import com.microblink.blinkinput.entities.ocrengine.deep.DeepOCREngineOptions;
+import com.microblink.blinkinput.entities.ocrengine.legacy.BlinkOCREngineOptions;
+import com.microblink.blinkinput.entities.parsers.raw.RawParser;
+import com.microblink.blinkinput.entities.processors.parserGroup.ParserGroupProcessor;
+import com.microblink.blinkinput.entities.recognizers.RecognizerBundle;
+import com.microblink.blinkinput.entities.recognizers.blinkinput.BlinkInputRecognizer;
+import com.microblink.blinkinput.metadata.MetadataCallbacks;
+import com.microblink.blinkinput.metadata.detection.points.DisplayablePointsDetection;
+import com.microblink.blinkinput.metadata.detection.points.PointsDetectionCallback;
+import com.microblink.blinkinput.recognition.RecognitionSuccessType;
+import com.microblink.blinkinput.util.CameraPermissionManager;
+import com.microblink.blinkinput.view.CameraEventsListener;
+import com.microblink.blinkinput.view.ocrResult.OcrResultDotsView;
+import com.microblink.blinkinput.view.recognition.RecognizerRunnerView;
+import com.microblink.blinkinput.view.recognition.ScanResultListener;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -189,6 +190,12 @@ public class ScanActivity extends Activity {
                     mResultTextView.setText(resultString);
                 }
             });
+        }
+
+        @Override
+        public void onUnrecoverableError(@NonNull Throwable throwable) {
+            Toast.makeText(ScanActivity.this, throwable.toString(), Toast.LENGTH_LONG).show();
+            finish();
         }
     };
 

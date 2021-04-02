@@ -7,14 +7,14 @@ import android.widget.Toast;
 
 import com.microblink.blinkinput.BaseMenuActivity;
 import com.microblink.blinkinput.MenuListItem;
-import com.microblink.entities.recognizers.Recognizer;
-import com.microblink.entities.recognizers.RecognizerBundle;
-import com.microblink.entities.recognizers.detector.DetectorRecognizer;
-import com.microblink.entities.recognizers.successframe.SuccessFrameGrabberRecognizer;
-import com.microblink.image.Image;
-import com.microblink.results.date.Date;
-import com.microblink.util.RecognizerCompatibility;
-import com.microblink.util.RecognizerCompatibilityStatus;
+import com.microblink.blinkinput.entities.recognizers.Recognizer;
+import com.microblink.blinkinput.entities.recognizers.RecognizerBundle;
+import com.microblink.blinkinput.entities.recognizers.detector.DetectorRecognizer;
+import com.microblink.blinkinput.entities.recognizers.successframe.SuccessFrameGrabberRecognizer;
+import com.microblink.blinkinput.image.Image;
+import com.microblink.blinkinput.results.date.Date;
+import com.microblink.blinkinput.util.RecognizerCompatibility;
+import com.microblink.blinkinput.util.RecognizerCompatibilityStatus;
 import com.microblink.util.templating.CroatianIDFrontSideTemplatingUtil;
 
 import java.io.BufferedOutputStream;

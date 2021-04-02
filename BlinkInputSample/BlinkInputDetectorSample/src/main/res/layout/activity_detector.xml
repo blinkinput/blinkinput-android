@@ -9,7 +9,7 @@
     android:background="@color/mb_transparent"
     tools:context="com.microblink.detector.DetectorActivity">
 
-    <com.microblink.view.recognition.RecognizerRunnerView
+    <com.microblink.blinkinput.view.recognition.RecognizerRunnerView
         android:id="@+id/rec_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,6 +17,6 @@
         custom:mb_animationDuration="250">
 
 
-    </com.microblink.view.recognition.RecognizerRunnerView>
+    </com.microblink.blinkinput.view.recognition.RecognizerRunnerView>
 
 </FrameLayout>
