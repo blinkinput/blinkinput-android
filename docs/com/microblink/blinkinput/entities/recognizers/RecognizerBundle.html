@@ -47,7 +47,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../com/microblink/blinkinput/entities/recognizers/HighResImagesBundle.html" title="class in com.microblink.blinkinput.entities.recognizers"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../../com/microblink/blinkinput/entities/recognizers/Recognizer.Result.State.html" title="class in com.microblink.blinkinput.entities.recognizers"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../../com/microblink/blinkinput/entities/recognizers/RecognizerBundle.FrameQualityEstimationMode.html" title="class in com.microblink.blinkinput.entities.recognizers"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -114,7 +114,7 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">RecognizerBundle</span>
 extends &lt;any&gt;</pre>
-<div class="block">Represents a bundle of <code>Recognizer</code> objects that can travel via <code>Intent</code></div>
+<div class="block">Represents a bundle of <a href="../../../../../com/microblink/blinkinput/entities/recognizers/Recognizer.html" title="class in com.microblink.blinkinput.entities.recognizers"><code>Recognizer</code></a> objects that can travel via <code>Intent</code></div>
 </li>
 </ul>
 </div>
@@ -185,7 +185,7 @@ extends &lt;any&gt;</pre>
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../../com/microblink/blinkinput/entities/recognizers/RecognizerBundle.html#RecognizerBundle-java.util.List-">RecognizerBundle</a></span>(java.util.List&nbsp;recognizerList)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../com/microblink/blinkinput/entities/recognizers/RecognizerBundle.html#RecognizerBundle-Recognizer:A-">RecognizerBundle</a></span>(Recognizer[]&nbsp;recognizers)</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../com/microblink/blinkinput/entities/recognizers/RecognizerBundle.html#RecognizerBundle-com.microblink.blinkinput.entities.recognizers.Recognizer:A-">RecognizerBundle</a></span>(<a href="../../../../../com/microblink/blinkinput/entities/recognizers/Recognizer.html" title="class in com.microblink.blinkinput.entities.recognizers">Recognizer</a>[]&nbsp;recognizers)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -237,7 +237,7 @@ extends &lt;any&gt;</pre>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><code>&lt;any&gt;[]</code></td>
+<td class="colFirst"><code><a href="../../../../../com/microblink/blinkinput/entities/recognizers/Recognizer.html" title="class in com.microblink.blinkinput.entities.recognizers">Recognizer</a>[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/microblink/blinkinput/entities/recognizers/RecognizerBundle.html#getRecognizers--">getRecognizers</a></span>()</code>
 <div class="block">Returns the array of recognizers associated with this bundle.</div>
 </td>
@@ -348,14 +348,14 @@ public static final&nbsp;android.os.Parcelable.Creator CREATOR</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="RecognizerBundle-Recognizer:A-">
+<a name="RecognizerBundle-com.microblink.blinkinput.entities.recognizers.Recognizer:A-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>RecognizerBundle</h4>
 <pre>public&nbsp;RecognizerBundle(@NonNull
-                        Recognizer[]&nbsp;recognizers)</pre>
+                        <a href="../../../../../com/microblink/blinkinput/entities/recognizers/Recognizer.html" title="class in com.microblink.blinkinput.entities.recognizers">Recognizer</a>[]&nbsp;recognizers)</pre>
 </li>
 </ul>
 <a name="RecognizerBundle-java.util.List-">
@@ -401,7 +401,7 @@ public static final&nbsp;<a href="../../../../../com/microblink/blinkinput/entit
 <li class="blockList">
 <h4>getRecognizers</h4>
 <pre>@NonNull
-public&nbsp;&lt;any&gt;[]&nbsp;getRecognizers()</pre>
+public&nbsp;<a href="../../../../../com/microblink/blinkinput/entities/recognizers/Recognizer.html" title="class in com.microblink.blinkinput.entities.recognizers">Recognizer</a>[]&nbsp;getRecognizers()</pre>
 <div class="block">Returns the array of recognizers associated with this bundle.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -482,9 +482,9 @@ public&nbsp;<a href="../../../../../com/microblink/blinkinput/entities/recognize
 <pre>public&nbsp;void&nbsp;setNumMsBeforeTimeout(int&nbsp;numMsBeforeTimeout)</pre>
 <div class="block">Set the duration in milliseconds that needs to pass since scanning has begun in order to define timeout.
  Please be aware that time counting does not start from the moment when scanning starts. Instead
- it starts from the moment when at least one <code>Recognizer.Result</code> inside recognizers in this
- bundle changes its state <code>Recognizer.Result#getResultState()</code> to either <code>Recognizer.Result.State#Uncertain</code>
- or  <code>Recognizer.Result.State#Valid</code>.
+ it starts from the moment when at least one <a href="../../../../../com/microblink/blinkinput/entities/recognizers/Recognizer.Result.html" title="class in com.microblink.blinkinput.entities.recognizers"><code>Recognizer.Result</code></a> inside recognizers in this
+ bundle changes its state <a href="../../../../../com/microblink/blinkinput/entities/recognizers/Recognizer.Result.html#getResultState--"><code>Recognizer.Result.getResultState()</code></a> to either <a href="../../../../../com/microblink/blinkinput/entities/recognizers/Recognizer.Result.State.html#Uncertain"><code>Recognizer.Result.State.Uncertain</code></a>
+ or  <a href="../../../../../com/microblink/blinkinput/entities/recognizers/Recognizer.Result.State.html#Valid"><code>Recognizer.Result.State.Valid</code></a>.
  <p/>
  The reason for this is the better user experience in cases when for example timeout is set to 10
  seconds and user starts scanning and leaves device lying on table for 9 seconds and then
@@ -644,7 +644,7 @@ protected&nbsp;&lt;any&gt;&nbsp;getConcreteCreator()</pre>
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../com/microblink/blinkinput/entities/recognizers/HighResImagesBundle.html" title="class in com.microblink.blinkinput.entities.recognizers"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../../com/microblink/blinkinput/entities/recognizers/Recognizer.Result.State.html" title="class in com.microblink.blinkinput.entities.recognizers"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../../com/microblink/blinkinput/entities/recognizers/RecognizerBundle.FrameQualityEstimationMode.html" title="class in com.microblink.blinkinput.entities.recognizers"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
