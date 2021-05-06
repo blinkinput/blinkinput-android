@@ -1,6 +1,6 @@
 # Release notes
 
-## v5.0.0
+## 5.0.0
 
 ### **BlinkInput v5 Release Announcement**
 
@@ -36,7 +36,7 @@ If you're using built-in activities, when `onActivityResult` is called with `RES
 - We've fixed the front-facing camera error on `Oukitel WP8 Pro`.
 
 
-## v4.3.0
+## 4.3.0
 
 ### Breaking change:
 
