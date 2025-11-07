@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if [[ $# < 4 ]]
+if [[ $# < 5 ]]
 then
-  echo "Usage: $(basename "$0") <sdk_name> <path_to_project> <application_module_name> <output_markdown_file_path>"
+  echo "Usage: $(basename "$0") <sdk_name> <path_to_project> <application_module_name> <output_markdown_file_path> <abis_to_check>"
   exit 1
 fi
 
@@ -11,19 +11,18 @@ SCRIPTPATH=`pwd -P`
 popd > /dev/null
 
 APKANALYZER=apkanalyzer
-command -v $APKANALYZER > /dev/null || { APKANALYZER="${ANDROID_SDK_ROOT}/tools/bin/apkanalyzer"; }
+command -v $APKANALYZER > /dev/null || { APKANALYZER="${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/apkanalyzer"; }
 command -v $APKANALYZER > /dev/null || { echo >&2 "Please set ANDROID_SDK_ROOT environment variable or add apkanalyzer (https://developer.android.com/studio/command-line/apkanalyzer) to PATH."; exit 1; }
 
 SDK_NAME=$1
 PROJECT_PATH=$2
 APP_NAME=$3
 OUTPUT_MARKDOWN_FILE=$4
+ABIS=($5)
 
 echo "Project path: $PROJECT_PATH"
 echo "App name: $APP_NAME"
 echo "Output file: $OUTPUT_MARKDOWN_FILE"
-
-ABIS=(armeabi-v7a arm64-v8a x86 x86_64)
 
 pushd $PROJECT_PATH > /dev/null
 ./gradlew clean :$APP_NAME:assembleRelease || exit 1

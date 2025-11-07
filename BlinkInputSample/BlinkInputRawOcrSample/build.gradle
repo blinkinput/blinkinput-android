@@ -5,7 +5,7 @@ android {
 
     defaultConfig {
         applicationId "com.microblink.input"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion rootProject.ext.targetSdkVersion
     }
 
@@ -17,6 +17,9 @@ android {
             signingConfig = debug.signingConfig
         }
     }
+
+    namespace 'com.microblink.input'
+
 
 }
 

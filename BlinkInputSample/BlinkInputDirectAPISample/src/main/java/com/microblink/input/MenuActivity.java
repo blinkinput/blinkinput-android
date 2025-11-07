@@ -51,16 +51,11 @@ public class MenuActivity extends BaseMenuActivity {
         initRecognizer();
 
         // Request permissions if not granted, we need CAMERA permission and
-        // WRITE_EXTERNAL_STORAGE permission because images that are taken by camera
-        // will be stored on external storage and used in recognition process
         List<String> requiredPermissions = new ArrayList<>();
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             requiredPermissions.add(Manifest.permission.CAMERA);
         }
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            requiredPermissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        }
-        if (requiredPermissions.size() > 0) {
+        if (!requiredPermissions.isEmpty()) {
             String[] permArray = new String[requiredPermissions.size()];
             permArray = requiredPermissions.toArray(permArray);
             ActivityCompat.requestPermissions(this, permArray, PERMISSION_REQUEST_CODE);
@@ -90,12 +85,7 @@ public class MenuActivity extends BaseMenuActivity {
         items.add(new MenuListItem("Camera 2 Activity", new Runnable() {
             @Override
             public void run() {
-                if (Build.VERSION.SDK_INT >= 21) {
-                    startCameraActivity(Camera2Activity.class);
-                } else {
-                    Toast.makeText(MenuActivity.this, "Camera2 API requires Android 5.0 or newer. Camera1 direct API will be used", Toast.LENGTH_SHORT).show();
-                    startCameraActivity(Camera1Activity.class);
-                }
+                startCameraActivity(Camera2Activity.class);
             }
         }));
 

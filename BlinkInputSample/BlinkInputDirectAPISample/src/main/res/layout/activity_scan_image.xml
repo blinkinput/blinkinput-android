@@ -13,13 +13,13 @@
         android:layout_alignParentTop="true"
         android:gravity="center">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnTakePhoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onTakePhotoClick"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:text="@string/takePhoto" />
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/btnTakePhoto"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:onClick="onTakePhotoClick"-->
+<!--            style="@style/Widget.AppCompat.Button.Borderless"-->
+<!--            android:text="@string/takePhoto" />-->
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnChoosePhoto"

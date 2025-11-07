@@ -49,6 +49,7 @@ import com.microblink.blinkinput.directApi.RecognizerRunner;
 import com.microblink.blinkinput.entities.recognizers.RecognizerBundle;
 import com.microblink.blinkinput.hardware.orientation.Orientation;
 import com.microblink.blinkinput.image.ImageBuilder;
+import com.microblink.blinkinput.image.InputImage;
 import com.microblink.input.R;
 import com.microblink.input.util.ResultFormater;
 import com.microblink.blinkinput.recognition.RecognitionSuccessType;
@@ -103,10 +104,10 @@ public class Camera2Fragment extends Fragment implements ScanResultListener {
                 if (img != null) {
                     if (mRecognizerRunner.getCurrentState() == RecognizerRunner.State.READY) {
                         mImageBeingRecognized = img;
-                        com.microblink.blinkinput.image.Image image = ImageBuilder.buildImageFromCamera2Image(mImageBeingRecognized, Orientation.ORIENTATION_LANDSCAPE_RIGHT, null);
+                        InputImage image = ImageBuilder.buildInputImageFromCamera2Image(mImageBeingRecognized, Orientation.ORIENTATION_LANDSCAPE_RIGHT, null);
                         Log.i(TAG, "Starting recognition");
                         mTimestamp = System.currentTimeMillis();
-                        mRecognizerRunner.recognizeImage(image, Camera2Fragment.this);
+                        mRecognizerRunner.recognizeVideoImage(image, Camera2Fragment.this);
                     } else {
                         Log.v(TAG, "RecognizerRunner is busy. Dropping current frame");
                         img.close();

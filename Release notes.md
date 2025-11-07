@@ -1,5 +1,22 @@
 # Release notes
 
+## 5.1.0
+
+### Improvements:
+
+- The SDK is now supported on Android 16KB page size devices.
+- Updated target API level to 36 with full support for edge-to-edge UI enforcement introduced in API level 35.
+
+### Breaking changes
+
+- Min Android SDK API level is raised to 21 (Android 5.0)
+
+- We've changed how `RecognizerRunner` processes images. Now it can treat `Image` objects as either video frame or photo frame. Until now, Direct API always processed images as photo frames, not giving ability to recognizers to use time-redundant information for yield better recognition quality.
+
+- Removed support for x86 architecture:
+    - Devices that are based on the Intel x86 architecture, rather than ARM, are no longer supported. x86 and x86_64 architectures are used on very few devices today with most of them being manufactured before 2015, and only a few after that (e.g. Asus Zenfone 4). According to the Device catalog on Google Play Console, these devices make up about 0.5% of all Android devices (97 out of 17278 devices that have an API level of 21 and above support this architecture).
+
+
 ## 5.0.0
 
 ### **BlinkInput v5 Release Announcement**
@@ -131,7 +148,7 @@ We distribute SDK with **ARMv7**, **ARM64**, and **x86** native library binaries
 - fixed problems in camera management:
     - default camera surface is `TextureVeiw` for devices that use Camera1 API, otherwise `SurfaceView` is used
 - fixed camera autofocus problems on Samsung S9/S9+ when optimisation for near scanning is enabled
-- fixed autofocus problems in `Field by field` scanning on Huawei P20 pro, Huawei P20 and Huawei P20 lite 
+- fixed autofocus problems in `Field by field` scanning on Huawei P20 pro, Huawei P20 and Huawei P20 lite
 - fixed bug which caused that results from the previous scan are cleared when the scan activity is run again and entities which have produced results are not used in the new scan
 - various other bug fixes and improvements
 
@@ -140,7 +157,7 @@ We distribute SDK with **ARMv7**, **ARM64**, and **x86** native library binaries
     - `RecognizerView` has been renamed to `RecognizerRunnerView` and `Recognizer` singleton to `RecognizerRunner`
     - `SegmentScanActivity` has been renamed to `FieldByFieldScanActivity`
     - `RandomScanActivity` does not exist anymore
-    - previously internal `Recognizer` objects are not internal anymore - instead of having opaque `RecognizerSettings` and `RecognizerResult` objects, you now have stateful `Recognizer` object that contains its `Result` within and mutates it while performing recognition. 
+    - previously internal `Recognizer` objects are not internal anymore - instead of having opaque `RecognizerSettings` and `RecognizerResult` objects, you now have stateful `Recognizer` object that contains its `Result` within and mutates it while performing recognition.
         - similarly we now have stateful `Parser` and `Detector` objects
         - introduced new `Processor` object type
         - For more information, see [README](README.md), updated demo applications and [this blog post](https://microblink.com/blog/major-change-of-the-api-and-in-the-license-key-formats)
@@ -275,7 +292,7 @@ We distribute SDK with **ARMv7**, **ARM64**, and **x86** native library binaries
     - set parser to Arabic-Indic mode (amounts with Arabic-Indic digits)
     - allow amounts with space separated digit groups (thousands)
     - set ideal (expected) number of digits before decimal point
-- added factory method `createFromPreset` to generic AmountParserSettings that creates the settings from one of the available presets (`GENERIC`, `LARGE_AMOUNT`) 
+- added factory method `createFromPreset` to generic AmountParserSettings that creates the settings from one of the available presets (`GENERIC`, `LARGE_AMOUNT`)
 
 ## 2.4.0
 - reconfigureRecognizers method now throws an error if phone does not have autofocus and at least one of new recognizers require it

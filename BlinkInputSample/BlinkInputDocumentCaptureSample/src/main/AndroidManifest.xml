@@ -3,6 +3,7 @@
     package="com.microblink.input">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -22,6 +23,7 @@
         android:theme="@style/Theme.AppTheme.FullScreen">
         <activity
             android:name=".MenuActivity"
+            android:exported="true"
             android:label="@string/app_name"
             android:screenOrientation="sensor">
             <intent-filter>
