@@ -7,13 +7,14 @@
 - The SDK is now supported on Android 16KB page size devices.
 - Updated target API level to 36 with full support for edge-to-edge UI enforcement introduced in API level 35.
 
-### Minor breaking API change
+### Breaking changes
 
-- We've changed how `RecognizerRunner` processes images. Now it can treat `Image` objects as either video frame or photo frame. Until now, Direct API always processed images as photo frames, that not giving ability to recognizers to use time-redundant information for yield better recognition quality.
+- Min Android SDK API level is raised to 21 (Android 5.0)
 
-### Removed support for x86 architecture
+- We've changed how `RecognizerRunner` processes images. Now it can treat `Image` objects as either video frame or photo frame. Until now, Direct API always processed images as photo frames, not giving ability to recognizers to use time-redundant information for yield better recognition quality.
 
-Devices that are based on the Intel x86 architecture, rather than ARM, are no longer supported. x86 and x86_64 architectures are used on very few devices today with most of them being manufactured before 2015, and only a few after that (e.g. Asus Zenfone 4). According to the Device catalog on Google Play Console, these devices make up about 0.5% of all Android devices (97 out of 17278 devices that have an API level of 21 and above support this architecture).
+- Removed support for x86 architecture:
+    - Devices that are based on the Intel x86 architecture, rather than ARM, are no longer supported. x86 and x86_64 architectures are used on very few devices today with most of them being manufactured before 2015, and only a few after that (e.g. Asus Zenfone 4). According to the Device catalog on Google Play Console, these devices make up about 0.5% of all Android devices (97 out of 17278 devices that have an API level of 21 and above support this architecture).
 
 
 ## 5.0.0
