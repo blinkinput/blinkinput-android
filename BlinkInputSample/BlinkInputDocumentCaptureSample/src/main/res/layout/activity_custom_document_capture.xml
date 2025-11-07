@@ -13,7 +13,7 @@
         android:layout_gravity="top"
         android:fitsSystemWindows="true" />
 
-    <include layout="@layout/mb_activity_scan" />
+    <include layout="@layout/mb_blinkinput_activity_scan" />
 
 </LinearLayout>
 

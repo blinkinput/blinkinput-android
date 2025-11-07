@@ -468,7 +468,7 @@ public class DetectorActivity extends Activity {
         private void enableTorchButtonIfPossible() {
             if (mRecognizerRunnerView.isCameraTorchSupported() && mTorchButton != null) {
                 mTorchButton.setVisibility(View.VISIBLE);
-                mTorchButton.setImageResource(R.drawable.mb_ic_flash_off_24dp);
+                mTorchButton.setImageResource(com.microblink.blinkinput.library.R.drawable.mb_ic_flash_off);
                 mTorchEnabled = false;
                 mTorchButton.setOnClickListener(new View.OnClickListener() {
 
@@ -484,9 +484,9 @@ public class DetectorActivity extends Activity {
                                         if (success) {
                                             mTorchEnabled = !mTorchEnabled;
                                             if (mTorchEnabled) {
-                                                mTorchButton.setImageResource(R.drawable.mb_ic_flash_on_24dp);
+                                                mTorchButton.setImageResource(com.microblink.blinkinput.library.R.drawable.mb_ic_flash_on);
                                             } else {
-                                                mTorchButton.setImageResource(R.drawable.mb_ic_flash_off_24dp);
+                                                mTorchButton.setImageResource(com.microblink.blinkinput.library.R.drawable.mb_ic_flash_off);
                                             }
                                             mTorchButton.requestLayout();
                                         }

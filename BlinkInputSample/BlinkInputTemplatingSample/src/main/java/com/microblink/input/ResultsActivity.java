@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.microblink.R;
+
 import java.io.File;
 
 import androidx.annotation.Nullable;

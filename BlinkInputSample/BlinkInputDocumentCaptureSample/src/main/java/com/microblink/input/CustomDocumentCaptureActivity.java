@@ -59,11 +59,11 @@ public class CustomDocumentCaptureActivity extends AppCompatActivity implements
             // create fragment transaction to replace R.id.recognizer_runner_view_container with RecognizerRunnerFragment
             recognizerRunnerFragment = new RecognizerRunnerFragment();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.recognizer_runner_view_container, recognizerRunnerFragment);
+            fragmentTransaction.replace(com.microblink.blinkinput.library.R.id.recognizer_runner_view_container, recognizerRunnerFragment);
             fragmentTransaction.commit();
         } else {
             // obtain reference to fragment restored by Android within super.onCreate() call
-            recognizerRunnerFragment = (RecognizerRunnerFragment) getSupportFragmentManager().findFragmentById(R.id.recognizer_runner_view_container);
+            recognizerRunnerFragment = (RecognizerRunnerFragment) getSupportFragmentManager().findFragmentById(com.microblink.blinkinput.library.R.id.recognizer_runner_view_container);
         }
     }
 
@@ -155,7 +155,7 @@ public class CustomDocumentCaptureActivity extends AppCompatActivity implements
 
         @Override
         public void onTorchStateChanged(boolean torchOn) {
-            final int torchIconResource = torchOn ? R.drawable.mb_ic_flash_on_24dp : R.drawable.mb_ic_flash_off_24dp;
+            final int torchIconResource = torchOn ? com.microblink.blinkinput.library.R.drawable.mb_ic_flash_on : com.microblink.blinkinput.library.R.drawable.mb_ic_flash_off;
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {

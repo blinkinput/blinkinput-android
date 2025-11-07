@@ -19,6 +19,7 @@ import com.microblink.blinkinput.entities.recognizers.RecognizerBundle;
 import com.microblink.blinkinput.hardware.orientation.Orientation;
 import com.microblink.blinkinput.image.Image;
 import com.microblink.blinkinput.image.ImageBuilder;
+import com.microblink.blinkinput.image.InputImage;
 import com.microblink.input.R;
 import com.microblink.input.util.ResultFormater;
 import com.microblink.blinkinput.recognition.FeatureNotSupportedException;
@@ -204,9 +205,9 @@ public class Camera1Activity extends Activity implements ScanResultListener, Sur
     public void onPreviewFrame(byte[] data, Camera camera) {
         if (mRecognizerRunner.getCurrentState() == RecognizerRunner.State.READY) {
             // create image
-            Image img = ImageBuilder.buildImageFromCamera1NV21Frame(data, mFrameWidth, mFrameHeight, Orientation.ORIENTATION_LANDSCAPE_RIGHT, null);
+            InputImage img = ImageBuilder.buildInputImageFromCamera1NV21Frame(data, mFrameWidth, mFrameHeight, Orientation.ORIENTATION_LANDSCAPE_RIGHT, null);
             mTimestamp = System.currentTimeMillis();
-            mRecognizerRunner.recognizeImage(img, this);
+            mRecognizerRunner.recognizeVideoImage(img, this);
         } else {
             // just ask for another frame
             camera.addCallbackBuffer(data);

@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.microblink.R;
 import com.microblink.blinkinput.BaseMenuActivity;
 import com.microblink.blinkinput.MenuListItem;
 import com.microblink.blinkinput.entities.recognizers.Recognizer;
@@ -13,6 +14,7 @@ import com.microblink.blinkinput.entities.recognizers.detector.DetectorRecognize
 import com.microblink.blinkinput.entities.recognizers.successframe.SuccessFrameGrabberRecognizer;
 import com.microblink.blinkinput.image.Image;
 import com.microblink.blinkinput.results.date.Date;
+import com.microblink.blinkinput.results.date.SimpleDate;
 import com.microblink.blinkinput.util.RecognizerCompatibility;
 import com.microblink.blinkinput.util.RecognizerCompatibilityStatus;
 import com.microblink.util.templating.CroatianIDFrontSideTemplatingUtil;
@@ -166,7 +168,7 @@ public class MenuActivity extends BaseMenuActivity {
                 mCroatianIDFrontSideTemplatingUtil.getCitizenshipParser().getResult().toString());
         sb.append(newline);
 
-        Date dateOfBirth = mCroatianIDFrontSideTemplatingUtil.getDateOfBirthParser().getResult().getDate().getDate();
+        SimpleDate dateOfBirth = mCroatianIDFrontSideTemplatingUtil.getDateOfBirthParser().getResult().getDate().getDate();
         if (dateOfBirth != null) {
             addEntry(sb, R.string.result_key_date_of_birth, formatDate(dateOfBirth));
         }
@@ -178,7 +180,7 @@ public class MenuActivity extends BaseMenuActivity {
         stringBuilder.append(getString(entryKeyResourceId)).append(": ").append(value);
     }
 
-    private String formatDate(@NonNull Date date) {
+    private String formatDate(@NonNull SimpleDate date) {
         return String.format(Locale.US, "%02d.%02d.%d.", date.getDay(), date.getMonth(), date.getYear());
     }
 
